@@ -18,6 +18,7 @@ public class Image {
     private Long ID_image;
 
     @ManyToOne
+    @JoinColumn(name = "ID_pub")
     @JsonProperty(access =JsonProperty.Access.WRITE_ONLY)
     private Publication publication;
 
