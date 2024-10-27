@@ -7,6 +7,10 @@ package com.example.Back_end.entities;
 @AllArgsConstructor
 @ToString
 public class Notification {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id ;
+    private String contenue ;
     public Long getId() {
         return id;
     }
@@ -23,9 +27,6 @@ public class Notification {
         this.contenue = contenue;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id ;
-    private String contenue ;
+
 
 }

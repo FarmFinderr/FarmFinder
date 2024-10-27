@@ -1,5 +1,6 @@
 package com.example.Back_End.entities;
 
+import com.example.Back_end.entities.Publication;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

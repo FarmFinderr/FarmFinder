@@ -1,6 +1,13 @@
 package com.example.Back_end.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -12,7 +19,7 @@ public class Evenemment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private bool status;
+    private boolean status;
     private Long price;
 
     public Long getId() {
@@ -39,16 +46,16 @@ public class Evenemment {
         this.price = price;
     }
 
-    public bool getStatus() {
+    public boolean getStatus() {
         return status;
     }
 
-    public void setStatus(bool status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 
     @ManyToOne
-    @JsonProperty(access =JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Personne p ;
 
 }

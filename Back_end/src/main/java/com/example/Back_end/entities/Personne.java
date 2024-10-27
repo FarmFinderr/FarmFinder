@@ -1,6 +1,8 @@
 package com.example.Back_end.entities;
 
 
+import jakarta.persistence.GenerationType;
+
 @Entity
 @Data
 @NoArgsConstructor
