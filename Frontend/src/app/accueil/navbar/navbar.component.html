@@ -1,1 +1,32 @@
-<p>navbar works!</p>
+<div class="max-w-screen-xl">
+
+    <nav
+      class="bg-white shadow-2xl light:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 light:border-gray-600 h-16">
+
+      <div class="flex items-center justify-between w-full px-1.5">
+        <img src="../../../assets/logo.png" class="h-14 z-30" alt="farmfinder Logo" />
+
+        <!-- Menu de navigation -->
+  <div class="flex items-center space-x-6 text-gray-800">
+    <a routerLink="/Accueil" routerLinkActive="text-green-600" class="flex items-center space-x-1 font-bold">
+      <span>Accueil</span>
+    </a>
+    <a routerLink="/Assistant IA" routerLinkActive="text-green-600" class="flex items-center space-x-1 font-bold">
+      <span>Assistant IA</span>
+    </a>
+    <a routerLink="/Événements" routerLinkActive="text-green-600" class="flex items-center space-x-1 font-bold">
+      <span>Événements</span>
+    </a>
+    <a routerLink="/Discussions" routerLinkActive="text-green-600" class="flex items-center space-x-1 font-bold ">
+      <span>Discussions</span>
+    </a>
+  </div>
+    <!-- Notifications et langue -->
+    <div class="flex items-center space-x-4">
+        <img src="../../../assets/notif.png" class="h-8 z-30" alt="farmfinder Logo" />
+        <!-- Langue -->
+        <button class="text-yellow-400 font-bold text-2xl">FR</button>
+      </div>
+      </div>
+    </nav>
+  </div>
