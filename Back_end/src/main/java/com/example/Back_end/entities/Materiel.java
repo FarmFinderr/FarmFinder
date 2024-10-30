@@ -15,8 +15,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class Materiel extends Publication {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    
     private Long materiel_id;
     private String materiel_name;
     private String materiel_etat;

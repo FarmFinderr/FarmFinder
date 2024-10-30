@@ -43,6 +43,7 @@ public class Commentaire {
     }
 
     @ManyToOne
+    @JoinColumn(name = "ID_pub")
     @JsonProperty(access =JsonProperty.Access.WRITE_ONLY)
     private Publication publication;
 

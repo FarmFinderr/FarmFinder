@@ -15,9 +15,8 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 
-public class Terrain extends Publication {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class Terrain extends Publication{
+
     private Long terrain_id;
     private String terrain_location;
     private double terrain_aire;

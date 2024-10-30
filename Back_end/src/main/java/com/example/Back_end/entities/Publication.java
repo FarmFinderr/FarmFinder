@@ -8,12 +8,14 @@ import lombok.ToString;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Publication {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,17 +24,17 @@ public class Publication {
     private String description;
     private double price;
 
-    @OneToMany(mappedBy = "Publication")
-    private Collection<Commentaire> commentaire;
+    @OneToMany(mappedBy = "publication")
+    private List<Commentaire>  commentaire;
 
-    @OneToMany(mappedBy = "Publication")
-    private Collection<Image> image;
+    @OneToMany(mappedBy = "publication")
+    private List<Image> images;
 
-    @OneToMany(mappedBy = "Publication")
-    private Collection<Reaction> reaction;
+    @OneToMany(mappedBy = "publication")
+    private List<Reaction> reactions ;
 
-    @OneToMany(mappedBy = "Publication")
-    private Collection<Video> video;
+    @OneToMany(mappedBy = "publication")
+    private List<Video> videos ;
 
 
 

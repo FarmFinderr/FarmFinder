@@ -18,10 +18,9 @@ public class Video {
     private Long ID_vd;
     private String title;
 
-    private Long ID_pub;
-   @Transient
 
     @ManyToOne
+    @JoinColumn(name = "ID_pub")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
    private Publication publication;
 

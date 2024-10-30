@@ -20,6 +20,7 @@ public class Reaction {
     private double value;
 
     @ManyToOne
+    @JoinColumn(name = "ID_pub")
     @JsonProperty(access =JsonProperty.Access.WRITE_ONLY)
     private Publication publication;
 
