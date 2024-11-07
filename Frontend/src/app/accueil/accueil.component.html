@@ -1,22 +1,95 @@
-<app-navbar></app-navbar>
 
-<div class="w-64 h-screen text-white p-4 flex flex-col bg-green-900 mt-16">
-  <div class="flex items-center mb-6">
-    <img src="../../assets/sirineKahweji_ISETBizerte.jpg" alt="User Image" class="w-16 h-16 rounded-full mr-4">
-    <h2 class="text-lg font-semibold">Syrine Kahweji</h2>
-  </div>
-</div>
-<app-addpost></app-addpost>
-<!-- Footer -->
-<footer class="bg-green-900 text-white py-6">
-  <div class="flex flex-col md:flex-row justify-around items-center">
-    <p>© 2024 Copyright</p>
-    <div class="space-x-4">
-      <span>Adresse: Rue xxx, Bizerte</span>
-      <span>Email: contact&#64;farmfinder.com</span>
-      <span>Téléphone: +216 12 345 678</span>
+<div class="h-screen flex flex-col max-w-screen-xl">
+  <app-navbar></app-navbar>
+  <div class="flex flex-1 bg-stone-50 mt-16">
+    <app-sidebar></app-sidebar>
+
+    <!-- Main Content -->
+    <div class="fixed flex-1 grid grid-cols-3 gap-4 p-4 ml-64">
+      <!-- Post Section (Middle Column) -->
+      <div class="col-span-2 space-y-4">
+        <!-- Post Input -->
+        <!--<div class="bg-white p-4 rounded shadow">
+          <input type="text" placeholder="Quoi de neuf, Syrine Kahweji ?" class="w-full border rounded p-2">
+          <div class="flex justify-between mt-2 text-sm text-gray-500">
+            <button>Joindre un Fichier</button>
+            <button>Photo / Vidéo</button>
+            <button>Humeur / Activité</button>
+          </div>
+        </div>-->
+
+        <div class="bg-white p-4 rounded shadow">
+          <input type="text" placeholder="Quoi de neuf, Syrine Kahweji ?" class="w-full border rounded p-2">
+          
+          <div class="flex justify-between mt-2 text-sm text-gray-500">
+            <!-- Joindre un Fichier  -->
+            <button class="flex items-center space-x-2" aria-label="Joindre un Fichier">
+              <img class="h-5 w-5" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAACqklEQVR4nO2YT2sTQRjGHwVvlZ422QkYpKIeJLfqQSMWDVgwF71USslXEb+H6K2bBm0R6aGNESXroZQKtWmop1w9iMYUBN3ZvLLppCQ1aWOzmV2y7wMPgc3+mec3887OLMBisVgsFut/RZ8eXZY7cyVZWfjlVnPU5cpjkrYYyk7Z/C3LYlO+TDxBKMNXFhr/BG97+8HQAA79TJBbEKsIk+TOXKlv+GqO5MY1XwG0ICyZawiLZK9h3w6/ddO/8B0AQgXBVWGb394QNf+0ft3PD/3t+R4AWl4y34YGADUdaqnpkPyY9D98LwBhgOC2AXRoJOH7AQgaghsGAEFCcHUCeH48BLdgro83gPwJo+BgJBTHF8A7QfLFQBDWxhOALUi+9wIOUA6vxNPgXoO2CN5lsRnYQkgGHV5toLQCcDuXwCEA4JkB6JDLIyDXXQK78xEvge1stAHIjVR0AcitdOCh9QPYnT8Y9iHp+XrRpNpyjPbyhh4AMgSh2/66GqeqZRw6UgDqRbMrfOQA1JZj0QawlzeiDaB6JDwDsHgEEJeADskQ1D/PATZPgsRvAYtfg8TrAIsXQsQrQYuXwsR7AYs3Q8SbIStCm6H9kjleAOodX3Z7BRvUWgA4ZdEY5ZfdU3sx1tACQNrmip8970t4y6AveeO1FgBkJ646tvl9VF92T9f7xo/aSvyiFgCe6EPigrRFwSmLn8MAGLbmq4uxfa/ntYZnsVhHdQ7AJIA4gCSAKwBSAK4DSAO4DWAGwF0AGQD3AcwCyCrPqmMZdc6Muiat7pFS90yqZ0yqZwam8wAuAbihGp0NyBnVBq8tEzqCnwUwHWDgkzyt2hhpAGegQRMAplR9BlkC91QbpnSVAProuEnwlprQ7qgJzmt0v0nQ+887xzvXu8a7dqST4F/ffjERCrRFigAAAABJRU5ErkJggg==" alt="file"> 
+               <span>Joindre un Fichier</span>
+               <input type="file" id="fileUpload" class="hidden" onchange="handleFileUpload(event)">
+
+
+            </button>
+        
+            <!-- Photo / Vidéo (Icone et uploader) -->
+            <button class="flex items-center space-x-2" aria-label="Photo / Vidéo" onclick="document.getElementById('imageUpload').click()">
+              <img  class="h-6 w-6" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEi0lEQVR4nO2a329TZRjHn6ojIdGpMWhUjIub66kM4cqoE0m8mLgg11MvTCRjGcaI8T8wxhvjhXqjBGNMNtqMRPAHLV4I6ja9YKeDrd1o6QhZCawjY60SdN12vuY9PS3t6Wl72r5vexbeb/K9WLOec76f93menp63RFJSUlJSUlJSUlJSUlKlhZm3nkd0vx+xgSXEBjXMDcK2Y/1A0MPPqkdD0HMVqjKEc0oXiRYuvP0uYgOrVYXOd6SPL4BCGP9BVfrEhZ9544Vc+MXvgJWrANahS1sDbvgrA5jqFgcgC0FUJSD6TiAX3krr/5YPH+4VGz4HQRkSA+DigWU9iL7yJmnrwHLAoucPZMpe9MoXWLnGPzzIlRl4B2+XPTQg8iZwbmcDw9kcjCAXfwBzbFUP5i87//CTO4DEN0B6EUgngIXDwOSzVR8nlDw6P530quGU94vZ1IhbHIAg59Vj4c1a+LoGAN54KOnLei6UGtnHD4C2ZuRf5Q8gfb0YQPpavQB0CHVVAnIABoHlU4CWzgw97gAWiwGs2ANwc9yNeKAD0RPtVgDirB34AJjLs0NaYOlMJyLH23O2AjCd9AWdD2ByB7BwJDMAbQ7BW38pBeFLAQglffMAXM4GEKzeV049bRdAvPEAVAX4qRXw3Q38/EDmb84AYj+2OxiA/0FgmG77l4e4AzCHdw6AsTbgaF543S5gvO0OADDhBo5tMoU3zF630QqaupEB+E2lb3aZVkgcexyj792D3wfvwqWvtrB7+w0GYMyq9O21QirQhtP9Lvy6n3Ke//aRDQRgokzpV2iF9J+dGD/UUhCemQFJ+ts2CAB/hdIv1QqqB+c/vq8ofNbj77fogJwFIGZ6wDn6ZHXh81rh8pGHS4bP+vxH91rOg+YBiPTVVvomr/ta8NtAYd+XstU8aB6Aqe7aS9/ky59UDl9qHjQHQLi3ztIvtDZEOPuBPQjmedA4ALF+6wec32+uGwDzzcOEM/32IIQ/vb8JAIIlPotr7P16WoHdKLFzr55VGghA1behigH88UTm2x4HAHorHCofnt0hsmHIwlt9FY4c7+APgAmqkrBzb87D/4y5MR/owMUfile3kqMnu9aswnMA4BluRPjrpwsfb1XrC6O9t8QAmHBvh6qsiF75usKf6NTC8c8SQgAwsd1XfQNSEABW9vWEn539cKlUeC4AmNjuq74fz/blOQOovuc7ED25fY2VfbmV5wogX+yA7GlrpRM7xLU/FS6ncMo36YBwFV3XvkA5TS/7vmx2OJv+nERo6u9hJZT0XnJAwHKem0l5O0mUQqmRffourEPDT9/wvU6iNZsacbMNSLYv74DQ+u8DWNkLXXkpKSkpKSldm4iolYi2ENFWInqKiDxEtJOIniOil4hoFxHtJqJXDPcQ0atEtIeI9hreY7zWk/d/u4337jKOxY75jHGOrcY5W41raIhaiOhRImK/yX3RuNi9DjGD121c22MioHiI6DUHBLXrXgPGHQ1gGwlqgW0ObIEe45q6jGtk1+qoIfhyDUOQvYe9lx0jOwTZsbkOwf8BQGz0I9CLzFcAAAAASUVORK5CYII=" alt="image-gallery">       
+              <span>Photo / Vidéo</span>
+              <!-- Hidden File Input -->
+              <input type="file" id="imageUpload" class="hidden" accept="image/*,video/*" onchange="handleFileUpload(event)">
+            </button>
+        
+            <!-- Humeur / Activité (Icone) -->
+            <button class="flex items-center space-x-2" aria-label="Humeur / Activité">
+              <img class="h-6 w-6" src="../../assets/accueil/icons8-smiling-face-with-smiling-eyes-94.png">
+              <span>Humeur / Activité</span>
+
+            </button>
+          </div>
+        </div>
+        
+        <!-- Optionally, display the uploaded image/video -->
+        <div id="uploadedFile" class="mt-4">
+          <!-- The uploaded image/video will be displayed here -->
+        </div>
+
+        <!-- Posts -->
+        <div class="bg-white p-4 rounded shadow space-y-4">
+          <div>
+            <h3 class="font-semibold">Syrine Kahweji</h3>
+            <p>3 ha à vendre à 14 km de Tunis centre...</p>
+            <div class="text-gray-500 text-sm">7 Février 2021</div>
+            <input type="text" placeholder="Écrire un commentaire..." class="w-full border rounded p-2 mt-2">
+          </div>
+          <div>
+            <h3 class="font-semibold">Lyna Moujehed</h3>
+            <p>À vendre belle ferme de 17 ha avec titre bleu individuel...</p>
+            <img src="post-image.jpg" alt="Post Image" class="w-full rounded mt-2">
+            <input type="text" placeholder="Écrire un commentaire..." class="w-full border rounded p-2 mt-2">
+          </div>
+        </div>
+      </div>
+
+      <!-- Events Section (Right Column) -->
+      <div class="bg-white p-4 rounded shadow">
+        <h3 class="font-semibold text-gray-700 mb-4">Les Nouvelles Événements</h3>
+        <div class="space-y-4">
+          <div class="flex items-center">
+            <img src="event-image.jpg" alt="Event" class="w-12 h-12 rounded-full">
+            <div class="ml-4">
+              <p class="text-sm font-semibold">Ferme de 13 ha à Ain Draham</p>
+              <p class="text-xs text-gray-500">5,400,000 TND</p>
+              <button class="text-xs text-green-600">Participer</button>
+            </div>
+          </div>
+          <!-- Repeat for more events -->
+        </div>
+      </div>
     </div>
   </div>
-</footer>
+</div>
+
+
 <router-outlet></router-outlet>
+
 

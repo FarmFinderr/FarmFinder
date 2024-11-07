@@ -9,4 +9,8 @@ import { Component } from '@angular/core';
 })
 export class AddpostComponent {
 
+  addNewPublication() {
+    console.log("addpost");
+  }
+
 }
