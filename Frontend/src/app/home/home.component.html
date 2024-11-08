@@ -1,46 +1,291 @@
-  
-  <!-- Header Section -->
-  <header class="relative bg-cover bg-center h-96" style="background-image: url('../../../../assets/home_page.jpg');">
-    <div class="flex flex-col items-center justify-center h-full text-white">
-      <h1 class="text-8xl font-bold text-green-900">FarmFinder</h1>
-      <p class="mt-4 bg-yellow-600 px-6 py-2 rounded-lg"> Des offres agricoles en un clic</p>
+<!-- Header Section -->
+<header
+  class="relative bg-cover bg-center h-[48rem]"
+  style="background-image: url('../../assets/home_page.jpg')"
+>
+  <div class="flex flex-col items-center justify-center h-full text-white">
+    <h1 class="text-8xl font-bold">FarmFinder</h1>
+    <p class="mt-4 bg-yellow-400 px-12 py-2 rounded-3xl text-2xl">
+      Des offres agricoles en un clic
+    </p>
+    <img src="../../assets/logo.png" class="h-25 z-30" alt="farmfinder Logo" />
+  </div>
+</header>
+
+<!-- Objectives Section -->
+<section class="text-gray-600 body-font">
+  <h2
+    class="text-center text-2xl font-bold text-black sm:text-3xl md:text-5xl mt-20"
+  >
+    Nos Objectifs
+  </h2>
+  <div
+    class="relative isolate overflow-hidden bg-green-800 my-20 py-5 border flex justify-center h-[28rem]"
+  >
+    <div
+      x-data="{}"
+      x-init="$nextTick(() => {
+        let ul = $refs.logos;
+        ul.insertAdjacentHTML('afterend', ul.outerHTML);
+        ul.nextSibling.setAttribute('aria-hidden', 'true');
+        setInterval(() => {
+          ul.style.transitionDuration = '0s'; // Set transition duration to 0s
+          ul.style.transform = `translateX(-${ul.offsetWidth}px)`;
+          setTimeout(() => {
+            ul.style.transitionDuration = ''; // Reset transition duration to default
+            ul.style.transform = 'translateX(0)';
+            // Move the first li element to the end
+            let firstLi = ul.querySelector('li:first-child');
+            ul.appendChild(firstLi);
+          }, 20);
+        }, 5000); // Adjust the interval duration as needed
+      })"
+      class="w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]"
+    >
+      <ul
+        x-ref="logos"
+        class="flex items-center justify-center md:justify-start [&_li]:mx-3 animate-infinite-scroll"
+      >
+        <!-- Your list items here -->
+        <li>
+          <div class="flex flex-wrap justify-center space-x-4">
+            <div
+              class="shadow-lg w-96 h-80 rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 bg-white"
+            >
+              <img
+                src="../../assets/1.jpeg"
+                alt="image1"
+                class="w-full object-cover rounded-t-lg"
+              />
+              <p
+                class="text-2xl font-serif text-center text-gray-800 mt-4 px-4 py-2 leading-tight tracking-wide shadow-md"
+              >
+                Limitations des distances
+              </p>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="flex flex-wrap justify-center">
+            <div
+              class="shadow-lg w-96 h-80 rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 bg-white"
+            >
+              <img
+                src="../../assets/2.jpeg"
+                alt="image1"
+                class="w-full object-cover rounded-t-lg"
+              />
+              <p
+                class="text-2xl font-serif text-center text-gray-800 mt-4 px-4 py-2 leading-tight tracking-wide shadow-md"
+              >
+              Assistance durable
+              </p>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="flex flex-wrap justify-center space-x-4">
+            <div
+              class="shadow-lg w-96 h-80 rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 bg-white"
+            >
+              <img
+                src="../../assets/3.jpeg"
+                alt="image1"
+                class="w-full object-cover rounded-t-lg"
+              />
+              <p
+                class="text-2xl font-serif text-center text-gray-800 mt-4 px-4 py-2 leading-tight tracking-wide shadow-md"
+              >
+                Limitations des distances
+              </p>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="flex flex-wrap justify-center space-x-4">
+            <div
+              class="shadow-lg w-96 h-80 rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 bg-white"
+            >
+              <img
+                src="../../assets/4.jpeg"
+                alt="image1"
+                class="w-full object-cover rounded-t-lg"
+              />
+              <p
+                class="text-2xl font-serif text-center text-gray-800 mt-4 px-4 py-2 leading-tight tracking-wide shadow-md"
+              >
+                Limitations des distances
+              </p>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="flex flex-wrap justify-center space-x-4">
+            <div
+              class="shadow-lg w-96 h-80 rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 bg-white"
+            >
+              <img
+                src="../../assets/6.jpeg"
+                alt="image1"
+                class="w-full object-cover rounded-t-lg"
+              />
+              <p
+                class="text-2xl font-serif text-center text-gray-800 mt-4 px-4 py-2 leading-tight tracking-wide shadow-md"
+              >
+              Satisfaction clients 
+
+              </p>
+            </div>
+          </div>
+        </li>
+
+        
+      </ul>
     </div>
-  </header>
-  <img src="../../assets/home_page.jpg" alt="photo">
-  
-  <!-- Objectives Section -->
-  <section class="py-16 bg-green-100 text-center">
-    <h2 class="text-3xl font-semibold text-green-900 mb-8">Nos Objectifs</h2>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 px-4">
-      <div class="space-y-2">
-        <img src="../../assets/home_page.jpg" alt="Goal 1" >
-        <p class="text-green-900 font-semibold">Limitations des distances</p>
-      </div>
-      <div class="space-y-2">
-        <img src="assets/goal2.jpg" alt="Goal 2" class="w-full h-48 object-cover rounded-lg">
-        <p class="text-green-900 font-semibold">Simplification les interactions</p>
-      </div>
-      <div class="space-y-2">
-        <img src="assets/goal3.jpg" alt="Goal 3" class="w-full h-48 object-cover rounded-lg">
-        <p class="text-green-900 font-semibold">Satisfaction clients</p>
-      </div>
-      <div class="space-y-2">
-        <img src="assets/goal4.jpg" alt="Goal 4" class="w-full h-48 object-cover rounded-lg">
-        <p class="text-green-900 font-semibold">Assistance durable</p>
-      </div>
+  </div>
+</section>
+
+<!-- Objectives Section -->
+<section class="text-gray-600 body-font">
+  <h2
+    class="text-center text-2xl font-bold text-black sm:text-3xl md:text-5xl mt-20"
+  >
+    Nos Services
+  </h2>
+  <div
+    class="relative isolate overflow-hidden bg-green-800 my-20 py-5 border flex justify-center h-[28rem]"
+  >
+    <div
+      x-data="{}"
+      x-init="$nextTick(() => {
+        let ul = $refs.logos;
+        ul.insertAdjacentHTML('afterend', ul.outerHTML);
+        ul.nextSibling.setAttribute('aria-hidden', 'true');
+        setInterval(() => {
+          ul.style.transitionDuration = '0s'; // Set transition duration to 0s
+          ul.style.transform = `translateX(-${ul.offsetWidth}px)`;
+          setTimeout(() => {
+            ul.style.transitionDuration = ''; // Reset transition duration to default
+            ul.style.transform = 'translateX(0)';
+            // Move the first li element to the end
+            let firstLi = ul.querySelector('li:first-child');
+            ul.appendChild(firstLi);
+          }, 20);
+        }, 5000); // Adjust the interval duration as needed
+      })"
+      class="w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]"
+    >
+      <ul
+        x-ref="logos"
+        class="flex items-center justify-center md:justify-start [&_li]:mx-3 animate-infinite-scroll"
+      >
+        <!-- Your list items here -->
+        <li>
+          <div class="flex flex-wrap justify-center space-x-4">
+            <div
+              class="shadow-lg w-96 h-80 rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 bg-white"
+            >
+              <img
+                src="../../assets/1.jpeg"
+                alt="image1"
+                class="w-full object-cover rounded-t-lg"
+              />
+              <p
+                class="text-2xl font-serif text-center text-gray-800 mt-4 px-4 py-2 leading-tight tracking-wide shadow-md"
+              >
+                Limitations des distances
+              </p>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="flex flex-wrap justify-center">
+            <div
+              class="shadow-lg w-96 h-80 rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 bg-white"
+            >
+              <img
+                src="../../assets/2.jpeg"
+                alt="image1"
+                class="w-full object-cover rounded-t-lg"
+              />
+              <p
+                class="text-2xl font-serif text-center text-gray-800 mt-4 px-4 py-2 leading-tight tracking-wide shadow-md"
+              >
+              Assistance durable
+              </p>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="flex flex-wrap justify-center space-x-4">
+            <div
+              class="shadow-lg w-96 h-80 rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 bg-white"
+            >
+              <img
+                src="../../assets/3.jpeg"
+                alt="image1"
+                class="w-full object-cover rounded-t-lg"
+              />
+              <p
+                class="text-2xl font-serif text-center text-gray-800 mt-4 px-4 py-2 leading-tight tracking-wide shadow-md"
+              >
+                Limitations des distances
+              </p>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="flex flex-wrap justify-center space-x-4">
+            <div
+              class="shadow-lg w-96 h-80 rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 bg-white"
+            >
+              <img
+                src="../../assets/4.jpeg"
+                alt="image1"
+                class="w-full object-cover rounded-t-lg"
+              />
+              <p
+                class="text-2xl font-serif text-center text-gray-800 mt-4 px-4 py-2 leading-tight tracking-wide shadow-md"
+              >
+                Limitations des distances
+              </p>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="flex flex-wrap justify-center space-x-4">
+            <div
+              class="shadow-lg w-96 h-80 rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 bg-white"
+            >
+              <img
+                src="../../assets/6.jpeg"
+                alt="image1"
+                class="w-full object-cover rounded-t-lg"
+              />
+              <p
+                class="text-2xl font-serif text-center text-gray-800 mt-4 px-4 py-2 leading-tight tracking-wide shadow-md"
+              >
+              Satisfaction clients 
+
+              </p>
+            </div>
+          </div>
+        </li>
+
+        
+      </ul>
     </div>
-  </section>
-  
- 
-  <!-- Footer -->
-  <footer class="bg-green-900 text-white py-6">
-    <div class="flex flex-col md:flex-row justify-around items-center">
-      <p>© 2024 Copyright</p>
-      <div class="space-x-4">
-        <span>Adresse: Rue xxx, Bizerte</span>
-        <span>Email: contact&#64;farmfinder.com</span>
-        <span>Téléphone: +216 12 345 678</span>
-      </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-green-900 text-white py-6">
+  <div class="flex flex-col md:flex-row justify-around items-center">
+    <p>© 2024 Copyright</p>
+    <div class="space-x-4">
+      <span>Adresse: Rue xxx, Bizerte</span>
+      <span>Email: contact&#64;farmfinder.com</span>
+      <span>Téléphone: +216 12 345 678</span>
     </div>
-  </footer>
-  
+  </div>
+</footer>
