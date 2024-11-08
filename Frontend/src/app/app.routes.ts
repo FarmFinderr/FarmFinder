@@ -1,17 +1,12 @@
 import { Routes } from '@angular/router';
-import { NgModule } from '@angular/core';
 import { HomeComponent } from './home/home.component';
-import { NavbarComponent } from './navbar/navbar.component';
+import { SignInComponent } from './sign-in/sign-in.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 
 export const routes: Routes = [
-    { path: '', component: HomeComponent}
-    
-  ];
-
+  { path: '', component: HomeComponent },  
+  { path: 'sign-in', component: SignInComponent },
+  { path: 'sign-up', component: SignUpComponent } 
   
-
-@NgModule({
-  
-})
-export class AppRoutingModule { }
+];
