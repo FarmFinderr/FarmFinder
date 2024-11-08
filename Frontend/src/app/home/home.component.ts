@@ -10,5 +10,6 @@ import { NavbarComponent } from '../navbar/navbar.component'
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
+  selectedType="materiel";
 
 }
