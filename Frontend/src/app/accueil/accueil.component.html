@@ -44,6 +44,9 @@
     <p><strong>Superficie:</strong> 20 hectares</p>
     <p><strong>Défauts:</strong> Aucun défaut majeur identifié</p>
     <p><strong>Emplacement:</strong></p>
+    <app-map class=" w-32 h-32"></app-map>
+    <!--<app-openmap class=" w-32 h-32"></app-openmap>-->
+
   </div>
             <p class="text-right font-bold underline cursor-pointer"(click)="toggleDetails()"> {{ showDetails ? 'Voir moins' : 'Voir plus' }}</p>
            </div>
@@ -128,6 +131,7 @@
     <p><strong>Superficie:</strong> 20 hectares</p>
     <p><strong>Défauts:</strong> Aucun défaut majeur identifié</p>
     <p><strong>Emplacement:</strong></p>
+    <app-openmap></app-openmap>
   </div>
             <p class="text-right font-bold underline cursor-pointer" (click)="toggleDetails()"> {{ showDetails ? 'Voir moins' : 'Voir plus' }}</p>
            </div>
