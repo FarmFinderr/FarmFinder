@@ -1,0 +1,138 @@
+<body class="mt-0">
+  <div class="bg-green-900 text-white py-8"></div>
+  <div class="flex min-h-screen">
+    <!-- Left side: Form container -->
+    <div
+      class="w-full sm:w-2/4 bg-green-100 flex flex-col justify-center items-center py-8"
+    >
+      <h2 class="text-4xl font-bold mb-14 text-green-900 -mt-16">Sign Up</h2>
+      <div class="max-w-7xl mx-auto font-[sans-serif] pl-10 pr-10 pb-10">
+        <form enctype="multipart/form-data">
+          <div class="grid sm:grid-cols-2 gap-y-7 gap-x-12">
+            <div>
+              <input
+                name="name"
+                type="text"
+                id="name"
+                class="bg-white w-full text-sm px-4 py-3.5 rounded-md outline-green-500"
+                placeholder="Enter name"
+                required
+              />
+            </div>
+            <div>
+              <input
+                name="lname"
+                type="text"
+                id="lname"
+                class="bg-white w-full text-sm px-4 py-3.5 rounded-md outline-green-500"
+                placeholder="Enter last name"
+                required
+              />
+            </div>
+            <div>
+              <input
+                name="email"
+                type="email"
+                id="email"
+                class="bg-white w-full text-sm px-4 py-3.5 rounded-md outline-green-500"
+                placeholder="Enter email"
+                required
+              />
+            </div>
+            <div class="relative">
+              <div
+                class="absolute inset-y-0 start-0 top-0 flex items-center ps-3.5 pointer-events-none"
+              >
+                <svg
+                  class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 19 18"
+                >
+                  <path
+                    d="M18 13.446a3.02 3.02 0 0 0-.946-1.985l-1.4-1.4a3.054 3.054 0 0 0-4.218 0l-.7.7a.983.983 0 0 1-1.39 0l-2.1-2.1a.983.983 0 0 1 0-1.389l.7-.7a2.98 2.98 0 0 0 0-4.217l-1.4-1.4a2.824 2.824 0 0 0-4.218 0c-3.619 3.619-3 8.229 1.752 12.979C6.785 16.639 9.45 18 11.912 18a7.175 7.175 0 0 0 5.139-2.325A2.9 2.9 0 0 0 18 13.446Z"
+                  />
+                </svg>
+              </div>
+              <input
+                type="text"
+                name="phone"
+                id="phone-input"
+                aria-describedby="helper-text-explanation"
+                class="bg-white w-full text-sm px-4 py-3.5 rounded-md outline-green-500 ps-10 p-2.5"
+                placeholder="12 213 214"
+                v-model="form.tel"
+                required
+              />
+            </div>
+            <div>
+              <input
+                name="password"
+                type="password"
+                id="password"
+                class="bg-white w-full text-sm px-4 py-3.5 rounded-md outline-green-500"
+                placeholder="Enter password"
+                required
+              />
+            </div>
+            <div class="w-full mb-2">
+              
+              <input
+                class="bg-gray-100 w-full text-sm px-4 py-3.5 rounded-md outline-green-500"
+                class=" text-sm rounded-lg  block w-full p-2.5 dark:bg-gray-700 "
+                id="confirm-password"
+                type="password"
+                placeholder="Enter confirmer mot de passe"
+                required
+              />
+            </div>
+            <div>
+              <input
+                class="bg-white text-sm px-4 py-3.5 rounded-md outline-green-500"
+                type="date"
+                id="dob"
+                required
+              />
+            </div>
+            <div>
+              <input
+                v-model="form.adresse"
+                name="Adresse"
+                type="Adresse"
+                id="Adresse"
+                class="bg-white w-full text-sm px-4 py-3.5 rounded-md outline-green-500"
+                placeholder="Enter votre adresse"
+                required
+              />
+            </div>
+          </div>
+          <div class="!mt-10 grid grid-cols-3 gap-4">
+            <div></div>
+            <button
+              type="subbmit"
+              class="place-self-auto min-w-[150px] py-3 px-4 text-sm font-semibold rounded text-white bg-green-800 hover:bg-green-600 focus:outline-none"
+            >
+              Sign up
+            </button>
+            <div></div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Right side: Image container -->
+    <div class="w-full sm:w-2/3 relative">
+      <img
+        src="./../assets/3.jpeg"
+        class="w-full h-full object-cover absolute"
+        alt=""
+      />
+      <header
+        class="w-full h-full object-cover absolute top-0 left-0"
+        style="background-image: url('.')"
+      ></header>
+      <!-- <img src="../../assets/home_page.jpg" alt="" class="w-full h-full object-cover absolute top-0 left-0" /> -->
+    </div>
+  </div>
+</body>
