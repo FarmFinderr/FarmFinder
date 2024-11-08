@@ -1,0 +1,15 @@
+<div class="h-52 w-128">
+    <!-- Google Maps -->
+    <google-map [center]="center" [zoom]="zoom" height="100%" width="100%"
+    apiKey="AIzaSyDfeQSdD0CW00Nj2KtqpJewWcmBGjCVRVY" >
+      <!-- Ajouter un marqueur pour chaque terrain -->
+      <map-marker
+        *ngFor="let terrain of terrains"
+        [position]="{ lat: terrain.lat, lng: terrain.lng }"
+        [label]="terrain.label">
+      </map-marker>
+    </google-map>
+  </div>
+  <router-outlet></router-outlet>
+
+  

@@ -1,0 +1,341 @@
+
+<div class="h-screen flex flex-col max-w-screen-xl">
+  <app-navbar></app-navbar>
+  <div class="flex flex-1 bg-stone-50 mt-16">
+    <app-sidebar></app-sidebar>
+
+    <!-- Main Content -->
+    <div class="fixed flex-1 grid grid-cols-3 gap-4 p-4 ml-64">
+      <!-- Post Section (Middle Column) -->
+      <div class="col-span-2 space-y-4">  
+       
+       <app-addpost></app-addpost>
+       
+        <!-- Posts -->
+        <div class="h-96 overflow-y-scroll  bg-stone-50" style="scrollbar-width: none; -ms-overflow-style: none;">
+          <div class=" mb-10 bg-white p-5 rounded pb-5">
+            <!-- row 1 -->
+            <div class="flex justify-between items-center">
+              <!-- Section de gauche avec l'image, le nom et la date -->
+              <div class="flex items-center space-x-2">
+                <img src="../../assets/sirineKahweji_ISETBizerte.jpg" class="w-8 h-8 rounded-full">
+                <div>
+                  <h3 class="font-semibold">Syrine Kahweji</h3>
+                  <p class="text-gray-500 text-sm">7 Février 2021</p>
+                </div>
+              </div>
+              
+              <!-- Section de droite avec l'option Enregistrer -->
+              <div class="flex items-center space-x-1 text-gray-600 cursor-pointer text-sm">
+                <p class="text-black">Enregistrer la publication</p>
+                <i class="bi bi-bookmark-fill text-gray-400"></i>
+              </div>
+            </div>
+            <!-- row 2 -->
+            
+           <div class=" pb-5">
+            <p class=" pt-2">Belle opportunité d'acquisition d'une ferme agricole située dans la région verdoyante de Bizerte. 
+              Cette ferme s'étend sur 20 hectares, offrant un terrain fertile et bien entretenu,
+               idéal pour la culture et l'élevage</p>
+                   <!-- Détails supplémentaires -->
+  <div *ngIf="showDetails" class="">
+    <p><strong>Prix:</strong> 150 000 €</p>
+    <p><strong>Localisation:</strong> Bizerte</p>
+    <p><strong>Superficie:</strong> 20 hectares</p>
+    <p><strong>Défauts:</strong> Aucun défaut majeur identifié</p>
+    <p><strong>Emplacement:</strong></p>
+    <app-map class=" w-32 h-32"></app-map>
+    <!--<app-openmap class=" w-32 h-32"></app-openmap>-->
+
+  </div>
+            <p class="text-right font-bold underline cursor-pointer"(click)="toggleDetails()"> {{ showDetails ? 'Voir moins' : 'Voir plus' }}</p>
+           </div>
+        <!-- row 3 -->
+            <div >
+              <img src="../../assets/accueil/post1.jpg">
+            </div>
+            <!-- row 4 les like est les comment-->
+
+            <div class="flex justify-between ">
+
+              <div class=" flex">
+                <img class="w-9 h-9" src="../../assets/accueil/like.png">
+                <img class="w-7 h-7 mt-1 -ml-3" src="data:image/png;base64,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" alt="love-circled">
+                <p class="mt-1 pl-1 text-gray-400">64</p>
+              </div>
+              <div class="flex text-gray-400 text-right mr-5 ">
+                 <p class="text-right">15</p> 
+                 <i class="bi bi-chat-fill text-right pl-2"></i>
+              </div>
+            </div>
+
+            <div class="flex items-center space-x-2 -mt-1 relative">
+              <!-- Conteneur pour l'icône "like" et les options de réactions -->
+              <div class="relative group">
+                <!-- Icône Like -->
+                <img class="w-7 h-7 cursor-pointer" src="../../assets/accueil/alike.png" alt="Like">
+            
+                <!-- Options de réactions qui s'affichent au survol de l'icône "like" -->
+                <div class="absolute hidden group-hover:flex bg-white border rounded-lg shadow-lg space-x-2 p-2 -top-8 -left-3 z-10 w-72">
+                  <img src="../../assets/accueil/like.gif" class="w-7 h-7 cursor-pointer" alt="Love">
+                  <img src="../../assets/accueil/ballheart.gif" class="w-7 h-7 cursor-pointer" alt="Haha">
+                  <img src="../../assets/accueil/care-love1.gif" class="w-8 h-8 -mt-1 cursor-pointer" alt="Angry">
+                  <img src="../../assets/accueil/laugh.gif" class="w-7 h-7 cursor-pointer" alt="Love">
+                  <img src="../../assets/accueil/wow.gif" class="w-7 h-7 cursor-pointer" alt="Haha">
+                  <img src="../../assets/accueil/sad.gif" class="w-7 h-7 cursor-pointer" alt="Angry">
+                  <img src="../../assets/accueil/angry.gif" class="w-7 h-7 cursor-pointer" alt="Angry">
+                </div>
+              </div>
+            
+              <!-- Zone de commentaire -->
+              <div class="flex justify-center items-center border rounded-full p-1 mt-2 bg-gray-100 flex-grow h-9">
+                <img src="../../assets/sirineKahweji_ISETBizerte.jpg" class="rounded-full w-8 h-8">
+                <input type="text" placeholder="Écrire un commentaire..." class="bg-gray-100 pl-3 flex-grow focus:outline-none">
+              </div>
+            </div>
+            
+            
+
+          </div>
+          <!-- fin post -->
+
+          <!-- add post test -->
+          <div class=" mb-10 bg-white p-5 rounded pb-5">
+            <!-- row 1 -->
+            <div class="flex justify-between items-center">
+              <!-- Section de gauche avec l'image, le nom et la date -->
+              <div class="flex items-center space-x-2">
+                <img src="../../assets/sirineKahweji_ISETBizerte.jpg" class="w-8 h-8 rounded-full">
+                <div>
+                  <h3 class="font-semibold">Syrine Kahweji</h3>
+                  <p class="text-gray-500 text-sm">7 Février 2021</p>
+                </div>
+              </div>
+              
+              <!-- Section de droite avec l'option Enregistrer -->
+              <div class="flex items-center space-x-1 text-gray-600 cursor-pointer text-sm">
+                <p class="text-black">Enregistrer la publication</p>
+                <i class="bi bi-bookmark-fill text-gray-400"></i>
+              </div>
+            </div>
+            <!-- row 2 -->
+            
+           <div class=" pb-5">
+            <p class=" pt-2">Belle opportunité d'acquisition d'une ferme agricole située dans la région verdoyante de Bizerte. 
+              Cette ferme s'étend sur 20 hectares, offrant un terrain fertile et bien entretenu,
+               idéal pour la culture et l'élevage</p>
+                    <!-- Détails supplémentaires -->
+  <div *ngIf="showDetails" class="">
+    <p><strong>Prix:</strong> 150 000 €</p>
+    <p><strong>Localisation:</strong> Bizerte</p>
+    <p><strong>Superficie:</strong> 20 hectares</p>
+    <p><strong>Défauts:</strong> Aucun défaut majeur identifié</p>
+    <p><strong>Emplacement:</strong></p>
+    <app-openmap></app-openmap>
+  </div>
+            <p class="text-right font-bold underline cursor-pointer" (click)="toggleDetails()"> {{ showDetails ? 'Voir moins' : 'Voir plus' }}</p>
+           </div>
+
+      
+        <!-- row 3 -->
+            <div >
+              <img src="../../assets/accueil/post1.jpg">
+            </div>
+            <!-- row 4 les like est les comment-->
+
+            <div class="flex justify-between ">
+
+              <div class=" flex">
+                <img class="w-9 h-9" src="../../assets/accueil/like.png">
+                <img class="w-7 h-7 mt-1 -ml-3" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAsTAAALEwEAmpwYAAAL80lEQVR4nO2ceUyb5x3HvW5ajz9WtTFXbO4bg4EQcjQHl7EN2NiAjU0wgdwJgbZZk6adNOWPSdPUIy3N+kc7bVKrSpWmrluvaW13tk2bkEB83yfmCNimoUfarIHv9LxOq2rdlsXv6wv8lX4SEsKSP9/3fZ6H53ewWCmllFJKKaWUUkoppZRSSgmkua2H0+d3HBYtbD98/8K2w88ubDv054Vth/TzWw+4Lm89sDi/9cC1yyQ271uc27LfNbdpn35207535zbteXaufu/ozKa9wtmaPWnx/h5JoxnJwbsCjcOywI4jY4Edh/ULO46sBHYcxsJ2EoewsO0Q5u87GI6tB3CZxJb94di8D3ObSOzFXP1ezNbvwezGPZjZOLQyWzekm64dfHq6dnfn1BblnfH+ngklnDp122LD8PZgw/BzgYYjS4GdwwjsPILADhL04M9uHMJs3RBmNgyGo3Y3/DW7l6arNS9O8zVSKJXfZ61VeRoG71hsHBkONA67g41HEWwg4KMLf5pEzUA4qjXwV2tcPr7miL1IfDtrLS0zoaajx0NNR2cp8PGDDz+fRD/8VbtmfZV9P56pO3gXazVrsXlUGmw66gk1jSBh4PP7MVW1iwofr8/vrVArWKtNHzc8kBdsGn2DgE9U+FOVJPrgq+yDl9f3mqtCmcNaDQo0j8iDzaOLyQLfxyOhhq9CteQrV/ayklUQj94eah4dCzWPIvngq+GtUMFbroKnvPe5pNukl1qOrgs1j3yU7PC9VPTCU6b8YKpCeS8rGRQQHF0fbBrVrxb43jJiQC/cpQqzo1CVzUpkBYQjZcGm0anVBt9TqgxHSY/PXaosZSWigs3HOMHmUe/qha+Au0QBV0nPtDuvO5eVcGt+04h5tcN3kyjugau425Qwe0L4tLN6NlzvTeBTBhSR6DqbEKejUNPIL9ce/O5wFMrH4go/2DyqWLvwu+AkUSDvjuf1wpW1Db8LjgL5x3HZlINNI6+vdfjOAjmc+XLY82V/iPn9Tgq+nILvyJdRYc+XSWN2nx9sHPGmnnz5N/AdeSQ63VPcGKQ7Q00jJ1Lw5f8OH47cTthzpQ9G/8zfODLD9Jrv3zgEX90gPBsG4K4dgKtGA3eNBt4aDXxfr/cRrPnuChUc5UrYyhSwUtEDW2kP7KUKOEsVDMMnIZn15DbcETUDSA6XKfizm/ZiauMQnHUDsNb2w1zbB2O1Gnp+OAx8FYx8NcxVatj5fXDz++Cr7r8pfA9PDUdFLyxlCujLuqEt6cJkiRwTJTJMFMswWSyDtkgGfbEcpiI5bMXdcDECXwp7jhS2bMmhqFUvMJVA99cPwVW3G5YNu6CvUcPW/RDmzryMxTfew6fnjfj0nAGh1/+BmdMvwSI7Bi1PAUNlLyyVarir+jD1H+B7K/vgrFDBVK6ArrQbF0tkMLaPwv/4Cwj+/q9YOqvFJx/qqJ+nH38BBuERXCiQQlvYCWOhDA4KOj349hwJrFyJEyzW9xg3ILDzSBMT8H31g7DXaaCvVcN14Gf43OjEzXTV5oXnxNPQVilh5Clh5fXCU9n3DXw3Tw1LuZJ64ifLe+A+fpr6m5vpM60NFvVJXCyQQFfQCUuhnBZ8W/aN4LbvZN6AxuHfMAHftkEDwyYNQr/7y00BfccIiwdW1UloK3pgruiFi6eCk0eeeiUmy7pgUZ3EVavnlj93/qU/4kKxDLoCKSwFMprwO2DjdPyKUfhTW47dGdg5fIUO/Kn6IerJN2wewKfjRkSqlevL1BJCgBsrFDCWKzBR1oXpx16gfheplj64hAslMmjzJbDmyyKHz+2AhdOxxOiRlCoXpLnhOuoGqGVn8c33wYRCb72PS9VqXKpWYfEtZj4z8Mq7GM9thy5PAkeE8K0kOO2wcdo7mDOA1GrSOGp66wZh3rALvkeeAZP65Jwen5w3MPqZjuGfYyKnHaY8acTwb8QTDBpwWB8p/Nn6veGlp16Da/55JLq+8M7ifKEE2twO2COHD0uW+BJjJeJ0qpR9Gwepc77n2BNIFln3nsJkTjssuZKI4FvXt8GyXrxszZKwaRtA6vPp3Gp6NuyGsUaNxdf+jmTR/Mt/wni2GMYcSUTwwwa0wbReJKBtANUcQeNK2bVBA321Cl+4/EgWfW7x4Hy2CLqcjojhkzBntB2lbwDpTKFxn++s1UDHV+H60mdIFn21uISPKAPaI4ZvyWqDOVP0DANvwKF36SRT7DX90PJVWP7yGpJFy1e/xIfZQmiz2yKGb8kSw5IpepuBN+CggU4my1nTD11VL75wTSNZdNXuwzmuELrstsjhZ4nJG6CjbcD8fQe9dNKI7up+GPhqLLz4JpJFs8+/gnGuEHpue8TwwwaI3UwYEKKTw/XWDFBXyhbpg8DyChJeyyu41LQfE1wRzNkdEcO3ZIphzhAF6BsQbgWllUB38Pug4ympK+ZE18Jv38E5Tiu03DZa8EmYMoRf0jaA6sOlWb3g5ffDXKWCfvs+/HNhEYmqa5eDGOcrwk8/WX5owDdnihgyYPP+EBOlI47KPhh4StgHf4qV69eRaFr56joM3ccwzhFCxxHThk8ZkC6kvwRd3rzfy0TdDsli2SpV1F2+99FnEms/WF6B/YHHcJ4jhJYjDoOnCd+cQQwQ0d+EL2/eZ2CqaIpksUg261J5D7w/OZMYJqyswPXIWHjd54hh4bYzAp8yIKOV/jE0PHuBuYo1D68P1golJsu74Xk0ziZ8C/4kJ7zuMwXfnCEkewD9f8RuDL5gtFzw6xzuZFlX/EyIMnwq0lvpX0XM1e+5Pxq1mqRmx1KmwESpHB6SqImlCTGBL4Q5rZX+ZdxM/ZAoWoWyropemEt7MFFCTBiLjQmxgp8uJJsw/etoMm/nxsiXqFQpu8qJCd1U0ZTnZJRNiCF8Y3rrsnl9yzraBlBvQd2gPpol4q4yJUwl3Zgo6oyeCTF98ikDJllMiQw7inZ9vrNUAVNxFyYKpXA//DSzJsQYvim9Faa0VuaS8mTSVCyaI5wlPTAWycMmnHiKGRPiAx8mtqCdMQPImK/pmoErsehMcRATCmWYKJDQNyFO8I1prVemuFuY7RXw12h+Hau2IEdxNwwFMlzM74jchHg9+eF4nlH4lAHV/Y2x7MmyF3XBUNCJi3ntcB0/fWsmxBc+TGzRDsYNAOvUbWTGWiwb4uyFchjyO3Eh9xZMiDt8gSMq5elEZMBdrLsRbQXEBCku5LTBefzJ/21CvOGT9Z/dcpAVLZHWfH9V/0ysW0Ft+TLo8yQYzxHD+dB/MSEB4JvSBP6ojy+Yqtz1UKz7cB35MljzO6HPlWA8W/RdExIDPkzslvtZ0RYZ7TjF2+WJJXzHjSpla54U+pwOqmrNpHoYobc/ROjtszD2nqDgX4on/HUCZ1Qb9L4tf5WqLdbwHTeqlC25Uqpi7SJXjPNcIZXFusARUcmU+D35ApjZAub6Af4fkdGOsYZvv1Eoa8uRwpTdDh23jQojp42xNGIk8I3slldZsRaZq+krV30ca/h2GrWa0YBvYrcsGu4RxmeWnJenknjKVStrFb6RLVjR39vaxYqnPGW9Y2sRvoktgGGd4DQr3iLnXk+Z8uwahP+ekaX8ISsR5CpQ3u0pVWjXDHy2wGj8kTAxhvZ9raliJcdTrPCudvhGtsBvvEeQmIO9yVBTNxluukrhG9gCn5ndUsJKZHnLurLcRd26VQjfFLfj5q2KDDUlczVXDfx1gvf0d2+/h5VM+ltDww9chfJfOAq7VpL5nG9cJxhLmNNOJHIUymWOAvli8sFvWTKltSpZq0FkrqY9X/ZaEsF/NWnW+1uRPV8uIdMFExb+OoEr5reasRaZo0OmC9pzpdMJBN9vYgseiNl9fiKIXGHYsiWHyIy1uMFnCxwkh5vUmywTsuR01Fm5HWNWbnswFkVTRnbri6b0FkHUqheSVZ7chjvIpCnL+rbTZN4OGfnCRJUyKZQ1pQmeJOWCa2qZoStrloRtzmprJVNHLJniM5ZM8TvmTLHWnClyWTLEIXOG8BoV6aKQKUPkMme0aklbkCm99QxpjiD1+YyViKeUUkoppZRSSimllFJKKbGY0b8AzYFXs8yP5dgAAAAASUVORK5CYII=" alt="love-circled">
+                <p class="mt-1 pl-1 text-gray-400">64</p>
+              </div>
+              <div class="flex text-gray-400 text-right mr-5 ">
+                 <p class="text-right">15</p> 
+                 <i class="bi bi-chat-fill text-right pl-2"></i>
+              </div>
+            </div>
+            <!-- row 5 add like /comment -->
+            <div class="flex items-center space-x-2 -mt-1">
+              <img class="w-7 h-7" src="../../assets/accueil/alike.png">
+              <div class="flex justify-center  items-center border rounded-full p-1 mt-2 bg-gray-100 flex-grow h-9">
+                <img src="../../assets/sirineKahweji_ISETBizerte.jpg" class="rounded-full w-8 h-8">
+                <input type="text" placeholder="Écrire un commentaire..." class="bg-gray-100 pl-3 flex-grow">
+              </div>
+            </div>
+
+          </div>
+          <!--fin text -->
+
+
+        </div>
+      </div>
+
+      <!-- Events Section (Right Column) -->
+      <div class="bg-white p-4 rounded shadow ">
+
+        <h3 class="font-semibold text-gray-700 mb-4">Les Nouvelles Événements</h3>
+        <div class="h-96 overflow-y-scroll" style="scrollbar-width: none; -ms-overflow-style: none;">
+               <!-- post -->
+        <div class="space-y-4">
+          <div class="flex items-center">
+            <img src="../../assets/accueil/event2.jpg" alt="Event" class="w-20 h-12 rounded">
+            <div class="ml-4">
+              <p class="text-sm font-semibold">Ferme de 13 ha à Ain Draham</p>
+              <p class="text-xs text-gray-500">5,400,000 TND</p>
+              <div>
+                <button class="text-xs text-green-600 font-bold" >Participer</button>
+                <p class="font-bold underline text-right text-xs -mt-4">voir plus </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end post -->
+       <!-- post -->
+        <div class="space-y-4">
+          <div class="flex items-center">
+            <img src="../../assets/accueil/event1.jpg" alt="Event" class="w-20 h-12 rounded">
+            <div class="ml-4">
+              <p class="text-sm font-semibold">Ferme de 13 ha à Ain Draham</p>
+              <p class="text-xs text-gray-500">5,400,000 TND</p>
+              <div>
+                <button class="text-xs text-green-600 font-bold" >Participer</button>
+                <p class="font-bold underline text-right text-xs -mt-4">voir plus </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end post -->
+       <!-- post -->
+        <div class="space-y-4">
+          <div class="flex items-center">
+            <img src="../../assets/accueil/event3.jpg" alt="Event" class="w-20 h-12 rounded">
+            <div class="ml-4">
+              <p class="text-sm font-semibold">Ferme de 13 ha à Ain Draham</p>
+              <p class="text-xs text-gray-500">5,400,000 TND</p>
+              <div>
+                <button class="text-xs text-green-600 font-bold" >Participer</button>
+                <p class="font-bold underline text-right text-xs -mt-4">voir plus </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end post -->
+       <!-- post -->
+        <div class="space-y-4">
+          <div class="flex items-center">
+            <img src="../../assets/accueil/event4.jpg" alt="Event" class="w-20 h-12 rounded">
+            <div class="ml-4">
+              <p class="text-sm font-semibold">Ferme de 13 ha à Ain Draham</p>
+              <p class="text-xs text-gray-500">5,400,000 TND</p>
+              <div>
+                <button class="text-xs text-green-600 font-bold" >Participer</button>
+                <p class="font-bold underline text-right text-xs -mt-4">voir plus </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end post -->
+       <!-- post -->
+        <div class="space-y-4">
+          <div class="flex items-center">
+            <img src="../../assets/accueil/event2.jpg" alt="Event" class="w-20 h-12 rounded">
+            <div class="ml-4">
+              <p class="text-sm font-semibold">Ferme de 13 ha à Ain Draham</p>
+              <p class="text-xs text-gray-500">5,400,000 TND</p>
+              <div>
+                <button class="text-xs text-green-600 font-bold" >Participer</button>
+                <p class="font-bold underline text-right text-xs -mt-4">voir plus </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end post -->
+       <!-- post -->
+        <div class="space-y-4">
+          <div class="flex items-center">
+            <img src="../../assets/accueil/event3.jpg" alt="Event" class="w-20 h-12 rounded">
+            <div class="ml-4">
+              <p class="text-sm font-semibold">Ferme de 13 ha à Ain Draham</p>
+              <p class="text-xs text-gray-500">5,400,000 TND</p>
+              <div>
+                <button class="text-xs text-green-600 font-bold" >Participer</button>
+                <p class="font-bold underline text-right text-xs -mt-4">voir plus </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end post -->
+       <!-- post -->
+        <div class="space-y-4">
+          <div class="flex items-center">
+            <img src="../../assets/accueil/event4.jpg" alt="Event" class="w-20 h-12 rounded">
+            <div class="ml-4">
+              <p class="text-sm font-semibold">Ferme de 13 ha à Ain Draham</p>
+              <p class="text-xs text-gray-500">5,400,000 TND</p>
+              <div>
+                <button class="text-xs text-green-600 font-bold" >Participer</button>
+                <p class="font-bold underline text-right text-xs -mt-4">voir plus </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end post -->
+          <!-- post -->
+        <div class="space-y-4">
+          <div class="flex items-center">
+            <img src="../../assets/accueil/event1.jpg" alt="Event" class="w-20 h-12 rounded">
+            <div class="ml-4">
+              <p class="text-sm font-semibold">Ferme de 13 ha à Ain Draham</p>
+              <p class="text-xs text-gray-500">5,400,000 TND</p>
+              <div>
+                <button class="text-xs text-green-600 font-bold" >Participer</button>
+                <p class="font-bold underline text-right text-xs -mt-4">voir plus </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end post -->
+          <!-- post -->
+        <div class="space-y-4">
+          <div class="flex items-center">
+            <img src="../../assets/accueil/event1.jpg" alt="Event" class="w-20 h-12 rounded">
+            <div class="ml-4">
+              <p class="text-sm font-semibold">Ferme de 13 ha à Ain Draham</p>
+              <p class="text-xs text-gray-500">5,400,000 TND</p>
+              <div>
+                <button class="text-xs text-green-600 font-bold" >Participer</button>
+                <p class="font-bold underline text-right text-xs -mt-4">voir plus </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end post -->
+          <!-- post -->
+        <div class="space-y-4">
+          <div class="flex items-center">
+            <img src="../../assets/accueil/event1.jpg" alt="Event" class="w-20 h-12 rounded">
+            <div class="ml-4">
+              <p class="text-sm font-semibold">Ferme de 13 ha à Ain Draham</p>
+              <p class="text-xs text-gray-500">5,400,000 TND</p>
+              <div>
+                <button class="text-xs text-green-600 font-bold" >Participer</button>
+                <p class="font-bold underline text-right text-xs -mt-4">voir plus </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end post -->
+
+        </div>
+      
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<router-outlet></router-outlet>
+
+
