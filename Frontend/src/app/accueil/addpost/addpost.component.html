@@ -1,37 +1,45 @@
-<div class="w-2/5">
-    <div >
-      <form (submit)="addNewPublication()">
-        <div class="flex items-center justify-center">
-          <img src="../../../assets/sirineKahweji_ISETBizerte.jpg" class="w-9 h-9 rounded-full" />
-          <input type="text"  class="search__input ml-2 text-sm" placeholder="Quoi de neuf , Syrine kahweji ?" />
-          <button class="ml-2" >
-            <div class="svg-wrapper-1">
-              <div class="svg-wrapper">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
-                  <path fill="none" d="M0 0h24v24H0z"></path>
-                  <path fill="currentColor" d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"></path>
-                </svg>
-              </div>
-            </div>
-            <span class="pub-titre">Publier</span>
-          </button>
-        </div>
-        <hr />
-        <div class="choix">
-          <div>
-            <label for="videoInput">
-              <img src="../../../assets/accueil/video.png" alt="" class="h-6" />
-              <input id="videoInput" type="file" accept="video/*" name="file" class="hidden" multiple />
-              <span class="text-j">Vidéo</span>
-            </label>
-          </div>
-          <div>
-            <label for="photoInput">
-              <img src="../../../assets/accueil/icons8-photo-48.png" alt="" class="h-6" />
-              <input id="photoInput" type="file" name="image" class="hidden" multiple />
-              <span class="text-j">Photo</span>
-            </label>
-          </div>
-        </div>
-      </form>
-    </div>
+ <!-- Post Add -->
+        
+ <div class="bg-white p-4 rounded-sm shadow">
+  <div class="flex items-center">
+    <img src="../../assets/sirineKahweji_ISETBizerte.jpg" class="w-8 h-8 rounded-full mr-2">
+    <input type="text" placeholder="Quoi de neuf, Syrine Kahweji ?" class="w-full border rounded-full p-2 bg-gray-100 pl-7">
+    <button class="ml-2" (click)="openModal()">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAC60lEQVR4nNWaTYhOURjHfybkqzQ0yNcM9SIshbKgzMpCUthgo9dCYkOyszM2UlhMNso7jdgoK2qS7wVTPvL9FWZuwgKLl4aZq1PPrdvtft977jnvv57Fe+6953n/nff/nP9z7gutjS3AY+A6LYp1wF3AlfhEi2EZcAkY85FQ0aBFMA/oBf4GCHhRx3JMA44AvyIIeFHDUkwA9gJfEgiocLAQ44BtwNsUBKzVRzcwmIGAdfpYCVzNQcC1RR8LpRKNFiDhmCQwE+gBfhcg4JrUxxQppT9KIOCa0EcbsBsYLpGAW7U+VCV6ooGAW5U+1gA3NRFwq9BHlKnTEXUdBOYC52JMXdr4akofaU1dUqgVPJPBmjgmTF1SqP1kF3ChSn3kMXVx8RlYBWyvUh/dOU1dVNwCZgOLgZ8Zn62ZMHVh0Ss/z/HAvYzPOiZMXTD+AHt8OY7nmKNhwtT5Q1mUtb4864F/OeapmzB1XgzKCntoBz7mnKtmwtS5UlYnB3JeyTmXE7cSNzQRGAH2h+TbV2DOvjgiAxpIKKuxIaICNgvMWycBK4BjwIsSSDwCFoXkmCTXisxdSyISRupZjkQXgakR854tSMKhANSuexC4k2DNx4S8sjBh2FSCtW9QEroiSCl7sTnh3Pabrf1HF/BAEuyIua+txGJSQxM8j7Q65p6jrdCfv5cknTF9+0hJRPp0EmmKViaGXJsvvUYZJFyd51ftkkCJOIgZwHNfNbNaH8slgTqzCm56t+XaQ+n+hm3Wx0ZJci1QoS7LuNLPHBlfWpBMQyeRnZLkvG/slIx9ly/vxxJgyDZ9KByWJKrDUzgkn5vy6jhq7/lgkz4UTkqSA7IhjkpsJR6dvrJtXB8K/ZLotPThHqk0UJ3iOxv0EdaMnSAb0q5MHc145UvWLxUrKxYAb0zqA9+B2kDEzp4WygG8jiAxRAVQ/8a5D0wv6ST/ZdX+ShfU0enTqvWhC7MCr+mMvz8vgg453FZVMRP+A3Tx7ve2EjoRAAAAAElFTkSuQmCC" alt="paper-plane" class=" w-6 h-6">
+    </button>
+  </div>
+
+  <!-- Inclure le modal -->
+  <app-modal-add-post
+  [isModalOpen]="isModalOpen" 
+  (closeModalEvent)="closeModal()"
+></app-modal-add-post>
+
+  
+  <div class="flex justify-between mt-2 text-sm text-gray-500  ">
+    <!-- Joindre un Fichier  -->
+    <button class="flex items-center space-x-2" aria-label="Joindre un Fichier" onclick="document.getElementById('fileUpload').click()">
+      <img class="h-5 w-5" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAACqklEQVR4nO2YT2sTQRjGHwVvlZ422QkYpKIeJLfqQSMWDVgwF71USslXEb+H6K2bBm0R6aGNESXroZQKtWmop1w9iMYUBN3ZvLLppCQ1aWOzmV2y7wMPgc3+mec3887OLMBisVgsFut/RZ8eXZY7cyVZWfjlVnPU5cpjkrYYyk7Z/C3LYlO+TDxBKMNXFhr/BG97+8HQAA79TJBbEKsIk+TOXKlv+GqO5MY1XwG0ICyZawiLZK9h3w6/ddO/8B0AQgXBVWGb394QNf+0ft3PD/3t+R4AWl4y34YGADUdaqnpkPyY9D98LwBhgOC2AXRoJOH7AQgaghsGAEFCcHUCeH48BLdgro83gPwJo+BgJBTHF8A7QfLFQBDWxhOALUi+9wIOUA6vxNPgXoO2CN5lsRnYQkgGHV5toLQCcDuXwCEA4JkB6JDLIyDXXQK78xEvge1stAHIjVR0AcitdOCh9QPYnT8Y9iHp+XrRpNpyjPbyhh4AMgSh2/66GqeqZRw6UgDqRbMrfOQA1JZj0QawlzeiDaB6JDwDsHgEEJeADskQ1D/PATZPgsRvAYtfg8TrAIsXQsQrQYuXwsR7AYs3Q8SbIStCm6H9kjleAOodX3Z7BRvUWgA4ZdEY5ZfdU3sx1tACQNrmip8970t4y6AveeO1FgBkJ646tvl9VF92T9f7xo/aSvyiFgCe6EPigrRFwSmLn8MAGLbmq4uxfa/ntYZnsVhHdQ7AJIA4gCSAKwBSAK4DSAO4DWAGwF0AGQD3AcwCyCrPqmMZdc6Muiat7pFS90yqZ0yqZwam8wAuAbihGp0NyBnVBq8tEzqCnwUwHWDgkzyt2hhpAGegQRMAplR9BlkC91QbpnSVAProuEnwlprQ7qgJzmt0v0nQ+887xzvXu8a7dqST4F/ffjERCrRFigAAAABJRU5ErkJggg==" alt="file"> 
+      <span>Joindre un Fichier</span>
+  </button>
+  <input type="file" id="fileUpload" class="hidden" onchange="handleFileUpload(event)">
+  
+
+    <!-- Photo / Vidéo (Icone et uploader) -->
+    <button class="flex items-center space-x-2" aria-label="Photo / Vidéo" >
+      <img  class="h-6 w-6" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEi0lEQVR4nO2a329TZRjHn6ojIdGpMWhUjIub66kM4cqoE0m8mLgg11MvTCRjGcaI8T8wxhvjhXqjBGNMNtqMRPAHLV4I6ja9YKeDrd1o6QhZCawjY60SdN12vuY9PS3t6Wl72r5vexbeb/K9WLOec76f93menp63RFJSUlJSUlJSUlJSUlKlhZm3nkd0vx+xgSXEBjXMDcK2Y/1A0MPPqkdD0HMVqjKEc0oXiRYuvP0uYgOrVYXOd6SPL4BCGP9BVfrEhZ9544Vc+MXvgJWrANahS1sDbvgrA5jqFgcgC0FUJSD6TiAX3krr/5YPH+4VGz4HQRkSA+DigWU9iL7yJmnrwHLAoucPZMpe9MoXWLnGPzzIlRl4B2+XPTQg8iZwbmcDw9kcjCAXfwBzbFUP5i87//CTO4DEN0B6EUgngIXDwOSzVR8nlDw6P530quGU94vZ1IhbHIAg59Vj4c1a+LoGAN54KOnLei6UGtnHD4C2ZuRf5Q8gfb0YQPpavQB0CHVVAnIABoHlU4CWzgw97gAWiwGs2ANwc9yNeKAD0RPtVgDirB34AJjLs0NaYOlMJyLH23O2AjCd9AWdD2ByB7BwJDMAbQ7BW38pBeFLAQglffMAXM4GEKzeV049bRdAvPEAVAX4qRXw3Q38/EDmb84AYj+2OxiA/0FgmG77l4e4AzCHdw6AsTbgaF543S5gvO0OADDhBo5tMoU3zF630QqaupEB+E2lb3aZVkgcexyj792D3wfvwqWvtrB7+w0GYMyq9O21QirQhtP9Lvy6n3Ke//aRDQRgokzpV2iF9J+dGD/UUhCemQFJ+ts2CAB/hdIv1QqqB+c/vq8ofNbj77fogJwFIGZ6wDn6ZHXh81rh8pGHS4bP+vxH91rOg+YBiPTVVvomr/ta8NtAYd+XstU8aB6Aqe7aS9/ky59UDl9qHjQHQLi3ztIvtDZEOPuBPQjmedA4ALF+6wec32+uGwDzzcOEM/32IIQ/vb8JAIIlPotr7P16WoHdKLFzr55VGghA1behigH88UTm2x4HAHorHCofnt0hsmHIwlt9FY4c7+APgAmqkrBzb87D/4y5MR/owMUfile3kqMnu9aswnMA4BluRPjrpwsfb1XrC6O9t8QAmHBvh6qsiF75usKf6NTC8c8SQgAwsd1XfQNSEABW9vWEn539cKlUeC4AmNjuq74fz/blOQOovuc7ED25fY2VfbmV5wogX+yA7GlrpRM7xLU/FS6ncMo36YBwFV3XvkA5TS/7vmx2OJv+nERo6u9hJZT0XnJAwHKem0l5O0mUQqmRffourEPDT9/wvU6iNZsacbMNSLYv74DQ+u8DWNkLXXkpKSkpKSldm4iolYi2ENFWInqKiDxEtJOIniOil4hoFxHtJqJXDPcQ0atEtIeI9hreY7zWk/d/u4337jKOxY75jHGOrcY5W41raIhaiOhRImK/yX3RuNi9DjGD121c22MioHiI6DUHBLXrXgPGHQ1gGwlqgW0ObIEe45q6jGtk1+qoIfhyDUOQvYe9lx0jOwTZsbkOwf8BQGz0I9CLzFcAAAAASUVORK5CYII=" alt="image-gallery">       
+      <span>Photo / Vidéo</span>
+      <!-- Hidden File Input -->
+      <input type="file" id="imageUpload" class="hidden" accept="image/*,video/*" onchange="handleFileUpload(event)">
+    </button>
+
+    <!-- Humeur / Activité (Icone) -->
+    <button class="flex items-center space-x-2" aria-label="Humeur / Activité">
+      <img class="h-6 w-6" src="../../assets/accueil/icons8-smiling-face-with-smiling-eyes-94.png">
+      <span>Humeur / Activité</span>
+    </button>
+  </div>
+</div>
+<router-outlet></router-outlet>
+
+

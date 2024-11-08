@@ -5,6 +5,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AddpostComponent } from './addpost/addpost.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { EventslistComponent } from './eventslist/eventslist.component';
+import { ModalAddPostComponent } from './modal-add-post/modal-add-post.component';
 
 
 
@@ -12,10 +13,11 @@ import { EventslistComponent } from './eventslist/eventslist.component';
 @Component({
   selector: 'app-accueil',
   standalone: true,
-  imports: [CommonModule,AddpostComponent ,EventslistComponent,SidebarComponent,RouterOutlet, RouterLink, RouterLinkActive,NavbarComponent],
+  imports: [CommonModule,AddpostComponent ,ModalAddPostComponent,EventslistComponent,SidebarComponent,RouterOutlet, RouterLink, RouterLinkActive,NavbarComponent],
   templateUrl: './accueil.component.html',
   styleUrl: './accueil.component.css'
 })
 export class AccueilComponent {
+   posts=[];
 
 }
