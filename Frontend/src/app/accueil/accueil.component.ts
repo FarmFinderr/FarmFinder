@@ -19,5 +19,10 @@ import { ModalAddPostComponent } from './modal-add-post/modal-add-post.component
 })
 export class AccueilComponent {
    posts=[];
+   showDetails = false; 
+
+   toggleDetails() {
+     this.showDetails = !this.showDetails;
+   }
 
 }

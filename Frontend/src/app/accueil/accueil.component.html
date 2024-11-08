@@ -37,7 +37,15 @@
             <p class=" pt-2">Belle opportunité d'acquisition d'une ferme agricole située dans la région verdoyante de Bizerte. 
               Cette ferme s'étend sur 20 hectares, offrant un terrain fertile et bien entretenu,
                idéal pour la culture et l'élevage</p>
-            <p class="text-right font-bold underline cursor-pointer">voir plus</p>
+                   <!-- Détails supplémentaires -->
+  <div *ngIf="showDetails" class="">
+    <p><strong>Prix:</strong> 150 000 €</p>
+    <p><strong>Localisation:</strong> Bizerte</p>
+    <p><strong>Superficie:</strong> 20 hectares</p>
+    <p><strong>Défauts:</strong> Aucun défaut majeur identifié</p>
+    <p><strong>Emplacement:</strong></p>
+  </div>
+            <p class="text-right font-bold underline cursor-pointer"(click)="toggleDetails()"> {{ showDetails ? 'Voir moins' : 'Voir plus' }}</p>
            </div>
         <!-- row 3 -->
             <div >
@@ -57,14 +65,33 @@
                  <i class="bi bi-chat-fill text-right pl-2"></i>
               </div>
             </div>
-            <!-- row 5 add like /comment -->
-            <div class="flex items-center space-x-2 -mt-1">
-              <img class="w-7 h-7" src="../../assets/accueil/alike.png">
-              <div class="flex justify-center  items-center border rounded-full p-1 mt-2 bg-gray-100 flex-grow h-9">
+
+            <div class="flex items-center space-x-2 -mt-1 relative">
+              <!-- Conteneur pour l'icône "like" et les options de réactions -->
+              <div class="relative group">
+                <!-- Icône Like -->
+                <img class="w-7 h-7 cursor-pointer" src="../../assets/accueil/alike.png" alt="Like">
+            
+                <!-- Options de réactions qui s'affichent au survol de l'icône "like" -->
+                <div class="absolute hidden group-hover:flex bg-white border rounded-lg shadow-lg space-x-2 p-2 -top-8 -left-3 z-10 w-72">
+                  <img src="../../assets/accueil/like.gif" class="w-7 h-7 cursor-pointer" alt="Love">
+                  <img src="../../assets/accueil/ballheart.gif" class="w-7 h-7 cursor-pointer" alt="Haha">
+                  <img src="../../assets/accueil/care-love1.gif" class="w-8 h-8 -mt-1 cursor-pointer" alt="Angry">
+                  <img src="../../assets/accueil/laugh.gif" class="w-7 h-7 cursor-pointer" alt="Love">
+                  <img src="../../assets/accueil/wow.gif" class="w-7 h-7 cursor-pointer" alt="Haha">
+                  <img src="../../assets/accueil/sad.gif" class="w-7 h-7 cursor-pointer" alt="Angry">
+                  <img src="../../assets/accueil/angry.gif" class="w-7 h-7 cursor-pointer" alt="Angry">
+                </div>
+              </div>
+            
+              <!-- Zone de commentaire -->
+              <div class="flex justify-center items-center border rounded-full p-1 mt-2 bg-gray-100 flex-grow h-9">
                 <img src="../../assets/sirineKahweji_ISETBizerte.jpg" class="rounded-full w-8 h-8">
-                <input type="text" placeholder="Écrire un commentaire..." class="bg-gray-100 pl-3 flex-grow">
+                <input type="text" placeholder="Écrire un commentaire..." class="bg-gray-100 pl-3 flex-grow focus:outline-none">
               </div>
             </div>
+            
+            
 
           </div>
           <!-- fin post -->
@@ -94,8 +121,18 @@
             <p class=" pt-2">Belle opportunité d'acquisition d'une ferme agricole située dans la région verdoyante de Bizerte. 
               Cette ferme s'étend sur 20 hectares, offrant un terrain fertile et bien entretenu,
                idéal pour la culture et l'élevage</p>
-            <p class="text-right font-bold underline cursor-pointer">voir plus</p>
+                    <!-- Détails supplémentaires -->
+  <div *ngIf="showDetails" class="">
+    <p><strong>Prix:</strong> 150 000 €</p>
+    <p><strong>Localisation:</strong> Bizerte</p>
+    <p><strong>Superficie:</strong> 20 hectares</p>
+    <p><strong>Défauts:</strong> Aucun défaut majeur identifié</p>
+    <p><strong>Emplacement:</strong></p>
+  </div>
+            <p class="text-right font-bold underline cursor-pointer" (click)="toggleDetails()"> {{ showDetails ? 'Voir moins' : 'Voir plus' }}</p>
            </div>
+
+      
         <!-- row 3 -->
             <div >
               <img src="../../assets/accueil/post1.jpg">
