@@ -1,0 +1,278 @@
+.nav {
+    width: 20%;
+    background-color: #265726;
+    height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+
+
+}
+
+.header {
+    font-size: 30px;
+}
+
+.profile {
+    font-weight: 200;
+    color: white;
+    width: 50%;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+#user_name {
+    text-align: center !important;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+
+}
+
+.profile span {
+    text-align: left;
+
+}
+
+
+
+.profile_photo {
+    margin-top: 30px;
+    border-radius: 50%;
+    width: 8rem;
+    height: 8rem;
+    background-color: grey;
+    border: 3px solid grey;
+}
+
+section {
+    
+    display: flex;
+}
+
+.body {
+    background-image: url('/assets/sidebar.png');
+    background-size: cover; /* Makes sure the image covers the whole page */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents repeating */
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap !important;
+
+}
+
+.card_value {
+    display: flex;
+    height: 100%;
+}
+
+.card_text {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: end;
+}
+
+.cards {
+    flex-wrap: wrap !important;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 30%;
+    width: 80%;
+}
+
+.dashboards {
+
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 40%;
+    gap: 2rem;
+}
+
+.dashboards div {
+    width: 50%;
+    height: 100%;
+    background-color: white;
+    
+}
+
+.card {
+    background-color: white;
+    height: 70%;
+    width: 20%;
+
+
+}
+
+.profile :hover {
+    border-bottom: 3px solid white;
+}
+
+.batton_diagramme {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.batton_diagramme img {
+
+    width: 80%;
+    height: 100%;
+}
+#MyChart{
+    height: 100%;
+}
+section {
+    height: 100%;
+}
+
+.photos {
+    border-radius: 50%;
+    background-color: #C3D986;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height :   65%  ;  
+    width: 60%;
+}
+.photos img {
+   width: 70%;
+}
+/* Container */
+.container {
+    
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+/* Search Bar */
+.search-bar {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+/* User List Section */
+.user-list {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 2px solid #6ea5f8;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Buttons */
+.buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.download-button, .print-button {
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    color: white;
+}
+
+.download-button {
+    background-color: #6ea5f8;
+}
+
+.print-button {
+    background-color: #6c757d;
+}
+
+/* Table */
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+table thead {
+    background-color: #f1f5f9;
+}
+
+table th, table td {
+    padding: 12px;
+    border: 1px solid #e1e4e8;
+    font-size: 14px;
+}
+
+table th {
+    color: #333;
+    font-weight: bold;
+}
+
+table td {
+    color: #555;
+}
+
+/* Action Buttons */
+.action-button {
+    font-size: 14px;
+    margin-right: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+.view {
+    color: #007bff;
+}
+
+.edit {
+    color: #ffc107;
+}
+
+.delete {
+    color: #dc3545;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .buttons, .header h2 {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .buttons {
+        margin-top: 10px;
+    }
+}
+
