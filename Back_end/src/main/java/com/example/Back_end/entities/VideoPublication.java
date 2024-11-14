@@ -1,5 +1,6 @@
 package com.example.Back_End.entities;
 
+import com.example.Back_end.entities.Publication;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
