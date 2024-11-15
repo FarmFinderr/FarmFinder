@@ -119,6 +119,85 @@ export class AccueilComponent {
       date: '10 Février 2024'
     }
   ];
+
+  events = [
+    {
+      image: '../../assets/accueil/event1.jpg',
+      title: 'Ferme de 13 ha à Ain Draham',
+      price: '5,400,000 TND'
+    },
+    {
+      image: '../../assets/accueil/event1.jpg',
+      title: 'Terrain avec vue sur la mer Bizerte CapZbib',
+      price: '1,200,000 TND'
+    },
+    {
+      image: '../../assets/accueil/event2.jpg',
+      title: 'Petit Terrain a Tunis',
+      price: '850,000 TND'
+    },
+    {
+      image: '../../assets/accueil/event1.jpg',
+      title: 'Ferme de 13 ha à Ain Draham',
+      price: '5,400,000 TND'
+    },
+    {
+      image: '../../assets/accueil/event2.jpg',
+      title: 'Ferme avec vue sur la mer',
+      price: '1,200,000 TND'
+    },
+    {
+      image: '../../assets/accueil/event3.jpg',
+      title: 'Appartement au centre-ville',
+      price: '850,000 TND'
+    },
+    {
+      image: '../../assets/accueil/event1.jpg',
+      title: 'Ferme de 13 ha à Ain Draham',
+      price: '5,400,000 TND'
+    },
+    {
+      image: '../../assets/accueil/event2.jpg',
+      title: 'Villa avec vue sur la mer',
+      price: '1,200,000 TND'
+    },
+    {
+      image: '../../assets/accueil/event3.jpg',
+      title: 'Appartement au centre-ville',
+      price: '850,000 TND'
+    },
+    {
+      image: '../../assets/accueil/event1.jpg',
+      title: 'Ferme de 13 ha à Ain Draham',
+      price: '5,400,000 TND'
+    },
+    {
+      image: '../../assets/accueil/event2.jpg',
+      title: 'Villa avec vue sur la mer',
+      price: '1,200,000 TND'
+    },
+    {
+      image: '../../assets/accueil/event3.jpg',
+      title: 'Appartement au centre-ville',
+      price: '850,000 TND'
+    },
+    {
+      image: '../../assets/accueil/event1.jpg',
+      title: 'Ferme de 13 ha à Ain Draham',
+      price: '5,400,000 TND'
+    },
+    {
+      image: '../../assets/accueil/event1.jpg',
+      title: 'Villa avec vue sur la mer',
+      price: '1,200,000 TND'
+    },
+    {
+      image: '../../assets/accueil/event3.jpg',
+      title: 'Appartement au centre-ville',
+      price: '850,000 TND'
+    }
+  ];
+
    showDetails = false; 
    isModalOpen = false;
 

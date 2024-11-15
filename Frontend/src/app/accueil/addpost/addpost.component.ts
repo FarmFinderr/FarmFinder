@@ -12,6 +12,7 @@ import { ModalAddPostComponent } from "../modal-add-post/modal-add-post.componen
 })
 export class AddpostComponent {
   isModalOpen = false;
+  isModalOpenDetailsEvent = false;
   messageSuccess = false;
   selectedType: string = '';
 
@@ -23,6 +24,16 @@ export class AddpostComponent {
   closeModal() {
     this.isModalOpen = false;
     console.log("modal closed ");
+
+  }
+  openModalDetailsEvent() {
+    this.isModalOpenDetailsEvent = true;
+    console.log("ModalDetailsEvent opened ");
+  }
+
+  closeModalDetailsEvent() {
+    this.isModalOpenDetailsEvent = false;
+    console.log("ModalDetailsEvent closed ");
 
   }
 
