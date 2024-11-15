@@ -11,15 +11,7 @@
     </button>
   </div>
 
-  <!-- Inclure le modal -->
-  <!--<app-modal-add-post
-  [isModalOpen]="isModalOpen" 
-  (closeModalEvent)="closeModal()"
-></app-modal-add-post>-->
 
-
-
-  
   <div class="flex justify-between mt-2 text-sm text-gray-500  ">
     <!-- Joindre un Fichier  -->
     <button class="flex items-center space-x-2" aria-label="Joindre un Fichier" onclick="document.getElementById('fileUpload').click()">
@@ -48,9 +40,8 @@
 
 
 <!-- modal add post-->
- <!-- Modal -->
 <div *ngIf="isModalOpen" class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
-  <div class="bg-white rounded-lg shadow-lg w-96">
+  <div class="bg-white rounded-lg shadow-lg w-96  h-[460px]">
     <div class="px-6 py-4">
       <div class="flex items-center justify-between">
         <h5 class="text-lg font-semibold">Ajouter une Publication</h5>

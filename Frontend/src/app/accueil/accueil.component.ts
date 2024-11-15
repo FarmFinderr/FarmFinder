@@ -27,7 +27,41 @@ import { OpenmapComponent } from '../accueil/openmap/openmap.component';
   styleUrl: './accueil.component.css'
 })
 export class AccueilComponent {
-   posts=[];
+   posts = [
+    {
+      image: "../../assets/accueil/post1.jpg",
+      name: "Syrine Kahweji",
+      date: "7 Février 2021",
+      content: "Belle opportunité d'acquisition d'une ferme agricole située dans la région verdoyante de Bizerte.",
+      price: "150 000 €",
+      location: "Bizerte",
+      area: "20 hectares",
+      defects: "Aucun défaut majeur identifié",
+      imagePost: "../../assets/accueil/post1.jpg"
+    },
+    {
+      image: "../../assets/accueil/post1.jpg",
+      name: "Syrine Kahweji",
+      date: "7 Février 2021",
+      content: "Belle opportunité d'acquisition d'une ferme agricole située dans la région verdoyante de Bizerte.",
+      price: "150 000 €",
+      location: "Bizerte",
+      area: "20 hectares",
+      defects: "Aucun défaut majeur identifié",
+      imagePost: "../../assets/accueil/post1.jpg"
+    },
+    {
+      image: "../../assets/accueil/post1.jpg",
+      name: "Syrine Kahweji",
+      date: "7 Février 2021",
+      content: "Belle opportunité d'acquisition d'une ferme agricole située dans la région verdoyante de Bizerte.",
+      price: "150 000 €",
+      location: "Bizerte",
+      area: "20 hectares",
+      defects: "Aucun défaut majeur identifié",
+      imagePost: "../../assets/accueil/post1.jpg"
+    }
+  ];
    showDetails = false; 
 
    toggleDetails() {
