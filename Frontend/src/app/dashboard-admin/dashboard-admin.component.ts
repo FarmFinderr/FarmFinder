@@ -24,32 +24,32 @@ export class DashboardAdmin implements OnInit {
         label: 'Registred Users',
         data: [65, 59, 80, 81, 56, 55, 40, 75, 62, 85, 90, 100], // Example values for each month
         backgroundColor: [
-          'rgba(255, 99, 132, 0.2)', // January
-          'rgba(255, 159, 64, 0.2)', // February
-          'rgba(255, 205, 86, 0.2)', // March
-          'rgba(75, 192, 192, 0.2)', // April
-          'rgba(54, 162, 235, 0.2)', // May
-          'rgba(153, 102, 255, 0.2)', // June
-          'rgba(201, 203, 207, 0.2)', // July
-          'rgba(255, 99, 132, 0.2)', // August
-          'rgba(255, 159, 64, 0.2)', // September
-          'rgba(255, 205, 86, 0.2)', // October
-          'rgba(75, 192, 192, 0.2)', // November
-          'rgba(54, 162, 235, 0.2)'  // December
+          'rgb(173, 255, 47)',
+          'rgb(158, 241, 54)',
+          'rgb(143, 227, 61)',
+          'rgb(128, 213, 68)',
+          'rgb(113, 199, 75)',
+          'rgb(98, 185, 82)',
+          'rgb(138, 169, 76)',
+          'rgb(169, 153, 70)',
+          'rgb(204, 137, 63)',
+          'rgb(239, 121, 56)',
+          'rgb(255, 108, 48)',
+          'rgb(255, 215, 0)' // December
         ],
         borderColor: [
-          'rgb(255, 99, 132)', // January
-          'rgb(255, 159, 64)', // February
-          'rgb(255, 205, 86)', // March
-          'rgb(75, 192, 192)', // April
-          'rgb(54, 162, 235)', // May
-          'rgb(153, 102, 255)', // June
-          'rgb(201, 203, 207)', // July
-          'rgb(255, 99, 132)', // August
-          'rgb(255, 159, 64)', // September
-          'rgb(255, 205, 86)', // October
-          'rgb(75, 192, 192)', // November
-          'rgb(54, 162, 235)'  // December
+          'rgb(173, 255, 47)',
+          'rgb(158, 241, 54)',
+          'rgb(143, 227, 61)',
+          'rgb(128, 213, 68)',
+          'rgb(113, 199, 75)',
+          'rgb(98, 185, 82)',
+          'rgb(138, 169, 76)',
+          'rgb(169, 153, 70)',
+          'rgb(204, 137, 63)',
+          'rgb(239, 121, 56)',
+          'rgb(255, 108, 48)',
+          'rgb(255, 215, 0)'
         ],
         borderWidth: 1
       }]

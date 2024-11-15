@@ -6,9 +6,13 @@ import com.example.demo.entities.Participation;
 import com.example.demo.entities.Personne;
 import com.example.demo.repositories.EventRepository;
 import com.example.demo.repositories.ParticipationRepository;
+import jakarta.servlet.http.Part;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Math.max;
@@ -57,14 +61,46 @@ public class EventService {
         participationRepository.save(p);
         return  p ;
     }
-    @@PutMapping("/UpdateBiding ")
-    public Participation BiddingUpdate(@RequestParam Participation p )
-    {
-        Participation ex =  participationRepository.findByPersonIdAndEventId(p.getPerson_id(),p.getEvent().getId());
+    @PutMapping("/updateBidding")
+    public ResponseEntity<Participation> biddingUpdate(@RequestBody Participation p) {
+
+        List<Participation> potential = new ArrayList<Participation>();
+
+        List<Participation>allParticipants    =  participationRepository.findAll();
+        for(Participation ex : allParticipants)
+        {
+            if(ex.getPerson_id()== p.getPerson_id())
+            {
+                potential.add(ex);
+            }
+        }
+
+        Participation ex = null;
+        for(Participation f : potential)
+        {
+            if(ex.getEvent().getId() == p.getEvent().getId())
+            {
+                ex = f;
+                break ;
+            }
+        }
+
+        if (ex == null) {
+            return ResponseEntity.notFound().build();
+        }
+        Personne personne = personneService.findCustomerById(p.getPerson_id());
+
+        if (personne == null) {
+                  return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+
         ex.setPrice(p.getPrice());
+
         participationRepository.save(ex);
-        return  ex ;
+
+        return ResponseEntity.ok(ex);
     }
+
 
 
 }
