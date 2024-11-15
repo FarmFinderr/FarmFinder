@@ -9,15 +9,13 @@ import { TableDashboard} from  './table-dashboard/table-dashboard.component'
 
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: HomeComponent },         
   { path: 'sign-in', component: SignInComponent },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'accueil', component: AccueilComponent },
-   { path: '', component: DashboardAdmin},
-   {path:'tableusers',component:TableDashboard}
-
-  ];
-
+  { path: 'dashboard', component: DashboardAdmin },  
+  { path: 'tableusers', component: TableDashboard }  
+];
 
 
 
