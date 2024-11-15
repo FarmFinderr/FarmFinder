@@ -62,7 +62,77 @@ export class AccueilComponent {
       imagePost: "../../assets/accueil/post1.jpg"
     }
   ];
+
+  comments = [
+    {
+      userImage: '../../assets/accueil/lyna.jpg',
+      userName: ' Lyna moujehed',
+      content: 'Super article, dispo !',
+      date: '7 Février 2024'
+    },
+    {
+      userImage: '../../assets/accueil/wassim.jpg',
+      userName: 'Wassim saidani',
+      content: 'prix negociable ??.',
+      date: '8 Février 2024'
+    },
+    {
+      userImage: '../../assets/sirineKahweji_ISETBizerte.jpg',
+      userName: 'syrine syrina',
+      content: 'Très bien expliqué !',
+      date: '10 Février 2024'
+    },
+    {
+      userImage: '../../assets/accueil/lyna.jpg',
+      userName: ' Lyna moujehed',
+      content: 'Super article, dispo !',
+      date: '7 Février 2024'
+    },
+    {
+      userImage: '../../assets/accueil/wassim.jpg',
+      userName: 'Wassim saidani',
+      content: 'prix negociable ??.',
+      date: '8 Février 2024'
+    },
+    {
+      userImage: '../../assets/sirineKahweji_ISETBizerte.jpg',
+      userName: 'syrine syrina',
+      content: 'Très bien expliqué !',
+      date: '10 Février 2024'
+    },
+    {
+      userImage: '../../assets/accueil/lyna.jpg',
+      userName: ' Lyna moujehed',
+      content: 'Super article, dispo !',
+      date: '7 Février 2024'
+    },
+    {
+      userImage: '../../assets/accueil/wassim.jpg',
+      userName: 'Wassim saidani',
+      content: 'prix negociable ??.',
+      date: '8 Février 2024'
+    },
+    {
+      userImage: '../../assets/sirineKahweji_ISETBizerte.jpg',
+      userName: 'syrine syrina',
+      content: 'Très bien expliqué !',
+      date: '10 Février 2024'
+    }
+  ];
    showDetails = false; 
+   isModalOpen = false;
+
+
+  openModal() {
+    this.isModalOpen = true;
+    console.log("modal opened ");
+  }
+
+  closeModal() {
+    this.isModalOpen = false;
+    console.log("modal closed ");
+
+  }
 
    toggleDetails() {
      this.showDetails = !this.showDetails;

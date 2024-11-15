@@ -29,9 +29,7 @@ export class AddpostComponent {
   submitForm(form: any) {
     if (form.valid) {
       this.messageSuccess = true;
-      // Add additional form handling logic here
 
-      // Close the modal after form submission
       setTimeout(() => {
         this.messageSuccess = false;
         this.closeModal();
