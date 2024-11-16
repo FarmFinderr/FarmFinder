@@ -71,6 +71,12 @@ export class AccueilComponent {
       date: '7 Février 2024'
     },
     {
+      userImage: '../../assets/accueil/lyna.jpg',
+      userName: ' Lyna moujehed',
+      content: 'Super article, dispo !',
+      date: '7 Février 2024'
+    },
+    {
       userImage: '../../assets/accueil/wassim.jpg',
       userName: 'Wassim saidani',
       content: 'prix negociable ??.',
@@ -122,84 +128,100 @@ export class AccueilComponent {
 
   events = [
     {
+      id:1,
       image: '../../assets/accueil/event1.jpg',
       title: 'Ferme de 13 ha à Ain Draham',
-      price: '5,400,000 TND'
+      price: '5,400,000 TND',
+      description: "Belle opportunité d'acquisition d'une ferme agricole située dans la région verdoyante de Bizerte.",
+
     },
     {
+      id:2,
       image: '../../assets/accueil/event1.jpg',
       title: 'Terrain avec vue sur la mer Bizerte CapZbib',
-      price: '1,200,000 TND'
+      price: '1,200,000 TND',
+      description: "Belle opportunité d'acquisition d'une ferme agricole située dans la région verdoyante de Bizerte.",
+
     },
     {
+      id:3,
       image: '../../assets/accueil/event2.jpg',
       title: 'Petit Terrain a Tunis',
-      price: '850,000 TND'
+      price: '850,000 TND',
+      description: "Belle opportunité d'acquisition d'une ferme agricole située dans la région verdoyante de Bizerte.",
+
     },
     {
+      id:4,
       image: '../../assets/accueil/event1.jpg',
       title: 'Ferme de 13 ha à Ain Draham',
-      price: '5,400,000 TND'
+      price: '5,400,000 TND',
+      description: "Belle opportunité d'acquisition d'une ferme agricole située dans la région verdoyante de Bizerte.",
+
     },
     {
+      id:5,
       image: '../../assets/accueil/event2.jpg',
       title: 'Ferme avec vue sur la mer',
-      price: '1,200,000 TND'
+      price: '1,200,000 TND',
+      description: "Belle opportunité d'acquisition d'une ferme agricole située dans la région verdoyante de Bizerte.",
+
     },
     {
+      id:6,
       image: '../../assets/accueil/event3.jpg',
       title: 'Appartement au centre-ville',
-      price: '850,000 TND'
+      price: '850,000 TND',
+      description: "Belle opportunité d'acquisition d'une ferme agricole située dans la région verdoyante de Bizerte.",
+
     },
     {
+      id:7,
       image: '../../assets/accueil/event1.jpg',
       title: 'Ferme de 13 ha à Ain Draham',
-      price: '5,400,000 TND'
+      price: '5,400,000 TND',
+      description: "Belle opportunité d'acquisition d'une ferme agricole située dans la région verdoyante de Bizerte.",
+
     },
     {
+      id:8,
       image: '../../assets/accueil/event2.jpg',
       title: 'Villa avec vue sur la mer',
-      price: '1,200,000 TND'
+      price: '1,200,000 TND',
+      description: "Belle opportunité d'acquisition d'une ferme agricole située dans la région verdoyante de Bizerte.",
+
     },
     {
+      id:9,
       image: '../../assets/accueil/event3.jpg',
       title: 'Appartement au centre-ville',
-      price: '850,000 TND'
+      price: '850,000 TND',
+      description: "Belle opportunité d'acquisition d'une ferme agricole située dans la région verdoyante de Bizerte.",
+
     },
     {
+      id:10,
       image: '../../assets/accueil/event1.jpg',
       title: 'Ferme de 13 ha à Ain Draham',
-      price: '5,400,000 TND'
+      price: '5,400,000 TND',
+      description: "Belle opportunité d'acquisition d'une ferme agricole située dans la région verdoyante de Bizerte.",
+
     },
     {
+      id:11,
       image: '../../assets/accueil/event2.jpg',
       title: 'Villa avec vue sur la mer',
-      price: '1,200,000 TND'
-    },
-    {
-      image: '../../assets/accueil/event3.jpg',
-      title: 'Appartement au centre-ville',
-      price: '850,000 TND'
-    },
-    {
-      image: '../../assets/accueil/event1.jpg',
-      title: 'Ferme de 13 ha à Ain Draham',
-      price: '5,400,000 TND'
-    },
-    {
-      image: '../../assets/accueil/event1.jpg',
-      title: 'Villa avec vue sur la mer',
-      price: '1,200,000 TND'
-    },
-    {
-      image: '../../assets/accueil/event3.jpg',
-      title: 'Appartement au centre-ville',
-      price: '850,000 TND'
+      price: '1,200,000 TND',
+      description: "Belle opportunité d'acquisition d'une ferme agricole située dans la région verdoyante de Bizerte.",
+
     }
   ];
 
    showDetails = false; 
    isModalOpen = false;
+   isModalOpenDetailsEvent = false;
+   eventDetails: any = null;
+
 
 
   openModal() {
@@ -209,6 +231,8 @@ export class AccueilComponent {
 
   closeModal() {
     this.isModalOpen = false;
+    this.eventDetails = null;
+
     console.log("modal closed ");
 
   }
@@ -216,5 +240,17 @@ export class AccueilComponent {
    toggleDetails() {
      this.showDetails = !this.showDetails;
    }
+
+   openModalDetailsEvent(eventId:number) {
+    this.eventDetails = this.events[eventId];
+    this.isModalOpenDetailsEvent = true;
+    console.log("ModalDetailsEvent opened ");
+  }
+
+  closeModalDetailsEvent() {
+    this.isModalOpenDetailsEvent = false;
+    console.log("ModalDetailsEvent closed ");
+
+  }
 
 }

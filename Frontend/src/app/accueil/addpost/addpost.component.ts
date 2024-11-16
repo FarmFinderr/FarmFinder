@@ -12,9 +12,9 @@ import { ModalAddPostComponent } from "../modal-add-post/modal-add-post.componen
 })
 export class AddpostComponent {
   isModalOpen = false;
-  isModalOpenDetailsEvent = false;
   messageSuccess = false;
   selectedType: string = '';
+
 
   openModal() {
     this.isModalOpen = true;
@@ -26,16 +26,9 @@ export class AddpostComponent {
     console.log("modal closed ");
 
   }
-  openModalDetailsEvent() {
-    this.isModalOpenDetailsEvent = true;
-    console.log("ModalDetailsEvent opened ");
-  }
+  
 
-  closeModalDetailsEvent() {
-    this.isModalOpenDetailsEvent = false;
-    console.log("ModalDetailsEvent closed ");
-
-  }
+ 
 
   submitForm(form: any) {
     if (form.valid) {

@@ -114,7 +114,7 @@
           <p class="text-xs text-gray-500">{{ event.price }}</p>
           <div class="flex items-center">
             <button class="text-xs text-green-600 font-bold">Participer</button>
-            <p class="font-bold underline text-xs ml-auto cursor-pointer" (click)="openModal()">voir plus</p>
+            <p class="font-bold underline text-xs ml-auto cursor-pointer" (click)="openModalDetailsEvent(event.id)">voir plus</p>
           </div>
         </div>
       </div>
@@ -155,6 +155,100 @@
   </div>
 </div>
 
+
+<!-- modal details events-->
+<!-- Modal pour les détails de l'événement -->
+<div *ngIf="isModalOpenDetailsEvent" class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
+  <div class="bg-white rounded-lg shadow-lg w-[640px] h-[460px] flex">
+    <!-- Liste des participants -->
+    <div class="w-1/3 bg-gray-100 p-4 border-r">
+      <h5 class="text-lg font-semibold mb-4">Participants</h5>
+      <ul class="space-y-2">
+        <li *ngFor="let participant of comments" class="text-sm text-gray-700 flex items-center space-x-2">
+          <img [src]="participant.userImage" alt="Avatar" class="w-8 h-8 rounded-full">
+          <span>{{ participant.userName }}</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Détails de l'événement -->
+    <div class="flex-1 flex flex-col">
+      <!-- En-tête -->
+      <div class="px-6 py-4 flex items-center justify-between border-b">
+        <h5 class="text-lg font-semibold">Détails de l'événement</h5>
+        <button (click)="closeModalDetailsEvent()" class="text-gray-600 hover:text-gray-900">
+          <span class="text-xl">&times;</span>
+        </button>
+      </div>
+
+      <!-- Contenu principal -->
+      <div class="px-6 py-4 flex-1 overflow-y-auto">
+        <!-- Description -->
+        <div class="mb-4">
+          <h6 class="text-lg font-semibold mb-2">Description :</h6>
+          <p class="text-gray-600 text-sm">{{ eventDetails.description }}</p>
+        </div>
+
+        <!-- Prix -->
+        <div class="mb-4">
+          <h6 class="font-medium text-gray-800">Prix :</h6>
+          <p class="text-gray-600">{{ eventDetails.price }}</p>
+        </div>
+
+        <!-- Image -->
+        <div>
+          <h6 class="font-medium text-gray-800 mb-2">Image :</h6>
+          <img [src]="eventDetails.image" alt="Event Image" class="w-full h-32 object-cover rounded-lg">
+        </div>
+      </div>
+
+      <div class="modal-footer mt-4 flex justify-end mr-11 mb-5">
+        <button type="submit" class="bg-yellow-500 text-white py-2 px-4 rounded-lg">Participer</button>
+      </div>
+  
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- Modal Details Event -->
+ <!--
+
+<div *ngIf="isModalOpenDetailsEvent" class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
+
+
+  <div class="bg-white rounded-lg shadow-lg w-[600px] h-[460px] flex flex-row">
+
+    
+    
+    <div class="w-1/2 border-r p-4 overflow-y-auto">
+      <h5 class="text-lg font-semibold mb-4">Liste des participants</h5>
+      <ul class="space-y-2">
+        <li *ngFor="let participant of comments" class="flex items-center space-x-2">
+          <img [src]="participant.userImage" alt="Photo" class="w-8 h-8 rounded-full">
+          <span>{{ participant.userName }}</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="w-1/2 p-4">
+      <h5 class="text-lg font-semibold mb-4">Détails de l'événement</h5>
+      <p class="text-gray-600 text-sm mb-4">{{ eventDetails.description }}</p>
+      <div class="mb-4">
+        <h6 class="font-medium text-gray-800">price :</h6>
+        <p class="text-gray-600">{{ eventDetails.price }}</p>
+      </div>
+      <div>
+        <h6 class="font-medium text-gray-800">Image :</h6>
+        <img [src]="eventDetails.image" alt="Event Image" class="w-full h-32 object-cover rounded-lg">
+      </div>
+    </div>
+  </div>
+</div>
+-->
 
 
 <router-outlet></router-outlet>
