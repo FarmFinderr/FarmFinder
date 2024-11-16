@@ -1,0 +1,6 @@
+<resources>
+    <style name="RoundedImageProfile">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item> <!-- Définit l'image comme un cercle -->
+    </style>
+</resources>

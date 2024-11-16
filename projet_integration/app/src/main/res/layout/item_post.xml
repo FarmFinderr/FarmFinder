@@ -1,0 +1,108 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:background="@drawable/background_post"
+    android:layout_margin="8dp">
+
+    <!-- Section de l'utilisateur -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/profile_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ihebphoto"
+            app:shapeAppearanceOverlay="@style/RoundedImageProfile" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/nameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Syrine Kahweji"
+                android:textStyle="bold"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/dateTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="27 Février à 20:01"
+                android:textSize="12sp"
+                android:textColor="#888888" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Contenu du post -->
+    <TextView
+        android:id="@+id/contentTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="3 ha à vendre à 14 km de tunis centre..."
+        android:textSize="14sp"
+        android:layout_marginTop="8dp" />
+
+    <!-- Image du post -->
+    <ImageView
+        android:id="@+id/postImageView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="8dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/terrain" />
+
+    <!-- Section des likes et commentaires (Horizontalement aligné) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical">
+
+        <!-- Icône de like -->
+        <ImageView
+            android:id="@+id/likeIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/baseline_favorite_24"
+            android:tint="#FF0000" />
+
+        <!-- Nombre de likes -->
+        <TextView
+            android:id="@+id/likesTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10"
+            android:textSize="14sp"
+            android:layout_marginStart="4dp" />
+
+        <!-- Espace entre les éléments -->
+
+
+        <!-- Zone de commentaire -->
+        <EditText
+            android:id="@+id/commentEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Écrire un commentaire..."
+            android:layout_marginStart="8dp"
+            android:background="@drawable/background_comment"
+            android:padding="8dp"
+            android:textSize="14sp"
+            android:drawablePadding="8dp" />
+    </LinearLayout>
+</LinearLayout>
