@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <!-- AppBar avec icônes en haut de l'écran -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp"
+            android:gravity="center_vertical"
+            android:background="@color/white">
+
+            <!-- Icône tracteur à gauche -->
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="35dp"
+                android:src="@drawable/tracteur"
+                android:contentDescription="Tracteur" />
+
+            <!-- Espacement flexible -->
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <!-- Icône de notification -->
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/baseline_notifications_24"
+                android:contentDescription="Notification"
+                android:layout_marginEnd="16dp"
+                android:tint="#FFD700" />
+
+
+            <!-- Icône de menu -->
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/baseline_menu_24"
+                android:contentDescription="Menu" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#DDDDDD"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="20dp" />
+
+
+
+        <!-- Section "Quoi de Neuf" with buttons inside -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp"
+            android:background="@drawable/background_post"
+            android:layout_marginBottom="8dp">
+
+            <!-- Inner layout for profile image and input hint -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="8dp">
+
+                <!-- Profile image -->
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/ihebphoto"
+                    app:shapeAppearanceOverlay="@style/RoundedImageProfile" />
+
+                <!-- "Quoi de neuf?" text -->
+                <TextView
+                    android:id="@+id/quoi_de_neuf_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Quoi de neuf, Iheb Sessi ?"
+                    android:background="@drawable/background_comment"
+                    android:padding="8dp"
+                    android:textColorHint="#888888" />
+            </LinearLayout>
+
+            <!-- Divider line -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#DDDDDD"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp" />
+
+
+            <!-- Button section for actions -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="8dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Joindre un Fichier"
+                    android:textColor="@android:color/white"
+                    android:textSize="10sp"
+                    app:backgroundTint="#FFD700"
+                    app:icon="@drawable/baseline_file_copy_24"
+                    app:iconTint="@android:color/white"
+                    app:iconGravity="textStart"
+                    app:iconSize="16dp"
+                    android:padding="2dp"
+                    android:layout_marginEnd="4dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Photo / Vidéo"
+                    android:textColor="@android:color/white"
+                    android:textSize="10sp"
+                    app:backgroundTint="#FFD700"
+                    app:icon="@drawable/baseline_camera_front_24"
+                    app:iconTint="@android:color/white"
+                    app:iconGravity="textStart"
+                    app:iconSize="16dp"
+                    android:padding="2dp"
+                    android:layout_marginEnd="4dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Humeur / Activité"
+                    android:textColor="@android:color/white"
+                    android:textSize="10sp"
+                    app:backgroundTint="#FFD700"
+                    app:icon="@drawable/baseline_emoji_emotions_24"
+                    app:iconTint="@android:color/white"
+                    app:iconGravity="textStart"
+                    app:iconSize="16dp"
+                    android:padding="2dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- RecyclerView for posts -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:paddingTop="8dp" />
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
