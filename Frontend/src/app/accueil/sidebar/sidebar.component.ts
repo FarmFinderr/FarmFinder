@@ -9,4 +9,13 @@ import { Component } from '@angular/core';
 })
 export class SidebarComponent {
 
+
+  userName = 'Kahweji Syrina'; 
+  userEmail = 'Syrinekahweji5@gmail.com';
+
+  addReclamation() {
+  }
+
+  logout() {
+  }
 }

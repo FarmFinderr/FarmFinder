@@ -214,40 +214,6 @@
 
 
 
-<!-- Modal Details Event -->
- <!--
 
-<div *ngIf="isModalOpenDetailsEvent" class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
-
-
-  <div class="bg-white rounded-lg shadow-lg w-[600px] h-[460px] flex flex-row">
-
-    
-    
-    <div class="w-1/2 border-r p-4 overflow-y-auto">
-      <h5 class="text-lg font-semibold mb-4">Liste des participants</h5>
-      <ul class="space-y-2">
-        <li *ngFor="let participant of comments" class="flex items-center space-x-2">
-          <img [src]="participant.userImage" alt="Photo" class="w-8 h-8 rounded-full">
-          <span>{{ participant.userName }}</span>
-        </li>
-      </ul>
-    </div>
-
-    <div class="w-1/2 p-4">
-      <h5 class="text-lg font-semibold mb-4">Détails de l'événement</h5>
-      <p class="text-gray-600 text-sm mb-4">{{ eventDetails.description }}</p>
-      <div class="mb-4">
-        <h6 class="font-medium text-gray-800">price :</h6>
-        <p class="text-gray-600">{{ eventDetails.price }}</p>
-      </div>
-      <div>
-        <h6 class="font-medium text-gray-800">Image :</h6>
-        <img [src]="eventDetails.image" alt="Event Image" class="w-full h-32 object-cover rounded-lg">
-      </div>
-    </div>
-  </div>
-</div>
--->
 <router-outlet></router-outlet>
 
