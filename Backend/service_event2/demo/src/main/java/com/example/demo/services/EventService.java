@@ -27,7 +27,12 @@ public class EventService {
     @Autowired
     private ParticipationRepository participationRepository;
 
-
+    @GetMapping("/Events/")
+    public List<Event> GetAllevents()
+    {
+        List<Event> e=  eventRepository.findAll();
+        return  e ;
+    }
     @GetMapping("/Event/{id}")
     public Event GetEvent (@PathVariable(name="id") Long id)
     {
@@ -51,6 +56,7 @@ public class EventService {
     @PostMapping("/EventCreation/")
     public Event RegisterEventUser(@RequestBody Event event)
     {
+
         return eventRepository.save(event);
     }
     @PostMapping("/EventResgistration/")
