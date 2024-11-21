@@ -25,6 +25,15 @@ public class Event {
     private Long price;
     private Long owner_id;
     private Date date_debut ;
+
+    public Long getOwner_id() {
+        return owner_id;
+    }
+
+    public void setOwner_id(Long owner_id) {
+        this.owner_id = owner_id;
+    }
+
     private Date date_fin;
 
     @Transient
