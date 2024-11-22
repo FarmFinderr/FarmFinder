@@ -11,14 +11,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        >
+        android:background="@color/white">
         <ImageView
             android:layout_width="100dp"
             android:layout_height="60dp"
             android:src="@drawable/tracteur"
-            android:contentDescription="Logo"
-            />
+            android:contentDescription="Logo" />
     </LinearLayout>
 
     <LinearLayout
@@ -35,8 +33,7 @@
             android:src="@drawable/logo"
             android:layout_marginTop="80dp"
             android:layout_marginLeft="70dp"
-            android:contentDescription="Logo"
-            />
+            android:contentDescription="Logo" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -48,11 +45,11 @@
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp">
 
-            <!-- Titre Login -->
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Login"
+                android:text="Se connecter"
                 android:textSize="34sp"
                 android:textStyle="bold"
                 android:textColor="@android:color/white"
@@ -63,7 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:hint="Username or email"
+                android:hint="Nom d'utilisateur ou e-mail"
                 android:textColor="@android:color/white"
                 android:padding="10dp" />
 
@@ -72,7 +69,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:hint="Password"
+                android:hint="Mot de passe"
                 android:padding="10dp"
                 android:textColor="@android:color/white"
                 android:inputType="textPassword" />
@@ -84,18 +81,20 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_gravity="end"
-                android:text="Forgot password?"
-                android:textColor="@android:color/holo_orange_light"
+                android:textStyle="bold"
+                android:text="Mot de passe oublié?"
+                android:textColor="#f0c300"
                 android:textSize="14sp" />
 
-            <!-- Bouton Login -->
             <Button
                 android:id="@+id/btn_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Login"
-                android:backgroundTint="@android:color/holo_orange_light"
+                android:layout_marginTop="20dp"
+                android:text="Se connecter"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:backgroundTint="#f0c300"
                 android:textColor="@android:color/white" />
 
             <TextView
@@ -103,9 +102,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textAlignment="center"
                 android:layout_gravity="center_horizontal"
                 android:textColor="@android:color/white"
-                android:text="Vous n'avez pas de compte? Inscrivez-vous ici"
+                android:text="Vous n'avez pas de compte?\n Inscrivez-vous ici"
                 android:textSize="14sp" />
         </LinearLayout>
 

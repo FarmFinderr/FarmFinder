@@ -11,20 +11,21 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <!-- AppBar avec icônes en haut de l'écran -->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="8dp"
+            android:background="@color/white"
             android:gravity="center_vertical"
-            android:background="@color/white">
+            android:orientation="horizontal"
+            android:padding="8dp">
 
             <!-- Icône tracteur à gauche -->
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="35dp"
-                android:src="@drawable/tracteur"
-                android:contentDescription="Tracteur" />
+                android:contentDescription="Tracteur"
+                android:src="@drawable/tracteur" />
 
             <!-- Espacement flexible -->
             <View
@@ -36,9 +37,9 @@
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/baseline_notifications_24"
-                android:contentDescription="Notification"
                 android:layout_marginEnd="16dp"
+                android:contentDescription="Notification"
+                android:src="@drawable/baseline_notifications_24"
                 android:tint="#FFD700" />
 
 
@@ -46,8 +47,8 @@
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/baseline_menu_24"
-                android:contentDescription="Menu" />
+                android:contentDescription="Menu"
+                android:src="@drawable/baseline_menu_24" />
         </LinearLayout>
 
         <View
