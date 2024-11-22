@@ -1,0 +1,149 @@
+{
+    "intents": [
+      {
+        "tag": "greeting",
+        "patterns": [
+          "Hi",
+          "Hey","مرحبًا", "السلام عليكم", "أهلًا",
+          "Bonjour",
+          "Salut",
+          "Comment ça va ?",
+          "Est-ce que quelqu'un est là ?",
+          "Hello",
+          "Good day"
+        ],
+        "responses": [
+          "Hey :-)",
+          "Bonjour, comment puis-je vous aider ?",
+          "Bonjour!",
+          "مرحبًا! كيف يمكنني مساعدتك؟", "السلام عليكم!",
+          "Hello, thanks for visiting",
+          "Salut, que puis-je faire pour vous ?",
+          "Hi there, how can I help?"
+        ]
+      },
+      {
+        "tag": "goodbye",
+        "patterns": ["Bye", "See you later", "Goodbye","مع السلامة", "وداعًا", "أراك لاحقًا"],
+        "responses": [
+          "See you later, thanks for visiting",
+          "Have a nice day",
+          "Bye! Come back again soon.",
+          "وداعًا! أتمنى لك يومًا سعيدًا!", "إلى اللقاء!"
+        ]
+      },
+      {
+        "tag": "thanks",
+        "patterns": ["Thanks", "Thank you", "That's helpful", "Thank's a lot!"],
+        "responses": ["Happy to help!", "Any time!", "My pleasure"]
+      },
+      {
+        "tag": "funny",
+        "patterns": [
+          "Tell me a joke!",
+          "Tell me something funny!",
+          "Do you know a joke?"
+        ],
+        "responses": [
+          "Why did the hipster burn his mouth? He drank the coffee before it was cool.",
+          "What did the buffalo say when his son left for college? Bison."
+        ]
+      },
+      {
+        "tag": "types_of_land",
+        "patterns": [
+          "What are the types of land used for agriculture?",
+          "Quels sont les types de terrains agricoles?",
+          "Tell me about agricultural land types",
+          "Quels types de sols sont utilisés en agriculture?"
+        ],
+        "responses": [
+          "There are several types of agricultural land: arable land (suitable for growing crops), pastoral land (used for grazing animals), and forested land (used for timber and other forest products).",
+          "Les types de terrains agricoles incluent les terres arables (propices à la culture de plantes), les terres pastorales (utilisées pour le pâturage des animaux), et les terres forestières (utilisées pour le bois et autres produits forestiers)."
+        ]
+      },
+      {
+        "tag": "soil_types",
+        "patterns": [
+          "What are the types of soils used for agriculture?",
+          "Quels types de sols conviennent à l'agriculture?",
+          "Tell me about soil types for farming",
+          "Quels types de sols sont idéaux pour la culture?"
+        ],
+        "responses": [
+          "Soil types important for agriculture include sandy soil, clay soil, loamy soil, and peaty soil. Each has its advantages depending on the crop being cultivated.",
+          "Les types de sols importants pour l'agriculture incluent le sol sableux, le sol argileux, le sol limoneux et le sol tourbeux. Chacun a ses avantages selon la culture."
+        ]
+      },
+      {
+        "tag": "agricultural_products",
+        "patterns": [
+          "What agricultural products are grown in Tunisia?",
+          "Quels sont les produits agricoles cultivés en Tunisie?",
+          "Tell me about Tunisian agricultural products",
+          "What are the main crops in Tunisia?"        ],
+        "responses": [
+          "Tunisia is known for its olive oil, dates, wheat, barley, citrus fruits, tomatoes, and almonds.",
+          "La Tunisie est connue pour son huile d'olive, ses dattes, le blé, l'orge, les agrumes, les tomates et les amandes."        ]
+      },
+      {
+        "tag": "crops",
+        "patterns": [
+          "What crops are grown in Tunisia?",
+          "What are the main crops of Tunisia?",
+          "Quels sont les principaux produits agricoles cultivés en Tunisie?"     ,
+          "Tell me more about crops in Tunisia"      
+          ],
+        "responses": [
+          "In Tunisia, the main crops include olive trees, wheat, barley, citrus fruits, vegetables (such as tomatoes and potatoes), and fruits like figs and almonds.",
+          "En Tunisie, les principales cultures sont les oliviers, le blé, l'orge, les agrumes, les légumes (comme les tomates et les pommes de terre), ainsi que des fruits comme les figues et les amandes."
+        ]
+      },
+      {
+        "tag": "climate_and_soil_for_crops",
+        "patterns": [
+          "What is the best soil and climate for crops?",
+          "Quel est le meilleur type de sol et de climat pour les cultures?",
+          "Tell me about the soil and climate for growing crops",
+          "Quels sont les sols et climats idéaux pour la culture?"
+                ],
+        "responses": [
+          "Crops typically thrive in well-drained loamy soils, with moderate rainfall and temperatures between 15-25°C. The best climates are temperate or Mediterranean, like in Tunisia.",
+          "Les cultures prospèrent généralement dans des sols limoneux bien drainés, avec des pluies modérées et des températures comprises entre 15 et 25°C. Les climats les plus favorables sont tempérés ou méditerranéens, comme en Tunisie."        ]
+      },
+      {
+        "tag": "irrigation_methods",
+        "patterns": [
+          "What are the methods of irrigation used in agriculture?",
+          "Quels sont les différents systèmes d'irrigation utilisés en agriculture?",
+          "Tell me about irrigation systems in agriculture",
+          "Quels systèmes d'irrigation sont utilisés dans l'agriculture?"
+        ],
+        "responses": [
+          "Common irrigation methods include drip irrigation, sprinkler systems, and surface irrigation. These methods help ensure that crops receive the necessary water.",
+          "Les méthodes d'irrigation courantes incluent l'irrigation goutte à goutte, les systèmes d'aspersion et l'irrigation de surface. Ces méthodes aident à garantir que les cultures reçoivent l'eau nécessaire."        ]
+      },
+      {
+        "tag": "agriculture_in_tunisia",
+        "patterns": [
+          "Tell me about agriculture in Tunisia",
+          "What are the key agricultural sectors in Tunisia?",
+          "Quels sont les secteurs agricoles clés en Tunisie?",
+          "Tell me about the agricultural economy of Tunisia"        ],
+        "responses": [
+          "Agriculture in Tunisia is a major economic sector, especially olive oil production, dates, grains, and vegetables. Tunisia has a Mediterranean climate which makes it ideal for farming.",
+          "L'agriculture en Tunisie est un secteur économique majeur, notamment la production d'huile d'olive, de dattes, de céréales et de légumes. La Tunisie bénéficie d'un climat méditerranéen, ce qui en fait un endroit idéal pour l'agriculture."        ]
+      },
+      {
+        "tag": "organic_farming",
+        "patterns": [
+          "What is organic farming?",
+          "Qu'est-ce que l'agriculture biologique?",
+           "Tell me about organic farming",
+          "Quels sont les avantages de l'agriculture biologique?"        ],
+        "responses": [
+          "Organic farming involves growing crops without the use of synthetic pesticides, fertilizers, or genetically modified organisms. It promotes sustainability and environmental health.",
+          "L'agriculture biologique consiste à cultiver des plantes sans utiliser de pesticides, d'engrais synthétiques ou d'organismes génétiquement modifiés. Elle favorise la durabilité et la santé de l'environnement."        ]
+      }
+    ]
+  }
