@@ -41,14 +41,18 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
-    implementation(libs.androidx.constraintlayout)
+    //implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.recyclerview)
-    implementation (libs.androidx.appcompat.v140)
-    implementation (libs.material.v140)
+    //implementation (libs.androidx.appcompat.v140)
+    //implementation (libs.material.v140)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    implementation(libs.glide) // Assurez-vous que cette version est à jour
+    implementation(libs.glide)
 
+
+    implementation (libs.androidx.appcompat.v161)
+    implementation (libs.androidx.constraintlayout.v220)
+    implementation (libs.material.v190)
 
 }

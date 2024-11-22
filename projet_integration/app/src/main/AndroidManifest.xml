@@ -12,15 +12,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Projet_integration"
         tools:targetApi="31">
+
         <activity
-            android:name=".MainActivity"
+            android:name=".login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
 
+        <activity
+            android:name=".signin"
+            android:exported="false" />
+        <activity
+            android:name=".signup"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" />
+
+    </application>
 </manifest>
