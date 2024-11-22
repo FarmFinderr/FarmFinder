@@ -69,17 +69,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:hint="Numero de CIN  "
+                android:hint="Numéro de CIN"
                 android:textColor="@android:color/white"
                 android:padding="10dp" />
-            <EditText
+            <!--<EditText
                 android:id="@+id/gendre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:hint="Gendre  "
+                android:hint="Genre  "
                 android:textColor="@android:color/white"
-                android:padding="10dp" />
+                android:padding="10dp" />-->
+            <Spinner
+                android:id="@+id/gendre_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:padding="10dp"
+                android:backgroundTint="@android:color/white"
+                android:spinnerMode="dropdown" />
 
             <EditText
                 android:id="@+id/adresse"
@@ -95,7 +103,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:hint="Telephone"
+                android:hint="Téléphone"
                 android:padding="10dp"
                 android:textColor="@android:color/white"
                 />
@@ -104,7 +112,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:hint="Email Adresse"
+                android:hint="Adresse email"
                 android:padding="10dp"
                 android:textColor="@android:color/white"
                 />
@@ -124,7 +132,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text=" s'inscrir"
+                android:text="S'inscrire"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:backgroundTint="#f0c300"

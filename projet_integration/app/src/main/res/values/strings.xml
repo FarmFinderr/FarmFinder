@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">projet_integration</string>
+    <string name="app_name">FarmFinder</string>
+    <string-array name="gender_options">
+        <item>Homme</item>
+        <item>Femme</item>
+    </string-array>
 </resources>
