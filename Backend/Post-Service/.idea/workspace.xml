@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="f1d2a35d-7d7d-4e4b-8821-a1035d209cc0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../service_event2/demo/target/classes/com/example/demo/DemoApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/../service_event2/demo/target/classes/com/example/demo/DemoApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../service_event2/demo/target/classes/com/example/demo/entities/Event.class" beforeDir="false" afterPath="$PROJECT_DIR$/../service_event2/demo/target/classes/com/example/demo/entities/Event.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../service_event2/demo/target/classes/com/example/demo/entities/Participation.class" beforeDir="false" afterPath="$PROJECT_DIR$/../service_event2/demo/target/classes/com/example/demo/entities/Participation.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../service_event2/demo/target/classes/com/example/demo/entities/Personne.class" beforeDir="false" afterPath="$PROJECT_DIR$/../service_event2/demo/target/classes/com/example/demo/entities/Personne.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../service_event2/demo/target/classes/com/example/demo/repositories/EventRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/../service_event2/demo/target/classes/com/example/demo/repositories/EventRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../service_event2/demo/target/classes/com/example/demo/repositories/ParticipationRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/../service_event2/demo/target/classes/com/example/demo/repositories/ParticipationRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../service_event2/demo/target/classes/com/example/demo/services/EventService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../service_event2/demo/target/classes/com/example/demo/services/EventService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../service_event2/demo/target/classes/com/example/demo/services/PersonneService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../service_event2/demo/target/classes/com/example/demo/services/PersonneService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../service_event2/demo/target/test-classes/com/example/demo/ServiceEventApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/../service_event2/demo/target/test-classes/com/example/demo/ServiceEventApplicationTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend/src/app/home/home.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/src/app/home/home.component.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="2ovg24eLnRfuodQMRRkP5jXjXpt" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../.gitignore" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f1d2a35d-7d7d-4e4b-8821-a1035d209cc0" name="Changes" comment="" />
+      <created>1731755253498</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1731755253498</updated>
+      <workItem from="1731755257863" duration="44000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

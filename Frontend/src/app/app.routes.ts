@@ -10,13 +10,15 @@ import { OffresComponent } from './offres/offres.component';
 
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },         
+  { path: '', component: HomeComponent },
   { path: 'sign-in', component: SignInComponent },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'accueil', component: AccueilComponent },
+
   { path: 'dashboard', component: DashboardAdmin },  
   { path: 'tableusers', component: TableDashboard } ,
   {path : 'offres'  ,  component: OffresComponent}
+
 ];
 
 

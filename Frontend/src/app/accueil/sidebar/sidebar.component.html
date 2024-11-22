@@ -1,4 +1,39 @@
-<div class=" fixed flex items-center  mb-6 w-64 h-screen  p-4 flex-col bg-[url('/assets/accueil/sidebar.png')] bg-cover bg-center bg-no-repeat">
-    <img src="../../../assets/sirineKahweji_ISETBizerte.jpg" alt="User Image" class="w-28 h-28 rounded-full mr-4 mt-10">
-    <h2 class="text-lg font-bold">Syrine Kahweji</h2>
-</div>
+<div class="bg-lime-900 text-white flex w-64 h-[510px] p-4 flex-col fixed">
+    <!-- Section utilisateur -->
+    <div class="flex flex-col items-center py-6 border-b border-gray-100">
+      <img
+        src="../../../assets/sirineKahweji_ISETBizerte.jpg"
+        alt="Image utilisateur"
+        class="w-32 h-32 rounded-full border-4 border-lime-100"
+      />
+      <h3 class="mt-4 text-lg font-semibold">{{ userName }}</h3>
+      <p class="text-sm text-lime-100">{{ userEmail }}</p>
+    </div>
+  
+    <!-- Menu -->
+    <div class="flex-grow mt-6">
+      <button
+        (click)="addReclamation()"
+        class="w-full flex items-center gap-2 px-4 py-3 text-left bg-lime-700 hover:bg-lime-600 transition"
+      >
+        <i class="fas fa-plus-circle text-xl"></i>
+        <span>Ajouter une réclamation</span>
+      </button>
+    </div>
+  
+    <!-- Déconnexion -->
+    <div class="py-4 border-t border-lime-700">
+      <button
+        (click)="logout()"
+        class="w-full flex items-center justify-center gap-2 text-white hover:text-red-600 transition"
+      >
+        <i class="fas fa-sign-out-alt text-xl"></i>
+        <span>Déconnexion</span>
+      </button>
+    </div>
+  </div>
+  
+  
+  
+  
+

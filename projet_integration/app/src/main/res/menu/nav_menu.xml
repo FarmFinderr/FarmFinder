@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item
+        android:id="@+id/home"
+        android:title="Home"
+        android:icon="@drawable/home_nav">
+    </item>
+    <item
+
+        android:id="@+id/Events"
+        android:title="Events"
+        android:icon="@drawable/calendar">
+    </item>
+
+
+
+    <item android:title="profile">
+        <menu>
+
+        </menu>
+
+    </item>
+
+    <item
+        android:id="@+id/profile"
+        android:title="Profile"
+        android:icon="@drawable/profile">
+    </item>
+    <item
+        android:id="@+id/messages"
+        android:title="Message"
+        android:icon="@drawable/message">
+    </item>
+    <item
+
+        android:id="@+id/logout"
+        android:title="Logout"
+        android:icon="@drawable/logout">
+    </item>
+</menu>
