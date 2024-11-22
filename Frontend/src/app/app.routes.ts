@@ -6,6 +6,7 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { TableDashboard} from  './table-dashboard/table-dashboard.component'
+import { OffresComponent } from './offres/offres.component';
 
 
 export const routes: Routes = [
@@ -13,8 +14,11 @@ export const routes: Routes = [
   { path: 'sign-in', component: SignInComponent },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'accueil', component: AccueilComponent },
-  { path: 'dashboard', component: DashboardAdmin },
-  { path: 'tableusers', component: TableDashboard }
+
+  { path: 'dashboard', component: DashboardAdmin },  
+  { path: 'tableusers', component: TableDashboard } ,
+  {path : 'offres'  ,  component: OffresComponent}
+
 ];
 
 
