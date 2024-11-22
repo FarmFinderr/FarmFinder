@@ -22,6 +22,7 @@
     "alpinejs": "^3.14.3",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
+    "chart.js": "^4.4.6",
     "dotenv": "^16.4.5",
     "frontend": "file:",
     "leaflet": "^1.9.4",
