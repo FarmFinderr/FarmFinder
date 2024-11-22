@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".login">
+    android:orientation="vertical"
+    tools:context=".LoginActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white">
+
         <ImageView
             android:layout_width="100dp"
             android:layout_height="60dp"
@@ -30,21 +31,21 @@
         <ImageView
             android:layout_width="300dp"
             android:layout_height="150dp"
+            android:layout_marginTop="100dp"
             android:src="@drawable/logo"
-            android:layout_marginTop="80dp"
-            android:layout_marginLeft="70dp"
+            android:layout_gravity="center"
             android:contentDescription="Logo" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="30dp"
-            android:layout_below="@id/content"
             android:background="@drawable/rounded_box"
             android:layout_marginTop="20dp"
+            android:layout_marginRight="50dp"
             android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp">
-
+            android:layout_marginHorizontal="50dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -56,7 +57,7 @@
                 android:gravity="center" />
 
             <EditText
-                android:id="@+id/username"
+                android:id="@+id/useremail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -74,7 +75,6 @@
                 android:textColor="@android:color/white"
                 android:inputType="textPassword" />
 
-            <!-- Mot de passe oublié -->
             <TextView
                 android:id="@+id/forgot_password"
                 android:layout_width="wrap_content"
@@ -98,19 +98,16 @@
                 android:textColor="@android:color/white" />
 
             <TextView
-                android:id="@+id/sign_up"
+                android:id="@+id/signup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:textAlignment="center"
                 android:layout_gravity="center_horizontal"
                 android:textColor="@android:color/white"
                 android:text="Vous n'avez pas de compte?\n Inscrivez-vous ici"
                 android:textSize="14sp" />
         </LinearLayout>
-
     </LinearLayout>
-
 </LinearLayout>
