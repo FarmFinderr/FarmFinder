@@ -1,0 +1,120 @@
+<app-navbar></app-navbar>
+
+<div class="container mx-auto px-4 mt-6"> <!-- Augmentation du mt ici pour donner plus d'espace -->
+  <!-- Breadcrumb -->
+  <div class="flex items-center space-x-2 text-sm text-gray-500 mb-6 mt-6">
+    <a href="#" class="text-green-600 hover:underline font-semibold">Accueil</a>
+    <span>/</span>
+    <a href="#" class="text-gray-500 hover:underline font-semibold">Tout les fermes</a>
+    <span>/</span>
+    <a href="#" class="text-gray-500 hover:underline font-semibold">Vente</a>
+  </div>
+
+  <!-- Titre principal -->
+  <h1 class="text-2xl font-bold text-gray-800 mb-6">
+    Annonces des fermes à vendre en Tunisie
+  </h1>
+
+  <div class="flex flex-wrap gap-8">
+    <!-- Section des annonces -->
+    <div class="flex-1 ml-8">
+      <div class="space-y-6">
+        <div *ngFor="let annonce of annonces" class="bg-white shadow rounded-lg flex flex-col md:flex-row">
+          <!-- Image de l'annonce avec surface -->
+          <div class="relative w-full md:w-40 h-auto">
+            <img
+              [src]="annonce.image"
+              alt="Image annonce"
+              class="w-full h-full object-cover rounded-t-lg md:rounded-l-lg"
+            />
+            <!-- Surface sous l'image, à l'intérieur de l'image -->
+            <div class="absolute bottom-0 left-0 w-full bg-gray-800 bg-opacity-50 text-white text-center py-1">
+              <p class="text-lg font-bold">{{ annonce.surface }} m²</p>
+            </div>
+          </div>
+
+          <!-- Détails de l'annonce à droite de l'image -->
+          <div class="p-4 flex-1">
+            <h2 class="text-lg font-semibold text-gray-800">
+              {{ annonce.titre }}
+            </h2>
+            <p class="text-sm text-gray-500 mb-2">{{ annonce.location }}</p>
+            <p class="text-green-600 font-bold text-lg">{{ annonce.prix }}</p>
+            <p class="text-sm text-gray-600 mt-2">
+              {{ annonce.description }}
+            </p>
+            <button
+              class="mt-4 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+            >
+              Lire la suite
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section de recherche -->
+    <div class="w-80">
+      <div class="bg-gray-100 shadow rounded-lg p-4">
+        <h3 class="text-lg font-bold text-gray-800 mb-4">Rechercher</h3>
+        <form action="#" class="space-y-4">
+          <div>
+            <label class="text-sm text-gray-600">Toutes les offres</label>
+            <select
+              class="w-full px-4 py-2 border rounded-lg focus:ring-green-500 focus:border-green-500"
+            >
+              <option>Location</option>
+              <option>Vente</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-sm text-gray-600">Région</label>
+            <select
+              class="w-full px-4 py-2 border rounded-lg focus:ring-green-500 focus:border-green-500"
+            >
+              <option selected>Tunis</option>
+              <option>Ariana</option>
+              <option>Ben Arous</option>
+              <option>Manouba</option>
+              <option>Bizerte</option>
+              <option>Béja</option>
+              <option>Jendouba</option>
+              <option>Le Kef</option>
+              <option>Siliana</option>
+              <option>Nabeul</option>
+              <option>Zaghouan</option>
+              <option>Sousse</option>
+              <option>Monastir</option>
+              <option>Mahdia</option>
+              <option>Sfax</option>
+              <option>Kairouan</option>
+              <option>Kasserine</option>
+              <option>Sidi Bouzid</option>
+              <option>Gabès</option>
+              <option>Médenine</option>
+              <option>Tataouine</option>
+              <option>Gafsa</option>
+              <option>Tozeur</option>
+              <option>Kébili</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-sm text-gray-600">PRIX</label>
+            <select
+              class="w-full px-4 py-2 border rounded-lg focus:ring-green-500 focus:border-green-500"
+            >
+              <option>PRIX MAX</option>
+              <option>PRIX MIN</option>
+            </select>
+          </div>
+          <button
+            type="submit"
+            class="w-full px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+          >
+            Rechercher
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

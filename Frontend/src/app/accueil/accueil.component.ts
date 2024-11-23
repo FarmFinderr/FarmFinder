@@ -221,6 +221,16 @@ export class AccueilComponent {
    isModalOpen = false;
    isModalOpenDetailsEvent = false;
    eventDetails: any = null;
+   isModalOpenIA = false;
+
+openModalIA() {
+  this.isModalOpenIA = true;
+}
+
+closeModalIA() {
+  this.isModalOpenIA = false;
+}
+
 
 
 
