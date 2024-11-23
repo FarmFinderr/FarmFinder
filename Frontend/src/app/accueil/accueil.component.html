@@ -1,6 +1,7 @@
 
 <div class="h-screen flex flex-col max-w-screen-xl">
-  <app-navbar></app-navbar>
+  <app-navbar (openAssistantModal)="openModalIA()"></app-navbar>
+
   <div class="flex flex-1 bg-stone-50 mt-16">
     <app-sidebar></app-sidebar>
 
@@ -209,6 +210,45 @@
     </div>
   </div>
 </div>
+
+
+<!-- Modal assistant IA -->
+<div
+  *ngIf="isModalOpenIA"
+  class="fixed bottom-0 right-0 bg-white rounded-lg shadow-lg w-full max-w-md p-6 z-[9999] border border-gray-300"
+>
+  <button
+    (click)="closeModalIA()"
+    class="absolute top-2 right-2 text-gray-500 hover:text-red-600 text-xl font-bold"
+  >
+    ✕
+  </button>
+  <div class="flex items-center">
+    <img src="../../assets/accueil/IALogo.jpg" class="w-11 h-11 -mt-4 rounded-full border-2 border-lime-100" alt="FarmFinderIA logo">
+    <h2 class="text-lg font-bold mb-4 ml-2">FarmFinderIA</h2>
+  </div>
+  <hr>
+
+  <div class="flex flex-col items-center mt-24 mb-24">
+    <img
+      src="../../assets/accueil/IALogo.jpg"
+      class="w-28 h-28 mb-4 rounded-full border-2 border-black animate-pulse"
+      alt="FarmFinderIA logo"
+    />
+    <p class="text-sm text-black font-bold text-center mb-4">What can I help with?</p>
+  </div>
+  <div>
+
+  </div>
+  <div class="bg-gray-100 rounded flex justify-between">
+    <input type="text" placeholder="" class="bg-gray-100 pl-3 flex-grow focus:outline-none">
+    <i class="bi bi-arrow-up-circle-fill cursor-pointer"></i>
+
+  </div>
+
+ 
+</div>
+
 
 
 
