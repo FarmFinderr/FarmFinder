@@ -12,24 +12,25 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
+@CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
 
     @Autowired
     private UserRepository repository;
 
-   
+    // Create a new user
     @PostMapping
     public User createUser(@RequestBody User user) {
         return repository.save(user);
     }
 
-   
+    // Retrieve all users
     @GetMapping
     public List<User> getAllUsers() {
         return repository.findAll();
     }
 
-   
+    // Retrieve a user by ID
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable Long id) {
         Optional<User> user = repository.findById(id);
@@ -37,26 +38,28 @@ public class UserController {
                    .orElse(ResponseEntity.notFound().build());
     }
 
-    
+    // Update an existing user
     @PutMapping("/{id}")
     public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User updatedUser) {
         return repository.findById(id)
                 .map(existingUser -> {
-                    existingUser.setNom(updatedUser.getNom());
-                    existingUser.setPrenom(updatedUser.getPrenom());
-                    existingUser.setAge(updatedUser.getAge());
+                    existingUser.setName(updatedUser.getName());
+                    existingUser.setLastName(updatedUser.getLastName());
+                    existingUser.setPhoneNumber(updatedUser.getPhoneNumber());
+                    existingUser.setDate(updatedUser.getDate()); 
                     existingUser.setSexe(updatedUser.isSexe());
-                    existingUser.setAddresse(updatedUser.getAddresse());
-                    existingUser.setEmail(updatedUser.getEmail());
+                    existingUser.setAddress(updatedUser.getAddress());
+                    existingUser.setEmailAddress(updatedUser.getEmailAddress());
                     existingUser.setPhoto(updatedUser.getPhoto());
                     existingUser.setRole(updatedUser.getRole());
+                    existingUser.setPassword(updatedUser.getPassword());
                     User savedUser = repository.save(existingUser);
                     return ResponseEntity.ok(savedUser);
                 })
                 .orElse(ResponseEntity.notFound().build());
     }
 
-   
+    // Delete a user by ID
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         if (repository.existsById(id)) {
