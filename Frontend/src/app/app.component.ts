@@ -7,10 +7,11 @@ import {NavbarAdminComponent} from  './navbar-admin/navbar-admin.component'
 import {TableDashboard} from './table-dashboard/table-dashboard.component'
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HomeComponent, NavbarComponent,DashboardAdmin,NavbarAdminComponent,TableDashboard,SignInComponent, SignUpComponent,RouterModule],
+  imports: [ RouterOutlet, HomeComponent, NavbarComponent,DashboardAdmin,NavbarAdminComponent,TableDashboard,SignInComponent, SignUpComponent,RouterModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
