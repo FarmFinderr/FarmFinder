@@ -39,4 +39,12 @@
         android:layout_margin="10dp"
         android:padding="10dp"
         android:background="@drawable/edit_text_background" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Filtrer par position"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:background="@drawable/edit_text_background" />
+
 </LinearLayout>
