@@ -4,6 +4,10 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import postRoutes from './routes/postRoutes.js';
+import videoRoutes from './routes/videoRoutes.js';
+import reactionRoutes from './routes/reactionRoutes.js'
+import imageRoutes from './routes/imageRoutes.js';
+
 import { Eureka } from 'eureka-js-client';
 
 dotenv.config();
@@ -89,6 +93,10 @@ app.get('/', (req, res) => {
 });
 
 app.use('/posts', postRoutes);
+app.use('/images', imageRoutes);
+app.use('/videos', videoRoutes);
+app.use('/reactions', reactionRoutes);
+
 
 // Start Express server
 app.listen(PORT, () => {

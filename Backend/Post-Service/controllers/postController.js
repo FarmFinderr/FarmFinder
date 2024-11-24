@@ -1,6 +1,9 @@
 import Post from '../models/Post.js';
 import Terrain from '../models/Terrain.js';
 import Materiel from '../models/Materiel.js';
+import Image from '../models/Image.js';
+import Video from '../models/video.js';
+import Reaction from '../models/Reaction.js';
 import axios from 'axios';
 
 export const createPost = async (req, res, next) => {
@@ -27,7 +30,7 @@ export const createPost = async (req, res, next) => {
 
 
 
-export const getAllPosts = async (req, res, next) => {
+/*export const getAllPosts = async (req, res, next) => {
 
     try {
         const posts = await Post.find();
@@ -50,7 +53,58 @@ export const getAllPosts = async (req, res, next) => {
     } catch (err) {
         next(err);
     }
+};*/
+
+export const getAllPosts = async (req, res, next) => {
+    try {
+        const posts = await Post.find(); 
+
+        const allPosts = await Promise.all(
+            posts.map(async (post) => {
+                try {
+
+                    const userResponse = await axios.get(`http://localhost:8888/users/${post.userId}`);
+                    const user = userResponse.data;
+
+                    const images = await Image.find({ postId: post._id });
+
+                    const videos = await Video.find({ postId: post._id });
+
+                    const reactions = await Reaction.find({ postId: post._id });
+
+                    const reactionsWithUsers = await Promise.all(
+                        reactions.map(async (reaction) => {
+                            try {
+                                const reactionUserResponse = await axios.get(`http://localhost:8888/users/${reaction.userId}`);
+                                return { ...reaction.toObject(), user: reactionUserResponse.data };
+                            } catch {
+                                return { ...reaction.toObject(), user: null };
+                            }
+                        })
+                    );
+
+                    return {
+                        ...post.toObject(),
+                        user,
+                        images,
+                        videos,
+                        reactions: reactionsWithUsers,
+                    };
+
+                } catch (error) {
+                    console.error(`Failed to process post ${post._id}:`, error.message);
+                    return { ...post.toObject(), user: null, images: [], videos: [], reactions: [] };
+                }
+            })
+        );
+
+        res.json(allPosts);
+    } catch (err) {
+        next(err);
+    }
 };
+
+
 
 export const getPostById = async (req, res, next) => {
     try {
