@@ -32,7 +32,7 @@ import mongoose from 'mongoose';
 
 const postSchema = new mongoose.Schema({
 
-    userId: { type: String, required: true },
+    userId: { type: Number , required: true },
 
     price: { type: Number, required: true },
 

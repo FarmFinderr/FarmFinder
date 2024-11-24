@@ -1,6 +1,7 @@
 import Post from '../models/Post.js';
 import Terrain from '../models/Terrain.js';
 import Materiel from '../models/Materiel.js';
+import axios from 'axios';
 
 export const createPost = async (req, res, next) => {
     try {
@@ -23,10 +24,29 @@ export const createPost = async (req, res, next) => {
     }
 };
 
+
+
+
 export const getAllPosts = async (req, res, next) => {
+
     try {
         const posts = await Post.find();
-        res.json(posts);
+        const allposts = await Promise.all(
+            posts.map(async (post) => {
+                try {
+                    const user = await axios.get(`http://localhost:8888/users/${post.userId}`);
+                    //console.log(user);
+                    return { ...post.toObject(), user: user.data }; 
+
+                } catch (error) {
+                    console.error(`Failed to fetch user for post ${post._id}:`, error.message);
+                    return { ...post.toObject(), user: null }; 
+                }
+            })
+        );
+
+        res.json(allposts);
+        //res.json(posts);
     } catch (err) {
         next(err);
     }
