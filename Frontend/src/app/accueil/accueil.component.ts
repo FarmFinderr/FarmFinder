@@ -1,21 +1,17 @@
+import { Post } from './../models/post.model';
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { PostService } from '../services/post/post.service';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AddpostComponent } from './addpost/addpost.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { EventslistComponent } from './eventslist/eventslist.component';
 import { ModalAddPostComponent } from './modal-add-post/modal-add-post.component';
-
 import { MapComponent } from './map/map.component';
-
-
 import { GoogleMapsModule } from '@angular/google-maps';
 import { imageOverlay } from 'leaflet';
-
 import { OpenmapComponent } from '../accueil/openmap/openmap.component';
-
-
 
 
 
@@ -26,7 +22,70 @@ import { OpenmapComponent } from '../accueil/openmap/openmap.component';
   templateUrl: './accueil.component.html',
   styleUrl: './accueil.component.css'
 })
-export class AccueilComponent {
+export class AccueilComponent  implements OnInit {
+
+  //test
+
+  postslist: Post[] = [];
+  Post = { 
+    price: 0,
+    userId: '',
+    description: '',
+    date:null,
+    localisation:'',
+    air:0,
+    defaut:'',
+    etat:''};
+
+  isLoading: boolean = true;  
+  errorMessage: string | null = null;
+
+
+  newItem: Post = {
+    price: 0,
+    userId: '',
+    description: '',
+    date: null,  
+    localisation: '',
+    air: 0,
+    defaut: '',
+    etat: ''
+  };// _id initialized
+  //currentItem: Item = { _id: '', name: '', price: 0, description: '' };  // _id initialized
+  currentItem: Post | null = null;  // Initialize as null
+  constructor(private Postservice: PostService) {
+
+  }
+
+
+  ngOnInit(): void {
+    this.fetchItems();
+   }
+
+  // Fetch items from the backend
+  fetchItems(): void {
+    this.Postservice.getPosts().subscribe({
+      next: (data) => {
+        console.log('Fetched posts:', data);  // Log the response
+        this.postslist = data;  // Store the fetched items
+        this.isLoading = false;  // Hide the loading indicator
+      },
+      error: (err) => {
+        console.error('Error fetching posts:', err);  // Log the error
+        this.errorMessage = 'Failed to load posts';  // Set the error message
+        this.isLoading = false;  // Hide the loading indicator
+      },
+    });
+  }
+  loadItems(): void {
+    this.Postservice.getPosts().subscribe((data) => (this.postslist = data));
+  }
+  isLoader(): boolean {
+    return this.isLoading;
+  }
+
+
+  //test
    posts = [
     {
       image: "../../assets/accueil/post1.jpg",
