@@ -8,8 +8,10 @@ const reactionSchema = new mongoose.Schema({
         enum: ['like', 'love', 'haha', 'wow', 'sad', 'angry'], 
         required: true 
     },
-    date: { type: Date }
-});
+    date: { 
+        type: Date, 
+        default: Date.now 
+    }});
 
 const Reaction = mongoose.model('Reaction', reactionSchema);
 

@@ -7,6 +7,7 @@ import postRoutes from './routes/postRoutes.js';
 import videoRoutes from './routes/videoRoutes.js';
 import reactionRoutes from './routes/reactionRoutes.js'
 import imageRoutes from './routes/imageRoutes.js';
+import commentRoutes from './routes/commentaireRoutes.js';
 
 import { Eureka } from 'eureka-js-client';
 
@@ -96,6 +97,7 @@ app.use('/posts', postRoutes);
 app.use('/images', imageRoutes);
 app.use('/videos', videoRoutes);
 app.use('/reactions', reactionRoutes);
+app.use('/commentaires', commentRoutes);
 
 
 // Start Express server

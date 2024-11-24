@@ -7,8 +7,10 @@ const imageSchema = new mongoose.Schema({
          required: true 
         },
     path: { type: String, required: true }, 
-    date: { type: Date }
-});
+    date: { 
+        type: Date, 
+        default: Date.now 
+    }});
 
 const Image = mongoose.model('Image', imageSchema);
 
