@@ -26,7 +26,7 @@ export class AccueilComponent  implements OnInit {
 
   //test
 
-  postslist: Post[] = [];
+   postslist :any[]= [];
   Post = { 
     price: 0,
     userId: '',
@@ -49,7 +49,7 @@ export class AccueilComponent  implements OnInit {
     localisation: '',
     air: 0,
     defaut: '',
-    etat: ''
+    etat: '',    
   };// _id initialized
   //currentItem: Item = { _id: '', name: '', price: 0, description: '' };  // _id initialized
   currentItem: Post | null = null;  // Initialize as null
@@ -59,15 +59,15 @@ export class AccueilComponent  implements OnInit {
 
 
   ngOnInit(): void {
-    this.fetchItems();
+    this.fetchPosts();
    }
 
-  // Fetch items from the backend
-  fetchItems(): void {
+    fetchPosts(): void {
     this.Postservice.getPosts().subscribe({
       next: (data) => {
         console.log('Fetched posts:', data);  // Log the response
         this.postslist = data;  // Store the fetched items
+        console.log('postslist',this.postslist);
         this.isLoading = false;  // Hide the loading indicator
       },
       error: (err) => {

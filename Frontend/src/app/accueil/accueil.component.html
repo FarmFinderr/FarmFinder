@@ -16,13 +16,13 @@
 <!-- test posts boucle -->
 
 <div class="h-96 overflow-y-scroll  bg-stone-50" style="scrollbar-width: none; -ms-overflow-style: none;">
-  <div *ngFor="let post of posts" class=" mb-10 bg-white p-5 rounded pb-5">
+  <div *ngFor="let post of postslist" class=" mb-10 bg-white p-5 rounded pb-5">
     <!-- Post header: name, date, save option -->
     <div class="flex justify-between items-center">
       <div class="flex items-center space-x-2">
         <img src="../../assets/sirineKahweji_ISETBizerte.jpg" class="w-8 h-8 rounded-full">
         <div>
-          <h3 class="font-semibold">{{ post.name }}</h3>
+          <h3 class="font-semibold">{{ post.user.name }}</h3>
           <p class="text-gray-500 text-sm">{{ post.date }}</p>
         </div>
       </div>
@@ -34,14 +34,14 @@
 
     <!-- Post content -->
     <div class="pb-5">
-      <p class="pt-2">{{ post.content }}</p>
+      <p class="pt-2">{{ post.description }}</p>
 
       <!-- Post details (toggle visibility) -->
       <div *ngIf="showDetails">
         <p><strong>Prix:</strong> {{ post.price }}</p>
-        <p><strong>Localisation:</strong> {{ post.location }}</p>
-        <p><strong>Superficie:</strong> {{ post.area }}</p>
-        <p><strong>Défauts:</strong> {{ post.defects }}</p>
+        <p><strong>Localisation:</strong> {{ post.localisation }}</p>
+        <p><strong>Superficie:</strong> {{ post.air }}</p>
+        <p><strong>Défauts:</strong> {{ post.defaut }}</p>
         <app-map class=" w-32 h-32"></app-map>
       </div>
       <p class="text-right font-bold underline cursor-pointer" (click)="toggleDetails()"> 
