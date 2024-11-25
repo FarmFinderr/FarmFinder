@@ -1,7 +1,5 @@
 package com.example.projet_integration
 
-import androidx.activity.enableEdgeToEdge
-
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -11,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class LoginActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var email: EditText
     private lateinit var password: EditText
@@ -21,7 +19,6 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
         email = findViewById(R.id.useremail)
         password = findViewById(R.id.password)
         signup = findViewById(R.id.signup)
@@ -29,7 +26,7 @@ class LoginActivity : AppCompatActivity() {
 
 
         signin.setOnClickListener{
-            val intent = Intent(this,MainActivity::class.java)
+            val intent = Intent(this,MainActivity2::class.java)
             startActivity(intent)
 
         }
