@@ -1,0 +1,15 @@
+/* navbar.component.css */
+.fixed {
+  position: fixed;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+}
+
+
+/* Add cursor pointer on hover for the notifications icon */
+#notification-icon {
+  cursor: pointer;
+}
