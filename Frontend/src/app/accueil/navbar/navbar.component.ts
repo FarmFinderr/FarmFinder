@@ -27,5 +27,35 @@ closeModalIA() {
   this.isModalOpenIA = false;
 }
 
+isNotificationModalOpen = false;
+// This data simulates user interactions
+notificationData = [
+  {
+    image: '../../../assets/accueil/lyna.jpg',
+    name: 'Lyna Moujahed',
+    interaction: 'reacted',
+    content: '👍 on your post'
+  },
+  {
+    image: '../../../assets/accueil/wassim.jpg',
+    name: 'Mohamed wessim saidani',
+    interaction: 'commented',
+    content: '"Great post! Keep it up!" on your post'
+  },
+  {
+    image: '../../../assets/sirineKahweji_ISETBizerte.jpg',
+    name: 'sirine kahweji',
+    interaction: 'messaged',
+    content: 'you about your post'
+  }
+];
+
+openNotificationModal() {
+  this.isNotificationModalOpen = true;
+}
+
+closeNotificationModal() {
+  this.isNotificationModalOpen = false;
+}
 
 }
