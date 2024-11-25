@@ -1,51 +1,44 @@
 package com.example.projet_integration
 
-
-import PostAdapter
+import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.widget.Toolbar
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var email: EditText
+    private lateinit var password: EditText
+    private lateinit var signup: TextView
+    private  lateinit var signin:Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_login)
+        email = findViewById(R.id.useremail)
+        password = findViewById(R.id.password)
+        signup = findViewById(R.id.signup)
+        signin= findViewById(R.id.btn_login)
 
 
+        signin.setOnClickListener{
+            val intent = Intent(this,MainActivity2::class.java)
+            startActivity(intent)
 
-        val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        }
+        signup.setOnClickListener {
+            val intent = Intent(this, SignupActivity::class.java)
+            startActivity(intent)
+        }
 
-        // Dummy data to populate the list
-        val posts = listOf(
-            Post(
-                name = "Iheb Sessi",
-                date = "27 Février à 19:31",
-                content = "3 ha a vendre à 5 km de Bizerte a 10 min seulemnet de Bizerte centre en plein compagne endroit ideal et calme . a birine bouhamed . avec titre bleu individuel.",
-                likes = 10,
-                localImageResId =null
-            ),
-            Post(
-                name = "Iheb Sessi",
-                date = "27 Février à 20:01",
-                content = "3 ha a vendre à 14 km de tunis centre...",
-                likes = 15,
-                localImageResId = R.drawable.terrain2
-            ),
-            Post(
-                name = "Iheb Sessi ",
-                date = "27 Février à 20:05",
-                content = "à vendre belle ferme de 17 ha avec titre...",
-                likes = 20,
-                localImageResId = R.drawable.terrain
-            )
-        )
-
-        val adapter = PostAdapter(posts)
-        recyclerView.adapter = adapter
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
     }
 }

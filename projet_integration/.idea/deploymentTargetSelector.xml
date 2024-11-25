@@ -8,6 +8,7 @@
           <Target type="DEFAULT_BOOT">
             <handle>
               <DeviceId pluginId="Default" identifier="serial=127.0.0.1:62001;connection=35bf8ffa" />
+
             </handle>
           </Target>
         </DropdownSelection>

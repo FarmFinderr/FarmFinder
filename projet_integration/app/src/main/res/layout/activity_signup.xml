@@ -44,7 +44,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-           >
+
+            >
 
 
             <TextView
@@ -62,14 +63,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:hint="Nom d'utilisateur "
-                android:textColor="@android:color/black"                android:padding="10dp" />
+                android:textColor="@android:color/black"
+                android:padding="10dp" />
             <EditText
                 android:id="@+id/cin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:hint="Numéro de CIN"
-                android:textColor="@android:color/black"                android:padding="10dp" />
+                android:textColor="@android:color/black"
+                android:padding="10dp" />
             <!--<EditText
                 android:id="@+id/gendre"
                 android:layout_width="match_parent"
@@ -95,7 +98,8 @@
                 android:hint="Adresse"
                 android:padding="10dp"
                 android:textColor="@android:color/black"
-            />
+
+                />
             <EditText
                 android:id="@+id/tel"
                 android:layout_width="match_parent"
@@ -119,7 +123,8 @@
                 android:layout_marginTop="8dp"
                 android:hint="Mot de passe"
                 android:padding="10dp"
-                android:textColor="@android:color/black"                android:inputType="textPassword" />
+                android:textColor="@android:color/black"
+                android:inputType="textPassword" />
 
 
             <Button

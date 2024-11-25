@@ -1,27 +1,28 @@
 
 <div class="h-screen flex flex-col max-w-screen-xl">
-  <app-navbar></app-navbar>
+  <app-navbar (openAssistantModal)="openModalIA()"></app-navbar>
+
   <div class="flex flex-1 bg-stone-50 mt-16">
     <app-sidebar></app-sidebar>
 
     <!-- Main Content -->
     <div class="fixed flex-1 grid grid-cols-3 gap-4 p-4 ml-64">
       <!-- Post Section (Middle Column) -->
-      <div class="col-span-2 space-y-4">  
-       
+      <div class="col-span-2 space-y-4">
+
        <app-addpost></app-addpost>
-     
+
 
 <!-- test posts boucle -->
 
 <div class="h-96 overflow-y-scroll  bg-stone-50" style="scrollbar-width: none; -ms-overflow-style: none;">
-  <div *ngFor="let post of posts" class=" mb-10 bg-white p-5 rounded pb-5">
+  <div *ngFor="let post of postslist" class=" mb-10 bg-white p-5 rounded pb-5">
     <!-- Post header: name, date, save option -->
     <div class="flex justify-between items-center">
       <div class="flex items-center space-x-2">
         <img src="../../assets/sirineKahweji_ISETBizerte.jpg" class="w-8 h-8 rounded-full">
         <div>
-          <h3 class="font-semibold">{{ post.name }}</h3>
+          <h3 class="font-semibold">{{ post.user.name }}</h3>
           <p class="text-gray-500 text-sm">{{ post.date }}</p>
         </div>
       </div>
@@ -33,17 +34,17 @@
 
     <!-- Post content -->
     <div class="pb-5">
-      <p class="pt-2">{{ post.content }}</p>
+      <p class="pt-2">{{ post.description }}</p>
 
       <!-- Post details (toggle visibility) -->
       <div *ngIf="showDetails">
         <p><strong>Prix:</strong> {{ post.price }}</p>
-        <p><strong>Localisation:</strong> {{ post.location }}</p>
-        <p><strong>Superficie:</strong> {{ post.area }}</p>
-        <p><strong>Défauts:</strong> {{ post.defects }}</p>
+        <p><strong>Localisation:</strong> {{ post.localisation }}</p>
+        <p><strong>Superficie:</strong> {{ post.air }}</p>
+        <p><strong>Défauts:</strong> {{ post.defaut }}</p>
         <app-map class=" w-32 h-32"></app-map>
       </div>
-      <p class="text-right font-bold underline cursor-pointer" (click)="toggleDetails()"> 
+      <p class="text-right font-bold underline cursor-pointer" (click)="toggleDetails()">
         {{ showDetails ? 'Voir moins' : 'Voir plus' }}
       </p>
     </div>
@@ -61,7 +62,7 @@
         <p class="mt-1 pl-1 text-gray-400">36</p>
       </div>
       <div class="flex text-gray-400 text-right mr-5" (click)="openModal()">
-        <p class="text-right" >16</p> 
+        <p class="text-right" >16</p>
         <i class="bi bi-chat-fill text-right pl-2" ></i>
       </div>
     </div>
@@ -72,7 +73,7 @@
 
         <!-- Icône de "like" -->
         <img src="../../assets/accueil/alike.png" class="w-7 h-7" alt="Like" />
-      
+
         <!-- Options de réactions qui apparaissent au survol de l'icône "like" -->
         <div class="absolute hidden group-hover:flex bg-white border rounded-lg shadow-lg space-x-2 p-2 -top-8 -left-3 z-10 w-72">
           <img src="../../assets/accueil/like.gif" class="w-7 h-7 cursor-pointer" alt="Love">
@@ -104,10 +105,10 @@
 
     <div *ngFor="let event of events" class="space-y-4">
       <div class="flex items-center m-1">
-        <img 
-          [src]="event.image" 
-          alt="Event" 
-          class="w-20 rounded object-contain" 
+        <img
+          [src]="event.image"
+          alt="Event"
+          class="w-20 rounded object-contain"
         />
         <div class="ml-4 w-full">
           <p class="text-sm font-semibold">{{ event.title }}</p>
@@ -119,15 +120,15 @@
         </div>
       </div>
     </div>
-    
+
   </div>
 </div>
 
 
 
 <!-- modal commentaires-->
-<div 
-  *ngIf="isModalOpen" 
+<div
+  *ngIf="isModalOpen"
   class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50"
 >
   <div class="bg-white rounded-lg shadow-lg w-96 h-[460px] flex flex-col">
@@ -139,8 +140,8 @@
       </button>
     </div>
 
-    <div 
-      class="flex-1 overflow-y-scroll px-6 py-4" 
+    <div
+      class="flex-1 overflow-y-scroll px-6 py-4"
       style="scrollbar-width: none; -ms-overflow-style: none;"
     >
       <div *ngFor="let comment of comments" class="flex items-center gap-4 mb-4">
@@ -205,10 +206,49 @@
       <div class="modal-footer mt-4 flex justify-end mr-11 mb-5">
         <button type="submit" class="bg-yellow-500 text-white py-2 px-4 rounded-lg">Participer</button>
       </div>
-  
+
     </div>
   </div>
 </div>
+
+
+<!-- Modal assistant IA -->
+<div
+  *ngIf="isModalOpenIA"
+  class="fixed bottom-0 right-0 bg-white rounded-lg shadow-lg w-full max-w-md p-6 z-[9999] border border-gray-300"
+>
+  <button
+    (click)="closeModalIA()"
+    class="absolute top-2 right-2 text-gray-500 hover:text-red-600 text-xl font-bold"
+  >
+    ✕
+  </button>
+  <div class="flex items-center">
+    <img src="../../assets/accueil/IALogo.jpg" class="w-11 h-11 -mt-4 rounded-full border-2 border-lime-100" alt="FarmFinderIA logo">
+    <h2 class="text-lg font-bold mb-4 ml-2">FarmFinderIA</h2>
+  </div>
+  <hr>
+
+  <div class="flex flex-col items-center mt-24 mb-24">
+    <img
+      src="../../assets/accueil/IALogo.jpg"
+      class="w-28 h-28 mb-4 rounded-full border-2 border-black animate-pulse"
+      alt="FarmFinderIA logo"
+    />
+    <p class="text-sm text-black font-bold text-center mb-4">What can I help with?</p>
+  </div>
+  <div>
+
+  </div>
+  <div class="bg-gray-100 rounded flex justify-between">
+    <input type="text" placeholder="" class="bg-gray-100 pl-3 flex-grow focus:outline-none">
+    <i class="bi bi-arrow-up-circle-fill cursor-pointer"></i>
+
+  </div>
+
+
+</div>
+
 
 
 

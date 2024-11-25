@@ -7,9 +7,20 @@ const imageSchema = new mongoose.Schema({
          required: true 
         },
     path: { type: String, required: true }, 
+<<<<<<< HEAD
     date: { type: Date, default: Date.now }
 });
 
 const Image = mongoose.model('Image', imageSchema);
 
 export default Image;
+=======
+    date: { 
+        type: Date, 
+        default: Date.now 
+    }});
+
+const Image = mongoose.model('Image', imageSchema);
+
+export default Image;
+>>>>>>> master

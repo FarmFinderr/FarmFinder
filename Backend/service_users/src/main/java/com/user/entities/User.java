@@ -1,5 +1,7 @@
 package com.user.entities;
 
+import java.sql.Date;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,36 +13,46 @@ import lombok.ToString;
 
 @Entity
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @ToString
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String nom;
-    private String prenom;
-    private int age;
-    private boolean sexe;
-    private String addresse;
-    private String email;
-    private String photo;
-    private int role;
+    private Long id; 
+
+    private String name;           
+    private String lastName;       
+    private String phoneNumber;   
+    private Date date;             
+    private boolean sexe;          
+    private String address;        
+    private String emailAddress;   
+    private String photo;          
+    private int role;             
+    private String password;
+	public User(Long id, String name, String lastName, String phoneNumber, Date date, boolean sexe, String address,
+			String emailAddress, String photo, int role, String password) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.lastName = lastName;
+		this.phoneNumber = phoneNumber;
+		this.date = date;
+		this.sexe = sexe;
+		this.address = address;
+		this.emailAddress = emailAddress;
+		this.photo = photo;
+		this.role = role;
+		this.password = password;
+	}
 	public User() {
 		super();
 	}
-	public User(Long id, String nom, String prenom, int age, boolean sexe, String addresse, String email, String photo,
-			int role) {
-		super();
-		this.id = id;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.age = age;
-		this.sexe = sexe;
-		this.addresse = addresse;
-		this.email = email;
-		this.photo = photo;
-		this.role = role;
+	
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
 	}
 	public Long getId() {
 		return id;
@@ -48,41 +60,43 @@ public class User {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getNom() {
-		return nom;
+	public String getName() {
+		return name;
 	}
-	public void setNom(String nom) {
-		this.nom = nom;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public String getPrenom() {
-		return prenom;
+	public String getLastName() {
+		return lastName;
 	}
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
-	public int getAge() {
-		return age;
+	public String getPhoneNumber() {
+		return phoneNumber;
 	}
-	public void setAge(int age) {
-		this.age = age;
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
+	
+	
 	public boolean isSexe() {
 		return sexe;
 	}
 	public void setSexe(boolean sexe) {
 		this.sexe = sexe;
 	}
-	public String getAddresse() {
-		return addresse;
+	public String getAddress() {
+		return address;
 	}
-	public void setAddresse(String addresse) {
-		this.addresse = addresse;
+	public void setAddress(String address) {
+		this.address = address;
 	}
-	public String getEmail() {
-		return email;
+	public String getEmailAddress() {
+		return emailAddress;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
 	}
 	public String getPhoto() {
 		return photo;
@@ -96,5 +110,10 @@ public class User {
 	public void setRole(int role) {
 		this.role = role;
 	}
-    
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}       
 }

@@ -1,13 +1,52 @@
 import { Component } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { UserService } from '../services/user/user.service';
+import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-sign-up',
   standalone: true,
-  imports: [NavbarComponent],
+  imports: [NavbarComponent, CommonModule, FormsModule],
   templateUrl: './sign-up.component.html',
-  styleUrl: './sign-up.component.css'
+  styleUrls: ['./sign-up.component.css']
 })
-export class SignUpComponent {
 
+export class SignUpComponent {
+  user = {
+    name: '',
+    lastName: '',
+    emailAddress: '',
+    phoneNumber: '',
+    password: '',
+    confirmPassword: '',
+    date: '',
+    address: '',
+    photo: null,
+  };
+
+  passwordsMatch: boolean = true;  // This will track if the passwords match
+
+  constructor(private userService: UserService, private router: Router) {}
+
+  onSubmit(): void {
+    
+      this.userService.createUser(this.user).subscribe({
+        next: (response) => {
+          console.log('User created successfully', response);
+           this.router.navigate(['/sign-in']);
+        },
+        error: (error) => {
+          console.error('Error creating user', error);
+          alert('Error creating account. Please try again.');
+        }
+      });
+    
+  }
+
+  // This method checks if the passwords match
+  checkPasswordsMatch(): void {
+    this.passwordsMatch = this.user.password === this.user.confirmPassword;
+  }
 }
