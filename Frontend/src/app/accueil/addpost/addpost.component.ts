@@ -1,6 +1,7 @@
 import { Component ,NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { PostService } from '../../services/post/post.service';
 import { FormsModule ,FormGroup,NgForm} from '@angular/forms'; 
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { ModalAddPostComponent } from "../modal-add-post/modal-add-post.component";
@@ -16,8 +17,9 @@ export class AddpostComponent {
   messageSuccess = false;
   selectedType: string = '';
   files: File[] = [];
-  userId=1;
+  userId='1';
   constructor(private http: HttpClient) {}
+  //constructor(private postService: PostService) {} 
 
 
   openModal() {
@@ -33,27 +35,23 @@ export class AddpostComponent {
 
   submitForm(form: NgForm): void {
     if (form.invalid) return; 
-    const formData = new FormData();
     const userId = this.userId; 
-    formData.append('userId', userId.toString());
+    const formData = {
+      userId: userId,  
+      price: form.value.price,
+      description: form.value.description,
+      type: form.value.type,
+      localisation: form.value.localisation,
+      air: form.value.air,
+      etat: form.value.etat ,
+      defaut:form.value.defauts
+    };
 
-    // Ajouter les champs du formulaire
-    Object.entries(form.value).forEach(([key, value]) => {
-      formData.append(key, value as string);
-    });
-  
 
-    // Ajouter les fichiers (images/vidéos)
-    /*this.files.forEach((file) => {
-      formData.append('files', file);
-    });*/
  
-   //console.log("form Data",formData)
+   console.log("form Data",formData)
 
-   console.log('Contenu du FormData :');
-  formData.forEach((value, key) => {
-    console.log(`${key}:`, value);
-  });
+ 
     this.http.post('http://localhost:5000/posts', formData).subscribe({
       next: () => {
         this.messageSuccess = true;
@@ -69,6 +67,44 @@ export class AddpostComponent {
       },
     });
   }
+
+ /* submitForm(form: NgForm): void {
+      if (form.invalid) return;
+      
+      const formData = {
+        userId: this.userId,
+        price: form.value.price,
+        description: form.value.description,
+        type: form.value.type,
+        localisation: form.value.localisation,
+        air: form.value.air,
+        etat: form.value.etat,
+        defaut: form.value.defauts
+      };
+  
+      // Ajouter les fichiers si nécessaire
+      // this.files.forEach(file => {
+      //   formData.append('files', file);
+      // });
+  
+      console.log("form Data", formData);
+  
+      // Utiliser le service PostService pour ajouter la publication
+      this.postService.addPost(formData).subscribe({
+        next: () => {
+          this.messageSuccess = true;
+          form.resetForm();
+          this.files = [];
+          setTimeout(() => {
+            this.messageSuccess = false;
+            this.closeModal();
+          }, 3000);
+        },
+        error: (err) => {
+          console.error('Erreur lors de l’ajout de la publication :', err);
+        },
+      });
+    }*/
 
 
  
