@@ -4,24 +4,54 @@ import Materiel from '../models/Materiel.js';
 import Image from '../models/Image.js';
 import Video from '../models/video.js';
 import Reaction from '../models/Reaction.js';
+import fs from 'fs';
+import path from 'path';
 import axios from 'axios';
 
 export const createPost = async (req, res, next) => {
     try {
-        //const post = new Post(req.body);
-        const { type } = req.body;
+        const { userId, price, description, type, localisation, air, etat, defaut } = req.body;
+        console.log(req.body);
+        console.log(userId, price, description, type, localisation, air, etat, defaut);
 
-        let post;
+
+        /*let postData = { userId, price, description, type };
+
         if (type === 'terrain') {
-            post = new Terrain(req.body);
+            if (!localisation || !air) {
+                return res.status(400).json({ message: 'Localisation et air requis pour un terrain.' });
+            }
+            postData = { ...postData, localisation, air };
         } else if (type === 'materiel') {
-            post = new Materiel(req.body);
+            postData = { ...postData, etat, defaut };
         } else {
-            return res.status(400).json({ message: 'Type invalide' });
+            return res.status(400).json({ message: 'Type invalide.' });
         }
 
+        const post = new Post(postData);
+
+        // Sauvegarde du post
         const savedPost = await post.save();
-        res.status(201).json(savedPost );
+
+        // Sauvegarde des images
+        const files = req.files; // Multer gère les fichiers
+        if (files && files.length > 0) {
+            const imagePaths = files.map((file) => {
+                const uploadPath = path.join('uploads', file.originalname);
+                fs.writeFileSync(uploadPath, file.buffer); // Sauvegarder dans un dossier
+                return uploadPath;
+            });
+
+            const images = await Promise.all(
+                imagePaths.map((imagePath) =>
+                    new Image({ postId: savedPost._id, path: imagePath }).save()
+                )
+            );
+
+            savedPost.images = images.map((image) => image._id); // Référencer les images dans le post
+        }
+
+        res.status(201).json({ post: savedPost });*/
     } catch (err) {
         next(err);
     }
