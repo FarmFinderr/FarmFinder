@@ -36,7 +36,9 @@ export class AddpostComponent {
   submitForm(form: NgForm): void {
     if (form.invalid) return; 
     const userId = this.userId; 
+
     const formData = {
+      _id:"",
       userId: userId,  
       price: form.value.price,
       description: form.value.description,
@@ -53,10 +55,15 @@ export class AddpostComponent {
 
  
     this.http.post('http://localhost:5000/posts', formData).subscribe({
-      next: () => {
+      next: (response: any) => {
+        //console.log('Response:', response);
+        const postId = response?.post?._id || response?._id;
+        //console.log('Post ID:', postId);
         this.messageSuccess = true;
         form.resetForm();
         this.files = []; 
+        this.isModalOpen = false;
+
         setTimeout(() => {
           this.messageSuccess = false;
           this.closeModal();
@@ -64,6 +71,8 @@ export class AddpostComponent {
       },
       error: (err) => {
         console.error('Erreur lors de l’ajout de la publication :', err);
+        this.isModalOpen = false;
+
       },
     });
   }
