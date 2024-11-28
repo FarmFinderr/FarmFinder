@@ -18,31 +18,6 @@ public class GatewayServiceApplication {
 		SpringApplication.run(GatewayServiceApplication.class, args);
 	}
 
-	/*@Bean
-	DiscoveryClientRouteDefinitionLocator dynamicRoutes(ReactiveDiscoveryClient rdc,DiscoveryLocatorProperties dlp) {
-		//return new DiscoveryClientRouteDefinitionLocator(rdc,dlp);
-	}*/
-
-	@Bean
-	RouteLocator gatewayRoutes(RouteLocatorBuilder builder) {
-
-		return builder.routes()
-				.route("r1", r -> r.path("/users/**").uri("http://localhost:8083/"))
-				.route("r3", r -> r.path("/posts/**").uri("http://localhost:5000/"))
-				.build();
-
-		/*return builder.routes()
-				.route("r1", r -> r.path("/customers/**").uri("lb://TP3CUSTOMER-SERVICE"))
-				.route("r2", r -> r.path("/products/**").uri("lb://POSTS-SERVICE"))
-				.build();*/
-
-	/*@Bean
-	DiscoveryClientRouteDefinitionLocator dynamicRoutes(ReactiveDiscoveryClient rdc, DiscoveryLocatorProperties dlp) {
-		return new DiscoveryClientRouteDefinitionLocator(rdc,dlp);
-	}*/
-
-
-	}
-	}
+}
 
 
