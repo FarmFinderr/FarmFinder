@@ -4,24 +4,35 @@ import Materiel from '../models/Materiel.js';
 import Image from '../models/Image.js';
 import Video from '../models/video.js';
 import Reaction from '../models/Reaction.js';
+import fs from 'fs';
+import path from 'path';
 import axios from 'axios';
 
 export const createPost = async (req, res, next) => {
     try {
-        //const post = new Post(req.body);
-        const { type } = req.body;
+        const { userId, price, description, type, localisation, air, etat, defaut } = req.body;
+        //console.log(req.body);
+        //console.log(userId, price, description, type, localisation, air, etat, defaut);
 
-        let post;
+
+        let postData = { userId, price, description, type };
+
         if (type === 'terrain') {
-            post = new Terrain(req.body);
+            if (!localisation || !air) {
+                return res.status(400).json({ message: 'Localisation et air requis pour un terrain.' });
+            }
+            postData = { ...postData, localisation, air };
         } else if (type === 'materiel') {
-            post = new Materiel(req.body);
+            postData = { ...postData, etat, defaut };
         } else {
-            return res.status(400).json({ message: 'Type invalide' });
+            return res.status(400).json({ message: 'Type invalide.' });
         }
+        const post = new Post(postData);
+        //console.log("avant save post ");
 
         const savedPost = await post.save();
-        res.status(201).json(savedPost );
+        //console.log(savedPost);
+        res.status(201).json({ post: savedPost });
     } catch (err) {
         next(err);
     }
