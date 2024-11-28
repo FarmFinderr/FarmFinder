@@ -8,6 +8,13 @@ import videoRoutes from './routes/videoRoutes.js';
 import reactionRoutes from './routes/reactionRoutes.js'
 import imageRoutes from './routes/imageRoutes.js';
 import commentRoutes from './routes/commentaireRoutes.js';
+import path from 'path';
+import { fileURLToPath } from 'url';  // Importer la fonction fileURLToPath
+
+// Obtenez le chemin absolu du fichier courant
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);  // Utilisez __dirname ici
+
 
 import { Eureka } from 'eureka-js-client';
 
@@ -98,6 +105,9 @@ app.use('/images', imageRoutes);
 app.use('/videos', videoRoutes);
 app.use('/reactions', reactionRoutes);
 app.use('/commentaires', commentRoutes);
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+
 
 
 // Start Express server

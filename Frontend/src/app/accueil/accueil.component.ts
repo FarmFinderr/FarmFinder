@@ -27,6 +27,7 @@ export class AccueilComponent  implements OnInit {
   //test
 
    postslist :any[]= [];
+   path="../../../../Backend/Post-Service"
   Post = { 
     price: 0,
     userId: '',
