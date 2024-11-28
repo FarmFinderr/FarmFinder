@@ -7,13 +7,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="demo" />
+        <module name="service_event_farmfinder" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="demo" options="-parameters" />
+      <module name="service_event_farmfinder" options="-parameters" />
     </option>
   </component>
 </project>

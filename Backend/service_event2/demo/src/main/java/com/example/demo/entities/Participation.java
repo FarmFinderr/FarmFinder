@@ -24,5 +24,5 @@ public class Participation {
     private Event event;
 
     @Transient
-    private Personne personne;
+    private User user;
 }

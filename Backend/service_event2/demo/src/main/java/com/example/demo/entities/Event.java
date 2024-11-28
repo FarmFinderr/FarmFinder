@@ -1,6 +1,5 @@
 package com.example.demo.entities;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,6 +21,9 @@ public class Event {
     private Long id;
 
     private boolean status;
+    @Column(name="description",length=99999999)
+    private String description;
+    private String title  ;
     private Long price;
     private Long owner_id;
     private Date date_debut ;
@@ -37,9 +39,9 @@ public class Event {
     private Date date_fin;
 
     @Transient
-    private Personne owner;
+    private User owner;
     @Transient
-    private List<Personne> personnes;
+    private List<User> users;
 
     public Long getId() {
         return id;
