@@ -58,6 +58,19 @@ export class AccueilComponent  implements OnInit {
 
   }
 
+  openImageInNewWindow(imagePath: string): void {
+    const fullPath = 'http://localhost:5000' + imagePath;
+    window.open(fullPath, '_blank');
+  }
+
+  /*openAllImages(post:any): void {
+    const imagePaths = post.images.map(image => 'http://localhost:5000' + image.path);
+    window.open(imagePaths[0], '_blank'); // Ouvrir la première image
+  }*/
+ 
+  
+  
+
 
   ngOnInit(): void {
     this.fetchPosts();

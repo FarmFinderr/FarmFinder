@@ -21,7 +21,7 @@
     "express": "^5.0.1",
     "mongoose": "^8.8.1",
 
-    "post-service": "file:"
+    "post-service": "file:",
 
     "multer": "^1.4.5-lts.1"
 
