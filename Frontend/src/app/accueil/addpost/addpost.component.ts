@@ -6,6 +6,8 @@ import { ImageService } from '../../services/image/image.service';
 import { FormsModule ,FormGroup,NgForm} from '@angular/forms'; 
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { ModalAddPostComponent } from "../modal-add-post/modal-add-post.component";
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-addpost',
   standalone: true,
@@ -36,29 +38,26 @@ export class AddpostComponent {
   submitForm(form: NgForm): void {
     if (form.invalid) return; 
     const userId = this.userId; 
-
+  
     const formData = {
-      _id:"",
+      _id: "",
       userId: userId,  
       price: form.value.price,
       description: form.value.description,
       type: form.value.type,
       localisation: form.value.localisation,
       air: form.value.air,
-      etat: form.value.etat ,
-      defaut:form.value.defauts
+      etat: form.value.etat,
+      defaut: form.value.defauts
     };
-
-
- 
-   console.log("form Data",formData)
-
- 
+  
+    console.log("form Data", formData);
+  
     this.http.post('http://localhost:5000/posts', formData).subscribe({
       next: (response: any) => {
-        //console.log('Response:', response);
         const postId = response?.post?._id || response?._id;
-        //console.log('Post ID:', postId);
+        console.log('Post ID:', postId);
+        
         if (this.files.length > 0) {
           this.files.forEach((file: File) => {
             console.log('Uploading file:', file, 'for postId:', postId);
@@ -72,11 +71,26 @@ export class AddpostComponent {
             });
           });
         }
+        
         this.messageSuccess = true;
         form.resetForm();
         this.files = []; 
         this.isModalOpen = false;
-
+  
+        // Affichage de la SweetAlert de succès
+        Swal.fire({
+          icon: 'success',
+          title: 'Votre offre a été ajoutée avec succès!',
+          showConfirmButton: false,
+          timer: 3000,
+          width: '300px', 
+          padding: '10px', 
+          customClass: {
+          title: 'swal-title', 
+           popup: 'swal-popup' 
+          }
+        });
+  
         setTimeout(() => {
           this.messageSuccess = false;
           this.closeModal();
@@ -85,10 +99,18 @@ export class AddpostComponent {
       error: (err) => {
         console.error('Erreur lors de l’ajout de la publication :', err);
         this.isModalOpen = false;
-
-      },
+  
+        // Affichage de la SweetAlert d'erreur
+        Swal.fire({
+          icon: 'error',
+          title: 'Une erreur est survenue!',
+          text: 'Veuillez réessayer.',
+          showConfirmButton: true
+        });
+      }
     });
   }
+  
     onFileSelected(event: Event): void {
       const target = event.target as HTMLInputElement;
       if (target.files) {
