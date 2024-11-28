@@ -3,10 +3,9 @@ package com.example.demo.services;
 
 import com.example.demo.entities.Event;
 import com.example.demo.entities.Participation;
-import com.example.demo.entities.Personne;
+import com.example.demo.entities.User;
 import com.example.demo.repositories.EventRepository;
 import com.example.demo.repositories.ParticipationRepository;
-import jakarta.servlet.http.Part;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +17,7 @@ import java.util.List;
 import static java.lang.Math.max;
 
 @RestController
+@RequestMapping("/events")
 public class EventService {
 
     @Autowired
@@ -27,7 +27,7 @@ public class EventService {
     @Autowired
     private ParticipationRepository participationRepository;
 
-    @GetMapping("/Events/")
+    @GetMapping("/GetAll")
     public List<Event> GetAllevents()
     {
         List<Event> e=  eventRepository.findAll();
@@ -37,7 +37,7 @@ public class EventService {
     public Event GetEvent (@PathVariable(name="id") Long id)
     {
         Event  event =  eventRepository.findById(id).orElse(null);
-        Personne p = personneService.findCustomerById(event.getOwner_id());
+        User p = personneService.findCustomerById(event.getOwner_id());
         event.setOwner(p);
         return  event;
     }
@@ -62,8 +62,8 @@ public class EventService {
     @PostMapping("/EventResgistration/")
     public Participation EventRegistration(@RequestBody Participation p )
     {
-        Personne Registrated_User = personneService.findCustomerById(p.getPerson_id());
-        p.setPersonne(Registrated_User);
+        User Registrated_User = personneService.findCustomerById(p.getPerson_id());
+        p.setUser(Registrated_User);
         participationRepository.save(p);
         return  p ;
     }
@@ -94,9 +94,9 @@ public class EventService {
         if (ex == null) {
             return ResponseEntity.notFound().build();
         }
-        Personne personne = personneService.findCustomerById(p.getPerson_id());
+        User user = personneService.findCustomerById(p.getPerson_id());
 
-        if (personne == null) {
+        if (user == null) {
                   return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
 
