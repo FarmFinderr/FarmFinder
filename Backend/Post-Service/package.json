@@ -19,7 +19,8 @@
     "dotenv": "^16.4.5",
     "eureka-js-client": "^4.5.0",
     "express": "^5.0.1",
-    "mongoose": "^8.8.1"
+    "mongoose": "^8.8.1",
+    "post-service": "file:"
   },
   "devDependencies": {
     "nodemon": "^3.1.7"
