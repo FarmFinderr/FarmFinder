@@ -8,14 +8,16 @@ import {TableDashboard} from './table-dashboard/table-dashboard.component'
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { EventsComponent } from './events/events.component';
+import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ RouterOutlet, HomeComponent, NavbarComponent,DashboardAdmin,NavbarAdminComponent,TableDashboard,SignInComponent,EventsComponent, SignUpComponent,RouterModule],
+  imports: [ RouterOutlet, FormsModule,HomeComponent, NavbarComponent,DashboardAdmin,NavbarAdminComponent,TableDashboard,SignInComponent,EventsComponent, SignUpComponent,RouterModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Frontend';
+  title = 'FarmFinder';
 }

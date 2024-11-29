@@ -77,7 +77,6 @@ export class AddpostComponent {
         this.files = []; 
         this.isModalOpen = false;
   
-        // Affichage de la SweetAlert de succès
         Swal.fire({
           icon: 'success',
           title: 'Votre offre a été ajoutée avec succès!',
@@ -100,7 +99,6 @@ export class AddpostComponent {
         console.error('Erreur lors de l’ajout de la publication :', err);
         this.isModalOpen = false;
   
-        // Affichage de la SweetAlert d'erreur
         Swal.fire({
           icon: 'error',
           title: 'Une erreur est survenue!',

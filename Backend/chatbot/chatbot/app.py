@@ -43,9 +43,9 @@ def chat():
     try:
         lang = detect(user_message)
         if lang not in ['fr', 'en', 'ar']:
-            return jsonify({"response": f"{bot_name}: Désolé, je ne comprends que le français, l'anglais ou l'arabe."})
+            return jsonify({"response": f"Désolé, je ne comprends que le français, l'anglais ou l'arabe."})
     except:
-        return jsonify({"response": f"{bot_name}: Erreur lors de la détection de la langue."})
+        return jsonify({"response": f"Erreur lors de la détection de la langue."})
 
     # Prétraiter le message
     sentence = tokenize(user_message)
@@ -66,11 +66,11 @@ def chat():
                 return jsonify({"response": random.choice(intent['responses'])})
     else:
         if lang == "fr":
-            return jsonify({"response": f"{bot_name}: Je ne comprends pas... Pouvez-vous reformuler ?"})
+            return jsonify({"response":"Je ne comprends pas... Pouvez-vous reformuler ?"})
         elif lang == "ar":
-            return jsonify({"response": f"{bot_name}: عذرًا، لم أفهم... هل يمكنك إعادة صياغة الجملة؟"})
+            return jsonify({"response":"عذرًا، لم أفهم... هل يمكنك إعادة صياغة الجملة؟"})
         else:
-            return jsonify({"response": f"{bot_name}: I do not understand..."})
+            return jsonify({"response": "I do not understand..."})
 
 
 if __name__ == '__main__':

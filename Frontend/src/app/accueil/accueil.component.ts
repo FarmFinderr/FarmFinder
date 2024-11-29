@@ -12,19 +12,21 @@ import { MapComponent } from './map/map.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { imageOverlay } from 'leaflet';
 import { OpenmapComponent } from '../accueil/openmap/openmap.component';
+import { ChatbotService } from '../services/chat/chatbot.service';
+import { FormsModule } from '@angular/forms';
+
+
 
 
 
 @Component({
   selector: 'app-accueil',
   standalone: true,
-  imports: [OpenmapComponent,CommonModule,MapComponent,GoogleMapsModule,AddpostComponent ,ModalAddPostComponent,EventslistComponent,SidebarComponent,RouterOutlet, RouterLink, RouterLinkActive,NavbarComponent],
+  imports: [OpenmapComponent,FormsModule,CommonModule,MapComponent,GoogleMapsModule,AddpostComponent ,ModalAddPostComponent,EventslistComponent,SidebarComponent,RouterOutlet, RouterLink, RouterLinkActive,NavbarComponent],
   templateUrl: './accueil.component.html',
   styleUrl: './accueil.component.css'
 })
 export class AccueilComponent  implements OnInit {
-
-  //test
 
    postslist :any[]= [];
    path="../../../../Backend/Post-Service"
@@ -37,6 +39,8 @@ export class AccueilComponent  implements OnInit {
     air:0,
     defaut:'',
     etat:''};
+    userMessage: string = '';
+    chatHistory: { sender: string; text: string }[] = [];
 
   isLoading: boolean = true;  
   errorMessage: string | null = null;
@@ -54,8 +58,25 @@ export class AccueilComponent  implements OnInit {
   };// _id initialized
   //currentItem: Item = { _id: '', name: '', price: 0, description: '' };  // _id initialized
   currentItem: Post | null = null;  // Initialize as null
-  constructor(private Postservice: PostService) {
+  constructor(private Postservice: PostService,private Chatbotservice: ChatbotService) {
 
+  }
+
+  sendMessage() {
+    console.log("dans send message");
+
+    if (this.userMessage.trim()) {
+      this.chatHistory.push({ sender: 'user', text: this.userMessage });
+      console.log("this.userMessage",this.chatHistory);
+
+      this.Chatbotservice.sendMessage(this.userMessage).subscribe((response) => {
+        this.chatHistory.push({ sender: 'bot', text: response.response });
+        console.log("response",this.chatHistory);
+
+      });
+
+      this.userMessage = '';
+    }
   }
 
   openImageInNewWindow(imagePath: string): void {
