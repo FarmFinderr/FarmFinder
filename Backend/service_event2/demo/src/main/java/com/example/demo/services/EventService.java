@@ -7,11 +7,13 @@ import com.example.demo.entities.User;
 import com.example.demo.repositories.EventRepository;
 import com.example.demo.repositories.ParticipationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static java.lang.Math.max;
@@ -55,11 +57,23 @@ public class EventService {
     }
 
     @PostMapping("/EventCreation/")
-    public Event RegisterEventUser(@RequestBody Event event)
-    {
+    public ResponseEntity<?> registerEventUser( @RequestParam("photo") String photo,
+                                                    @RequestParam("title") String title,
+                                                    @RequestParam("description") String description,
+                                                    @RequestParam("price") Long price,
+                                                    @RequestParam("date_debut")  @DateTimeFormat(pattern = "yyyy-MM-dd")Date dateDebut,
+                                                    @RequestParam("date_fin")  @DateTimeFormat(pattern = "yyyy-MM-dd")Date dateFin,
+                                                    @RequestParam("owner_id") String ownerId) {
 
-        return eventRepository.save(event);
+        Event newEvent = new Event(false,description,title,price,ownerId,dateDebut,photo,dateFin);
+        eventRepository.save(newEvent);
+        if (newEvent != null) {
+            return ResponseEntity.ok(newEvent);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
+
     @PostMapping("/EventResgistration/")
     public Participation EventRegistration(@RequestBody Participation p )
     {

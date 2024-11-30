@@ -12,20 +12,20 @@ export class EventService {
   constructor(private http: HttpClient) { }
 
   // Méthode pour récupérer des données
-  getPosts(): Observable<any[]> {
+  getEvents(): Observable<any[]> {
    // console.log(this.http.get<any[]>(this.apiUrl))
-    return this.http.get<any[]>(`${this.apiUrl}/GetAll`);
+    return this.http.get<any[]>(`${this.apiUrl}GetAll`);
   }
 
-  addPost(item: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl,item);
+  addEvent(item: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}EventCreation/`,item);
   }
 
-  deletePost(id: string): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/Event/${id}`);
+  deleteEvent(id: string): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}Event/${id}`);
   }
 
-  updatePost(id: string,item:any): Observable<any> {
+  updateEvent(id: string,item:any): Observable<any> {
     return this.http.put<any>(`${this.apiUrl}/${id}`, item);
   }
 
