@@ -10,7 +10,8 @@
           "Comment ça va ?",
           "Est-ce que quelqu'un est là ?",
           "Hello",
-          "Good day"
+          "Good day",
+          "Hey","مرحبا كيف الحال ؟", "Hello, who is here?"
         ],
         "responses": [
           "Hey :-)",
@@ -19,23 +20,32 @@
           "مرحبًا! كيف يمكنني مساعدتك؟", "السلام عليكم!",
           "Hello, thanks for visiting",
           "Salut, que puis-je faire pour vous ?",
-          "Hi there, how can I help?"
+          "Hi there, how can I help?",
+          "Salut! Que puis-je faire pour vous ?", "السلام عليكم! أهلا وسهلا.", 
+          "Hello! How can I assist you today?"
         ]
       },
       {
         "tag": "goodbye",
-        "patterns": ["Bye", "See you later", "Goodbye","مع السلامة", "وداعًا", "أراك لاحقًا"],
+        "patterns": ["Bye", "See you later", "Goodbye","مع السلامة", "وداعًا", "أراك لاحقًا"
+      ,  "Au revoir", "A bientôt"],
+
         "responses": [
           "See you later, thanks for visiting",
           "Have a nice day",
           "Bye! Come back again soon.",
+          "Bonne journée !",
+           "À bientôt et merci de votre visite !", 
           "وداعًا! أتمنى لك يومًا سعيدًا!", "إلى اللقاء!"
         ]
       },
       {
         "tag": "thanks",
-        "patterns": ["Thanks", "Thank you", "That's helpful", "Thank's a lot!"],
-        "responses": ["Happy to help!", "Any time!", "My pleasure"]
+        "patterns": ["Thanks", "Thank you", "That's helpful", "Thank's a lot!",
+         "Merci", "شكرا",  "Merci beaucoup", "شكرا جزيلا"],
+        "responses": ["Happy to help!", "Any time!", "My pleasure",
+        "You're welcome!", "De rien, toujours là pour vous aider.", "على الرحب والسعة.", 
+        "My pleasure!", "Avec plaisir!", "أي وقت، أنا هنا للمساعدة."]
       },
       {
         "tag": "funny",
@@ -68,11 +78,17 @@
           "What are the types of soils used for agriculture?",
           "Quels types de sols conviennent à l'agriculture?",
           "Tell me about soil types for farming",
-          "Quels types de sols sont idéaux pour la culture?"
+          "Quels types de sols sont idéaux pour la culture?",
+          "What types of soil are suitable for agriculture?", "Quels sont les types de sols pour l'agriculture ?", 
+          "ما هي أنواع التربة المناسبة للزراعة؟", "Tell me about farming soil", 
+          "Quels sols sont les meilleurs pour la culture ?", "أفضل أنواع التربة للزراعة؟"
         ],
         "responses": [
           "Soil types important for agriculture include sandy soil, clay soil, loamy soil, and peaty soil. Each has its advantages depending on the crop being cultivated.",
-          "Les types de sols importants pour l'agriculture incluent le sol sableux, le sol argileux, le sol limoneux et le sol tourbeux. Chacun a ses avantages selon la culture."
+          "Les types de sols importants pour l'agriculture incluent le sol sableux, le sol argileux, le sol limoneux et le sol tourbeux. Chacun a ses avantages selon la culture.",
+          "The main soil types are sandy, clay, loamy, and peaty soils. Each suits different crops.",
+          "Les sols adaptés à l'agriculture incluent le sableux, l'argileux, et le limoneux.",
+          "التربة المناسبة للزراعة تشمل الرملية، الطينية، واللومية حسب المحصول."
         ]
       },
       {
@@ -86,6 +102,19 @@
           "Tunisia is known for its olive oil, dates, wheat, barley, citrus fruits, tomatoes, and almonds.",
           "La Tunisie est connue pour son huile d'olive, ses dattes, le blé, l'orge, les agrumes, les tomates et les amandes."        ]
       },
+      {
+        "tag": "climate",
+        "patterns": [
+            "What is the ideal climate for farming?", "Quel est le climat idéal pour l'agriculture ?", 
+            "ما هو المناخ المثالي للزراعة؟", "Best climate for crops", "Climat pour l'agriculture", 
+            "الطقس المناسب للزراعة؟"
+        ],
+        "responses": [
+            "A Mediterranean climate, like in Tunisia, with moderate temperatures and rainfall is ideal.",
+            "Un climat méditerranéen, comme celui de la Tunisie, est parfait pour la culture.",
+            "المناخ المعتدل مثل مناخ البحر الأبيض المتوسط هو الأمثل للزراعة."
+        ]
+    },
       {
         "tag": "crops",
         "patterns": [
@@ -117,11 +146,16 @@
           "What are the methods of irrigation used in agriculture?",
           "Quels sont les différents systèmes d'irrigation utilisés en agriculture?",
           "Tell me about irrigation systems in agriculture",
-          "Quels systèmes d'irrigation sont utilisés dans l'agriculture?"
+          "Quels systèmes d'irrigation sont utilisés dans l'agriculture?",
+          "What irrigation systems are used in agriculture?", "Quels systèmes d'irrigation sont utilisés ?", 
+          "ما هي أنظمة الري المستخدمة؟", "Methods of irrigation", "Techniques d'irrigation", "طرق الري في الزراعة؟"
         ],
         "responses": [
           "Common irrigation methods include drip irrigation, sprinkler systems, and surface irrigation. These methods help ensure that crops receive the necessary water.",
-          "Les méthodes d'irrigation courantes incluent l'irrigation goutte à goutte, les systèmes d'aspersion et l'irrigation de surface. Ces méthodes aident à garantir que les cultures reçoivent l'eau nécessaire."        ]
+          "Les méthodes d'irrigation courantes incluent l'irrigation goutte à goutte, les systèmes d'aspersion et l'irrigation de surface. Ces méthodes aident à garantir que les cultures reçoivent l'eau nécessaire.",
+          "Common methods are drip irrigation, sprinklers, and surface irrigation.",
+          "Les techniques courantes incluent l'irrigation goutte à goutte et l'aspersion.",
+          "تشمل طرق الري الشائعة التنقيط، الري بالرش، والري السطحي."     ]
       },
       {
         "tag": "agriculture_in_tunisia",
@@ -134,16 +168,152 @@
           "Agriculture in Tunisia is a major economic sector, especially olive oil production, dates, grains, and vegetables. Tunisia has a Mediterranean climate which makes it ideal for farming.",
           "L'agriculture en Tunisie est un secteur économique majeur, notamment la production d'huile d'olive, de dattes, de céréales et de légumes. La Tunisie bénéficie d'un climat méditerranéen, ce qui en fait un endroit idéal pour l'agriculture."        ]
       },
+      { "tag": "tunisian_products",
+            "patterns": [
+                "What crops are grown in Tunisia?", "Quels produits agricoles sont cultivés en Tunisie ?", 
+                "ما هي المحاصيل المزروعة في تونس؟", "Tell me about Tunisian agriculture", 
+                "Agriculture in Tunisia", "المنتجات الزراعية في تونس"
+            ],
+            "responses": [
+                "Tunisia produces olives, dates, cereals, citrus fruits, and vegetables like tomatoes and peppers.",
+                "En Tunisie, on cultive les olives, les dattes, le blé, les agrumes, et les légumes comme les tomates.",
+                "في تونس، يتم إنتاج الزيتون، التمور، القمح، الحمضيات، والخضروات."
+            ]
+      },
       {
         "tag": "organic_farming",
         "patterns": [
           "What is organic farming?",
           "Qu'est-ce que l'agriculture biologique?",
            "Tell me about organic farming",
-          "Quels sont les avantages de l'agriculture biologique?"        ],
+          "Quels sont les avantages de l'agriculture biologique?" ,
+          "What is organic farming?", "Qu'est-ce que l'agriculture biologique ?", 
+          "ما هي الزراعة العضوية؟", "Tell me about sustainable farming", 
+          "Agriculture biologique", "الزراعة المستدامة والعضوية"       ],
         "responses": [
           "Organic farming involves growing crops without the use of synthetic pesticides, fertilizers, or genetically modified organisms. It promotes sustainability and environmental health.",
-          "L'agriculture biologique consiste à cultiver des plantes sans utiliser de pesticides, d'engrais synthétiques ou d'organismes génétiquement modifiés. Elle favorise la durabilité et la santé de l'environnement."        ]
-      }
+          "L'agriculture biologique consiste à cultiver des plantes sans utiliser de pesticides, d'engrais synthétiques ou d'organismes génétiquement modifiés. Elle favorise la durabilité et la santé de l'environnement."  ,
+          "Organic farming avoids synthetic chemicals, focusing on natural methods for crop production.",
+          "L'agriculture biologique se base sur des méthodes naturelles et exclut les produits chimiques.",
+          "تعتمد الزراعة العضوية على الطرق الطبيعية وتجنب المبيدات والأسمدة الصناعية."      ]
+      },
+      {
+        "tag": "pests",
+        "patterns": [
+            "How can I protect crops from pests?", "Comment protéger les cultures contre les nuisibles ?", 
+            "كيف أحمي المحاصيل من الآفات؟", "Crop pest control methods", "Méthodes de lutte contre les nuisibles", 
+            "طرق مكافحة الآفات الزراعية؟"
+        ],
+        "responses": [
+            "Pests can be controlled using natural predators, organic pesticides, and crop rotation.",
+            "Pour lutter contre les nuisibles, on peut utiliser des prédateurs naturels ou des pesticides biologiques.",
+            "يمكن مكافحة الآفات عبر استخدام المفترسات الطبيعية أو المبيدات الحيوية."
+        ]
+    },
+    {
+        "tag": "fertilizers",
+        "patterns": [
+            "What types of fertilizers are used?", "Quels types d'engrais sont utilisés ?", 
+            "ما هي أنواع الأسمدة المستخدمة؟", "Tell me about fertilizers in farming", 
+            "Engrais en agriculture", "أنواع الأسمدة للزراعة؟"
+        ],
+        "responses": [
+            "Fertilizers include organic (compost, manure) and synthetic types, depending on the crop.",
+            "Les engrais peuvent être organiques (compost, fumier) ou synthétiques selon la culture.",
+            "تشمل الأسمدة العضوية (مثل السماد العضوي) والاصطناعية حسب نوع المحصول."
+        ]
+    },
+    {
+      "tag": "regions_tunisia",
+      "patterns": [
+          "Tell me about agriculture in the North of Tunisia",
+          "Parlez-moi de l'agriculture au Nord de la Tunisie",
+          "حدثني عن الزراعة في شمال تونس",
+          "What are the crops in the Center region?",
+          "Quelles sont les cultures dans la région du Centre ?",
+          "ما هي المحاصيل في منطقة الوسط؟"
+      ],
+      "responses": [
+          "In the North, the climate is Mediterranean with high rainfall, suitable for cereals, olives, and vegetables.",
+          "Au Nord, le climat est méditerranéen avec de fortes pluies, idéal pour les céréales, les olives et les légumes.",
+          "في الشمال، المناخ متوسطي مع أمطار غزيرة، مناسب للحبوب والزيتون والخضروات."
+      ]
+  },
+  {
+    "tag": "central_tunisia",
+    "patterns": [
+        "Tell me about agriculture in Central Tunisia",
+        "Parlez-moi de l'agriculture au Centre de la Tunisie",
+        "ما هي الزراعة في وسط تونس؟",
+        "What crops are grown in the Center?",
+        "Quelles cultures sont cultivées au Centre ?"
+    ],
+    "responses": [
+        "Central Tunisia, with its semi-arid climate, is known for olive trees, almonds, and barley. Livestock farming is also common.",
+        "Le Centre de la Tunisie, avec son climat semi-aride, est connu pour les oliviers, les amandiers et l'orge. L'élevage est également courant.",
+        "وسط تونس بمناخه شبه الجاف معروف بزراعة الزيتون واللوز والشعير، إلى جانب تربية المواشي."
+    ]
+},
+{
+    "tag": "south_tunisia",
+    "patterns": [
+        "Tell me about agriculture in Southern Tunisia",
+        "Parlez-moi de l'agriculture au Sud de la Tunisie",
+        "ما هي الزراعة في جنوب تونس؟",
+        "What crops are grown in the South?",
+        "Quelles cultures sont cultivées au Sud ?"
+    ],
+    "responses": [
+        "Southern Tunisia, with its arid climate, focuses on date palms, particularly Deglet Nour, as well as desert-adapted crops and pastoralism.",
+        "Le Sud de la Tunisie, avec son climat aride, se concentre sur les palmiers dattiers, notamment Deglet Nour, ainsi que sur des cultures adaptées au désert et au pastoralisme.",
+        "جنوب تونس بمناخه الجاف يتميز بزراعة النخيل خاصة دقلة النور، والمحاصيل الصحراوية وتربية المواشي."
+    ]
+},
+{
+    "tag": "sahel_tunisia",
+    "patterns": [
+        "Tell me about agriculture in the Sahel region",
+        "Parlez-moi de l'agriculture dans la région du Sahel",
+        "ما هي الزراعة في منطقة الساحل؟",
+        "What crops are grown in the Sahel?",
+        "Quelles cultures sont cultivées au Sahel ?"
+    ],
+    "responses": [
+        "The Sahel region is a key area for olive oil production and also grows citrus fruits, almonds, and vegetables.",
+        "La région du Sahel est une zone clé pour la production d'huile d'olive et cultive également des agrumes, des amandes et des légumes.",
+        "منطقة الساحل معروفة بإنتاج زيت الزيتون وزراعة الحمضيات واللوز والخضروات."
+    ]
+},
+{
+    "tag": "cap_bon",
+    "patterns": [
+        "Tell me about agriculture in Cap Bon",
+        "Parlez-moi de l'agriculture au Cap Bon",
+        "ما هي الزراعة في منطقة الوطن القبلي؟",
+        "What crops are grown in Cap Bon?",
+        "Quelles cultures sont cultivées au Cap Bon ?"
+    ],
+    "responses": [
+        "Cap Bon is renowned for its citrus orchards, viticulture, and diverse vegetable production thanks to its fertile soil and mild climate.",
+        "Le Cap Bon est renommé pour ses vergers d'agrumes, sa viticulture et sa production variée de légumes grâce à son sol fertile et son climat doux.",
+        "الوطن القبلي مشهور ببساتين الحمضيات وزراعة الكروم وإنتاج الخضروات المتنوع بفضل تربته الخصبة ومناخه المعتدل."
+    ]
+},
+{
+    "tag": "northwest_tunisia",
+    "patterns": [
+        "Tell me about agriculture in Northwest Tunisia",
+        "Parlez-moi de l'agriculture dans le Nord-Ouest de la Tunisie",
+        "ما هي الزراعة في شمال غرب تونس؟",
+        "What crops are grown in the Northwest?",
+        "Quelles cultures sont cultivées dans le Nord-Ouest ?"
+    ],
+    "responses": [
+        "Northwest Tunisia, with high rainfall and forested areas, is suited for wheat, barley, and forest products like cork.",
+        "Le Nord-Ouest de la Tunisie, avec ses fortes pluies et ses zones forestières, convient au blé, à l'orge et aux produits forestiers comme le liège.",
+        "شمال غرب تونس بأمطاره الغزيرة وغاباته مناسب لزراعة القمح والشعير وإنتاج الفلين."
+    ]
+}
+  
     ]
   }
