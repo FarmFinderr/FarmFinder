@@ -1,12 +1,39 @@
 <app-navbar></app-navbar>
 
-<div class="container mx-auto px-4 mt-6"> <!-- Augmentation du mt ici pour donner plus d'espace -->
+<div class="container mx-auto px-4 flex flex-col items-center justify-center min-h-screen parent space-y-8">
+  <!-- Augmentation du mt ici pour donner plus d'espace -->
 
   <!-- Titre principal -->
-  <h1 class="text-2xl font-bold text-gray-800 mb-6">
-    Annonces des fermes à vendre en Tunisie
-  </h1>
+  <h1 class="text-2xl font-bold">
+    Annonces des fermes à vendre en Tunisie !!!!!!!!
+    <div class="flex justify-center m-5">
+      <button id="defaultModalButton" data-modal-target="defaultModal" data-modal-toggle="defaultModal" class="block text-white bg-yellow-500 hover:bg-orange-400 focus:ring-4 focus:outline-none focus:ring-orange-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-350 dark:hover:bg-orange-400 dark:focus:ring-orange-500" type="button">
+        Create Event
+      </button>
+    </div>
 
+
+  </h1>
+  <div class="event-block">
+    <form class="max-w-md mx-auto">
+      <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
+      <div class="relative">
+        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+          <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+            viewBox="0 0 20 20">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+          </svg>
+        </div>
+        <input type="search" id="default-search"
+          class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
+          placeholder="Search for lands, Farms events..." required />
+        <button type="submit"
+          class="text-white absolute end-2.5 bottom-2.5 bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2">Search</button>
+      </div>
+
+    </form>
+  </div>
   <div class="flex flex-wrap gap-8">
     <!-- Section des annonces -->
     <div class="flex-1 ml-8">
@@ -14,30 +41,24 @@
         <div *ngFor="let annonce of annonces" class="bg-white shadow rounded-lg flex flex-col md:flex-row">
           <!-- Image de l'annonce avec surface -->
           <div class="relative w-full md:w-40 h-auto">
-            <img
-              [src]="annonce.image"
-              alt="Image annonce"
-              class="w-full h-full object-cover rounded-t-lg md:rounded-l-lg"
-            />
-           
+            <img [src]="" alt="Image annonce" class="w-full h-full object-cover rounded-t-lg md:rounded-l-lg" />
+
             <div class="absolute bottom-0 left-0 w-full bg-gray-800 bg-opacity-50 text-white text-center py-1">
-              <p class="text-lg font-bold">{{ annonce.surface }} m²</p>
+              <p class="text-lg font-bold">{{ annonce.title }} m²</p>
             </div>
           </div>
 
 
           <div class="p-4 flex-1">
             <h2 class="text-lg font-semibold text-gray-800">
-              {{ annonce.titre }}
+              {{ annonce.title }}
             </h2>
-            <p class="text-sm text-gray-500 mb-2">{{ annonce.location }}</p>
-            <p class="text-green-600 font-bold text-lg">{{ annonce.prix }}</p>
+            <p class="text-sm text-gray-500 mb-2">{{ annonce.price }}</p>
+            <p class="text-green-600 font-bold text-lg">{{ annonce.price }}</p>
             <p class="text-sm text-gray-600 mt-2">
               {{ annonce.description }}
             </p>
-            <button
-              class="mt-4 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
-            >
+            <button class="mt-4 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
               je participe
             </button>
           </div>
@@ -47,4 +68,83 @@
 
 
   </div>
+  <div id="defaultModal" tabindex="-1" aria-hidden="true"
+  class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
+  <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
+    <!-- Modal content -->
+    <div class="relative p-4 bg-white rounded-lg shadow sm:p-5">
+      <!-- Modal header -->
+      <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b border-yellow-300">
+        <h3 class="text-lg font-semibold text-green-700">
+          Create Event
+        </h3>
+        <button type="button"
+          class="text-green-700 bg-transparent hover:bg-green-100 hover:text-green-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+          data-modal-toggle="defaultModal">
+          <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+              clip-rule="evenodd"></path>
+          </svg>
+          <span class="sr-only">Close modal</span>
+        </button>
+      </div>
+      <!-- Modal body -->
+      <form action="#">
+        <div class="grid gap-4 mb-4 sm:grid-cols-2">
+          <div>
+            <label for="name" class="block mb-2 text-sm font-medium text-green-700">Name</label>
+            <input type="text" name="name" id="name"
+              class="bg-yellow-50 border border-yellow-300 text-green-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5"
+              placeholder="Event Name.." required="">
+          </div>
+          <div>
+            <label for="brand" class="block mb-2 text-sm font-medium text-green-700">Description</label>
+            <input type="text" name="brand" id="brand"
+              class="bg-yellow-50 border border-yellow-300 text-green-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5"
+              placeholder="Event Description.." required="">
+          </div>
+          <div>
+            <label for="price" class="block mb-2 text-sm font-medium text-green-700">Price</label>
+            <input type="number" name="price" id="price"
+              class="bg-yellow-50 border border-yellow-300 text-green-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5"
+              placeholder="$2999" required="">
+          </div>
+          <div>
+            <label for="category"
+              class="block mb-2 text-sm font-medium text-green-700">Category</label>
+            <select id="category"
+              class="bg-yellow-50 border border-yellow-300 text-green-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5">
+              <option selected="">Select category</option>
+              <option value="TV">TV/Monitors</option>
+              <option value="PC">PC</option>
+              <option value="GA">Gaming/Console</option>
+              <option value="PH">Phones</option>
+            </select>
+          </div>
+          <div class="sm:col-span-2">
+            <label for="description"
+              class="block mb-2 text-sm font-medium text-green-700">Description</label>
+            <textarea id="description" rows="4"
+              class="block p-2.5 w-full text-sm text-green-900 bg-yellow-50 rounded-lg border border-yellow-300 focus:ring-green-500 focus:border-green-500"
+              placeholder="Write product description here"></textarea>
+          </div>
+        </div>
+        <button type="submit"
+          class="text-white inline-flex items-center bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+          <svg class="mr-1 -ml-1 w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+              d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+              clip-rule="evenodd"></path>
+          </svg>
+          Add new product
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
 </div>
