@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms'; // Import FormsModule for form handling
 import { CommonModule } from '@angular/common'; // Import CommonModule for directives like *ngIf
+import { ReclamationService } from '../../services/reclamation/reclamation.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -11,7 +12,9 @@ import { CommonModule } from '@angular/common'; // Import CommonModule for direc
 })
 export class SidebarComponent {
 
+constructor(private reclamationService: ReclamationService) {}
 
+  userId: number = 1; // Set userId to 1 for testing purposes
   userName = 'Kahweji Syrina';
   userEmail = 'Syrinekahweji5@gmail.com';
 
@@ -35,14 +38,29 @@ export class SidebarComponent {
   // Function to handle reclamation submission
   addReclamation() {
     if (this.reclamationText.trim()) {
-      console.log('Reclamation submitted:', this.reclamationText);
-      // Logic to handle the reclamation submission goes here
-      this.reclamationText = '';  // Clear the input
-      this.showModal = false;     // Close the modal
+      const reclamationPayload = {
+        reclamation: this.reclamationText,
+        userId: this.userId  // Add userId here
+      };
+
+      this.reclamationService.addReclamation(reclamationPayload).subscribe(
+        (response) => {
+          console.log('Reclamation submitted successfully:', response);
+          alert('Réclamation soumise avec succès!');
+          this.reclamationText = ''; // Clear the input
+          this.showModal = false;   // Close the modal
+        },
+        (error) => {
+          console.error('Error submitting reclamation:', error);
+          alert('Une erreur est survenue. Veuillez réessayer.');
+        }
+      );
     } else {
       alert('Veuillez saisir une réclamation avant de soumettre.');
     }
   }
+
+
 
   logout() {
   }
