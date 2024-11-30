@@ -1,8 +1,15 @@
+import { User } from "./user.model";
+
 export interface event {
-  _id?: string;
+  id: number;
   status: boolean;
+  description: string;
+  title: string;
   price: number;
-  owner_id?:String;
-  date_debut:Date | null;
-  date_fin:Date|null; 
+  owner_id: number;
+  date_debut: string;
+  date_fin: string;
+  owner: User;
+  users:User[];
+
 }

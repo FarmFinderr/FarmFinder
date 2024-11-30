@@ -13,8 +13,8 @@ export class EventService {
 
   // Méthode pour récupérer des données
   getPosts(): Observable<any[]> {
-    console.log(this.http.get<any[]>(this.apiUrl))
-    return this.http.get<any[]>(this.apiUrl);
+   // console.log(this.http.get<any[]>(this.apiUrl))
+    return this.http.get<any[]>(`${this.apiUrl}/GetAll`);
   }
 
   addPost(item: any): Observable<any> {
@@ -22,7 +22,7 @@ export class EventService {
   }
 
   deletePost(id: string): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/${id}`);
+    return this.http.delete<any>(`${this.apiUrl}/Event/${id}`);
   }
 
   updatePost(id: string,item:any): Observable<any> {

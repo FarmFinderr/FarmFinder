@@ -18,6 +18,7 @@ import static java.lang.Math.max;
 
 @RestController
 @RequestMapping("/events")
+@CrossOrigin(origins = "http://localhost:4200")
 public class EventService {
 
     @Autowired
