@@ -29,7 +29,6 @@ import { FormsModule } from '@angular/forms';
 export class AccueilComponent  implements OnInit {
 
    postslist :any[]= [];
-   path="../../../../Backend/Post-Service"
   Post = { 
     price: 0,
     userId: '',
@@ -55,9 +54,8 @@ export class AccueilComponent  implements OnInit {
     air: 0,
     defaut: '',
     etat: '',    
-  };// _id initialized
-  //currentItem: Item = { _id: '', name: '', price: 0, description: '' };  // _id initialized
-  currentItem: Post | null = null;  // Initialize as null
+  };
+  currentItem: Post | null = null;  
   constructor(private Postservice: PostService,private Chatbotservice: ChatbotService) {
 
   }

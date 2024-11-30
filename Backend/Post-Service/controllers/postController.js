@@ -4,6 +4,7 @@ import Materiel from '../models/Materiel.js';
 import Image from '../models/Image.js';
 import Video from '../models/video.js';
 import Reaction from '../models/Reaction.js';
+import Comment from '../models/Commentaire.js';
 import fs from 'fs';
 import path from 'path';
 import axios from 'axios';
@@ -13,8 +14,6 @@ export const createPost = async (req, res, next) => {
         const { userId, price, description, type, localisation, air, etat, defaut } = req.body;
         //console.log(req.body);
         //console.log(userId, price, description, type, localisation, air, etat, defaut);
-
-
         let postData = { userId, price, description, type };
 
         if (type === 'terrain') {
@@ -37,35 +36,6 @@ export const createPost = async (req, res, next) => {
         next(err);
     }
 };
-
-
-
-
-/*export const getAllPosts = async (req, res, next) => {
-
-    try {
-        const posts = await Post.find();
-        const allposts = await Promise.all(
-            posts.map(async (post) => {
-                try {
-                    const user = await axios.get(`http://localhost:8888/users/${post.userId}`);
-                    //console.log(user);
-                    return { ...post.toObject(), user: user.data }; 
-
-                } catch (error) {
-                    console.error(`Failed to fetch user for post ${post._id}:`, error.message);
-                    return { ...post.toObject(), user: null }; 
-                }
-            })
-        );
-
-        res.json(allposts);
-        //res.json(posts);
-    } catch (err) {
-        next(err);
-    }
-};*/
-
 export const getAllPosts = async (req, res, next) => {
     try {
         const posts = await Post.find(); 
@@ -82,6 +52,7 @@ export const getAllPosts = async (req, res, next) => {
                     const videos = await Video.find({ postId: post._id });
 
                     const reactions = await Reaction.find({ postId: post._id });
+                    const commentaires = await Comment.find({ postId: post._id });
 
                     const reactionsWithUsers = await Promise.all(
                         reactions.map(async (reaction) => {
@@ -93,6 +64,16 @@ export const getAllPosts = async (req, res, next) => {
                             }
                         })
                     );
+                    const commentsWithUsers = await Promise.all(
+                        commentaires.map(async (comment) => {
+                            try {
+                                const commentaireUserResponse = await axios.get(`http://localhost:8888/users/${comment.userId}`);
+                                return { ...comment.toObject(), user: commentaireUserResponse.data };
+                            } catch {
+                                return { ...comment.toObject(), user: null };
+                            }
+                        })
+                    );
 
                     return {
                         ...post.toObject(),
@@ -100,6 +81,7 @@ export const getAllPosts = async (req, res, next) => {
                         images,
                         videos,
                         reactions: reactionsWithUsers,
+                        commentaires: commentsWithUsers,
                     };
 
                 } catch (error) {
