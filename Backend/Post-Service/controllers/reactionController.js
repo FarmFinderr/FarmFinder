@@ -1,6 +1,5 @@
 import Reaction from '../models/Reaction.js';
 
-// Ajouter une nouvelle réaction
 export const createReaction = async (req, res, next) => {
     try {
         const { postId, userId, reactionType, date } = req.body; 
@@ -12,7 +11,6 @@ export const createReaction = async (req, res, next) => {
     }
 };
 
-// Obtenir toutes les réactions d'un post
 export const getReactionsByPostId = async (req, res, next) => {
     try {
         const reactions = await Reaction.find({ postId: req.params.postId });
@@ -22,7 +20,6 @@ export const getReactionsByPostId = async (req, res, next) => {
     }
 };
 
-// Obtenir les réactions d'un utilisateur pour un post
 export const getUserReaction = async (req, res, next) => {
     try {
         const reaction = await Reaction.findOne({ postId: req.params.postId, userId: req.params.userId });
@@ -32,7 +29,6 @@ export const getUserReaction = async (req, res, next) => {
     }
 };
 
-// Supprimer une réaction
 export const deleteReaction = async (req, res, next) => {
     try {
         const deletedReaction = await Reaction.findByIdAndDelete(req.params.id);
@@ -42,7 +38,6 @@ export const deleteReaction = async (req, res, next) => {
     }
 };
 
-// Mettre à jour une réaction
 export const updateReaction = async (req, res, next) => {
     try {
         const updatedReaction = await Reaction.findByIdAndUpdate(req.params.id, req.body, { new: true });

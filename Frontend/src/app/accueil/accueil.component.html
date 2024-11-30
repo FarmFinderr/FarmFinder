@@ -85,23 +85,28 @@
     <!-- Like and comment input -->
     <div class="flex items-center space-x-2 -mt-1">
       <div class="relative group">
-
-        <img src="../../assets/accueil/alike.png" class="w-7 h-7" alt="Like" />
-
+        <img [src]="selectedReaction" class="w-7 h-7" alt="Reaction" />
+    
         <div class="absolute hidden group-hover:flex bg-white border rounded-lg shadow-lg space-x-2 p-2 -top-8 -left-3 z-10 w-72">
-          <img src="../../assets/accueil/like.gif" class="w-7 h-7 cursor-pointer" alt="Love">
-          <img src="../../assets/accueil/ballheart.gif" class="w-7 h-7 cursor-pointer" alt="Haha">
-          <img src="../../assets/accueil/care-love1.gif" class="w-8 h-8 -mt-1 cursor-pointer" alt="Angry">
-          <img src="../../assets/accueil/laugh.gif" class="w-7 h-7 cursor-pointer" alt="Laugh">
-          <img src="../../assets/accueil/wow.gif" class="w-7 h-7 cursor-pointer" alt="Wow">
-          <img src="../../assets/accueil/sad.gif" class="w-7 h-7 cursor-pointer" alt="Sad">
-          <img src="../../assets/accueil/angry.gif" class="w-7 h-7 cursor-pointer" alt="Angry">
+          <!--<img src="../../assets/accueil/like.gif" (click)="selectReaction('../../assets/accueil/like.png')" class="w-7 h-7 cursor-pointer" alt="Like">-->
+          <img src="../../assets/accueil/like.gif" (click)="addReaction(post._id,'like','../../assets/accueil/like.png')" class="w-7 h-7 cursor-pointer" alt="Like">
+          <img src="../../assets/accueil/ballheart.gif" (click)="addReaction(post._id,'love','../../assets/accueil/heart.png')" class="w-7 h-7 cursor-pointer" alt="Heart">
+          <img src="../../assets/accueil/care-love1.gif" (click)="addReaction(post._id,'care','../../assets/accueil/care.png')" class="w-8 h-8 -mt-1 cursor-pointer" alt="Care">
+          <img src="../../assets/accueil/laugh.gif" (click)="addReaction(post._id,'haha','../../assets/accueil/hah.png')" class="w-7 h-7 cursor-pointer" alt="Laugh">
+          <img src="../../assets/accueil/wow.gif" (click)="addReaction(post._id,'wow','../../assets/accueil/woh.png')" class="w-7 h-7 cursor-pointer" alt="Wow">
+          <img src="../../assets/accueil/sad.gif" (click)="addReaction(post._id,'sad','../../assets/accueil/triste.png')" class="w-7 h-7 cursor-pointer" alt="Sad">
+          <img src="../../assets/accueil/angry.gif" (click)="addReaction(post._id,'angry','../../assets/accueil/angre.png')" class="w-7 h-7 cursor-pointer" alt="Angry">
+        
         </div>
-      </div>      
+      </div>
+    
+    
       <div class="flex justify-center items-center border rounded-full p-1 mt-2 bg-gray-100 flex-grow h-9">
         <img src="../../assets/sirineKahweji_ISETBizerte.jpg" class="rounded-full w-8 h-8">
-        <input type="text" placeholder="Écrire un commentaire..." class="bg-gray-100 pl-3 flex-grow focus:outline-none">
-        <i class="bi bi-send-fill mr-3 text-gray-400"></i>
+        <input type="text" placeholder="Écrire un commentaire..." class="bg-gray-100 pl-3 flex-grow focus:outline-none"
+        [(ngModel)]="commentMessage"
+        >
+        <i class="bi bi-send-fill mr-3 text-gray-400 cursor-pointer" (click)="addComment(post._id)"></i>
       </div>
     </div>
   </div>

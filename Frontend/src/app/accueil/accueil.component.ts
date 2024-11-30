@@ -13,6 +13,13 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { imageOverlay } from 'leaflet';
 import { OpenmapComponent } from '../accueil/openmap/openmap.component';
 import { ChatbotService } from '../services/chat/chatbot.service';
+import { CommentService } from '../services/comment/comment.service';
+import { ReactionService } from '../services/reaction/reaction.service';
+import { tap, catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
+import Swal from 'sweetalert2';
+
+
 import { FormsModule } from '@angular/forms';
 
 
@@ -39,12 +46,12 @@ export class AccueilComponent  implements OnInit {
     defaut:'',
     etat:''};
     userMessage: string = '';
+    commentMessage:string='';
     chatHistory: { sender: string; text: string }[] = [];
 
   isLoading: boolean = true;  
   errorMessage: string | null = null;
-
-
+  userId='1';
   newItem: Post = {
     price: 0,
     userId: '',
@@ -55,8 +62,17 @@ export class AccueilComponent  implements OnInit {
     defaut: '',
     etat: '',    
   };
+
+  selectedReaction: string = '../../assets/accueil/alike.png';
+ 
+
+ 
+  
+
   currentItem: Post | null = null;  
-  constructor(private Postservice: PostService,private Chatbotservice: ChatbotService) {
+  constructor(private Postservice: PostService,private Chatbotservice: ChatbotService,private commentservice: CommentService,
+    private ReactionService:ReactionService
+  ) {
 
   }
 
@@ -81,9 +97,6 @@ export class AccueilComponent  implements OnInit {
     const fullPath = 'http://localhost:5000' + imagePath;
     window.open(fullPath, '_blank');
   }
-
-
-
   ngOnInit(): void {
     this.fetchPosts();
    }
@@ -108,6 +121,54 @@ export class AccueilComponent  implements OnInit {
   }
   isLoader(): boolean {
     return this.isLoading;
+  }
+
+  addComment(postID: any) {
+    console.log(postID);
+    this.commentservice.createComment({ postId: postID, userId: this.userId, text: this.commentMessage })
+      .pipe(
+        tap((response) => {
+          if (response) {
+            Swal.fire({
+              icon: 'success',
+              title: 'Succès',
+              text: 'Commentaire ajouté avec succès !',
+            });
+            this.commentMessage='';
+          }
+        }),
+        catchError((error) => {
+          console.error('Erreur lors de l\'ajout du commentaire:', error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Erreur',
+            text: 'Une erreur est survenue lors de l\'ajout du commentaire.',
+          });
+          return of(null); 
+        })
+      )
+      .subscribe();
+  }
+
+
+  addReaction(postId:any,type:string,reactionimg:string){
+    console.log("postid",postId,type);
+    const reaction = {
+      postId: postId,
+      userId: this.userId,
+      reactionType: type,
+    };
+
+    this.ReactionService.createReaction(reaction).subscribe(
+      (response) => {
+        console.log('Réaction ajoutée:', response);
+        this.selectedReaction = reactionimg;
+  
+      },
+      (error) => {
+        console.error('Erreur:', error);
+      }
+    );
   }
 
   comments = [

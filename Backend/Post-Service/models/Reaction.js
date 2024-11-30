@@ -5,7 +5,7 @@ const reactionSchema = new mongoose.Schema({
     userId: { type: Number, required: true },
     reactionType: { 
         type: String, 
-        enum: ['like', 'love', 'haha', 'wow', 'sad', 'angry'], 
+        enum: ['like', 'love', 'care','haha', 'wow', 'sad', 'angry'], 
         required: true 
     },
     date: { 

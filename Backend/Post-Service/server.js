@@ -9,11 +9,10 @@ import reactionRoutes from './routes/reactionRoutes.js'
 import imageRoutes from './routes/imageRoutes.js';
 import commentRoutes from './routes/commentaireRoutes.js';
 import path from 'path';
-import { fileURLToPath } from 'url';  // Importer la fonction fileURLToPath
+import { fileURLToPath } from 'url';  
 
-// Obtenez le chemin absolu du fichier courant
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);  // Utilisez __dirname ici
+const __dirname = path.dirname(__filename);  
 
 
 import { Eureka } from 'eureka-js-client';
@@ -94,9 +93,7 @@ mongoose
   .then(() => console.log('MongoDB connected'))
   .catch((err) => console.error('MongoDB connection error:', err));
 
-// Define your routes
 app.get('/', (req, res) => {
- // res.send('Welcome to the Posts Microservice!');
  res.status(200).send('Microservice Express.js is working correctly');
 });
 
@@ -110,7 +107,6 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
 
-// Start Express server
 app.listen(PORT, () => {
   console.log(`Express service running on http://localhost:${PORT}`);
 });
