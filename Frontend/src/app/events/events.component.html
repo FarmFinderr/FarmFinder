@@ -41,7 +41,7 @@
         <div *ngFor="let annonce of annonces" class="bg-white shadow rounded-lg flex flex-col md:flex-row">
           <!-- Image de l'annonce avec surface -->
           <div class="relative w-full md:w-40 h-auto">
-            <img [src]="" alt="Image annonce" class="w-full h-full object-cover rounded-t-lg md:rounded-l-lg" />
+            <img [src]="annonce.photo"alt="Image annonce" class="w-full h-full object-cover rounded-t-lg md:rounded-l-lg" />
 
             <div class="absolute bottom-0 left-0 w-full bg-gray-800 bg-opacity-50 text-white text-center py-1">
               <p class="text-lg font-bold">{{ annonce.title }} m²</p>
@@ -91,44 +91,51 @@
         </button>
       </div>
       <!-- Modal body -->
-      <form action="#">
+      <form  (ngSubmit)="CreateEvent()">
         <div class="grid gap-4 mb-4 sm:grid-cols-2">
           <div>
             <label for="name" class="block mb-2 text-sm font-medium text-green-700">Name</label>
-            <input type="text" name="name" id="name"
+            <input type="text" name="title" id="title" [(ngModel)]="event_created.title"
               class="bg-yellow-50 border border-yellow-300 text-green-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5"
               placeholder="Event Name.." required="">
           </div>
           <div>
-            <label for="brand" class="block mb-2 text-sm font-medium text-green-700">Description</label>
-            <input type="text" name="brand" id="brand"
-              class="bg-yellow-50 border border-yellow-300 text-green-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5"
-              placeholder="Event Description.." required="">
-          </div>
-          <div>
             <label for="price" class="block mb-2 text-sm font-medium text-green-700">Price</label>
-            <input type="number" name="price" id="price"
+            <input type="number" name="price" id="price"  [(ngModel)]="event_created.price"
               class="bg-yellow-50 border border-yellow-300 text-green-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5"
               placeholder="$2999" required="">
           </div>
           <div>
-            <label for="category"
-              class="block mb-2 text-sm font-medium text-green-700">Category</label>
-            <select id="category"
-              class="bg-yellow-50 border border-yellow-300 text-green-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5">
-              <option selected="">Select category</option>
-              <option value="TV">TV/Monitors</option>
-              <option value="PC">PC</option>
-              <option value="GA">Gaming/Console</option>
-              <option value="PH">Phones</option>
-            </select>
+            <label for="price" class="block mb-2 text-sm font-medium text-green-700">Begin-Date</label>
+            <input type="Date" name="date_debut" id="date_debut"  [(ngModel)]="event_created.date_debut"
+              class="bg-yellow-50 border border-yellow-300 text-green-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5" required="">
           </div>
+          <div>
+            <label for="price" class="block mb-2 text-sm font-medium text-green-700">End-Date</label>
+            <input type="Date" name="date_fin" id="date_fin" [(ngModel)]="event_created.date_fin"
+              class="bg-yellow-50 border border-yellow-300 text-green-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5" required="">
+          </div>
+          <div class="file-upload">
+            <label for="photo" class="block mb-2 text-sm font-medium text-green-700">
+              <i class="fas fa-image mr-2"></i>Upload Photo
+            </label>
+            <div class="relative">
+              <input type="file" name="photo" id="photo"
+                class="hidden" required  (change)="onFileChanged($event)">
+              <label for="photo"
+                class="bg-yellow-50 border border-yellow-300 text-green-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 cursor-pointer hover:bg-yellow-100 flex items-center justify-center">
+                <i class="fas fa-upload mr-2"></i> Choose a file
+              </label>
+            </div>
+            <small class="text-gray-500 mt-1 block">Supported formats: JPG, PNG</small>
+          </div>
+
           <div class="sm:col-span-2">
             <label for="description"
               class="block mb-2 text-sm font-medium text-green-700">Description</label>
-            <textarea id="description" rows="4"
+            <input id="description" [(ngModel)]="event_created.description" id="description" name="description"
               class="block p-2.5 w-full text-sm text-green-900 bg-yellow-50 rounded-lg border border-yellow-300 focus:ring-green-500 focus:border-green-500"
-              placeholder="Write product description here"></textarea>
+              placeholder="Write the event  description here ...">
           </div>
         </div>
         <button type="submit"

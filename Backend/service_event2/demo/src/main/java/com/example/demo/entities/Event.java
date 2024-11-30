@@ -27,6 +27,19 @@ public class Event {
     private Long price;
     private Long owner_id;
     private Date date_debut ;
+    @Column(name="photo",length=99999999)
+    private String photo;
+
+    public Event(boolean b, String description, String title, Long price, String ownerId, Date dateDebut, String photo, Date dateFin) {
+        this.status = b;
+        this.description = description;
+        this.title = title;
+        this.price =  price;
+        this.owner_id = Long.parseLong(ownerId);
+        this.date_debut = dateDebut;
+        this.photo = photo;
+        this.date_fin=dateFin;
+    }
 
     public Long getOwner_id() {
         return owner_id;
