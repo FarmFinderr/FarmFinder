@@ -110,44 +110,6 @@ export class AccueilComponent  implements OnInit {
     return this.isLoading;
   }
 
-
-  //test
-   posts = [
-    {
-      image: "../../assets/accueil/post1.jpg",
-      name: "Syrine Kahweji",
-      date: "7 Février 2021",
-      content: "Belle opportunité d'acquisition d'une ferme agricole située dans la région verdoyante de Bizerte.",
-      price: "150 000 €",
-      location: "Bizerte",
-      area: "20 hectares",
-      defects: "Aucun défaut majeur identifié",
-      imagePost: "../../assets/accueil/post1.jpg"
-    },
-    {
-      image: "../../assets/accueil/post1.jpg",
-      name: "Syrine Kahweji",
-      date: "7 Février 2021",
-      content: "Belle opportunité d'acquisition d'une ferme agricole située dans la région verdoyante de Bizerte.",
-      price: "150 000 €",
-      location: "Bizerte",
-      area: "20 hectares",
-      defects: "Aucun défaut majeur identifié",
-      imagePost: "../../assets/accueil/post1.jpg"
-    },
-    {
-      image: "../../assets/accueil/post1.jpg",
-      name: "Syrine Kahweji",
-      date: "7 Février 2021",
-      content: "Belle opportunité d'acquisition d'une ferme agricole située dans la région verdoyante de Bizerte.",
-      price: "150 000 €",
-      location: "Bizerte",
-      area: "20 hectares",
-      defects: "Aucun défaut majeur identifié",
-      imagePost: "../../assets/accueil/post1.jpg"
-    }
-  ];
-
   comments = [
     {
       userImage: '../../assets/accueil/lyna.jpg',
@@ -317,17 +279,25 @@ closeModalIA() {
 }
 
 
+PostComments:any[] = [];
+formatDate(date: string): string {
+  const diff = Math.floor((new Date().getTime() - new Date(date).getTime()) / 1000);
+  if (diff < 60) return 'il y a quelques secondes';
+  if (diff < 3600) return `il y a ${Math.floor(diff / 60)} minutes`;
+  if (diff < 86400) return `il y a ${Math.floor(diff / 3600)} heures`;
+  return `il y a ${Math.floor(diff / 86400)} jours`;
+}
 
 
-  openModal() {
+  openModal(post:any) {
     this.isModalOpen = true;
     console.log("modal opened ");
+    this.PostComments = post;
   }
 
   closeModal() {
     this.isModalOpen = false;
-    this.eventDetails = null;
-
+    this.PostComments=[];
     console.log("modal closed ");
 
   }
