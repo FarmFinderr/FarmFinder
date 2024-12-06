@@ -1,4 +1,8 @@
-.event-block{
+.event-block {
   width: 80%;
 
+}
+
+*{
+  box-sizing:border-box;
 }
