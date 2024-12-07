@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class UserService {
-  private apiUrl = 'http://localhost:8880/users';
+  private apiUrl = 'http://localhost:8888/users';
 
   constructor(private http: HttpClient) {}
 
@@ -29,12 +29,12 @@ export class UserService {
   deleteUser(userId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${userId}`);
   }
-  AddPhoto(image:any){ 
+  AddPhoto(image:any){
     const formData = new FormData();
     formData.append('image', image);
     return this.http.post(`http://localhost:8888/PYTHON-SERVICE/api/upload`,formData);
 }
 search(searchQuery: string): Observable<any> {
   return this.http.get<any>(`${this.apiUrl+"/search"}?search=${searchQuery}`);
-} 
+}
 }
