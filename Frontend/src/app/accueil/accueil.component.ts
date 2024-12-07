@@ -1,5 +1,6 @@
 import { Post } from './../models/post.model';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '../services/post/post.service';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
@@ -71,7 +72,7 @@ export class AccueilComponent  implements OnInit {
 
   currentItem: Post | null = null;  
   constructor(private Postservice: PostService,private Chatbotservice: ChatbotService,private commentservice: CommentService,
-    private ReactionService:ReactionService
+    private ReactionService:ReactionService,private router: Router
   ) {
 
   }
@@ -97,9 +98,11 @@ export class AccueilComponent  implements OnInit {
     const fullPath = 'http://localhost:5000' + imagePath;
     window.open(fullPath, '_blank');
   }
+
   ngOnInit(): void {
     this.fetchPosts();
    }
+
 
     fetchPosts(): void {
     this.Postservice.getPosts().subscribe({
@@ -116,6 +119,40 @@ export class AccueilComponent  implements OnInit {
       },
     });
   }
+
+  getUserReaction(post: any): string | null {
+    for (let i = 0; i < post.reactions.length; i++) {
+      if (post.reactions[i].userId == this.userId) {
+        return post.reactions[i].reactionType; 
+      }
+    }
+      return 'noreaction';
+  }
+
+
+  getReactionImage(reactionType: string ): string {
+    console.log(reactionType);
+    if(reactionType=='noreaction'){
+      return '../../assets/accueil/alike.png';
+    }
+    else{
+      const reactionImages: { [key: string]: string } = {
+        like: '../../assets/accueil/like.png',
+        love: '../../assets/accueil/heart.png',
+        care: '../../assets/accueil/care.png',
+        haha: '../../assets/accueil/hah.png',
+        wow: '../../assets/accueil/woh.png',
+        sad: '../../assets/accueil/triste.png',
+        angry: '../../assets/accueil/angre.png',
+      };
+      return reactionImages[reactionType];
+
+    }
+   
+  }
+
+  
+
   loadItems(): void {
     this.Postservice.getPosts().subscribe((data) => (this.postslist = data));
   }
@@ -135,6 +172,11 @@ export class AccueilComponent  implements OnInit {
               text: 'Commentaire ajouté avec succès !',
             });
             this.commentMessage='';
+            this.fetchPosts();
+
+            /*this.router.navigateByUrl('/accueil', { skipLocationChange: true }).then(() => {
+              this.router.navigate([this.router.url]);
+            });*/
           }
         }),
         catchError((error) => {
@@ -162,7 +204,9 @@ export class AccueilComponent  implements OnInit {
     this.ReactionService.createReaction(reaction).subscribe(
       (response) => {
         console.log('Réaction ajoutée:', response);
-        this.selectedReaction = reactionimg;
+        //this.selectedReaction = reactionimg;
+        this.fetchPosts();
+
   
       },
       (error) => {

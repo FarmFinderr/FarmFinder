@@ -85,7 +85,12 @@
     <!-- Like and comment input -->
     <div class="flex items-center space-x-2 -mt-1">
       <div class="relative group">
-        <img [src]="selectedReaction" class="w-7 h-7" alt="Reaction" />
+        <img 
+        *ngIf="getUserReaction(post) as userReaction" 
+        [src]="getReactionImage(userReaction)" 
+        [alt]="userReaction"
+        class="w-7 h-7">
+        <!--<img [src]="selectedReaction" class="w-7 h-7" alt="Reaction" />-->
     
         <div class="absolute hidden group-hover:flex bg-white border rounded-lg shadow-lg space-x-2 p-2 -top-8 -left-3 z-10 w-72">
           <!--<img src="../../assets/accueil/like.gif" (click)="selectReaction('../../assets/accueil/like.png')" class="w-7 h-7 cursor-pointer" alt="Like">-->
