@@ -13,6 +13,7 @@ import { MapComponent } from './map/map.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { imageOverlay } from 'leaflet';
 import { OpenmapComponent } from '../accueil/openmap/openmap.component';
+import { MapleafletComponent } from '../accueil/mapleaflet/mapleaflet.component';
 import { ChatbotService } from '../services/chat/chatbot.service';
 import { CommentService } from '../services/comment/comment.service';
 import { ReactionService } from '../services/reaction/reaction.service';
@@ -30,11 +31,13 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-accueil',
   standalone: true,
-  imports: [OpenmapComponent,FormsModule,CommonModule,MapComponent,GoogleMapsModule,AddpostComponent ,ModalAddPostComponent,EventslistComponent,SidebarComponent,RouterOutlet, RouterLink, RouterLinkActive,NavbarComponent],
+  imports: [OpenmapComponent,MapleafletComponent,FormsModule,CommonModule,MapComponent,GoogleMapsModule,AddpostComponent ,ModalAddPostComponent,EventslistComponent,SidebarComponent,RouterOutlet, RouterLink, RouterLinkActive,NavbarComponent],
   templateUrl: './accueil.component.html',
   styleUrl: './accueil.component.css'
 })
 export class AccueilComponent  implements OnInit {
+
+  location: string = '';
 
    postslist :any[]= [];
   Post = { 

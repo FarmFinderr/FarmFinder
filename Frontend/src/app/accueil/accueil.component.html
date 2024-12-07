@@ -44,7 +44,9 @@
         <p *ngIf="post.type=='terrain'"><strong>Superficie:</strong> {{ post.air }}</p>
         <p *ngIf="post.type=='materiel'"><strong>État:</strong> {{ post.etat }}</p>
         <p *ngIf="post.type=='materiel'"><strong>Défauts:</strong> {{ post.defaut }}</p>
-        <app-map class=" w-32 h-32" *ngIf="post.type=='terrain'"></app-map>
+        <app-mapleaflet [location]="location"></app-mapleaflet>
+
+        <!--<app-map class=" w-32 h-32" *ngIf="post.type=='terrain'"></app-map>-->
       </div>
       <p class="text-right font-bold underline cursor-pointer" (click)="toggleDetails()">
         {{ showDetails ? 'Voir moins' : 'Voir plus' }}
