@@ -17,6 +17,8 @@ export class TableDashboard implements OnInit { // Corrected class name
   isModalOpen = false;
   selectedUser: any;
   edit = false;
+  deleted = 0;
+  deleteU=false;
   originalUser: any; // Store original user data for editing
 
 
@@ -116,22 +118,28 @@ export class TableDashboard implements OnInit { // Corrected class name
     }
     this.closeModal();
   }
-
-
-  deleteUser(userId: number): void {
-    if (confirm('Are you sure you want to delete this user?')) {
-      this.userService.deleteUser(userId).subscribe({
-        next: () => {
-          this.users = this.users.filter(user => user.id !== userId); // Remove user from list
-          console.log(`User with ID ${userId} deleted successfully.`);
-        },
-        error: (error) => {
-          console.error('Error deleting user:', error);
-          alert('Failed to delete the user. Please try again later.');
-        },
-      });
-    }
+  deleteconfirme(userId: number): void {
+    this.deleteU = true;
+    this.deleted = userId;
   }
+
+  
+  deleteUser(): void {
+    this.userService.deleteUser(this.deleted).subscribe({
+      next: () => {
+        this.users = this.users.filter(user => user.id !== this.deleted); // Remove user from list
+        console.log(`User with ID ${this.deleted} deleted successfully.`);
+        this.deleteU = false;
+      },
+    // if (confirm('Are you sure you want to delete this user?')) {
+      
+    //     error: (error) => {
+    //       console.error('Error deleting user:', error);
+    //       alert('Failed to delete the user. Please try again later.');
+    //     },
+       });
+    }
+  
   
 
   showDetails(user: any): void {
@@ -144,5 +152,6 @@ export class TableDashboard implements OnInit { // Corrected class name
     this.edit = false;
     this.selectedUser = null; // Reset selectedUser
     this.originalUser = null; // Reset originalUser
+    this.deleteU = false;
   }
 }
