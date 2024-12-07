@@ -2,14 +2,25 @@ import Reaction from '../models/Reaction.js';
 
 export const createReaction = async (req, res, next) => {
     try {
-        const { postId, userId, reactionType, date } = req.body; 
-        const reaction = new Reaction({ postId, userId, reactionType, date });
-        const savedReaction = await reaction.save();
-        res.status(201).json(savedReaction);
+        const { postId, userId, reactionType, date } = req.body;
+
+        let existingReaction = await Reaction.findOne({ postId, userId });
+
+        if (existingReaction) {
+            existingReaction.reactionType = reactionType;
+            existingReaction.date = date; 
+            const updatedReaction = await existingReaction.save();
+            return res.status(200).json(updatedReaction); 
+        } else {
+            const reaction = new Reaction({ postId, userId, reactionType, date });
+            const savedReaction = await reaction.save();
+            return res.status(201).json(savedReaction); 
+        }
     } catch (err) {
         next(err);
     }
 };
+
 
 export const getReactionsByPostId = async (req, res, next) => {
     try {
