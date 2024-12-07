@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-
 @Injectable({
   providedIn: 'root',
 })
@@ -11,7 +10,6 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  
   getUsers(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl);
   }
@@ -19,15 +17,21 @@ export class UserService {
   getUser(userId: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/${userId}`);
   }
-  
+
   createUser(user: any): Observable<any> {
-    console.log(user);
-    
-    return this.http.post<any>(`${this.apiUrl}`, user);
+    return this.http.post<any>(this.apiUrl, user);
   }
+
+  updateUser(userId: number, updatedUser: any): Observable<any[]> {
+    return this.http.put<any[]>(`${this.apiUrl}/${userId}`, updatedUser);
+  }
+
   deleteUser(userId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${userId}`);
   }
-
-  
+  AddPhoto(image:any){ 
+    const formData = new FormData();
+    formData.append('image', image);
+    return this.http.post(`http://localhost:8888/PYTHON-SERVICE/api/upload`,formData);
+}
 }
