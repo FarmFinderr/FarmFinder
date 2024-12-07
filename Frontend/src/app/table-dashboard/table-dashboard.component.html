@@ -140,7 +140,7 @@
                   </button>
                   <button
                     class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 ml-2"
-                    (click)="deleteUser(user.id)"
+                    (click)="deleteconfirme(user.id)"
                   >
                     🗑️
                   </button>
@@ -150,44 +150,186 @@
               <!-- Repeat rows as needed -->
             </tbody>
           </table>
+          
+  <!-- details section -->
+   
+
+   <div *ngIf="isModalOpen"
+   class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+   (click)="closeModal()">
+
+
+    <div class="fixed inset-0 hidden bg-gray-500 bg-opacity-75 transition-opacity md:block" (click)="$event.stopPropagation()"></div>
+
+    <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+      <div class="flex min-h-full items-stretch justify-center text-center md:items-center md:px-2 lg:px-4">
+
+        <div class="flex w-full transform text-left text-base transition md:my-8 md:max-w-2xl md:px-4 lg:max-w-4xl">
           <div
-            *ngIf="isModalOpen"
-            class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
-            (click)="closeModal()"
-          >
-            <div
-              class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md"
-              (click)="$event.stopPropagation()"
-            >
-              <div class="flex justify-between items-center">
-                <h3 class="text-lg font-medium text-gray-900">User Details</h3>
-                <button
-                  class="text-gray-400 hover:text-gray-600 text-xl"
-                  aria-label="Close"
-                  (click)="closeModal()"
-                >
-                  &times;
-                </button>
+            class="relative flex w-full items-center overflow-hidden bg-white px-4 pb-8 pt-14 shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8">
+            <button type="button"
+              class="absolute right-4 top-4 text-gray-400 hover:text-gray-500 sm:right-6 sm:top-8 md:right-6 md:top-6 lg:right-8 lg:top-8"
+              (click)="closeModal()">
+              <span class="sr-only">Close</span>
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            <div class="grid w-full grid-cols-1 items-start gap-x-6 gap-y-8 sm:grid-cols-12 lg:gap-x-8">
+              <div class="aspect-h-3 aspect-w-2 overflow-hidden rounded-lg bg-gray-100 sm:col-span-4 lg:col-span-5">
+                <img :src="'http://localhost:8000' + selectedUser?.photo" alt="user photo"
+                  class="object-cover object-center">
               </div>
-              <div class="mt-4">
-                <p><strong>ID:</strong> {{ selectedUser?.id }}</p>
-                <p><strong>Name:</strong> {{ selectedUser?.name }}</p>
-                <p><strong>Email:</strong> {{ selectedUser?.email }}</p>
-                <p><strong>Phone:</strong> {{ selectedUser?.phone }}</p>
-                <p><strong>Address:</strong> {{ selectedUser?.address }}</p>
-              </div>
-              <div class="mt-6 flex justify-end">
-                <button
-                  class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-                  (click)="closeModal()"
-                >
-                  Close
-                </button>
+              <div class="sm:col-span-8 lg:col-span-7">
+                <h2 class="text-2xl font-bold text-gray-900 sm:pr-12 ">{{ selectedUser?.name +" "+ selectedUser?.lastname }}</h2>
+                <div class="py-8  flow-root rounded-lg border border-gray-100 shadow-sm ">
+                  <dl class="-my-3 divide-y divide-gray-100 text-sm">
+                    <div class="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4" >
+                      <dt class="font-medium text-gray-900">ID utilisateur</dt>
+                      <dd class="text-gray-700 sm:col-span-2" >{{ selectedUser?.id }}</dd>
+                    </div>
+                    <div class="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
+                      <dt class="font-medium text-gray-900">Nom et Prenom</dt>
+                      <dd class="text-gray-700 sm:col-span-2"  >{{ selectedUser?.name +" "+ selectedUser?.lastname }}</dd>
+                    </div>
+
+                    <div class="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4" >
+                      <dt class="font-medium text-gray-900">Email</dt>
+                      <dd class="text-gray-700 sm:col-span-2 ">{{ selectedUser?.emailAddress }}</dd>
+                    </div>
+
+                    <div class="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
+                      <dt class="font-medium text-gray-900">numero telephone</dt>
+                      <dd class="text-gray-700 sm:col-span-2" >{{ selectedUser?.phoneNumber }}</dd>
+                    </div>
+
+                    <div class="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
+                      <dt class="font-medium text-gray-900">address</dt>
+                      <dd class="text-gray-700 sm:col-span-2" >{{ selectedUser?.address }}</dd>
+                    </div>
+
+                    <div class="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
+                      <dt class="font-medium text-gray-900">Date de naicansse</dt>
+                      <dd class="text-gray-700 sm:col-span-2">
+                        {{ selectedUser?.date }}
+                      </dd>
+                    </div>
+                  </dl>
+                </div>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-          <div
+<!-- updatesection -->
+<div *ngIf="edit" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+  <div class="fixed inset-0 hidden bg-gray-500 bg-opacity-75 transition-opacity md:block"></div>
+
+  <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+    <div class="flex min-h-full items-stretch justify-center text-center md:items-center md:px-2 lg:px-4">
+      <div class="flex w-full transform text-left text-base transition md:my-8 md:max-w-2xl md:px-4 lg:max-w-4xl">
+        <div class="relative flex items-center overflow-hidden bg-white px-4 pb-8 pt-14 shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8">
+          <button type="button" class="absolute right-4 top-4 text-gray-400 hover:text-gray-500 sm:right-6 sm:top-8 md:right-6 md:top-6 lg:right-8 lg:top-8" (click)="closeModal()">
+            <span class="sr-only">Close</span>
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+
+          <form (ngSubmit)="updateUser()" class="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8">
+            <p class="text-center text-lg font-medium">modifier cette compte</p>
+
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <label for="Name" class="relative block rounded-md border border-gray-200 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600">
+                <input type="text" name="name" [(ngModel)]="originalUser.name" class="w-full peer border-none bg-transparent focus:border-transparent focus:outline-none focus:ring-0 p-4 pe-12" />
+              </label>
+              
+              <label for="LastName" class="relative block rounded-md border border-gray-200 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600">
+                <input type="text" name="lastName"  [(ngModel)]="originalUser.lastName" class="w-full peer border-none bg-transparent placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 p-4 pe-12" placeholder="LastName" />
+
+              </label>
+            </div>
+
+            <div>
+              <label for="phoneNumber" class="relative block rounded-md border border-gray-200 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600">
+                <input type="text" name="phoneNumber" [(ngModel)]="originalUser.phoneNumber" class="w-full peer border-none bg-transparent placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 p-4 pe-12" placeholder="phoneNumber" />
+              </label>
+            </div>
+
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <label for="sexe" class="relative block rounded-md border border-gray-200 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600">
+                <input type="text" name="sexe" [(ngModel)]="originalUser.sexe" class="w-full peer border-none bg-transparent placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 p-4 pe-12" placeholder="sexe" />
+              </label>
+
+              <label for="address" class="relative block rounded-md border border-gray-200 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600">
+                <input type="text" name="address" [(ngModel)]="originalUser.address" class="w-full peer border-none bg-transparent placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 p-4 pe-12" placeholder="address" />
+              </label>
+            </div>
+
+            <button type="submit" class="block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white">
+              modifier
+            </button>
+
+            <p class="text-center text-sm text-gray-500">modifier compte?</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- delete section  -->
+<div    class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+role="dialog" *ngIf="deleteU">
+
+  <div class="fixed inset-0 hidden  bg-opacity-75 transition-opacity md:block"></div>
+
+  <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+    <div class="flex min-h-full items-stretch justify-center text-center md:items-center md:px-2 lg:px-4">
+
+      <div class="flex w-full transform text-left text-base transition md:my-8 md:max-w-2xl md:px-4 lg:max-w-xl">
+        <div class="relative flex items-center overflow-hidden  red-shadow">
+          <button type="button"
+            class="absolute right-4 top-4 text-gray-400 hover:text-gray-500 sm:right-6 sm:top-8 md:right-6 md:top-6 lg:right-8 lg:top-8"
+            (click)="closeModal()">
+            <span class="sr-only">Close</span>
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+              aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+
+          <div class="rounded-lg bg-white p-8 shadow-2xl">
+            <h2 class="text-lg font-bold">Tu es sûr de vouloir faire ça ?</h2>
+
+            <p class="mt-2 text-sm text-gray-500">
+              Faire cela pourrait causer des problèmes ailleurs, êtes-vous sûr à 100% que c’est OK?
+            </p>
+
+            <div class="mt-4 flex gap-2">
+              <button type="button" class="rounded bg-green-50 px-4 py-2 text-sm font-medium text-green-600"
+              (click)="deleteUser()">
+                Oui, je suis sûr que
+              </button>
+
+              <button type="button" class="rounded bg-gray-50 px-4 py-2 text-sm font-medium text-gray-600"
+              (click)="closeModal()">
+                Non, reviens
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+          <!-- <div
             *ngIf="edit"
             class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
             (click)="closeModal()"
@@ -234,7 +376,7 @@
               </div>
               
             </div>
-          </div>
+          </div> -->
 
           <!-- <div class="relative z-10" role="dialog">
             <div
