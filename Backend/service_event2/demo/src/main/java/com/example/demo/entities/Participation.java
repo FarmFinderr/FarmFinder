@@ -1,4 +1,4 @@
-	package com.example.demo.entities;
+package com.example.demo.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -23,6 +23,12 @@ public class Participation {
     @JoinColumn(name = "event_id", nullable = false)
     private Event event;
 
+    public Participation(Long price,Long person_id, Event event)
+    {
+        this.price= price;
+        this.person_id = person_id;
+        this.event = event;
+    }
     @Transient
     private User user;
 }

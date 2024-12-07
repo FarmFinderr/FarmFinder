@@ -1,7 +1,7 @@
 import { User } from "./user.model";
 
 export interface event {
-  id?: number;
+  id: number;
   status: boolean;
   description: string;
   title: string;
