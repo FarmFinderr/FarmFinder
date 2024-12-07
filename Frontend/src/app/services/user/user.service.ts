@@ -36,5 +36,5 @@ export class UserService {
 }
 search(searchQuery: string): Observable<any> {
   return this.http.get<any>(`${this.apiUrl+"/search"}?search=${searchQuery}`);
-}
+} 
 }
