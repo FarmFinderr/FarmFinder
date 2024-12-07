@@ -15,8 +15,8 @@
 
 <!-- test posts boucle -->
 
-<div class="h-96 overflow-y-scroll  bg-stone-50" style="scrollbar-width: none; -ms-overflow-style: none;">
-  <div *ngFor="let post of postslist" class=" mb-10 bg-white p-5 rounded pb-5">
+<div class=" overflow-y-scroll h-[460px] bg-stone-50" style="scrollbar-width: none; -ms-overflow-style: none;">
+  <div *ngFor="let post of postslist" class=" mb-6 bg-white p-5 rounded pb-5">
     <!-- Post header: name, date, save option -->
     <div class="flex justify-between items-center">
       <div class="flex items-center space-x-2">
@@ -126,7 +126,7 @@
 
   <h3 class="font-semibold text-gray-700 mb-4">Les Nouvelles Événements</h3>
 
-  <div class="h-96 overflow-y-scroll" style="scrollbar-width: none; -ms-overflow-style: none;">
+  <div class="h-[580px] overflow-y-scroll" style="scrollbar-width: none; -ms-overflow-style: none;">
 
     <div *ngFor="let event of events" class="space-y-4">
       <div class="flex items-center m-1">
