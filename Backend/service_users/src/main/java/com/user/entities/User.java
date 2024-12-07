@@ -27,7 +27,7 @@ public class User {
     private String address;        
     private String emailAddress;   
     private String photo;          
-    private int role;             
+    private int role;
     private String password;
 	public User(Long id, String name, String lastName, String phoneNumber, Date date, boolean sexe, String address,
 			String emailAddress, String photo, int role, String password) {

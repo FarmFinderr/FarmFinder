@@ -19,7 +19,9 @@ export class TableDashboard implements OnInit { // Corrected class name
   edit = false;
   deleted = 0;
   deleteU=false;
-  originalUser: any; // Store original user data for editing
+  originalUser: any; 
+  searchQuery: string = '';
+  
 
 
   constructor(private userService: UserService) {}
@@ -153,5 +155,31 @@ export class TableDashboard implements OnInit { // Corrected class name
     this.selectedUser = null; // Reset selectedUser
     this.originalUser = null; // Reset originalUser
     this.deleteU = false;
+  }
+  searchUsers() {
+    const searchValue = this.searchQuery.trim(); // Get the trimmed search value
+    
+  
+    if (searchValue === '') {
+      // Fetch all users if the search is empty
+      this.userService.getUsers().subscribe(
+        (data: any) => {
+          this.users = data; // Update the users list with all users
+        },
+        (error: any) => {
+          console.error('Error fetching all users:', error);
+        }
+      );
+    } else {
+      // Perform search with the provided value
+      this.userService.search(searchValue).subscribe(
+        (data: any) => {
+          this.users = data; // Update the users list with filtered results
+        },
+        (error: any) => {
+          console.error('Error searching users:', error);
+        }
+      );
+    }
   }
 }

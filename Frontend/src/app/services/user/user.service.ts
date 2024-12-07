@@ -34,4 +34,7 @@ export class UserService {
     formData.append('image', image);
     return this.http.post(`http://localhost:8888/PYTHON-SERVICE/api/upload`,formData);
 }
+search(searchQuery: string): Observable<any> {
+  return this.http.get<any>(`${this.apiUrl+"/search"}?search=${searchQuery}`);
+}
 }

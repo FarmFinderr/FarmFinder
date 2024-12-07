@@ -41,6 +41,26 @@ public class UserController {
         }
         return ResponseEntity.ok(users);
     }
+    @GetMapping("/search")
+    public ResponseEntity<List<User>> searchUsers(
+            @RequestParam(required = false, defaultValue = "") String search) {
+        List<User> users;
+
+        if (search.isEmpty() ) {
+            // Return all users if search and userId are not provided
+            users = repository.findAll();
+        } else {
+            // Perform search based on parameters
+            users = repository.searchUsers(search);
+        }
+
+        if (users.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(users);
+    }
+
+    
 
     /*public List<User> getAllUsers() {
         return repository.findAll();}*/
@@ -92,6 +112,7 @@ public class UserController {
             return ResponseEntity.notFound().build();
         
     }
-}
     
+}
+   
 }
