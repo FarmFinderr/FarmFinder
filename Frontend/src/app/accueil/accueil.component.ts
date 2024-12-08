@@ -18,6 +18,8 @@ import { ChatbotService } from '../services/chat/chatbot.service';
 import { CommentService } from '../services/comment/comment.service';
 import { ReactionService } from '../services/reaction/reaction.service';
 import { tap, catchError } from 'rxjs/operators';
+import { AddpostService } from '../services/post/addpost.service';
+
 import { of } from 'rxjs';
 import Swal from 'sweetalert2';
 
@@ -75,7 +77,8 @@ export class AccueilComponent  implements OnInit {
 
   currentItem: Post | null = null;  
   constructor(private Postservice: PostService,private Chatbotservice: ChatbotService,private commentservice: CommentService,
-    private ReactionService:ReactionService,private router: Router
+    private ReactionService:ReactionService,private router: Router,    private AddpostService: AddpostService
+
   ) {
 
   }
@@ -103,7 +106,11 @@ export class AccueilComponent  implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.fetchPosts();
+    this.AddpostService.postAdded$.subscribe(() => {
+      this.fetchPosts();
+    });
    }
 
 
@@ -176,10 +183,6 @@ export class AccueilComponent  implements OnInit {
             });
             this.commentMessage='';
             this.fetchPosts();
-
-            /*this.router.navigateByUrl('/accueil', { skipLocationChange: true }).then(() => {
-              this.router.navigate([this.router.url]);
-            });*/
           }
         }),
         catchError((error) => {
