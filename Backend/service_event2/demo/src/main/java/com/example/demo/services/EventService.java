@@ -42,13 +42,23 @@ public class EventService {
         return  e ;
     }
     @GetMapping("/Event/{id}")
-    public Event GetEvent (@PathVariable(name="id") Long id)
-    {
-        Event  event =  eventRepository.findById(id).orElse(null);
-        User p = personneService.findCustomerById(event.getOwner_id());
-        event.setOwner(p);
-        return  event;
+    public ResponseEntity<Event> GetEvent(@PathVariable(name = "id") Long id) {
+        Event event = eventRepository.findById(id).orElse(null);
+
+        if (event == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        User owner = personneService.findCustomerById(event.getOwner_id());
+
+        if (owner == null) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+
+        event.setOwner(owner);
+        return ResponseEntity.ok(event);
     }
+
     @GetMapping("/Event/max_price/")
     public Long GetMaxPrice()
     {

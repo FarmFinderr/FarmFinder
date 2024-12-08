@@ -10,7 +10,7 @@ export interface event {
   photo:String;
   date_debut: string;
   date_fin: string;
-  owner?: User;
+  owner: User;
   users?:User[];
 
 }
