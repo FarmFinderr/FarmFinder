@@ -3,7 +3,7 @@ const Reclamation = require('../models/Reclamation');
 // Controller to create a new reclamation
 exports.createReclamation = async (req, res) => {
   try {
-    const { userId, reclamation } = req.body; // Added userId
+    const { userId, reclamation , image  } = req.body; // Added userId
 
     // Ensure that userId and reclamation are provided
     if (!userId || !reclamation) {
@@ -11,7 +11,7 @@ exports.createReclamation = async (req, res) => {
     }
 
     // Create a new reclamation object with userId
-    const newReclamation = new Reclamation({ userId, reclamation });
+    const newReclamation = new Reclamation({ userId, reclamation , image});
 
     // Save to the database
     await newReclamation.save();
