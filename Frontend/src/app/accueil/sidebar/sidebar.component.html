@@ -1,4 +1,4 @@
-<div class="bg-lime-900 text-white flex w-64 h-[510px] p-4 flex-col fixed">
+<div class="bg-lime-900 text-white flex w-64 h-[620px] p-4 flex-col fixed">
     <!-- Section utilisateur -->
     <div class="flex flex-col items-center py-6 border-b border-gray-100">
       <img
@@ -60,31 +60,35 @@
       </button>
 
       <!-- Modal Content -->
-      <div class="p-6">
-        <h2 class="text-xl font-bold mb-4 text-center text-black">Ajouter une Réclamation</h2>
+<div class="p-6">
+  <h2 class="text-xl font-bold mb-4 text-center text-black">Ajouter une Réclamation</h2>
 
-        <!-- Textarea for Reclamation -->
-        <textarea
-          [(ngModel)]="reclamationText"
-          class="w-full h-32 p-2 border rounded-lg mb-4 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-600"
-          placeholder="Saisissez votre réclamation ici...">
-        </textarea>
+  <!-- Textarea for Reclamation -->
+  <textarea
+    [(ngModel)]="reclamationText"
+    class="w-full h-32 p-2 border rounded-lg mb-4 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-600"
+    placeholder="Saisissez votre réclamation ici...">
+  </textarea>
 
-        <!-- Action Buttons -->
-        <div class="flex justify-end space-x-4">
-          <button
-            (click)="closeReclamationModal()"
-            class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
-            Annuler
-          </button>
+  <!-- File Input for Image Upload -->
+  <input type="file" (change)="onFileSelected($event)" class="mb-4 w-full p-2 border rounded-lg" />
 
-          <button
-           (click)="addReclamation()"
-           class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded">
-             Soumettre
-          </button>
-        </div>
-      </div>
+  <!-- Action Buttons -->
+  <div class="flex justify-end space-x-4">
+    <button
+      (click)="closeReclamationModal()"
+      class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+      Annuler
+    </button>
+
+    <button
+      (click)="addReclamation()"
+      class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded">
+      Soumettre
+    </button>
+  </div>
+</div>
+
     </div>
   </div>
 </div>

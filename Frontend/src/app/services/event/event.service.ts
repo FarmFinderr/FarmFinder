@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class EventService {
 
   private apiUrl = 'http://localhost:8888/events/';
+  console: any;
 
   constructor(private http: HttpClient) { }
 
@@ -16,6 +17,11 @@ export class EventService {
    // console.log(this.http.get<any[]>(this.apiUrl))
     return this.http.get<any[]>(`${this.apiUrl}GetAll`);
   }
+
+
+  getEvent(id:any): Observable<any> {
+     return this.http.get<any>(`${this.apiUrl}Event/${id}`);
+   }
 
   addEvent(item: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}EventCreation/`,item);

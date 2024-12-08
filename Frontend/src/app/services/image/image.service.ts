@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ImageService {
-  private baseUrl = 'http://localhost:8888/images';  
+  private baseUrl = 'http://localhost:8880/images';  
 
   constructor(private http: HttpClient) {}
 

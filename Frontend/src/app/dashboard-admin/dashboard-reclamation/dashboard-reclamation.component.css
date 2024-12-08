@@ -1,0 +1,167 @@
+.nav {
+  width: 20%;
+  background-color: #265726;
+  height: calc(100vh - 60px);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+/* img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+} */
+textarea {
+  resize: none;
+}
+button {
+  transition: background-color 0.2s;
+}
+
+.header {
+  font-size: 30px;
+  color: white; /* Ensures readability */
+}
+
+.profile {
+  font-weight: 200;
+  color: white;
+  width: 50%;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+#user_name {
+  text-align: center !important;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+}
+
+.profile span {
+  text-align: left;
+}
+
+.profile_photo {
+  margin-top: 30px;
+  border-radius: 50%;
+  width: 8rem;
+  height: 8rem;
+  background-color: grey;
+  border: 3px solid grey;
+}
+
+/* Adjustments for the layout and spacing */
+section {
+  display: flex;
+}
+
+.body {
+  background-image: url('/assets/sidebar.png');
+  background-size: cover; /* Makes sure the image covers the whole page */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents repeating */
+  width: 80%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+/* New styles for the list and its alignment */
+ul {
+  margin-left: 20px; /* Adds spacing between the sidebar and the list */
+  width: 75%; /* Ensures proper alignment */
+  padding: 0;
+  list-style-type: none;
+}
+
+ul li {
+  border: 1px solid gray; /* Gray border for list items */
+  padding: 10px; /* Adds inner spacing */
+  margin-bottom: 10px; /* Space between list items */
+  background-color: white; /* Better contrast */
+  border-radius: 5px; /* Rounded edges for a modern look */
+}
+
+.card_value {
+  display: flex;
+  height: 100%;
+}
+
+.card_text {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: end;
+}
+
+.cards {
+  flex-wrap: wrap !important;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 30%;
+  width: 80%;
+}
+
+.dashboards {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 40%;
+  gap: 2rem;
+}
+
+.dashboards div {
+  width: 50%;
+  height: 100%;
+  background-color: white;
+}
+
+.card {
+  background-color: white;
+  height: 70%;
+  width: 20%;
+  border-radius: 10px; /* Smooth corners for a polished look */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.profile:hover {
+  border-bottom: 3px solid white;
+}
+
+.batton_diagramme {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.batton_diagramme img {
+  width: 80%;
+  height: 100%;
+}
+
+#MyChart {
+  height: 100%;
+}
+
+.photos {
+  border-radius: 50%;
+  background-color: #C3D986;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 65%;
+  width: 60%;
+}
+
+.photos img {
+  width: 70%;
+}

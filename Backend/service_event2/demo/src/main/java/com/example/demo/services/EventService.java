@@ -34,16 +34,31 @@ public class EventService {
     public List<Event> GetAllevents()
     {
         List<Event> e=  eventRepository.findAll();
+        for(Event tmp :e)
+        {
+            User p = personneService.findCustomerById(tmp.getOwner_id());
+            tmp.setOwner(p);
+        }
         return  e ;
     }
     @GetMapping("/Event/{id}")
-    public Event GetEvent (@PathVariable(name="id") Long id)
-    {
-        Event  event =  eventRepository.findById(id).orElse(null);
-        User p = personneService.findCustomerById(event.getOwner_id());
-        event.setOwner(p);
-        return  event;
+    public ResponseEntity<Event> GetEvent(@PathVariable(name = "id") Long id) {
+        Event event = eventRepository.findById(id).orElse(null);
+
+        if (event == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        User owner = personneService.findCustomerById(event.getOwner_id());
+
+        if (owner == null) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+
+        event.setOwner(owner);
+        return ResponseEntity.ok(event);
     }
+
     @GetMapping("/Event/max_price/")
     public Long GetMaxPrice()
     {
@@ -58,15 +73,17 @@ public class EventService {
 
     @PostMapping("/EventCreation/")
     public ResponseEntity<?> registerEventUser( @RequestParam("photo") String photo,
-                                                    @RequestParam("title") String title,
-                                                    @RequestParam("description") String description,
-                                                    @RequestParam("price") Long price,
-                                                    @RequestParam("date_debut")  @DateTimeFormat(pattern = "yyyy-MM-dd")Date dateDebut,
-                                                    @RequestParam("date_fin")  @DateTimeFormat(pattern = "yyyy-MM-dd")Date dateFin,
-                                                    @RequestParam("owner_id") String ownerId) {
+                                                @RequestParam("title") String title,
+                                                @RequestParam("description") String description,
+                                                @RequestParam("price") Long price,
+                                                @RequestParam("date_debut")  @DateTimeFormat(pattern = "yyyy-MM-dd")Date dateDebut,
+                                                @RequestParam("date_fin")  @DateTimeFormat(pattern = "yyyy-MM-dd")Date dateFin,
+                                                @RequestParam("owner_id") Long ownerId) {
 
         Event newEvent = new Event(false,description,title,price,ownerId,dateDebut,photo,dateFin);
         eventRepository.save(newEvent);
+        User user =  personneService.findCustomerById(ownerId);
+
         if (newEvent != null) {
             return ResponseEntity.ok(newEvent);
         } else {
@@ -75,13 +92,37 @@ public class EventService {
     }
 
     @PostMapping("/EventResgistration/")
-    public Participation EventRegistration(@RequestBody Participation p )
-    {
-        User Registrated_User = personneService.findCustomerById(p.getPerson_id());
+    public ResponseEntity<?> EventRegistration(@RequestParam("price") Long price,
+                                               @RequestParam("person_id") Long person_id,
+                                               @RequestParam("event_id") Long eventId) {
+        User Registrated_User = personneService.findCustomerById(person_id);
+        Event event = eventRepository.findById(eventId).orElse(null); // Fetch event by ID
+        Participation p = new Participation(price, person_id, event);
+        p.setEvent(event);
         p.setUser(Registrated_User);
         participationRepository.save(p);
-        return  p ;
+
+        return ResponseEntity.ok(p);
     }
+
+
+    @GetMapping("/UsersRegistrated/{id}")
+    public ResponseEntity<?> GetRegistratedUsers(@PathVariable(name="id") Long event_id)
+    {
+        List<Participation>p =  participationRepository.findAllByEventId(event_id);
+        for(Participation tmp : p)
+        {
+            User user =  personneService.findCustomerById(tmp.getPerson_id());
+            tmp.setUser(user);
+        }
+        if (p != null) {
+            return ResponseEntity.ok(p);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
     @PutMapping("/updateBidding")
     public ResponseEntity<Participation> biddingUpdate(@RequestBody Participation p) {
 
@@ -112,7 +153,7 @@ public class EventService {
         User user = personneService.findCustomerById(p.getPerson_id());
 
         if (user == null) {
-                  return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
 
         ex.setPrice(p.getPrice());
