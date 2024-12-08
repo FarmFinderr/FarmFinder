@@ -23,13 +23,13 @@ public class User {
     private String lastName;       
     private String phoneNumber;   
     private Date date;             
-    private boolean sexe;          
+    private String sexe;          
     private String address;        
     private String emailAddress;   
     private String photo;          
     private int role;
     private String password;
-	public User(Long id, String name, String lastName, String phoneNumber, Date date, boolean sexe, String address,
+	public User(Long id, String name, String lastName, String phoneNumber, Date date, String sexe, String address,
 			String emailAddress, String photo, int role, String password) {
 		super();
 		this.id = id;
@@ -80,10 +80,10 @@ public class User {
 	}
 	
 	
-	public boolean isSexe() {
+	public String isSexe() {
 		return sexe;
 	}
-	public void setSexe(boolean sexe) {
+	public void setSexe(String sexe) {
 		this.sexe = sexe;
 	}
 	public String getAddress() {

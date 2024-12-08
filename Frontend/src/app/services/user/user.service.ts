@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class UserService {
-  private apiUrl = 'http://localhost:8880/users';
+  private apiUrl = 'http://localhost:8888/users';
 
   constructor(private http: HttpClient) {}
 
@@ -18,8 +18,13 @@ export class UserService {
     return this.http.get<any>(`${this.apiUrl}/${userId}`);
   }
 
-  createUser(user: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl, user);
+  createUser(formData: FormData): Observable<any> {
+    console.log(formData);
+    
+    return this.http.post<any>(`${this.apiUrl}/create`, formData, {
+      responseType: 'text' as 'json',
+  });
+  
   }
 
   updateUser(userId: number, updatedUser: any): Observable<any[]> {
@@ -31,8 +36,10 @@ export class UserService {
   }
   AddPhoto(image:any){ 
     const formData = new FormData();
-    formData.append('image', image);
-    return this.http.post(`http://localhost:8888/PYTHON-SERVICE/api/upload`,formData);
+    formData.append('image', image);    
+    return this.http.post(`http://localhost:8888/api/upload`,formData);
+    
+    
 }
 search(searchQuery: string): Observable<any> {
   return this.http.get<any>(`${this.apiUrl+"/search"}?search=${searchQuery}`);
