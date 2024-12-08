@@ -11,43 +11,62 @@ import { ReclamationService } from '../../services/reclamation/reclamation.servi
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent {
-
-constructor(private reclamationService: ReclamationService) {}
-
   userId: number = 1; // Set userId to 1 for testing purposes
   userName = 'Kahweji Syrina';
   userEmail = 'Syrinekahweji5@gmail.com';
 
   showModal: boolean = false;
   reclamationText: string = '';
+  selectedFile: string = '' ; // Store selected file
 
-
+  constructor(private reclamationService: ReclamationService) {}
   recherche(){
-  }
 
-  // Function to show the modal
+  }
   openReclamationModal() {
     this.showModal = true;
   }
 
-  // Function to hide the modal
   closeReclamationModal() {
     this.showModal = false;
   }
 
-  // Function to handle reclamation submission
+  // File selection handler
+  // onFileSelected(event: Event) {
+  //   const input = event.target as HTMLInputElement;
+  //   if (input.files && input.files[0]) {
+  //     this.selectedFile = input.files[0];
+  //   }
+  // }
+
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    this.selectedFile =file;
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      this.selectedFile = reader.result as string;
+      console.log(this.selectedFile);
+    };
+
+
+
+  }
+
   addReclamation() {
     if (this.reclamationText.trim()) {
-      const reclamationPayload = {
-        reclamation: this.reclamationText,
-        userId: this.userId  // Add userId here
-      };
+      const formData = new FormData();
+      formData.append('reclamation', this.reclamationText);
+      formData.append('userId', this.userId.toString());
+      formData.append('image', this.selectedFile.toString()); // Append file if selected
 
-      this.reclamationService.addReclamation(reclamationPayload).subscribe(
+
+      this.reclamationService.addReclamation(formData).subscribe(
         (response) => {
           console.log('Reclamation submitted successfully:', response);
           alert('Réclamation soumise avec succès!');
           this.reclamationText = ''; // Clear the input
+          this.selectedFile = ''; // Clear the file input
           this.showModal = false;   // Close the modal
         },
         (error) => {
@@ -60,8 +79,5 @@ constructor(private reclamationService: ReclamationService) {}
     }
   }
 
-
-
-  logout() {
-  }
+  logout() {}
 }

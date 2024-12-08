@@ -8,6 +8,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { TableDashboard} from  './table-dashboard/table-dashboard.component'
 import { OffresComponent } from './offres/offres.component';
 import { EventsComponent } from './events/events.component';
+import { DashboardReclamationComponent } from './dashboard-admin/dashboard-reclamation/dashboard-reclamation.component';
+
 
 
 
@@ -18,6 +20,7 @@ export const routes: Routes = [
   { path: 'accueil', component: AccueilComponent },
 
   { path: 'dashboard', component: DashboardAdmin },
+  {path:'ReclamationDashboard', component:DashboardReclamationComponent},
   { path: 'tableusers', component: TableDashboard } ,
   {path : 'offres'  ,  component: OffresComponent},
   {path :'events' , component: EventsComponent}
