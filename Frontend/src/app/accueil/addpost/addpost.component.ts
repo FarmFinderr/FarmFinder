@@ -58,7 +58,7 @@ export class AddpostComponent {
   
     console.log("form Data", formData);
   
-    this.http.post('http://localhost:5000/posts', formData).subscribe({
+    this.http.post('http://localhost:8880/posts', formData).subscribe({
       next: (response: any) => {
         const postId = response?.post?._id || response?._id;
         console.log('Post ID:', postId);

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class UserService {
-  private apiUrl = 'http://localhost:8888/users';
+  private apiUrl = 'http://localhost:8880/users';
 
   constructor(private http: HttpClient) {}
 
@@ -37,7 +37,7 @@ export class UserService {
   AddPhoto(image:any){
     const formData = new FormData();
     formData.append('image', image);    
-    return this.http.post(`http://localhost:8888/api/upload`,formData);
+    return this.http.post(`http://localhost:8880/api/upload`,formData);
     
     
 }

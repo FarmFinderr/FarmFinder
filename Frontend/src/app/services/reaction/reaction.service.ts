@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ReactionService {
-  private baseUrl = 'http://localhost:5000/reactions'; 
+  private baseUrl = 'http://localhost:8880/reactions'; 
 
   constructor(private http: HttpClient) {}
 

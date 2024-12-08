@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class CommentService {
-  private baseUrl = 'http://localhost:5000/commentaires';
+  private baseUrl = 'http://localhost:8880/commentaires';
 
   constructor(private http: HttpClient) {}
 

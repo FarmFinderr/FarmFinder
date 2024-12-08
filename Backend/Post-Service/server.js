@@ -27,7 +27,7 @@ const ipAddr = '192.168.1.168';
 const app = express();
 const PORT = process.env.PORT || 5000; 
 
-app.use(cors());
+/*app.use(cors());*/
 app.use(bodyParser.json());
 
 const registerWithEureka = function (appName, PORT) {
