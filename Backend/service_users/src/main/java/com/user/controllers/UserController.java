@@ -45,21 +45,6 @@ public class UserController {
 */
     
     @PostMapping("/create")
-    /*public User createUser(User user, MultipartFile photo) throws IOException {
-        if (photo != null && !photo.isEmpty()) {
-            // Save the photo to the server's file system
-            String photoName = UUID.randomUUID().toString() + "_" + photo.getOriginalFilename();
-            Path path = Paths.get("uploads/" + photoName);
-            Files.createDirectories(path.getParent());
-            photo.transferTo(path);
-
-            // Save the file path to the user object
-            user.setPhoto(path.toString());
-        }
-
-        // Save the user to the database
-        return userRepository.save(user);
-    }*/
     public ResponseEntity<String> createUser(
         @RequestParam("name") String name,
         @RequestParam("lastName") String lastName,
