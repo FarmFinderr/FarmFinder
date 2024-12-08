@@ -35,23 +35,20 @@
     <!-- Post content -->
     <div class="pb-5">
       <p class="pt-2">{{ post.description }}</p>
-
-      <!-- Post details (toggle visibility) -->
-      <div *ngIf="showDetails">
-        <p><strong>Prix:</strong> {{ post.price }}</p>
-        <p><strong>Localisation:</strong> {{ post.localisation }}</p>
-        <p><strong>Numéro de Téléphone:</strong> {{ post.user.phoneNumber }}</p>
-        <p *ngIf="post.type=='terrain'"><strong>Superficie:</strong> {{ post.air }}</p>
-        <p *ngIf="post.type=='materiel'"><strong>État:</strong> {{ post.etat }}</p>
-        <p *ngIf="post.type=='materiel'"><strong>Défauts:</strong> {{ post.defaut }}</p>
-        <app-mapleaflet [location]="location"></app-mapleaflet>
-
-        <!--<app-map class=" w-32 h-32" *ngIf="post.type=='terrain'"></app-map>-->
-      </div>
-      <p class="text-right font-bold underline cursor-pointer" (click)="toggleDetails()">
-        {{ showDetails ? 'Voir moins' : 'Voir plus' }}
-      </p>
+    <div *ngIf="showDetailsMap[post._id]">
+      <p><strong>Prix:</strong> {{ post.price }}</p>
+      <p><strong>Localisation:</strong> {{ post.localisation }}</p>
+      <p><strong>Numéro de Téléphone:</strong> {{ post.user.phoneNumber }}</p>
+      <p *ngIf="post.type === 'terrain'"><strong>Superficie:</strong> {{ post.air }}</p>
+      <p *ngIf="post.type === 'materiel'"><strong>État:</strong> {{ post.etat }}</p>
+      <p *ngIf="post.type === 'materiel'"><strong>Défauts:</strong> {{ post.defaut }}</p>
+      <app-mapleaflet [location]="post.localisation" [mapId]="'map-' + post._id" *ngIf="post.type === 'terrain'"></app-mapleaflet>
     </div>
+
+    <p class="text-right font-bold underline cursor-pointer" (click)="toggleDetails(post._id)">
+      {{ showDetailsMap[post._id] ? 'Voir moins' : 'Voir plus' }}
+    </p>
+  </div>
   
     <div *ngIf="post.images.length > 0" class="grid grid-cols-3 gap-2">
       <div *ngFor="let image of post.images.slice(0, 3); let i = index" 

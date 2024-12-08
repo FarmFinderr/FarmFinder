@@ -39,7 +39,6 @@ import { FormsModule } from '@angular/forms';
 })
 export class AccueilComponent  implements OnInit {
 
-  location: string = '';
 
    postslist :any[]= [];
   Post = { 
@@ -413,9 +412,13 @@ formatDate(date: string): string {
 
   }
 
-   toggleDetails() {
-     this.showDetails = !this.showDetails;
-   }
+     showDetailsMap: { [key: string]: boolean } = {};
+
+     toggleDetails(postId: string): void {
+      console.log("post id",postId)
+       this.showDetailsMap[postId] = !this.showDetailsMap[postId];
+     }
+  
 
    openModalDetailsEvent(eventId:number) {
     this.eventDetails = this.events[eventId];
