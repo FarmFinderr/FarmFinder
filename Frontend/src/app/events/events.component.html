@@ -1,73 +1,87 @@
 <app-navbar></app-navbar>
 
-<div class="container mx-auto px-4 flex flex-col items-center justify-center min-h-screen parent space-y-8">
+<div class="container mx-auto px-4 flex flex-col items-center justify-center min-h-screen parent space-y-8 mt-20">
   <!-- Augmentation du mt ici pour donner plus d'espace -->
 
   <!-- Titre principal -->
-  <h1 class="text-2xl font-bold">
-    Annonces des fermes à vendre en Tunisie !!!!!!!!
-    <div class="flex justify-center m-5">
-      <button id="defaultModalButton" data-modal-target="defaultModal" data-modal-toggle="defaultModal" class="block text-white bg-yellow-500 hover:bg-orange-400 focus:ring-4 focus:outline-none focus:ring-orange-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-350 dark:hover:bg-orange-400 dark:focus:ring-orange-500" type="button">
-        Create Event
-      </button>
-    </div>
-
-
+  <!-- Main Title -->
+<div class="text-center my-8">
+  <h1 class="text-4xl font-extrabold text-gray-800">
+    Explore Farms for Sale in Tunisia! 🌿
   </h1>
-  <div class="event-block">
-    <form class="max-w-md mx-auto">
-      <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
-      <div class="relative">
-        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-          <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-            viewBox="0 0 20 20">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-          </svg>
-        </div>
-        <input type="search" id="default-search"
-          class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
-          placeholder="Search for lands, Farms events..." required />
-        <button type="submit"
-          class="text-white absolute end-2.5 bottom-2.5 bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2">Search</button>
-      </div>
+  <p class="text-lg text-gray-600 mt-2">
+    Discover the best opportunities for farmland, events, and auctions tailored to your needs.
+  </p>
 
-    </form>
+  <!-- Create Event Button -->
+  <div class="mt-6">
+    <button
+      id="defaultModalButton"
+      data-modal-target="defaultModal"
+      data-modal-toggle="defaultModal"
+      class="inline-block text-white bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-orange-400 hover:to-yellow-400 focus:ring-4 focus:outline-none focus:ring-orange-300 font-semibold rounded-lg text-md px-6 py-3 transition-all shadow-md hover:shadow-lg"
+      type="button">
+      Create Event
+    </button>
   </div>
-  <div class="flex flex-wrap gap-8">
-    <!-- Section des annonces -->
-    <div class="flex-1 ml-8">
-      <div class="space-y-6">
-        <div *ngFor="let annonce of annonces" class="bg-white shadow rounded-lg flex flex-col md:flex-row">
-          <!-- Image de l'annonce avec surface -->
-          <div class="relative w-full md:w-40 h-auto">
-            <img [src]="annonce.photo"alt="Image annonce" class="w-full h-full object-cover rounded-t-lg md:rounded-l-lg" />
+</div>
 
-            <div class="absolute bottom-0 left-0 w-full bg-gray-800 bg-opacity-50 text-white text-center py-1">
-              <p class="text-lg font-bold">{{ annonce.title }} m²</p>
-            </div>
+<!-- Search Bar -->
+<div class="w-full max-w-lg mx-auto">
+  <div class="relative">
+    <input type="search" id="default-search"
+      class="block w-full p-4 pl-12 text-gray-900 border border-gray-300 rounded-full bg-gray-50 focus:ring-yellow-400 focus:border-yellow-400 placeholder-gray-500"
+      placeholder="Search for lands, Farms events..." required>
+    <button
+      class="absolute right-3 bottom-3 bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-orange-400 hover:to-yellow-400 focus:ring-4 focus:outline-none  text-white text-sm px-4 py-2 rounded-full shadow-md transition duration-200">
+      Search
+    </button>
+    <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-6 h-6 text-gray-400" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+      <path stroke="currentColor" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+    </svg>
+  </div>
+</div>
+
+<div class="flex flex-wrap gap-8">
+  <div class="flex-1 ml-8">
+    <div class="space-y-6">
+      <div
+        *ngFor="let annonce of annonces"
+        class="bg-white shadow rounded-lg flex flex-col md:flex-row"
+      >
+        <!-- Announcement Image -->
+        <div class="relative w-full md:w-40 h-auto">
+          <img
+            [src]="annonce.photo"
+            alt="Image annonce"
+            class="w-full h-full object-cover rounded-t-lg md:rounded-l-lg"
+          />
+          <div class="absolute bottom-0 left-0 w-full bg-gray-800 bg-opacity-50 text-white text-center py-1">
+            <p class="text-lg font-bold">{{ annonce.title }} m²</p>
           </div>
+        </div>
 
-
-          <div class="p-4 flex-1">
-            <h2 class="text-lg font-semibold text-gray-800">
-              {{ annonce.title }}
-            </h2>
-            <p class="text-sm text-gray-500 mb-2">{{ annonce.price }}</p>
-            <p class="text-green-600 font-bold text-lg">{{ annonce.price }}</p>
-            <p class="text-sm text-gray-600 mt-2">
-              {{ annonce.description }}
-            </p>
-            <button class="mt-4 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
-              je participe
-            </button>
-          </div>
+        <!-- Announcement Details -->
+        <div class="p-4 flex-1">
+          <h2 class="text-lg font-semibold text-gray-800">
+            {{ annonce.title }}
+          </h2>
+          <p class="text-sm text-gray-500 mb-2">{{ annonce.price }}</p>
+          <p class="text-green-600 font-bold text-lg">{{ annonce.price }}</p>
+          <p class="text-sm text-gray-600 mt-2">
+            {{ annonce.description }}
+          </p>
+          <button
+            class="mt-4 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+            (click)="openModelDetailsEvent(annonce)"
+          >
+            Je participe
+          </button>
         </div>
       </div>
     </div>
-
-
   </div>
+</div>
   <div id="defaultModal" tabindex="-1" aria-hidden="true"
   class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
   <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
@@ -75,7 +89,7 @@
     <div class="relative p-4 bg-white rounded-lg shadow sm:p-5">
       <!-- Modal header -->
       <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b border-yellow-300">
-        <h3 class="text-lg font-semibold text-green-700">
+        <h3 class="text-lg font-semibold text-yellow-500">
           Create Event
         </h3>
         <button type="button"
@@ -91,39 +105,38 @@
         </button>
       </div>
       <!-- Modal body -->
-      <form  (ngSubmit)="CreateEvent()">
+      <form (ngSubmit)="CreateEvent()">
         <div class="grid gap-4 mb-4 sm:grid-cols-2">
           <div>
-            <label for="name" class="block mb-2 text-sm font-medium text-green-700">Name</label>
+            <label for="name" class="block mb-2 text-sm font-medium text-gray-700">Name</label>
             <input type="text" name="title" id="title" [(ngModel)]="event_created.title"
-              class="bg-yellow-50 border border-yellow-300 text-green-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-400 focus:border-yellow-400 block w-full p-2.5"
               placeholder="Event Name.." required="">
           </div>
           <div>
-            <label for="price" class="block mb-2 text-sm font-medium text-green-700">Price</label>
-            <input type="number" name="price" id="price"  [(ngModel)]="event_created.price"
-              class="bg-yellow-50 border border-yellow-300 text-green-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5"
+            <label for="price" class="block mb-2 text-sm font-medium text-gray-700">Price</label>
+            <input type="number" name="price" id="price" [(ngModel)]="event_created.price"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-400 focus:border-yellow-400 block w-full p-2.5"
               placeholder="$2999" required="">
           </div>
           <div>
-            <label for="price" class="block mb-2 text-sm font-medium text-green-700">Begin-Date</label>
-            <input type="Date" name="date_debut" id="date_debut"  [(ngModel)]="event_created.date_debut"
-              class="bg-yellow-50 border border-yellow-300 text-green-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5" required="">
+            <label for="price" class="block mb-2 text-sm font-medium text-gray-700">Begin-Date</label>
+            <input type="date" name="date_debut" id="date_debut" [(ngModel)]="event_created.date_debut"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-400 focus:border-yellow-400 block w-full p-2.5" required="">
           </div>
           <div>
-            <label for="price" class="block mb-2 text-sm font-medium text-green-700">End-Date</label>
-            <input type="Date" name="date_fin" id="date_fin" [(ngModel)]="event_created.date_fin"
-              class="bg-yellow-50 border border-yellow-300 text-green-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5" required="">
+            <label for="price" class="block mb-2 text-sm font-medium text-gray-700">End-Date</label>
+            <input type="date" name="date_fin" id="date_fin" [(ngModel)]="event_created.date_fin"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-400 focus:border-yellow-400 block w-full p-2.5" required="">
           </div>
           <div class="file-upload">
-            <label for="photo" class="block mb-2 text-sm font-medium text-green-700">
+            <label for="photo" class="block mb-2 text-sm font-medium text-gray-700">
               <i class="fas fa-image mr-2"></i>Upload Photo
             </label>
             <div class="relative">
-              <input type="file" name="photo" id="photo"
-                class="hidden" required  (change)="onFileChanged($event)">
+              <input type="file" name="photo" id="photo" class="hidden" required (change)="onFileChanged($event)">
               <label for="photo"
-                class="bg-yellow-50 border border-yellow-300 text-green-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 cursor-pointer hover:bg-yellow-100 flex items-center justify-center">
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-400 focus:border-yellow-400 block w-full p-2.5 cursor-pointer hover:bg-gray-100 flex items-center justify-center">
                 <i class="fas fa-upload mr-2"></i> Choose a file
               </label>
             </div>
@@ -131,15 +144,14 @@
           </div>
 
           <div class="sm:col-span-2">
-            <label for="description"
-              class="block mb-2 text-sm font-medium text-green-700">Description</label>
-            <input id="description" [(ngModel)]="event_created.description" id="description" name="description"
-              class="block p-2.5 w-full text-sm text-green-900 bg-yellow-50 rounded-lg border border-yellow-300 focus:ring-green-500 focus:border-green-500"
-              placeholder="Write the event  description here ...">
+            <label for="description" class="block mb-2 text-sm font-medium text-gray-700">Description</label>
+            <input id="description" [(ngModel)]="event_created.description" name="description"
+              class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-yellow-400 focus:border-yellow-400"
+              placeholder="Write the event description here ...">
           </div>
         </div>
-        <button type="submit"
-          class="text-white inline-flex items-center bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+        <button type="submit" data-modal-toggle="defaultModal"
+          class="text-white inline-flex items-center bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-orange-400 hover:to-yellow-400 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
           <svg class="mr-1 -ml-1 w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd"
               d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
@@ -148,10 +160,67 @@
           Add new product
         </button>
       </form>
+
     </div>
   </div>
 </div>
+<!-- modal details events-->
+<div *ngIf="isModalOpenDetailsEvent" class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
+  <div class="bg-white rounded-lg shadow-lg w-[640px] h-[460px] flex">
+    <!-- Liste des participants -->
+    <div class="w-1/3 bg-gray-100 p-4 border-r">
+      <h5 class="text-lg font-semibold mb-4">Participants</h5>
+      <ul class="space-y-2">
+        <li *ngFor="let participant of curr_users" class="text-sm text-gray-700 flex items-center space-x-2">
+          <img [src]="participant.user.photo" alt="Avatar" class="w-8 h-8 rounded-full">
+          <span>{{ participant.user.name + " " + participant.user.lastName + " " + participant.price }}</span>
 
+        </li>
+      </ul>
+    </div>
+
+    <!-- Détails de l'événement -->
+    <div class="flex-1 flex flex-col">
+      <!-- En-tête -->
+      <div class="px-6 py-4 flex items-center justify-between border-b">
+        <h5 class="text-lg font-semibold">Détails de l'événement</h5>
+        <button (click)="closeModalDetailsEvent()" class="text-gray-600 hover:text-gray-900">
+          <span class="text-xl">&times;</span>
+        </button>
+      </div>
+
+      <!-- Contenu principal -->
+      <div class="px-6 py-4 flex-1 overflow-y-auto">
+        <!-- Description -->
+        <div class="mb-4">
+          <h6 class="text-lg font-semibold mb-2">Description :</h6>
+          <p class="text-gray-600 text-sm">{{ SelectedEvent.description }}</p>
+        </div>
+
+        <!-- Prix -->
+        <div class="mb-4">
+          <h6 class="font-medium text-gray-800">Prix :</h6>
+          <p class="text-gray-600">{{ SelectedEvent.price }}</p>
+        </div>
+
+        <!-- Image -->
+        <div>
+          <h6 class="font-medium text-gray-800 mb-2">Image :</h6>
+          <img [src]="SelectedEvent.photo" alt="Event Image" class="w-full h-32 object-cover rounded-lg">
+        </div>
+      </div>
+
+      <div class="modal-footer mt-4 flex justify-end mr-11 mb-5">
+        <input type="number" name="value" id="value" [(ngModel)]="value"
+        class="bg-yellow-50 border border-yellow-300 text-green-900 text-xs rounded-md focus:ring-green-500 focus:border-green-500 block w-60 p-2.5 mr-5"
+        placeholder="Enter your bid" required>
+
+        <button type="submit" class="bg-yellow-500 text-white py-2 px-4 rounded-lg" (click)="RegisterForEvent()">Participer</button>
+      </div>
+
+    </div>
+  </div>
+</div>
 
 
 </div>

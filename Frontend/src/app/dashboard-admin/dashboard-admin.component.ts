@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart, ChartConfiguration, registerables } from 'chart.js';
 import { NavbarAdminComponent } from '../navbar-admin/navbar-admin.component'
+import { RouterModule } from '@angular/router';
 
 Chart.register(...registerables);
 
 @Component({
   selector: 'app-dashboard-admin',
   standalone: true,
-  imports: [NavbarAdminComponent],
+  imports: [NavbarAdminComponent,RouterModule],
   templateUrl: './dashboard-admin.component.html',
   styleUrls: ['./dashboard-admin.component.css']
 })

@@ -1,0 +1,144 @@
+.nav {
+  width: 20%;
+  background-color: #265726;
+  position: fixed;  /* Fix the sidebar */
+  top: 0;           /* Align the sidebar at the top */
+  left: 0;          /* Align the sidebar to the left */
+  height: 100vh;    /* Full height */
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  padding-top: 30px; /* Padding to give space from the top */
+  z-index: -1;    /* Ensure the sidebar is on top */
+}
+
+.header {
+  font-size: 30px;
+}
+
+.profile {
+  font-weight: 200;
+  color: white;
+  width: 50%;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+#user_name {
+  text-align: center !important;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+}
+
+.profile span {
+  text-align: left;
+}
+
+.profile_photo {
+  margin-top: 30px;
+  border-radius: 50%;
+  width: 8rem;
+  height: 8rem;
+  background-color: grey;
+  border: 3px solid grey;
+}
+
+section {
+  display: flex;
+  margin-left: 20%;  /* Offset main content to make room for the sidebar */
+  width: 80%;        /* Ensure the main content fills the remaining space */
+  height: 100vh;     /* Full height */
+  padding-top: 30px; /* Add padding-top to ensure it doesn't overlap with the fixed sidebar */
+}
+
+.body {
+  background-image: url('/assets/sidebar.png');
+  background-size: cover; /* Ensure the background image covers the entire body */
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;          /* Use full width */
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.card_value {
+  display: flex;
+  height: 100%;
+}
+
+.card_text {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: end;
+}
+
+.cards {
+  flex-wrap: wrap !important;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 30%;
+  width: 80%;
+}
+
+.dashboards {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 40%;
+  gap: 2rem;
+}
+
+.dashboards div {
+  width: 50%;
+  height: 100%;
+  background-color: white;
+}
+
+.card {
+  background-color: white;
+  height: 70%;
+  width: 20%;
+}
+
+.profile:hover {
+  border-bottom: 3px solid white;
+}
+
+.batton_diagramme {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.batton_diagramme img {
+  width: 80%;
+  height: 100%;
+}
+
+#MyChart {
+  height: 100%;
+}
+
+.photos {
+  border-radius: 50%;
+  background-color: #C3D986;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 65%;
+  width: 60%;
+}
+
+.photos img {
+  width: 70%;
+}

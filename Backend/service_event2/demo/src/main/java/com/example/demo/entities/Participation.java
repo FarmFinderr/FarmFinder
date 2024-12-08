@@ -1,10 +1,7 @@
-	package com.example.demo.entities;
+package com.example.demo.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 
 @Entity
@@ -23,6 +20,15 @@ public class Participation {
     @JoinColumn(name = "event_id", nullable = false)
     private Event event;
 
+    public Participation(Long price,Long person_id, Event event)
+    {
+        this.price= price;
+        this.person_id = person_id;
+        this.event = event;
+    }
+    @Setter
+    @Getter
     @Transient
     private User user;
+
 }
