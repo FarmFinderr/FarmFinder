@@ -35,9 +35,19 @@
             <div>
               <input name="address" [(ngModel)]="user.address" type="text" class="bg-white w-full text-sm px-4 py-3.5 rounded-md" placeholder="Enter your address" required />
             </div>
-            <!-- <div>
-              <input name="photo" type="file" (change)="onFileChange($event)" class="bg-white w-full text-sm px-4 py-3.5 rounded-md" />
-            </div> -->
+            <div>
+              
+              <input name="photo" type="file" id="imageUpload" [(ngModel)]="user.photo" class="hidden" accept="image/*,video/*" (change)="onFileSelected($event)" class="bg-white w-full text-sm px-4 py-3.5 rounded-md" />
+            </div>
+            <div>
+              <input type="radio" name="sexe" value="true" /> Male
+            <input type="radio" name="sexe" value="false" /> Female
+            </div>
+            
+            
+            
+              
+            
           </div>
           <div class="!mt-10 grid grid-cols-3 gap-4">
             <div></div>

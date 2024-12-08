@@ -3,13 +3,22 @@ package com.user.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.HttpStatus;
 
+import com.thoughtworks.xstream.io.path.Path;
 import com.user.entities.User;
 import com.user.repository.UserRepository;
+import com.user.services.FileStorageService;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/users")
@@ -19,9 +28,12 @@ public class UserController {
 
     @Autowired
     private UserRepository repository;
+    @Autowired
+    private FileStorageService fileStorageService;
 
 
-    @PostMapping
+
+   /* @PostMapping
     
     public ResponseEntity<User> createUser(@RequestBody User user) {
         if (user == null) {
@@ -30,6 +42,63 @@ public class UserController {
         User savedUser = repository.save(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
     }
+*/
+    
+    @PostMapping("/create")
+    /*public User createUser(User user, MultipartFile photo) throws IOException {
+        if (photo != null && !photo.isEmpty()) {
+            // Save the photo to the server's file system
+            String photoName = UUID.randomUUID().toString() + "_" + photo.getOriginalFilename();
+            Path path = Paths.get("uploads/" + photoName);
+            Files.createDirectories(path.getParent());
+            photo.transferTo(path);
+
+            // Save the file path to the user object
+            user.setPhoto(path.toString());
+        }
+
+        // Save the user to the database
+        return userRepository.save(user);
+    }*/
+    public ResponseEntity<String> createUser(
+        @RequestParam("name") String name,
+        @RequestParam("lastName") String lastName,
+        @RequestParam("emailAddress") String emailAddress,
+        @RequestParam("phoneNumber") String phoneNumber,
+        @RequestParam("password") String password,
+        @RequestParam("date") String date,
+        @RequestParam("address") String address,
+        @RequestParam("sexe") String sexe, // Add sexe here
+        @RequestParam(value = "photo", required = false) MultipartFile photo
+    ) {
+        try {
+            // Save the photo if provided
+            String photoPath = null;
+            if (photo != null && !photo.isEmpty()) {
+                photoPath = fileStorageService.saveFile(photo);
+            }
+
+            // Create and save the user entity
+            User user = new User();
+            user.setName(name);
+            user.setLastName(lastName);
+            user.setEmailAddress(emailAddress);
+            user.setPhoneNumber(phoneNumber);
+            user.setPassword(password);
+            user.setDate(Date.valueOf(date)); // Convert the date string to Date type
+            user.setAddress(address);
+            user.setSexe(sexe); // Set sexe here
+            user.setPhoto(photoPath);
+
+            repository.save(user); // Save user to the repository
+
+            return ResponseEntity.ok("User created successfully.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body("Error creating user: " + e.getMessage());
+        }
+    }
+
 
 
     @GetMapping
@@ -86,21 +155,20 @@ public class UserController {
                     existingUser.setName(updatedUser.getName());
                     existingUser.setLastName(updatedUser.getLastName());
                     existingUser.setPhoneNumber(updatedUser.getPhoneNumber());
-                    existingUser.setDate(updatedUser.getDate()); 
                     existingUser.setDate(updatedUser.getDate());
-                    existingUser.setSexe(updatedUser.isSexe());
+                    existingUser.setSexe(updatedUser.isSexe()); 
                     existingUser.setAddress(updatedUser.getAddress());
                     existingUser.setEmailAddress(updatedUser.getEmailAddress());
                     existingUser.setPhoto(updatedUser.getPhoto());
                     existingUser.setRole(updatedUser.getRole());
                     existingUser.setPassword(updatedUser.getPassword());
 
-                    User savedUser = repository.save(existingUser);
+                    User savedUser = repository.save(existingUser); // Save updated user
                     return ResponseEntity.ok(savedUser);
                 })
-                
                 .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
+
 
     // Delete a user by ID
     @DeleteMapping("/{id}")

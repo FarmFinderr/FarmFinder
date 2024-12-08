@@ -17,7 +17,7 @@ public class ServiceUsersApplication {
         SpringApplication.run(ServiceUsersApplication.class, args);
     }
 
-    @Bean
+    /*@Bean
     CommandLineRunner runner(UserRepository repository) {
         return args -> {
             repository.save(new User(null, "Jean", "Dupont", "123456789", Date.valueOf("1990-01-15"), true, 
@@ -27,5 +27,5 @@ public class ServiceUsersApplication {
             repository.save(new User(null, "John", "Doe", "456123789", Date.valueOf("1995-07-10"), true, 
                 "789 Boulevard Central", "john.doe@example.com", "photo3.jpg", 1, "password789"));
         };
-    }
+    }*/
 }
