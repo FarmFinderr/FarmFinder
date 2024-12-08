@@ -101,3 +101,5 @@ export class DashboardAdmin implements OnInit {
     this.chart2 = new Chart('MyChart2', this.config2);
   }
 }
+
+export { NavbarAdminComponent };
