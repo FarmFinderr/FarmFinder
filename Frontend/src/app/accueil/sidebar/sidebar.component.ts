@@ -17,10 +17,10 @@ export class SidebarComponent {
 
   showModal: boolean = false;
   reclamationText: string = '';
-  selectedFile: string = '' ; // Store selected file
+  selectedFile: string = ''; // Store selected file
 
-  constructor(private reclamationService: ReclamationService) {}
-  recherche(){
+  constructor(private reclamationService: ReclamationService) { }
+  recherche() {
 
   }
   openReclamationModal() {
@@ -41,7 +41,7 @@ export class SidebarComponent {
 
   onFileSelected(event: any) {
     const file = event.target.files[0];
-    this.selectedFile =file;
+    this.selectedFile = file;
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
@@ -56,22 +56,30 @@ export class SidebarComponent {
   addReclamation() {
     if (this.reclamationText.trim()) {
       const formData = new FormData();
-      formData.append('reclamation', this.reclamationText);
-      formData.append('userId', this.userId.toString());
-      formData.append('image', this.selectedFile.toString()); // Append file if selected
+      formData.append("reclamation", this.reclamationText);
+      formData.append("userId", this.userId.toString());
 
+      // Assuming `this.selectedFile` contains the base64 string, e.g., 'data:image/png;base64,...'
+      if (this.selectedFile) {
+        formData.append("image", this.selectedFile);
+      }
+      formData.forEach((value, key) => {
+        console.log(key + ": " + value);
+      });
 
       this.reclamationService.addReclamation(formData).subscribe(
-        (response) => {
-          console.log('Reclamation submitted successfully:', response);
-          alert('Réclamation soumise avec succès!');
-          this.reclamationText = ''; // Clear the input
-          this.selectedFile = ''; // Clear the file input
-          this.showModal = false;   // Close the modal
-        },
-        (error) => {
-          console.error('Error submitting reclamation:', error);
-          alert('Une erreur est survenue. Veuillez réessayer.');
+        {
+          next: (response) => {
+            console.log('Reclamation submitted successfully:', response);
+            alert('Réclamation soumise avec succès!');
+            this.reclamationText = ''; // Clear the input
+            this.selectedFile = ''; // Clear the base64 string
+            this.showModal = false; // Close the modal
+          },
+          error: (err) => {
+            console.error('Error submitting reclamation:', err);
+            alert('Une erreur est survenue. Veuillez réessayer.');
+          }
         }
       );
     } else {
@@ -79,5 +87,6 @@ export class SidebarComponent {
     }
   }
 
-  logout() {}
+
+  logout() { }
 }
