@@ -1,24 +1,28 @@
 const Reclamation = require('../models/Reclamation');
 
 // Controller to create a new reclamation
-exports.createReclamation = async (req, res) => {
+exports.createReclamation = async (req, res, next) => {
   try {
-    const { userId, reclamation } = req.body; // Added userId
+    const { userId, reclamation, image } = req.body; 
+    console.log(req); // Check the incoming request
 
-    // Ensure that userId and reclamation are provided
     if (!userId || !reclamation) {
       return res.status(400).json({ message: 'User ID and reclamation are required' });
     }
 
-    // Create a new reclamation object with userId
-    const newReclamation = new Reclamation({ userId, reclamation });
+    // Save the base64 image and other data into the new reclamation
+    const newReclamation = new Reclamation({
+      userId,
+      reclamation,
+      image // Storing the base64 string directly in the database
+    });
 
     // Save to the database
     await newReclamation.save();
-    
+
     res.status(201).json(newReclamation);
   } catch (error) {
-    res.status(500).json({ message: 'Error creating reclamation', error });
+    next(error);
   }
 };
 

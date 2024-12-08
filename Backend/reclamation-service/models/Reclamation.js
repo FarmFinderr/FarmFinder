@@ -1,13 +1,17 @@
 const mongoose = require('mongoose');
 
 const ReclamationSchema = new mongoose.Schema({
-  userId:{
+  userId: {
     type: Number,
-    required:true
+    required: true
   },
   reclamation: {
     type: String,
     required: true
+  },
+  image: {
+    type: String, // File path for the uploaded image
+    required: false
   }
 });
 

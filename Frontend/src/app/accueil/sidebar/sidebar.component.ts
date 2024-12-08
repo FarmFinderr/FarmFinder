@@ -11,48 +11,75 @@ import { ReclamationService } from '../../services/reclamation/reclamation.servi
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent {
-
-constructor(private reclamationService: ReclamationService) {}
-
   userId: number = 1; // Set userId to 1 for testing purposes
   userName = 'Kahweji Syrina';
   userEmail = 'Syrinekahweji5@gmail.com';
 
   showModal: boolean = false;
   reclamationText: string = '';
+  selectedFile: string = ''; // Store selected file
 
+  constructor(private reclamationService: ReclamationService) { }
+  recherche() {
 
-  recherche(){
   }
-
-  // Function to show the modal
   openReclamationModal() {
     this.showModal = true;
   }
 
-  // Function to hide the modal
   closeReclamationModal() {
     this.showModal = false;
   }
 
-  // Function to handle reclamation submission
+  // File selection handler
+  // onFileSelected(event: Event) {
+  //   const input = event.target as HTMLInputElement;
+  //   if (input.files && input.files[0]) {
+  //     this.selectedFile = input.files[0];
+  //   }
+  // }
+
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    this.selectedFile = file;
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      this.selectedFile = reader.result as string;
+      console.log(this.selectedFile);
+    };
+
+
+
+  }
+
   addReclamation() {
     if (this.reclamationText.trim()) {
-      const reclamationPayload = {
-        reclamation: this.reclamationText,
-        userId: this.userId  // Add userId here
-      };
+      const formData = new FormData();
+      formData.append("reclamation", this.reclamationText);
+      formData.append("userId", this.userId.toString());
 
-      this.reclamationService.addReclamation(reclamationPayload).subscribe(
-        (response) => {
-          console.log('Reclamation submitted successfully:', response);
-          alert('Réclamation soumise avec succès!');
-          this.reclamationText = ''; // Clear the input
-          this.showModal = false;   // Close the modal
-        },
-        (error) => {
-          console.error('Error submitting reclamation:', error);
-          alert('Une erreur est survenue. Veuillez réessayer.');
+      // Assuming `this.selectedFile` contains the base64 string, e.g., 'data:image/png;base64,...'
+      if (this.selectedFile) {
+        formData.append("image", this.selectedFile);
+      }
+      formData.forEach((value, key) => {
+        console.log(key + ": " + value);
+      });
+
+      this.reclamationService.addReclamation(formData).subscribe(
+        {
+          next: (response) => {
+            console.log('Reclamation submitted successfully:', response);
+            alert('Réclamation soumise avec succès!');
+            this.reclamationText = ''; // Clear the input
+            this.selectedFile = ''; // Clear the base64 string
+            this.showModal = false; // Close the modal
+          },
+          error: (err) => {
+            console.error('Error submitting reclamation:', err);
+            alert('Une erreur est survenue. Veuillez réessayer.');
+          }
         }
       );
     } else {
@@ -61,7 +88,5 @@ constructor(private reclamationService: ReclamationService) {}
   }
 
 
-
-  logout() {
-  }
+  logout() { }
 }
