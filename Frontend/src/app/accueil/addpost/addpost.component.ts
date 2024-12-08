@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { PostService } from '../../services/post/post.service';
 import { ImageService } from '../../services/image/image.service';
+import { AddpostService } from '../../services/post/addpost.service';
+import { Router } from '@angular/router';
 import { FormsModule ,FormGroup,NgForm} from '@angular/forms'; 
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { ModalAddPostComponent } from "../modal-add-post/modal-add-post.component";
@@ -16,12 +18,15 @@ import Swal from 'sweetalert2';
   styleUrls: ['./addpost.component.css']
 })
 export class AddpostComponent {
+
   isModalOpen = false;
   messageSuccess = false;
   selectedType: string = '';
   files: File[] = [];
   userId='1';
-  constructor(private http: HttpClient,private imageService: ImageService) {}
+  constructor(private http: HttpClient,private imageService: ImageService,
+    private AddpostService: AddpostService,private router: Router, 
+  ) {}
 
 
   openModal() {
@@ -73,6 +78,13 @@ export class AddpostComponent {
         }
         
         this.messageSuccess = true;
+        this.AddpostService.notifyPostAdded();
+        
+          const currentUrl = this.router.url;
+          this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+            this.router.navigate([currentUrl]);
+          });
+        
         form.resetForm();
         this.files = []; 
         this.isModalOpen = false;

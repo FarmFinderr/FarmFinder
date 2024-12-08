@@ -1,64 +1,76 @@
-import { Component, AfterViewInit, Input } from '@angular/core';
 import * as L from 'leaflet';
+import { Component, Input, OnDestroy, AfterViewInit } from '@angular/core';
+import { GeocodingService } from '../../services/geocoding/geocoding.service';
 
 @Component({
   selector: 'app-mapleaflet',
   standalone: true,
   imports: [],
   templateUrl: './mapleaflet.component.html',
-  styleUrl: './mapleaflet.component.css'
+  styleUrls: ['./mapleaflet.component.css']
 })
-export class MapleafletComponent implements AfterViewInit{
-  @Input() location: string = ''; // Localisation en entrée
+export class MapleafletComponent implements AfterViewInit, OnDestroy {
+  @Input() location: string = ''; // Expects location as a string (e.g., "City Name")
+  @Input() mapId: string = 'map'; // Allows dynamic map ID
+  map: L.Map | undefined;
 
-  private map: L.Map | undefined;
-
-  constructor() {}
+  constructor(private geocodingService: GeocodingService) {}
 
   ngAfterViewInit(): void {
+    this.ngOnDestroy()
     this.initializeMap();
   }
 
-  private initializeMap(): void {
-    // Initialiser la carte avec un emplacement par défaut
-    this.map = L.map('map').setView([36.81897, 10.16579], 10); // Tunis par défaut
+  ngOnDestroy(): void {
+    if (this.map) {
+      this.map.remove(); 
+      if (this.map) {
+        this.map.remove(); // Détruit l'instance de carte
+        this.map = undefined; // Réinitialise la référence
+        console.log(`Map with ID ${this.mapId} destroyed.`);
+      }
+    }
+  }
 
-    // Ajouter une couche OpenStreetMap
+  initializeMap(): void {
+    this.ngOnDestroy()
+  
+    const mapContainer = document.getElementById(this.mapId);
+  
+    // Clear the container to remove any existing Leaflet DOM artifacts
+    if (mapContainer) {
+      mapContainer.innerHTML = '';
+    }
+  
+    this.geocodingService.geocode(this.location).subscribe({
+      next: (response) => {
+        if (response.length > 0) {
+          const { lat, lon } = response[0]; // Extract latitude and longitude
+          this.map = L.map(this.mapId, {
+            center: [parseFloat(lat), parseFloat(lon)],
+            zoom: 13,
+          });
+  
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors',
+          }).addTo(this.map);
+        }
+      },
+      error: (err) => {
+        console.error('Error in geocoding:', err);
+      },
+    });
+  }
+
+  private initializeFallbackMap(): void {
+    this.ngOnDestroy()
+    this.map = L.map(this.mapId, {
+      center: [36.8065, 10.1815], // Default to Tunis if geocoding fails
+      zoom: 6,
+    });
+
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap contributors'
+      attribution: '&copy; OpenStreetMap contributors',
     }).addTo(this.map);
   }
-
-  ngOnChanges(): void {
-    if (this.location && this.map) {
-      this.geocodeLocation(this.location);
-    }
-  }
-
-  private geocodeLocation(location: string): void {
-    if (!this.map) {
-      console.error('La carte n\'est pas encore initialisée.');
-      return;
-    }
-  
-    const geocodeUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(location)}`;
-  
-    fetch(geocodeUrl)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data && data.length > 0) {
-          const lat = data[0].lat;
-          const lon = data[0].lon;
-          this.map!.setView([lat, lon], 15); // Utilisation sûre de `!`
-  
-          // Ajouter un marqueur à l'emplacement
-          L.marker([lat, lon]).addTo(this.map!).bindPopup(location).openPopup();
-        } else {
-          console.error('Aucune localisation trouvée pour:', location);
-        }
-      })
-      .catch((error) => console.error('Erreur lors du géocodage:', error));
-  }
-  
-
 }

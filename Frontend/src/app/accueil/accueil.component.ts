@@ -18,6 +18,8 @@ import { ChatbotService } from '../services/chat/chatbot.service';
 import { CommentService } from '../services/comment/comment.service';
 import { ReactionService } from '../services/reaction/reaction.service';
 import { tap, catchError } from 'rxjs/operators';
+import { AddpostService } from '../services/post/addpost.service';
+
 import { of } from 'rxjs';
 import Swal from 'sweetalert2';
 
@@ -37,7 +39,6 @@ import { FormsModule } from '@angular/forms';
 })
 export class AccueilComponent  implements OnInit {
 
-  location: string = '';
 
    postslist :any[]= [];
   Post = { 
@@ -75,7 +76,8 @@ export class AccueilComponent  implements OnInit {
 
   currentItem: Post | null = null;  
   constructor(private Postservice: PostService,private Chatbotservice: ChatbotService,private commentservice: CommentService,
-    private ReactionService:ReactionService,private router: Router
+    private ReactionService:ReactionService,private router: Router,    private AddpostService: AddpostService
+
   ) {
 
   }
@@ -103,7 +105,11 @@ export class AccueilComponent  implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.fetchPosts();
+    this.AddpostService.postAdded$.subscribe(() => {
+      this.fetchPosts();
+    });
    }
 
 
@@ -176,10 +182,6 @@ export class AccueilComponent  implements OnInit {
             });
             this.commentMessage='';
             this.fetchPosts();
-
-            /*this.router.navigateByUrl('/accueil', { skipLocationChange: true }).then(() => {
-              this.router.navigate([this.router.url]);
-            });*/
           }
         }),
         catchError((error) => {
@@ -410,9 +412,13 @@ formatDate(date: string): string {
 
   }
 
-   toggleDetails() {
-     this.showDetails = !this.showDetails;
-   }
+     showDetailsMap: { [key: string]: boolean } = {};
+
+     toggleDetails(postId: string): void {
+      console.log("post id",postId)
+       this.showDetailsMap[postId] = !this.showDetailsMap[postId];
+     }
+  
 
    openModalDetailsEvent(eventId:number) {
     this.eventDetails = this.events[eventId];
@@ -424,6 +430,38 @@ formatDate(date: string): string {
     this.isModalOpenDetailsEvent = false;
     console.log("ModalDetailsEvent closed ");
 
+  }
+
+  isModalImagesOpen = false;
+  modalImages: any[] = [];
+
+  openImagesModal(images: any[], index: number) {
+    if (images.length > 3) {
+      this.modalImages = images; 
+      this.isModalImagesOpen = true;
+    }
+  }
+  currentImageIndex = 0;
+
+
+  closeModalImages() {
+    this.isModalImagesOpen = false; 
+  }
+
+  showNextImage() {
+    if (this.currentImageIndex < this.modalImages.length - 1) {
+      this.currentImageIndex++;
+    } else {
+      this.currentImageIndex = 0; 
+    }
+  }
+
+  showPreviousImage() {
+    if (this.currentImageIndex > 0) {
+      this.currentImageIndex--;
+    } else {
+      this.currentImageIndex = this.modalImages.length - 1;
+    }
   }
 
 }

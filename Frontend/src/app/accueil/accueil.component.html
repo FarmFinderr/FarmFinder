@@ -35,23 +35,20 @@
     <!-- Post content -->
     <div class="pb-5">
       <p class="pt-2">{{ post.description }}</p>
-
-      <!-- Post details (toggle visibility) -->
-      <div *ngIf="showDetails">
-        <p><strong>Prix:</strong> {{ post.price }}</p>
-        <p><strong>Localisation:</strong> {{ post.localisation }}</p>
-        <p><strong>Numéro de Téléphone:</strong> {{ post.user.phoneNumber }}</p>
-        <p *ngIf="post.type=='terrain'"><strong>Superficie:</strong> {{ post.air }}</p>
-        <p *ngIf="post.type=='materiel'"><strong>État:</strong> {{ post.etat }}</p>
-        <p *ngIf="post.type=='materiel'"><strong>Défauts:</strong> {{ post.defaut }}</p>
-        <app-mapleaflet [location]="location"></app-mapleaflet>
-
-        <!--<app-map class=" w-32 h-32" *ngIf="post.type=='terrain'"></app-map>-->
-      </div>
-      <p class="text-right font-bold underline cursor-pointer" (click)="toggleDetails()">
-        {{ showDetails ? 'Voir moins' : 'Voir plus' }}
-      </p>
+    <div *ngIf="showDetailsMap[post._id]">
+      <p><strong>Prix:</strong> {{ post.price }}</p>
+      <p><strong>Localisation:</strong> {{ post.localisation }}</p>
+      <p><strong>Numéro de Téléphone:</strong> {{ post.user.phoneNumber }}</p>
+      <p *ngIf="post.type === 'terrain'"><strong>Superficie:</strong> {{ post.air }}</p>
+      <p *ngIf="post.type === 'materiel'"><strong>État:</strong> {{ post.etat }}</p>
+      <p *ngIf="post.type === 'materiel'"><strong>Défauts:</strong> {{ post.defaut }}</p>
+      <app-mapleaflet [location]="post.localisation" [mapId]="'map-' + post._id" *ngIf="post.type === 'terrain'"></app-mapleaflet>
     </div>
+
+    <p class="text-right font-bold underline cursor-pointer" (click)="toggleDetails(post._id)">
+      {{ showDetailsMap[post._id] ? 'Voir moins' : 'Voir plus' }}
+    </p>
+  </div>
   
     <div *ngIf="post.images.length > 0" class="grid grid-cols-3 gap-2">
       <div *ngFor="let image of post.images.slice(0, 3); let i = index" 
@@ -63,7 +60,9 @@
           (click)="openImageInNewWindow(image.path)"
         >
         <div *ngIf="i === 2 && post.images.length > 3" 
-             class="absolute inset-0 bg-black bg-opacity-50 text-white flex items-center justify-center text-lg font-bold rounded-lg">
+             class="absolute inset-0 bg-black bg-opacity-50 text-white flex items-center justify-center text-lg font-bold rounded-lg cursor-pointer"
+             (click)="openImagesModal(post.images, i)"
+             >
           +{{ post.images.length - 3 }}
         </div>
       </div>
@@ -293,6 +292,59 @@
 
 
 </div>
+
+
+
+<!-- Modal for images -->
+<!--<div *ngIf="isModalImagesOpen" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+  <div class="bg-white p-4 rounded-lg max-w-lg w-full">
+    <div class="flex justify-between items-center">
+      <button class="text-black" (click)="closeModalImages()">Close</button>
+    </div>
+    <div class="grid grid-cols-3 gap-2">
+      <div *ngFor="let image of modalImages; let i = index" class="relative">
+        <img 
+          [src]="'http://localhost:5000' + image.path" 
+          alt="Image {{ i + 1 }}" 
+          class="w-full h-48 object-cover rounded-lg"
+        >
+      </div>
+    </div>
+  </div>
+</div>-->
+
+
+
+<!-- Modal for images -->
+<div *ngIf="isModalImagesOpen" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+  <div class="relative bg-white p-4 rounded-lg w-full max-w-lg">
+    <!-- Close Button -->
+    <button class="absolute top-4 right-4 text-white text-3xl" (click)="closeModalImages()">
+      &times;
+    </button>
+    
+    <button 
+    class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-3xl" 
+    (click)="showPreviousImage()">
+    &#10094; <!-- Flèche gauche pour image précédente -->
+  </button>
+
+  <!-- Next Image Button -->
+  <button 
+    class="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-3xl" 
+    (click)="showNextImage()">
+    &#10095; <!-- Flèche droite pour image suivante -->
+  </button>
+
+    <!-- Image Display -->
+    <img 
+      [src]="'http://localhost:5000' + modalImages[currentImageIndex].path" 
+      alt="Image {{ currentImageIndex + 1 }}" 
+      class="w-full h-auto object-contain rounded-lg"
+    >
+  </div>
+</div>
+
 
 
 
