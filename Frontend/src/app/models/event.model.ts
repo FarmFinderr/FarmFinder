@@ -1,7 +1,7 @@
 import { User } from "./user.model";
 
 export interface event {
-  id?: number;
+  id: number;
   status: boolean;
   description: string;
   title: string;
@@ -10,7 +10,7 @@ export interface event {
   photo:String;
   date_debut: string;
   date_fin: string;
-  owner?: User;
+  owner: User;
   users?:User[];
 
 }

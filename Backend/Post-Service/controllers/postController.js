@@ -44,7 +44,7 @@ export const getAllPosts = async (req, res, next) => {
             posts.map(async (post) => {
                 try {
 
-                    const userResponse = await axios.get(`http://localhost:8888/users/${post.userId}`);
+                    const userResponse = await axios.get(`http://localhost:8880/users/${post.userId}`);
                     const user = userResponse.data;
 
                     const images = await Image.find({ postId: post._id });
@@ -57,7 +57,7 @@ export const getAllPosts = async (req, res, next) => {
                     const reactionsWithUsers = await Promise.all(
                         reactions.map(async (reaction) => {
                             try {
-                                const reactionUserResponse = await axios.get(`http://localhost:8888/users/${reaction.userId}`);
+                                const reactionUserResponse = await axios.get(`http://localhost:8880/users/${reaction.userId}`);
                                 return { ...reaction.toObject(), user: reactionUserResponse.data };
                             } catch {
                                 return { ...reaction.toObject(), user: null };
@@ -67,14 +67,14 @@ export const getAllPosts = async (req, res, next) => {
                     const commentsWithUsers = await Promise.all(
                         commentaires.map(async (comment) => {
                             try {
-                                const commentaireUserResponse = await axios.get(`http://localhost:8888/users/${comment.userId}`);
+                                const commentaireUserResponse = await axios.get(`http://localhost:8880/users/${comment.userId}`);
                                 return { ...comment.toObject(), user: commentaireUserResponse.data };
                             } catch {
                                 return { ...comment.toObject(), user: null };
                             }
                         })
                     );
-
+                
                     return {
                         ...post.toObject(),
                         user,

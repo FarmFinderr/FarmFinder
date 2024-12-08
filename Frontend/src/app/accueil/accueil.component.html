@@ -15,8 +15,8 @@
 
 <!-- test posts boucle -->
 
-<div class="h-96 overflow-y-scroll  bg-stone-50" style="scrollbar-width: none; -ms-overflow-style: none;">
-  <div *ngFor="let post of postslist" class=" mb-10 bg-white p-5 rounded pb-5">
+<div class=" overflow-y-scroll h-[460px] bg-stone-50" style="scrollbar-width: none; -ms-overflow-style: none;">
+  <div *ngFor="let post of postslist" class=" mb-6 bg-white p-5 rounded pb-5">
     <!-- Post header: name, date, save option -->
     <div class="flex justify-between items-center">
       <div class="flex items-center space-x-2">
@@ -44,7 +44,9 @@
         <p *ngIf="post.type=='terrain'"><strong>Superficie:</strong> {{ post.air }}</p>
         <p *ngIf="post.type=='materiel'"><strong>État:</strong> {{ post.etat }}</p>
         <p *ngIf="post.type=='materiel'"><strong>Défauts:</strong> {{ post.defaut }}</p>
-        <app-map class=" w-32 h-32" *ngIf="post.type=='terrain'"></app-map>
+        <app-mapleaflet [location]="location"></app-mapleaflet>
+
+        <!--<app-map class=" w-32 h-32" *ngIf="post.type=='terrain'"></app-map>-->
       </div>
       <p class="text-right font-bold underline cursor-pointer" (click)="toggleDetails()">
         {{ showDetails ? 'Voir moins' : 'Voir plus' }}
@@ -85,7 +87,12 @@
     <!-- Like and comment input -->
     <div class="flex items-center space-x-2 -mt-1">
       <div class="relative group">
-        <img [src]="selectedReaction" class="w-7 h-7" alt="Reaction" />
+        <img 
+        *ngIf="getUserReaction(post) as userReaction" 
+        [src]="getReactionImage(userReaction)" 
+        [alt]="userReaction"
+        class="w-7 h-7">
+        <!--<img [src]="selectedReaction" class="w-7 h-7" alt="Reaction" />-->
     
         <div class="absolute hidden group-hover:flex bg-white border rounded-lg shadow-lg space-x-2 p-2 -top-8 -left-3 z-10 w-72">
           <!--<img src="../../assets/accueil/like.gif" (click)="selectReaction('../../assets/accueil/like.png')" class="w-7 h-7 cursor-pointer" alt="Like">-->
@@ -121,7 +128,7 @@
 
   <h3 class="font-semibold text-gray-700 mb-4">Les Nouvelles Événements</h3>
 
-  <div class="h-96 overflow-y-scroll" style="scrollbar-width: none; -ms-overflow-style: none;">
+  <div class="h-[580px] overflow-y-scroll" style="scrollbar-width: none; -ms-overflow-style: none;">
 
     <div *ngFor="let event of events" class="space-y-4">
       <div class="flex items-center m-1">
