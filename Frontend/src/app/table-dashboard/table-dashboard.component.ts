@@ -3,6 +3,8 @@ import { UserService } from '../services/user/user.service';
 import { NavbarAdminComponent } from '../navbar-admin/navbar-admin.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
 
 @Component({
   selector: 'app-table-dashboard',
@@ -19,8 +21,9 @@ export class TableDashboard implements OnInit { // Corrected class name
   edit = false;
   deleted = 0;
   deleteU=false;
-  originalUser: any; 
+ 
   searchQuery: string = '';
+  originalUser: any = {};
   
 
 
@@ -28,6 +31,7 @@ export class TableDashboard implements OnInit { // Corrected class name
 
   ngOnInit(): void {
     this.loadUsers();
+    
   }
   // if(this.image.length>0){
   //   this.imageError="";
@@ -94,7 +98,9 @@ export class TableDashboard implements OnInit { // Corrected class name
       console.log(this.originalUser);
       
       this.userService.updateUser(this.originalUser.id, this.originalUser).subscribe((updatedUser:any) => {
-          console.log( updatedUser);
+        this.users = this.users.map(user =>
+          user.id === updatedUser.id ? updatedUser : user
+        );
           
           
           this.closeModal(); 
@@ -182,4 +188,109 @@ export class TableDashboard implements OnInit { // Corrected class name
       );
     }
   }
+
+  downloadPDF(): void {
+    const doc = new jsPDF();
+
+    // Title
+    doc.setFontSize(16);
+    doc.text('Liste des Utilisateurs', 10, 10);
+
+    // Define headers
+    const headers = ['NCIN', 'Nom', 'Prenom', 'Gmail', 'Date de naissance', 'Adresse'];
+
+    // Map user data to rows
+    const rows = this.users.map(user => [
+      user.id,
+      user.name,
+      user.lastName,
+      user.emailAddress,
+      user.date,
+      user.address,
+    ]);
+
+    // Add table using autoTable
+    autoTable(doc, {
+      head: [headers],
+      body: rows,
+      startY: 20,
+    });
+
+    // Save the PDF
+    doc.save('Liste_Utilisateurs.pdf');
+  }
+  imprimer(): void {
+    // Prepare the user list as HTML
+    const printableContent = `
+      <html>
+        <head>
+          <title>Liste des Utilisateurs</title>
+          <style>
+            body {
+              font-family: Arial, sans-serif;
+              margin: 20px;
+            }
+            table {
+              width: 100%;
+              border-collapse: collapse;
+              margin-top: 20px;
+            }
+            th, td {
+              border: 1px solid #ddd;
+              padding: 8px;
+              text-align: left;
+            }
+            th {
+              background-color: #f4f4f4;
+            }
+          </style>
+        </head>
+        <body>
+          <h1>Liste des Utilisateurs</h1>
+          <table>
+            <thead>
+              <tr>
+                <th>NCIN</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Email</th>
+                <th>Date de Naissance</th>
+                <th>Adresse</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${this.users
+                .map(
+                  (user) => `
+                    <tr>
+                      <td>${user.id}</td>
+                      <td>${user.name}</td>
+                      <td>${user.lastName}</td>
+                      <td>${user.emailAddress}</td>
+                      <td>${user.date}</td>
+                      <td>${user.address}</td>
+                    </tr>
+                  `
+                )
+                .join('')}
+            </tbody>
+          </table>
+        </body>
+      </html>
+    `;
+  
+    // Open a new window and write the content
+    const printWindow = window.open('', '_blank', 'width=800,height=600');
+    if (printWindow) {
+      printWindow.document.open();
+      printWindow.document.write(printableContent);
+      printWindow.document.close();
+      printWindow.focus();
+      printWindow.print(); // Trigger the print dialog
+      printWindow.close(); // Close the window after printing
+    }
+  }
+  
+  
+  
 }

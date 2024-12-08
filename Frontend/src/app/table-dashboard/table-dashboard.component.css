@@ -6,6 +6,7 @@
     flex-direction: column;
     gap: 2rem;
     align-items: center;
+    position: fixed;
 
 
 }
@@ -65,19 +66,30 @@ section {
 }
 
 .body {
-    background-image: url('/assets/sidebar.png');
     background-size: cover; /* Makes sure the image covers the whole page */
     background-position: center; /* Centers the image */
     background-repeat: no-repeat; /* Prevents repeating */
     width: 80%;
-    display: flex;
+
+    display: flex ;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    
     gap: 2rem;
     flex-wrap: wrap !important;
+    margin-right: 0px;
+    margin-left: auto;
+    
 
 }
+.sec {
+    background-image: url('/assets/sidebar.png');
+    background-size: cover;  
+    
+    
+    
+}
+
 
 .card_value {
     display: flex;
@@ -165,6 +177,7 @@ section {
     margin: 0 auto;
     font-family: Arial, sans-serif;
     padding: 20px;
+    
 }
 
 /* Search Bar */
@@ -187,7 +200,7 @@ section {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border: 2px solid #6ea5f8;
+    border: 2px solid green;
 }
 
 .header {
@@ -218,7 +231,7 @@ section {
 }
 
 .download-button {
-    background-color: #6ea5f8;
+    background-color: #15803d;
 }
 
 .print-button {
