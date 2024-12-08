@@ -432,4 +432,36 @@ formatDate(date: string): string {
 
   }
 
+  isModalImagesOpen = false;
+  modalImages: any[] = [];
+
+  openImagesModal(images: any[], index: number) {
+    if (images.length > 3) {
+      this.modalImages = images; 
+      this.isModalImagesOpen = true;
+    }
+  }
+  currentImageIndex = 0;
+
+
+  closeModalImages() {
+    this.isModalImagesOpen = false; 
+  }
+
+  showNextImage() {
+    if (this.currentImageIndex < this.modalImages.length - 1) {
+      this.currentImageIndex++;
+    } else {
+      this.currentImageIndex = 0; 
+    }
+  }
+
+  showPreviousImage() {
+    if (this.currentImageIndex > 0) {
+      this.currentImageIndex--;
+    } else {
+      this.currentImageIndex = this.modalImages.length - 1;
+    }
+  }
+
 }
