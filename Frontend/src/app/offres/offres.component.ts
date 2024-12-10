@@ -1,33 +1,59 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule, CurrencyPipe, NgForOf, NgIf } from '@angular/common';
+import { Post } from '../models/post.model';  // Importation du modèle Post
+import { PostService } from '../services/post/post.service';  // Service pour récupérer les posts
+import { FormsModule } from '@angular/forms';  // Importation du module Forms
 import { NavbarComponent } from '../accueil/navbar/navbar.component';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-offres',
   standalone: true,
-  imports: [NavbarComponent, CommonModule],
-  templateUrl: './offres.component.html',
-  styleUrl: './offres.component.css'
+  imports: [NavbarComponent, CommonModule, CurrencyPipe, NgForOf, NgIf, FormsModule],  // Importation des modules nécessaires
+  templateUrl: './offres.component.html',  // Le template HTML
+  styleUrls: ['./offres.component.css'],  // Le fichier CSS
 })
-export class OffresComponent {
-  annonces = [
-    {
-      titre: 'Ferme à Vendre',
-      location: ' à Tunis',
-      prix: '5700,000 TND',
-      description:
-        ' Opportunité dacquérir une ferme dans la région verdoyante de Tunis avec un terrain fertile et un système dirrigation moderne. Idéale pour lagriculture ou lélevage, la propriété dispose de bâtiments et infrastructures adaptées. Un cadre naturel et un accès facile pour développer votre projet. résidence gardée ',
-      surface: 300,
-      image: '../../assets/accueil/post1.jpg',
-    },
-    {
-      titre: 'Ferme à Vendre',
-      location: 'Ferme à Vendre à Nabeul',
-      prix: '4000,000 TND',
-      description:
-        'Belle ferme située dans la région verdoyante de Nabeul, avec un terrain fertile et bien équipé pour lagriculture et lélevage. Comprenant des bâtiments agricoles et un système dirrigation efficace, cette propriété offre un excellent potentiel pour un projet agricole dans un cadre naturel agréable.',
-      surface: 100,
-      image: '../../assets/accueil/terrain2.jpg',
-    },
-  ];
+export class OffresComponent implements OnInit {
+  annonces: Post[] = []; // Tableau pour stocker les annonces récupérées
+  filteredAnnonces: any[] = []; // Annonces filtrées selon les critères
+  searchRegion: string = ''; // Région à rechercher
+  searchPrice: number | null = null; // Prix à rechercher
+
+  constructor(private postService: PostService) {}
+
+  ngOnInit(): void {
+    this.loadAnnonces(); 
+  }
+
+  // Méthode pour récupérer les annonces via le service
+  loadAnnonces(): void {
+    this.postService.getPosts().subscribe({
+      next: (data) => {
+        this.annonces = data;  // Affecter les annonces récupérées à la variable 'annonces'
+        this.filteredAnnonces = data; // Par défaut, afficher toutes les annonces
+        console.log('Annonces chargées :', this.annonces);
+      },
+      error: (err) => {
+        console.error('Erreur lors du chargement des annonces :', err);  // Gérer les erreurs de récupération
+      },
+    });
+  }
+
+  // Fonction de recherche par prix ou région
+  onSearch(): void {
+    console.log("Recherche en cours...");
+  
+    this.filteredAnnonces = this.annonces.filter(annonce => {
+      // Si un prix est spécifié, filtrer par prix
+      const matchesPrice = this.searchPrice ? annonce.price === this.searchPrice : true;
+  
+      // Si une région est spécifiée, filtrer par région
+      const matchesRegion = this.searchRegion
+        ? annonce.localisation && annonce.localisation.toLowerCase().includes(this.searchRegion.toLowerCase())
+        : true;
+  
+      // Si au moins un des critères (prix ou région) correspond, retourner l'annonce
+      return matchesPrice && matchesRegion;
+    });
+  }
+  
 }
