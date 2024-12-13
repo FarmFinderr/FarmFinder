@@ -2,10 +2,7 @@ package com.user.entities;
 
 import java.sql.Date;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,7 +22,8 @@ public class User {
     private Date date;             
     private String sexe;          
     private String address;        
-    private String emailAddress;   
+    private String emailAddress;
+	@Column(name="photo",length=99999999)
     private String photo;          
     private int role;
     private String password;

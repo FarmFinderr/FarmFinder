@@ -1,4 +1,4 @@
-package com.example.projet_integration.services
+package com.example.projet_integration
 
 import java.util.Date
 
@@ -12,5 +12,7 @@ data class Event(
     val date_fin : Date ,
     val  description : String ,
     val  title :  String,
-    val  photo : String
+    val  photo : String,
+    val  owner : User ,
+    val users  : Array<User>
 )

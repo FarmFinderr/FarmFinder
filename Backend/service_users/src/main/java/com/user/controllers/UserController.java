@@ -54,14 +54,12 @@ public class UserController {
         @RequestParam("date") String date,
         @RequestParam("address") String address,
         @RequestParam("sexe") String sexe, // Add sexe here
-        @RequestParam(value = "photo", required = false) MultipartFile photo
+        @RequestParam("photo") String photo
     ) {
         try {
             // Save the photo if provided
-            String photoPath = null;
-            if (photo != null && !photo.isEmpty()) {
-                photoPath = fileStorageService.saveFile(photo);
-            }
+            String photoPath = photo;
+
 
             // Create and save the user entity
             User user = new User();
@@ -73,7 +71,7 @@ public class UserController {
             user.setDate(Date.valueOf(date)); // Convert the date string to Date type
             user.setAddress(address);
             user.setSexe(sexe); // Set sexe here
-            user.setPhoto(photoPath);
+            user.setPhoto(photo);
 
             repository.save(user); // Save user to the repository
 
