@@ -23,15 +23,28 @@ export class SignUpComponent {
     date: '',
     address: '',
     photo: '',
-    sexe:""
+    sexe: ""
   };
 
   uploadedImageUrl: string = '';
-  imageError="";
+  imageError = "";
   files: File[] = [];
   passwordsMatch: boolean = true; // This will track if the passwords match
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(private userService: UserService, private router: Router) { }
+
+
+
+  onFileChanged(event: any) {
+    const file = event.target.files[0];
+    this.user.photo = file;
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      this.user.photo = reader.result as string;
+    };
+
+  }
 
   onSubmit(): void {
     // Ensure the passwords match before submitting
@@ -50,13 +63,12 @@ export class SignUpComponent {
     formData.append('password', this.user.password);
     formData.append('date', this.user.date);
     formData.append('address', this.user.address);
-    formData.append('sexe', this.user.address);
-
+    formData.append('sexe', this.user.sexe);
 
     // Append the selected file (if any) to the FormData
-    if (this.files.length > 0) {
-      formData.append('photo', this.files[0]); // Only take the first file
-    }
+
+    formData.append('photo', this.user.photo); // Only take the first file
+
 
     this.userService.createUser(formData).subscribe({
       next: (response) => {
@@ -114,17 +126,17 @@ export class SignUpComponent {
   //  }
   // }
 
-   
-  
-  
-  
+
+
+
+
 
   // This method checks if the passwords match
   checkPasswordsMatch(): void {
     this.passwordsMatch = this.user.password === this.user.confirmPassword;
   }
 
-  onFileSelected(event: Event): void {
+  /*onFileSelected(event: Event): void {
     const target = event.target as HTMLInputElement;
     if (target.files) {
       this.files = Array.from(target.files);
@@ -132,5 +144,5 @@ export class SignUpComponent {
         console.log('Selected files:', this.files);
       }
     }
-  }
+  }*/
 }
