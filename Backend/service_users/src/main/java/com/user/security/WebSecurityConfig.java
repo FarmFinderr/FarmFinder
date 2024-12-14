@@ -47,7 +47,8 @@ public class WebSecurityConfig {
                     HttpMethod.POST,
                     "/public/**",
                     "/users/**",
-                    "/users/create"
+                    "/users/create",
+                    "users/login"
             );
             web.ignoring().requestMatchers(
                     HttpMethod.GET,

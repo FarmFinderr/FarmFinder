@@ -14,8 +14,7 @@ import lombok.ToString;
 @ToString
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; 
+    private String id;
 
     private String name;
     private String lastName;       
@@ -25,10 +24,10 @@ public class User {
     private String address;        
     private String emailAddress;   
     private String photo;          
-    private int role;
+    private String role;
     private String password;
-	public User(Long id, String name, String lastName, String phoneNumber, Date date, String sexe, String address,
-			String emailAddress, String photo, int role, String password) {
+	public User(String id, String name, String lastName, String phoneNumber, Date date, String sexe, String address,
+			String emailAddress, String photo, String password) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -39,7 +38,7 @@ public class User {
 		this.address = address;
 		this.emailAddress = emailAddress;
 		this.photo = photo;
-		this.role = role;
+		this.role = "user";
 		this.password = password;
 	}
 
@@ -61,10 +60,10 @@ public class User {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -111,10 +110,10 @@ public class User {
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
-	public int getRole() {
+	public String getRole() {
 		return role;
 	}
-	public void setRole(int role) {
+	public void setRole(String role) {
 		this.role = role;
 	}
 	public String getPassword() {

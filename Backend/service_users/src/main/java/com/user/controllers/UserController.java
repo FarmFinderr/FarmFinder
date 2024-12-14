@@ -1,6 +1,7 @@
 package com.user.controllers;
 
 import com.user.keycloak.keycloakusersserviceImp;
+import org.keycloak.representations.AccessTokenResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +28,11 @@ public class UserController {
 
     public User createUserInKeycloak(User user) {
         return keycloakservice.createUser(user);
+    }
+
+    @PostMapping("/login")
+    public AccessTokenResponse login(@RequestParam String username, @RequestParam String password) {
+        return keycloakservice.login(username, password);
     }
 
     @PostMapping("/create")
@@ -57,10 +63,11 @@ public class UserController {
             user.setPassword(password);
             user.setDate(Date.valueOf(date)); // Convert the date string to Date type
             user.setAddress(address);
-            user.setSexe(sexe); // Set sexe here
+            user.setSexe(sexe);
             user.setPhoto(photoPath);
             User newuserkeycloak=new User();
             newuserkeycloak=createUserInKeycloak(user);
+            user.setId(newuserkeycloak.getId());
 
             repository.save(user);
 
@@ -75,7 +82,6 @@ public class UserController {
 
 
     @GetMapping
-    
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = repository.findAll();
         if (users.isEmpty()) {
