@@ -1,12 +1,14 @@
-package com.example.projet_integration.services.events
+package com.example.projet_integration.services.users
 
-import com.google.gson.GsonBuilder
+import com.example.projet_integration.services.events.EventService
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-object ApiEvents {
-    private const val BASE_URL: String = "http://10.0.2.2:8880/events/"
+
+object ApiUser {
+    private const val BASE_URL: String = "http://10.0.2.2:8880/users/"
     private val gson: Gson by lazy {
         GsonBuilder().setLenient().create()
     }
@@ -24,8 +26,8 @@ object ApiEvents {
 
 
 
-    val apiService: EventService by lazy {
-        retrofit.create(EventService::class.java)
+    val apiService: UserService by lazy {
+        retrofit.create(UserService::class.java)
     }
 
 }
