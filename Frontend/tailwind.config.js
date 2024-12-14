@@ -5,8 +5,12 @@ module.exports = {
       "./src/**/*.{html,ts}",
     ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        playfair: ['"Playfair Display"', 'serif'],
+    },
   },
   plugins: [require('tailwind-scrollbar-hide')],
+}
 }
 
