@@ -135,52 +135,45 @@ export class TableDashboard implements OnInit { // Corrected class name
   deleteUser(): void {
     this.userService.deleteUser(this.deleted).subscribe({
       next: () => {
-        this.users = this.users.filter(user => user.id !== this.deleted); // Remove user from list
+        this.users = this.users.filter(user => user.id !== this.deleted); 
         console.log(`User with ID ${this.deleted} deleted successfully.`);
         this.deleteU = false;
       },
-    // if (confirm('Are you sure you want to delete this user?')) {
-      
-    //     error: (error) => {
-    //       console.error('Error deleting user:', error);
-    //       alert('Failed to delete the user. Please try again later.');
-    //     },
+    
        });
     }
   
   
 
   showDetails(user: any): void {
-    this.selectedUser = { ...user }; // Create a copy to avoid direct modification
+    this.selectedUser = { ...user };
     this.isModalOpen = true;
   }
 
   closeModal(): void {
     this.isModalOpen = false;
     this.edit = false;
-    this.selectedUser = null; // Reset selectedUser
-    this.originalUser = null; // Reset originalUser
+    this.selectedUser = null; 
+    this.originalUser = null; 
     this.deleteU = false;
   }
   searchUsers() {
-    const searchValue = this.searchQuery.trim(); // Get the trimmed search value
+    const searchValue = this.searchQuery.trim(); 
     
   
     if (searchValue === '') {
-      // Fetch all users if the search is empty
       this.userService.getUsers().subscribe(
         (data: any) => {
-          this.users = data; // Update the users list with all users
+          this.users = data; 
         },
         (error: any) => {
           console.error('Error fetching all users:', error);
         }
       );
     } else {
-      // Perform search with the provided value
       this.userService.search(searchValue).subscribe(
         (data: any) => {
-          this.users = data; // Update the users list with filtered results
+          this.users = data; 
         },
         (error: any) => {
           console.error('Error searching users:', error);
@@ -192,14 +185,11 @@ export class TableDashboard implements OnInit { // Corrected class name
   downloadPDF(): void {
     const doc = new jsPDF();
 
-    // Title
     doc.setFontSize(16);
     doc.text('Liste des Utilisateurs', 10, 10);
 
-    // Define headers
     const headers = ['NCIN', 'Nom', 'Prenom', 'Gmail', 'Date de naissance', 'Adresse'];
 
-    // Map user data to rows
     const rows = this.users.map(user => [
       user.id,
       user.name,
@@ -209,18 +199,15 @@ export class TableDashboard implements OnInit { // Corrected class name
       user.address,
     ]);
 
-    // Add table using autoTable
     autoTable(doc, {
       head: [headers],
       body: rows,
       startY: 20,
     });
 
-    // Save the PDF
     doc.save('Liste_Utilisateurs.pdf');
   }
   imprimer(): void {
-    // Prepare the user list as HTML
     const printableContent = `
       <html>
         <head>
@@ -279,15 +266,14 @@ export class TableDashboard implements OnInit { // Corrected class name
       </html>
     `;
   
-    // Open a new window and write the content
     const printWindow = window.open('', '_blank', 'width=800,height=600');
     if (printWindow) {
       printWindow.document.open();
       printWindow.document.write(printableContent);
       printWindow.document.close();
       printWindow.focus();
-      printWindow.print(); // Trigger the print dialog
-      printWindow.close(); // Close the window after printing
+      printWindow.print(); 
+      printWindow.close(); 
     }
   }
   

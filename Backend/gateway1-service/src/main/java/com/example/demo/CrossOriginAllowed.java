@@ -1,4 +1,4 @@
-package com.example.demo;
+	package com.example.demo;
 
 import java.util.Arrays;
 
@@ -11,8 +11,9 @@ import org.springframework.web.cors.reactive.CorsWebFilter;
 import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 
 @Configuration
-public class CrossOriginAllowed {
 
+public class CrossOriginAllowed {
+	
 
 	@Bean
 	public CorsWebFilter corsFilter() {
@@ -22,10 +23,12 @@ public class CrossOriginAllowed {
 	@Bean
 	public CorsConfigurationSource corsConfigurationSource() {
 	    CorsConfiguration configuration = new CorsConfiguration();
-	    configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));//allow Angular
+	    configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200", "http://localhost:8088"));
 	    configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
+        configuration.setAllowedHeaders(Arrays.asList("Content-Type", "Authorization", "Upgrade", "Connection"));
+        
+
 	    
-	    configuration.setAllowedHeaders(Arrays.asList("Content-Type", "Authorization"));
 	     configuration.setAllowCredentials(true); // For Cookie
 	     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 	    source.registerCorsConfiguration("/**", configuration);

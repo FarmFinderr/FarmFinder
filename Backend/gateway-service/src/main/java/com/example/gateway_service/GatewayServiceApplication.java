@@ -29,8 +29,9 @@ public class GatewayServiceApplication {
 
 		return builder.routes()
 				.route("r1", r -> r.path("/users/**").uri("http://localhost:8083/"))
-				.route("r2", r -> r.path("/events/**").uri("http://localhost:8081/"))
+				//.route("r2", r -> r.path("/events/**").uri("http://localhost:8081/"))
 				.route("r3", r -> r.path("/posts/**").uri("http://localhost:5000/"))
+				.route("r4", r -> r.path("/chats/**").uri("http://localhost:8081/"))
 				.build();
 
 		/*return builder.routes()
