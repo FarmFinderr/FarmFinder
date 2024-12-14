@@ -5,7 +5,7 @@ import keycloak from 'keycloak-js'
   providedIn: 'root'
 })
 export class KeycloakService {
-  private _keycloak: keycloak | undefined;
+  /*private _keycloak: keycloak | undefined;
   constructor() { }
   get keycloak(){
     if(!this._keycloak){
@@ -32,5 +32,5 @@ export class KeycloakService {
       console.log("succces")
     }
 
-  }
+  }*/
 }

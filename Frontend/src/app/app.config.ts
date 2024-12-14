@@ -9,15 +9,15 @@ import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideHttpClient(),
-               provideRouter(routes),
+               provideRouter(routes)/*,
                {provide: APP_INITIALIZER,
                 deps:[KeycloakService],
                 useFactory:ksFactory,
-                multi:true},
+                multi:true},*/
                ],
                
 };
 
-export function ksFactory(ksService :KeycloakService){
+/*export function ksFactory(ksService :KeycloakService){
   return()=> ksService.init();
-}
+}*/
