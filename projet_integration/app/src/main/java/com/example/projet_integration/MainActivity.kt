@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
 
         signin.setOnClickListener{
-            val intent = Intent(this,EventActivity::class.java)
+            val intent = Intent(this,CreateEvent::class.java)
             startActivity(intent)
 
         }
