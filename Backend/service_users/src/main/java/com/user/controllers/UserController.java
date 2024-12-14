@@ -49,11 +49,6 @@ public class UserController {
             @RequestParam(value = "photo", required = false) MultipartFile photo
     ) {
         try {
-            // Save the photo if provided
-            String photoPath = photo;
-
-
-            // Create and save the user entity
             User user = new User();
             user.setName(name);
             user.setLastName(lastName);
@@ -63,14 +58,10 @@ public class UserController {
             user.setDate(Date.valueOf(date)); // Convert the date string to Date type
             user.setAddress(address);
             user.setSexe(sexe);
-            user.setPhoto(photoPath);
             User newuserkeycloak=new User();
             newuserkeycloak=createUserInKeycloak(user);
             user.setId(newuserkeycloak.getId());
-
             repository.save(user);
-
-
             return ResponseEntity.ok("User created successfully.");
         } catch (Exception e) {
             e.printStackTrace();
@@ -113,7 +104,7 @@ public class UserController {
         return repository.findAll();}*/
     // Retrieve a user by ID
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable Long id) {
+    public ResponseEntity<User> getUserById(@PathVariable String id) {
         Optional<User> user = repository.findById(id);
         return user.map(ResponseEntity::ok)
                    
@@ -122,7 +113,7 @@ public class UserController {
 
     // Update an existing user
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User updatedUser) {
+    public ResponseEntity<User> updateUser(@PathVariable String id, @RequestBody User updatedUser) {
         if (updatedUser == null) {
             return ResponseEntity.badRequest().build();
         }
@@ -150,7 +141,7 @@ public class UserController {
 
     // Delete a user by ID
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteUser(@PathVariable String id) {
         if (repository.existsById(id)) {
             repository.deleteById(id);
             return ResponseEntity.noContent().build();
