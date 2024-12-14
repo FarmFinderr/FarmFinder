@@ -1,60 +1,45 @@
 package com.user.controllers;
 
+import com.user.keycloak.keycloakusersserviceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.HttpStatus;
-
-import com.thoughtworks.xstream.io.path.Path;
 import com.user.entities.User;
 import com.user.repository.UserRepository;
 import com.user.services.FileStorageService;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.sql.Date;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/users")
-//@CrossOrigin(origins = "http://localhost:4200")
-
 public class UserController {
 
     @Autowired
     private UserRepository repository;
     @Autowired
     private FileStorageService fileStorageService;
+    @Autowired
+    private keycloakusersserviceImp keycloakservice;
 
 
-
-   /* @PostMapping
-    
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        if (user == null) {
-            return ResponseEntity.badRequest().build();
-        }
-        User savedUser = repository.save(user);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
+    public User createUserInKeycloak(User user) {
+        return keycloakservice.createUser(user);
     }
-*/
-    
+
     @PostMapping("/create")
     public ResponseEntity<String> createUser(
-        @RequestParam("name") String name,
-        @RequestParam("lastName") String lastName,
-        @RequestParam("emailAddress") String emailAddress,
-        @RequestParam("phoneNumber") String phoneNumber,
-        @RequestParam("password") String password,
-        @RequestParam("date") String date,
-        @RequestParam("address") String address,
-        @RequestParam("sexe") String sexe, // Add sexe here
-        @RequestParam(value = "photo", required = false) MultipartFile photo
+            @RequestParam("name") String name,
+            @RequestParam("lastName") String lastName,
+            @RequestParam("emailAddress") String emailAddress,
+            @RequestParam("phoneNumber") String phoneNumber,
+            @RequestParam("password") String password,
+            @RequestParam("date") String date,
+            @RequestParam("address") String address,
+            @RequestParam("sexe") String sexe, // Add sexe here
+            @RequestParam(value = "photo", required = false) MultipartFile photo
     ) {
         try {
             // Save the photo if provided
@@ -74,8 +59,11 @@ public class UserController {
             user.setAddress(address);
             user.setSexe(sexe); // Set sexe here
             user.setPhoto(photoPath);
+            User newuserkeycloak=new User();
+            newuserkeycloak=createUserInKeycloak(user);
 
-            repository.save(user); // Save user to the repository
+            repository.save(user);
+
 
             return ResponseEntity.ok("User created successfully.");
         } catch (Exception e) {

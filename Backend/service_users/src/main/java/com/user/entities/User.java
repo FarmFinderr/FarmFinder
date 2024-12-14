@@ -6,9 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
@@ -19,7 +17,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; 
 
-    private String name;           
+    private String name;
     private String lastName;       
     private String phoneNumber;   
     private Date date;             
@@ -42,6 +40,15 @@ public class User {
 		this.emailAddress = emailAddress;
 		this.photo = photo;
 		this.role = role;
+		this.password = password;
+	}
+
+	public User( String name, String lastName,
+				String emailAddress,String password) {
+		super();
+		this.name = name;
+		this.lastName = lastName;
+		this.emailAddress = emailAddress;
 		this.password = password;
 	}
 	public User() {
