@@ -2,13 +2,8 @@ package com.user.entities;
 
 import java.sql.Date;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
+import jakarta.persistence.*;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
@@ -16,21 +11,21 @@ import lombok.ToString;
 @ToString
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; 
+    private String id;
 
-    private String name;           
+    private String name;
     private String lastName;       
     private String phoneNumber;   
     private Date date;             
     private String sexe;          
     private String address;        
-    private String emailAddress;   
+    private String emailAddress;
+	@Column(name="photo",length=99999999)
     private String photo;          
-    private int role;
+    private String role;
     private String password;
-	public User(Long id, String name, String lastName, String phoneNumber, Date date, String sexe, String address,
-			String emailAddress, String photo, int role, String password) {
+	public User(String id, String name, String lastName, String phoneNumber, Date date, String sexe, String address,
+			String emailAddress, String photo, String password) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -41,7 +36,16 @@ public class User {
 		this.address = address;
 		this.emailAddress = emailAddress;
 		this.photo = photo;
-		this.role = role;
+		this.role = "user";
+		this.password = password;
+	}
+
+	public User( String name, String lastName,
+				String emailAddress,String password) {
+		super();
+		this.name = name;
+		this.lastName = lastName;
+		this.emailAddress = emailAddress;
 		this.password = password;
 	}
 	public User() {
@@ -54,10 +58,10 @@ public class User {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -104,10 +108,10 @@ public class User {
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
-	public int getRole() {
+	public String getRole() {
 		return role;
 	}
-	public void setRole(int role) {
+	public void setRole(String role) {
 		this.role = role;
 	}
 	public String getPassword() {
