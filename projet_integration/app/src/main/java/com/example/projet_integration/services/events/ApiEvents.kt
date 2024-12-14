@@ -6,7 +6,7 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 object ApiEvents {
-    private const val BASE_URL: String = "http://10.0.2.2:8888/events/"
+    private const val BASE_URL: String = "http://10.0.2.2:8880/events/"
     private val gson: Gson by lazy {
         GsonBuilder().setLenient().create()
     }
