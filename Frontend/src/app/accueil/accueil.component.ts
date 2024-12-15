@@ -43,8 +43,8 @@ import Stomp from 'stompjs';
 export class AccueilComponent  implements OnInit {
 
 
-   postslist :any[]= [];
-  Post = { 
+  postslist :any[]= [];
+  Post = {
     price: 0,
     userId: '',
     description: '',
@@ -57,7 +57,7 @@ export class AccueilComponent  implements OnInit {
     commentMessage:string='';
     chatHistory: { sender: string; text: string }[] = [];
 
-  isLoading: boolean = true; 
+  isLoading: boolean = true;
   isModalMessage = false;
   errorMessage: string | null = null;
   userId='1';
@@ -65,16 +65,16 @@ export class AccueilComponent  implements OnInit {
     price: 0,
     userId: '',
     description: '',
-    date: null,  
+    date: null,
     localisation: '',
     air: 0,
     defaut: '',
-    etat: '', 
-      
+    etat: '',
+
   };
-  senderId: number = 1; 
+  senderId: number = 1;
   receiverId: number = 2;
-  messageContent: string = ''; 
+  messageContent: string = '';
   selectedReaction: string = '../../assets/accueil/alike.png';
 
   chatslist:any[]= [];
@@ -87,12 +87,12 @@ export class AccueilComponent  implements OnInit {
       timestamp: ''
 
   }
-  
 
- 
-  
 
-  currentItem: Post | null = null;  
+
+
+
+  currentItem: Post | null = null;
   constructor(private Postservice: PostService,private Chatbotservice: ChatbotService,private commentservice: CommentService,
     private ReactionService:ReactionService,private router: Router,    private AddpostService: AddpostService, private ChatUsersService: ChatUsersService
 
@@ -104,19 +104,19 @@ export class AccueilComponent  implements OnInit {
     this.senderId = senderID;
     this.receiverId = receiverID;
   }
-   
+
   getChats(): void {
     this.ChatUsersService.getChats().subscribe({
       next: (data) => {
-        console.log('Fetched chats:', data);  
-        this.chatslist = data;  
+        console.log('Fetched chats:', data);
+        this.chatslist = data;
         console.log('chatslist',this.chatslist);
-        this.isLoading = false;  
+        this.isLoading = false;
       },
       error: (err) => {
-        console.error('Error fetching chats:', err);  
-        this.errorMessage = 'Failed to load chats';  
-        this.isLoading = false;  
+        console.error('Error fetching chats:', err);
+        this.errorMessage = 'Failed to load chats';
+        this.isLoading = false;
       },
     });
   }
@@ -141,13 +141,13 @@ export class AccueilComponent  implements OnInit {
       this.userMessage = '';
     }
   }
- 
+
 
   openImageInNewWindow(imagePath: string): void {
     const fullPath = 'http://localhost:5000' + imagePath;
     window.open(fullPath, '_blank');
   }
-  
+
 
   ngOnInit(): void {
     this.getChats();
@@ -237,7 +237,7 @@ export class AccueilComponent  implements OnInit {
   getUserReaction(post: any): string | null {
     for (let i = 0; i < post.reactions.length; i++) {
       if (post.reactions[i].userId == this.userId) {
-        return post.reactions[i].reactionType; 
+        return post.reactions[i].reactionType;
       }
     }
       return 'noreaction';
@@ -262,10 +262,10 @@ export class AccueilComponent  implements OnInit {
       return reactionImages[reactionType];
 
     }
-   
+
   }
 
-  
+
 
   loadItems(): void {
     this.Postservice.getPosts().subscribe((data) => (this.postslist = data));
@@ -296,7 +296,7 @@ export class AccueilComponent  implements OnInit {
             title: 'Erreur',
             text: 'Une erreur est survenue lors de l\'ajout du commentaire.',
           });
-          return of(null); 
+          return of(null);
         })
       )
       .subscribe();
@@ -317,7 +317,7 @@ export class AccueilComponent  implements OnInit {
         //this.selectedReaction = reactionimg;
         this.fetchPosts();
 
-  
+
       },
       (error) => {
         console.error('Erreur:', error);
@@ -479,7 +479,7 @@ export class AccueilComponent  implements OnInit {
     }
   ];
 
-   showDetails = false; 
+   showDetails = false;
    isModalOpen = false;
    isModalOpenDetailsEvent = false;
    eventDetails: any = null;
@@ -523,7 +523,7 @@ formatDate(date: string): string {
       console.log("post id",postId)
        this.showDetailsMap[postId] = !this.showDetailsMap[postId];
      }
-  
+
 
    openModalDetailsEvent(eventId:number) {
     this.eventDetails = this.events[eventId];
@@ -542,7 +542,7 @@ formatDate(date: string): string {
 
   openImagesModal(images: any[], index: number) {
     if (images.length > 3) {
-      this.modalImages = images; 
+      this.modalImages = images;
       this.isModalImagesOpen = true;
     }
   }
@@ -550,14 +550,14 @@ formatDate(date: string): string {
 
 
   closeModalImages() {
-    this.isModalImagesOpen = false; 
+    this.isModalImagesOpen = false;
   }
 
   showNextImage() {
     if (this.currentImageIndex < this.modalImages.length - 1) {
       this.currentImageIndex++;
     } else {
-      this.currentImageIndex = 0; 
+      this.currentImageIndex = 0;
     }
   }
 

@@ -8,6 +8,7 @@ import Comment from '../models/Commentaire.js';
 import fs from 'fs';
 import path from 'path';
 import axios from 'axios';
+import { log } from 'console';
 
 export const createPost = async (req, res, next) => {
     try {
@@ -59,7 +60,8 @@ export const getAllPosts = async (req, res, next) => {
                             try {
                                 const reactionUserResponse = await axios.get(`http://localhost:8880/users/${reaction.userId}`);
                                 return { ...reaction.toObject(), user: reactionUserResponse.data };
-                            } catch {
+                            } catch(er) {
+                                console.log(er)
                                 return { ...reaction.toObject(), user: null };
                             }
                         })

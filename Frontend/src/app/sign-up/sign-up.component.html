@@ -40,8 +40,8 @@
               <input name="photo" type="file" id="imageUpload"  class="hidden" accept="image/*,video/*" (change)="onFileChanged($event)" class="bg-white w-full text-sm px-4 py-3.5 rounded-md" />
             </div>
             <div>
-              <input type="radio" name="sexe" value="true" /> Male
-            <input type="radio" name="sexe" value="false" /> Female
+              <input type="radio" name="sexe" [(ngModel)] ="user.sexe" value="true" /> Male
+            <input type="radio" name="sexe" [(ngModel)] ="user.sexe" value="false" /> Female
             </div>
 
 
