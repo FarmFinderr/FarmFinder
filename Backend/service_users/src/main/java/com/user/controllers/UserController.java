@@ -47,7 +47,7 @@ public class UserController {
             @RequestParam("date") String date,
             @RequestParam("address") String address,
             @RequestParam("sexe") String sexe, // Add sexe here
-            @RequestParam(value = "photo", required = false) MultipartFile photo
+            @RequestParam("photo") String photo
     ) {
         try {
             User user = new User();
@@ -59,6 +59,7 @@ public class UserController {
             user.setDate(Date.valueOf(date)); // Convert the date string to Date type
             user.setAddress(address);
             user.setSexe(sexe);
+            user.setPhoto(photo);
             User newuserkeycloak=new User();
             newuserkeycloak=createUserInKeycloak(user);
             user.setId(newuserkeycloak.getId());
