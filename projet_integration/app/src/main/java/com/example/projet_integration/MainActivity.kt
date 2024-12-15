@@ -25,11 +25,13 @@ class MainActivity : AppCompatActivity() {
         signup = findViewById(R.id.signup)
         signin = findViewById(R.id.btn_login)
 
+
         // Action pour se connecter
         signin.setOnClickListener {
             // Vérifier ici les informations d'identification de l'utilisateur (email, mot de passe)
             // Si les informations sont valides, naviguer vers l'activité des offres
             val intent = Intent(this, OffersActivity::class.java)
+
             startActivity(intent)
             finish() // Fermer l'activité actuelle pour éviter de revenir en arrière
         }

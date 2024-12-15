@@ -1,0 +1,98 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:layout_margin="8dp"
+    android:background="@android:color/white"
+    android:elevation="4dp">
+
+    <!-- FrameLayout for Image and Open Button -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+        <!-- Image -->
+        <ImageView
+            android:id="@+id/postImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/terrain" />
+
+        <!-- Open Button -->
+        <Button
+            android:id="@+id/openButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|end"
+            android:layout_margin="8dp"
+            android:text="Open"
+            android:backgroundTint="#4CAF50"
+            android:textColor="#FFFFFF" />
+    </FrameLayout>
+
+    <!-- Description -->
+    <TextView
+        android:id="@+id/descriptionTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Beautiful 3 ha land located 14 km from Tunis Center..."
+        android:textSize="14sp"
+        android:textColor="#000000"
+        android:maxLines="3"
+        android:ellipsize="end" />
+
+    <!-- Date -->
+    <TextView
+        android:id="@+id/dateTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Event Date: 27 Février 2024"
+        android:textSize="12sp"
+        android:textColor="#888888" />
+
+    <!-- Price and Button Row -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical">
+
+        <!-- Price Tag -->
+        <TextView
+            android:id="@+id/priceTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Price: $20,000"
+            android:textSize="16sp"
+            android:textColor="#4CAF50"
+            android:textStyle="bold" />
+
+        <!-- "Participer" Button -->
+        <Button
+            android:id="@+id/actionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Participer"
+            android:backgroundTint="#FFA500"
+            android:textColor="#FFFFFF" />
+
+        <!-- "Voir Plus" Link -->
+        <TextView
+            android:id="@+id/moreLinkTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Voir Plus"
+            android:textSize="14sp"
+            android:textColor="#FFA500"
+            android:fontFamily="sans-serif-medium"
+            android:clickable="true"
+            android:focusable="true" />
+    </LinearLayout>
+</LinearLayout>
