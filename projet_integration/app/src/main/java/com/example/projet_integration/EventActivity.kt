@@ -1,6 +1,5 @@
 package com.example.projet_integration
 
-import PostAdapter
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
