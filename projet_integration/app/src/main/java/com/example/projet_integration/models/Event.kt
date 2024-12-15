@@ -14,5 +14,5 @@ data class Event(
     val  title :  String,
     val  photo : String,
     val  owner : User,
-    val users  : Array<User> = null
+    val users  : Array<User>
 )
