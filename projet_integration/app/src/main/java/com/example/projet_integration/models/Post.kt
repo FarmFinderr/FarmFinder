@@ -1,4 +1,4 @@
-package com.example.projet_integration
+package com.example.projet_integration.models
 
 data class Post(
     val name: String,

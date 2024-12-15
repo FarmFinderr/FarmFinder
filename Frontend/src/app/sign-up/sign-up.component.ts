@@ -43,6 +43,8 @@ export class SignUpComponent {
     reader.onload = () => {
       this.user.photo = reader.result as string;
     };
+    console.log(this.user.photo);
+
 
   }
 
@@ -68,7 +70,7 @@ export class SignUpComponent {
     // Append the selected file (if any) to the FormData
 
     formData.append('photo', this.user.photo); // Only take the first file
-
+    console.log(this.user.photo);
 
     this.userService.createUser(formData).subscribe({
       next: (response) => {
