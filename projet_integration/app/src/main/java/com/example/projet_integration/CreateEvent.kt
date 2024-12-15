@@ -15,6 +15,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.projet_integration.models.Event
 import com.example.projet_integration.models.User
+import com.example.projet_integration.services.events.ApiEvents
 import com.example.projet_integration.services.users.ApiUser
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -23,6 +24,7 @@ import java.io.ByteArrayOutputStream
 import java.io.InputStream
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 class CreateEvent : AppCompatActivity() {
 
@@ -43,7 +45,7 @@ class CreateEvent : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_event)
-
+        val scope = CoroutineScope(Dispatchers.Main)
         // Initialize UI components
         submit = findViewById(R.id.submitButton)
         title = findViewById(R.id.titleInput)
@@ -83,6 +85,7 @@ class CreateEvent : AppCompatActivity() {
         // Submit event
         submit.setOnClickListener {
             if (validateInputs()) {
+                var users  =  ArrayList<User>()
                 val event = Event(
                     title = title.text.toString(),
                     date_debut = date_debut,
@@ -92,11 +95,25 @@ class CreateEvent : AppCompatActivity() {
                     owner = owner,
                     owner_id = "1",
                     description = description.text.toString(),
-                    status = false
+                    status = false,
+                    users =users
                 )
+                scope.launch{
+                    try{
+                        val response =  ApiEvents.apiService.createEvent(event);
+                        if(response.body()!! != null)
+                        {
+                            Log.i("CreateEvent", "Event created: $event")
+                        
+                        }
+                    }
+                    catch (e : Exception)
+                    {
+                        Log.e("error", "error ${e.message}")
+                    }
+                }
 
-                Log.i("CreateEvent", "Event created: $event")
-                Toast.makeText(this, "Event created successfully!", Toast.LENGTH_SHORT).show()
+
             }
         }
     }

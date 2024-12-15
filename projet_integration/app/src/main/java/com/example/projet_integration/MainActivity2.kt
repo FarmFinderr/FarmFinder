@@ -10,7 +10,6 @@
     import androidx.drawerlayout.widget.DrawerLayout
     import androidx.recyclerview.widget.LinearLayoutManager
     import androidx.recyclerview.widget.RecyclerView
-    import com.example.projet_integration.models.Post
     import com.google.android.material.navigation.NavigationView
 
 

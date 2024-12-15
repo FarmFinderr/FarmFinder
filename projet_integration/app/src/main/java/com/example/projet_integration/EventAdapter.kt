@@ -26,7 +26,7 @@ class EventAdapter(private val events: List<Event>) : RecyclerView.Adapter<Event
         holder.priceTextView.text = "Price: $${event.price}"
 
         // Load the event image with Glide
-        if (event.photo.isNotEmpty()) {
+        if (event.photo!="") {
             holder.postImageView.visibility = View.VISIBLE
             Glide.with(holder.itemView.context)
                 .load(event.photo)
@@ -37,8 +37,8 @@ class EventAdapter(private val events: List<Event>) : RecyclerView.Adapter<Event
         }
 
         // Configure the open button
-        holder.openButton.text = if (event.status) "Open" else "Sold"
-        holder.openButton.isEnabled = event.status
+        holder.openButton.text = if (event.status == true) "Open" else "Sold"
+        holder.openButton.isEnabled = event.status == true
 
         // Add listeners for buttons and links
         holder.actionButton.setOnClickListener {
