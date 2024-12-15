@@ -1,162 +1,74 @@
 <!-- Header Section -->
 <app-navbar></app-navbar>
-<header
-  class="relative bg-cover bg-center h-[48rem]"
-  style="background-image: url('../../assets/home_page.jpg')"
->
-  <div class="flex flex-col items-center justify-center h-full text-white -mt-28">
-    <h1 class="text-8xl font-bold">FarmFinder</h1>
-    <p class="mt-4 bg-yellow-400 px-12 py-2 rounded-3xl text-2xl">
-      Des offres agricoles en un clic
+<header class="relative bg-cover bg-center h-[48rem]">
+  <!-- Vidéo en arrière-plan -->
+  <video
+    autoplay
+    loop
+    
+    playsinline
+    class="absolute -top-16 left-0 w-full h-full object-cover"
+    >
+    <!-- Chemin local -->
+    <source src="../../assets/video/bgvideo.mp4" type="video/mp4" />
+    <source src="../../assets/video/bgvideo.webm" type="video/webm" />
+    <source src="../../assets/video/bgvideo.ogg" type="video/ogg" />
+
+
+    <!-- Message alternatif si la vidéo ne se charge pas -->
+    Votre navigateur ne supporte pas la vidéo HTML5.
+  </video>
+
+  <!-- Contenu au-dessus de la vidéo -->
+  <div class="flex flex-col items-center justify-center h-full text-white relative z-10 -mt-28">
+    <!--<h1 class="text-8xl font-bold">FarmFinder</h1>-->
+    <p class="mt-96 bg-yellow-400 px-12 py-2 rounded-3xl text-2xl">
+      Agricultural offers in one click
     </p>
-    <img src="../../assets/logo.png" class="h-25 z-30" alt="farmfinder Logo" />
+    <!--<img src="../../assets/logo.png" class="h-25 z-30" alt="farmfinder Logo" />-->
   </div>
 </header>
 
+
 <!-- Objectives Section -->
-<section class="text-gray-600 body-font">
-  <h2
-    class="text-center text-2xl font-bold text-black sm:text-3xl md:text-5xl mt-20"
-  >
-  
-    Nos Objectifs
+<section class="text-gray-800 body-font py-10">
+  <h2 class="text-center font-playfair text-2xl font-bold sm:text-3xl md:text-4xl mb-10">
+    Our Objectives
   </h2>
-  <div
-    class="relative isolate overflow-hidden bg-green-800 my-20 py-5 border flex justify-center h-[28rem]"
-  >
-    <div
-      x-data="{}"
-      x-init="$nextTick(() => {
-        let ul = $refs.logos;
-        ul.insertAdjacentHTML('afterend', ul.outerHTML);
-        ul.nextSibling.setAttribute('aria-hidden', 'true');
-        setInterval(() => {
-          ul.style.transitionDuration = '0s'; // Set transition duration to 0s
-          ul.style.transform = translateX(-${ul.offsetWidth}px);
-          setTimeout(() => {
-            ul.style.transitionDuration = ''; // Reset transition duration to default
-            ul.style.transform = 'translateX(0)';
-            // Move the first li element to the end
-            let firstLi = ul.querySelector('li:first-child');
-            ul.appendChild(firstLi);
-          }, 20);
-        }, 5000); // Adjust the interval duration as needed
-      })"
-      class="w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]"
-    >
-      <ul
-        x-ref="logos"
-        class="flex items-center justify-center md:justify-start [&_li]:mx-3 animate-infinite-scroll"
-      >
-        <!-- Your list items here -->
-        <li>
-          <div class="flex flex-wrap justify-center space-x-4">
-            <div
-              class="shadow-lg w-96 h-80 rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 bg-white"
-            >
-              <img
-                src="../../assets/1.jpeg"
-                alt="image1"
-                class="w-full object-cover rounded-t-lg"
-              />
-              <p
-                class="text-2xl font-serif text-center text-gray-800 mt-4 px-4 py-2 leading-tight tracking-wide shadow-md"
-              >
-                Limitations des distances
-              </p>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="flex flex-wrap justify-center">
-            <div
-              class="shadow-lg w-96 h-80 rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 bg-white"
-            >
-              <img
-                src="../../assets/2.jpeg"
-                alt="image1"
-                class="w-full object-cover rounded-t-lg"
-              />
-              <p
-                class="text-2xl font-serif text-center text-gray-800 mt-4 px-4 py-2 leading-tight tracking-wide shadow-md"
-              >
-              Assistance durable
-              </p>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="flex flex-wrap justify-center space-x-4">
-            <div
-              class="shadow-lg w-96 h-80 rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 bg-white"
-            >
-              <img
-                src="../../assets/3.jpeg"
-                alt="image1"
-                class="w-full object-cover rounded-t-lg"
-              />
-              <p
-                class="text-2xl font-serif text-center text-gray-800 mt-4 px-4 py-2 leading-tight tracking-wide shadow-md"
-              >
-                Limitations des distances
-              </p>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="flex flex-wrap justify-center space-x-4">
-            <div
-              class="shadow-lg w-96 h-80 rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 bg-white"
-            >
-              <img
-                src="../../assets/4.jpeg"
-                alt="image1"
-                class="w-full object-cover rounded-t-lg"
-              />
-              <p
-                class="text-2xl font-serif text-center text-gray-800 mt-4 px-4 py-2 leading-tight tracking-wide shadow-md"
-              >
-                Limitations des distances
-              </p>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="flex flex-wrap justify-center space-x-4">
-            <div
-              class="shadow-lg w-96 h-80 rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 bg-white"
-            >
-              <img
-                src="../../assets/6.jpeg"
-                alt="image1"
-                class="w-full object-cover rounded-t-lg"
-              />
-              <p
-                class="text-2xl font-serif text-center text-gray-800 mt-4 px-4 py-2 leading-tight tracking-wide shadow-md"
-              >
-              Satisfaction clients 
-
-              </p>
-            </div>
-          </div>
-        </li>
-
-        
-      </ul>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
+    <div class="card invisible" data-scroll>
+      <img
+        src="../../assets/1.jpeg"
+        alt="Limitation des distances"
+        class="w-full h-48 object-cover rounded-lg shadow-md"
+      />
+      <p class="mt-4 text-center text-lg font-semibold">Limitations des distances</p>
+    </div>
+    <div class="card invisible" data-scroll>
+      <img
+        src="../../assets/2.jpeg"
+        alt="Assistance durable"
+        class="w-full h-48 object-cover rounded-lg shadow-md"
+      />
+      <p class="mt-4 text-center text-lg font-semibold">Assistance durable</p>
+    </div>
+    <div class="card invisible" data-scroll>
+      <img
+        src="../../assets/3.jpeg"
+        alt="Satisfaction clients"
+        class="w-full h-48 object-cover rounded-lg shadow-md"
+      />
+      <p class="mt-4 text-center text-lg font-semibold">Satisfaction clients</p>
     </div>
   </div>
 </section>
 
-<!-- Objectives Section -->
-<section class="text-gray-600 body-font">
-  <h2
-    class="text-center text-2xl font-bold text-black sm:text-3xl md:text-5xl mt-20"
-  >
-    Nos Services
+
+<section class="text-gray-600 body-font bg-white">
+  <h2 class="text-center font-playfair text-2xl font-bold text-black sm:text-3xl md:text-5xl mt-20">
+    Our Services
   </h2>
-  <div
-    class="relative isolate overflow-hidden bg-green-800 my-20 py-5 border flex justify-center h-[28rem]"
-  >
+  <div class="relative overflow-hidden my-20 py-10 flex justify-center h-[28rem] ">
     <div
       x-data="{}"
       x-init="$nextTick(() => {
@@ -164,124 +76,89 @@
         ul.insertAdjacentHTML('afterend', ul.outerHTML);
         ul.nextSibling.setAttribute('aria-hidden', 'true');
         setInterval(() => {
-          ul.style.transitionDuration = '0s'; // Set transition duration to 0s
-          ul.style.transform = translateX(-${ul.offsetWidth}px);
+          ul.style.transition = 'transform 0.5s linear';
+          ul.style.transform = `translateX(-${ul.scrollWidth / ul.children.length}px)`;
           setTimeout(() => {
-            ul.style.transitionDuration = ''; // Reset transition duration to default
+            ul.style.transition = 'none';
             ul.style.transform = 'translateX(0)';
-            // Move the first li element to the end
-            let firstLi = ul.querySelector('li:first-child');
-            ul.appendChild(firstLi);
-          }, 20);
-        }, 5000); // Adjust the interval duration as needed
+            ul.appendChild(ul.children[0]);
+          }, 500);
+        }, 3000);
       })"
-      class="w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]"
+      class="w-full inline-flex flex-nowrap overflow-hidden"
     >
       <ul
         x-ref="logos"
-        class="flex items-center justify-center md:justify-start [&_li]:mx-3 animate-infinite-scroll"
+        class="flex items-center justify-center space-x-6 animate-infinite-scroll"
       >
-        <!-- Your list items here -->
         <li>
-          <div class="flex flex-wrap justify-center space-x-4">
-            <div
-              class="shadow-lg w-96 h-80 rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 bg-white"
-            >
-              <img
-                src="../../assets/5.jpeg"
-                alt="image1"
-                class="w-full object-cover rounded-t-lg"
-              />
-              <p
-                class="text-2xl font-serif text-center text-gray-800 mt-4 px-4 py-2 leading-tight tracking-wide shadow-md"
-              >
-                Limitations des distances
-              </p>
-            </div>
+          <div class="shadow-lg w-80 h-72 rounded-lg overflow-hidden transform transition hover:scale-105 bg-white">
+            <img
+              src="../../assets/5.jpeg"
+              alt="Limitations des distances"
+              class="w-full h-48 object-cover"
+            />
+            <p class="text-lg font-serif text-center text-gray-800 mt-4 px-4 py-2">
+              Limitations des distances
+            </p>
           </div>
         </li>
         <li>
-          <div class="flex flex-wrap justify-center">
-            <div
-              class="shadow-lg w-96 h-80 rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 bg-white"
-            >
-              <img
-                src="../../assets/7.jpeg"
-                alt="image1"
-                class="w-full object-cover rounded-t-lg"
-              />
-              <p
-                class="text-2xl font-serif text-center text-gray-800 mt-4 px-4 py-2 leading-tight tracking-wide shadow-md"
-              >
-              publier des offres
-
-              </p>
-            </div>
+          <div class="shadow-lg w-80 h-72 rounded-lg overflow-hidden transform transition hover:scale-105 bg-white">
+            <img
+              src="../../assets/7.jpeg"
+              alt="Publier des offres"
+              class="w-full h-48 object-cover"
+            />
+            <p class="text-lg font-serif text-center text-gray-800 mt-4 px-4 py-2">
+              Publier des offres
+            </p>
           </div>
         </li>
         <li>
-          <div class="flex flex-wrap justify-center space-x-4">
-            <div
-              class="shadow-lg w-96 h-80 rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 bg-white"
-            >
-              <img
-                src="../../assets/3.jpeg"
-                alt="image1"
-                class="w-full object-cover rounded-t-lg"
-              />
-              <p
-                class="text-2xl font-serif text-center text-gray-800 mt-4 px-4 py-2 leading-tight tracking-wide shadow-md"
-              >
-              Assistant IA  
-
-              </p>
-            </div>
+          <div class="shadow-lg w-80 h-72 rounded-lg overflow-hidden transform transition hover:scale-105 bg-white">
+            <img
+              src="../../assets/3.jpeg"
+              alt="Assistant IA"
+              class="w-full h-48 object-cover"
+            />
+            <p class="text-lg font-serif text-center text-gray-800 mt-4 px-4 py-2">
+              Assistant IA
+            </p>
           </div>
         </li>
         <li>
-          <div class="flex flex-wrap justify-center space-x-4">
-            <div
-              class="shadow-lg w-96 h-80 rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 bg-white"
-            >
-              <img
-                src="../../assets/8.jpeg"
-                alt="image1"
-                class="w-full object-cover rounded-t-lg"
-              />
-              <p
-                class="text-2xl font-serif text-center text-gray-800 mt-4 px-4 py-2 leading-tight tracking-wide shadow-md"
-              >
+          <div class="shadow-lg w-80 h-72 rounded-lg overflow-hidden transform transition hover:scale-105 bg-white">
+            <img
+              src="../../assets/8.jpeg"
+              alt="Trouver des offres"
+              class="w-full h-48 object-cover"
+            />
+            <p class="text-lg font-serif text-center text-gray-800 mt-4 px-4 py-2">
               Trouver des offres
-
-              </p>
-            </div>
+            </p>
           </div>
         </li>
         <li>
-          <div class="flex flex-wrap justify-center space-x-4">
-            <div
-              class="shadow-lg w-96 h-80 rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 bg-white"
-            >
-              <img
-                src="../../assets/5.jpeg"
-                alt="image1"
-                class="w-full object-cover rounded-t-lg"
-              />
-              <p
-                class="text-2xl font-serif text-center text-gray-800 mt-4 px-4 py-2 leading-tight tracking-wide shadow-md"
-              >
-              Connectez vendeurs 
-
-              </p>
-            </div>
+          <div class="shadow-lg w-80 h-72 rounded-lg overflow-hidden transform transition hover:scale-105 bg-white">
+            <img
+              src="../../assets/5.jpeg"
+              alt="Connectez vendeurs"
+              class="w-full h-48 object-cover"
+            />
+            <p class="text-lg font-serif text-center text-gray-800 mt-4 px-4 py-2">
+              Connectez vendeurs
+            </p>
           </div>
         </li>
-
-        
       </ul>
     </div>
   </div>
 </section>
+
+
+
+
 
 <!-- Footer -->
 <footer class="bg-green-900 text-white py-6">

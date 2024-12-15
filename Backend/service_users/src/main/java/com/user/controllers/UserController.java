@@ -32,6 +32,7 @@ public class UserController {
 
     @PostMapping("/login")
     public AccessTokenResponse login(@RequestParam String username, @RequestParam String password) {
+
         return keycloakservice.login(username, password);
     }
 
