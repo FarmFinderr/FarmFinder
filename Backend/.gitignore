@@ -1,3 +1,5 @@
 /.metadata/
 Post-service/node_modules/
 reclamation-service/node_modules
+message-service/node_modules
+message-service/node_modules/
