@@ -1,10 +1,14 @@
 package com.example.projet_integration
-
+import  java.util.Date
 data class Post(
-    val name: String,
-    val date: String,
-    val content: String,
-    val likes: Int,
-    val imageUrl: String? = null,
-    val localImageResId: Int? = null
+    val userId: Int,
+    val price: Double,
+    val description: String,
+    val type: String,
+    val air: Int,
+    val localisation: String,
+    val date :Date,
+    val images:Array<Image>,
+    val vedios : Array<Video>,
+    val reactions : Array<Reaction>
 )

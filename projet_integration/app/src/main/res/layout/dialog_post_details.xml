@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/dialog_rounded_background">
+
+    <!-- Titre avec Icône -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingBottom="12dp">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/baseline_format_align_center_24"
+            android:tint="@color/primary" />
+
+        <TextView
+            android:id="@+id/dialog_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Détails du Post"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/primary"
+            android:layout_marginStart="8dp"/>
+    </LinearLayout>
+
+    <!-- Ligne Séparatrice -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/light_gray"
+        android:layout_marginBottom="10dp" />
+
+    <!-- Section Prix -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="8dp">
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/baseline_euro_24"
+            android:tint="@color/secondary" />
+
+        <TextView
+            android:id="@+id/dialog_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Prix: 12345.0 TND"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:layout_marginStart="8dp"/>
+    </LinearLayout>
+
+    <!-- Section Description -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="8dp">
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/baseline_description_24"
+            android:tint="@color/secondary" />
+
+        <TextView
+            android:id="@+id/dialog_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Description: Très beau terrain"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:layout_marginStart="8dp"/>
+    </LinearLayout>
+
+    <!-- Section Type -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="8dp">
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/baseline_merge_type_24"
+            android:tint="@color/secondary" />
+
+        <TextView
+            android:id="@+id/dialog_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Type: Terrain"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:layout_marginStart="8dp"/>
+    </LinearLayout>
+
+    <!-- Section Surface -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="8dp">
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/baseline_crop_din_24"
+            android:tint="@color/secondary" />
+
+        <TextView
+            android:id="@+id/dialog_area"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Surface: 1234 m²"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:layout_marginStart="8dp"/>
+    </LinearLayout>
+
+    <!-- Section Localisation -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="16dp">
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/baseline_location_on_24"
+            android:tint="@color/secondary" />
+
+        <TextView
+            android:id="@+id/dialog_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Localisation: Tunis"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:layout_marginStart="8dp"/>
+    </LinearLayout>
+
+    <!-- Bouton Fermer -->
+    <Button
+        android:id="@+id/dialog_close"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fermer"
+        android:backgroundTint="@color/primary"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"/>
+</LinearLayout>

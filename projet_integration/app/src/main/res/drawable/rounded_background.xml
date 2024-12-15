@@ -1,0 +1,6 @@
+<!-- res/drawable/rounded_background.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <corners android:radius="16dp" />
+    <solid android:color="#FFFFFF" /> <!-- Remplacez par la couleur souhaitée -->
+    <stroke android:width="2dp" android:color="#DDDDDD" /> <!-- Bordure optionnelle -->
+</shape>
