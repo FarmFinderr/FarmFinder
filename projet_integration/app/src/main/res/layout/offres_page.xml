@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Section de recherche -->
+    <LinearLayout
+        android:id="@+id/search_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp"
+        android:background="@drawable/rounded_background"
+        android:elevation="8dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="12dp"
+        android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp">
+
+        <!-- Barre de recherche -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/search_bar_background"
+            android:padding="8dp"
+            android:gravity="center_vertical"
+            android:elevation="4dp"
+            android:layout_marginBottom="12dp">
+
+            <ImageView
+                android:id="@+id/ic_search"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_search"
+                android:tint="@color/jaune"
+                android:layout_marginEnd="8dp" />
+
+            <EditText
+                android:id="@+id/search_bar"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:hint="Ecrire le prix ici..."
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                android:textSize="12sp"
+                android:background="@android:color/transparent"
+                android:layout_marginEnd="8dp" />
+        </LinearLayout>
+
+        <!-- Spinner pour la sélection de région avec icône animée -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:background="@drawable/spinner_background"
+            android:padding="10dp"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="12dp"> <!-- Même espace -->
+
+            <ImageView
+                android:id="@+id/ic_location"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/baseline_location_on_24"
+                android:tint="@color/primary"
+                android:layout_marginEnd="8dp" />
+
+            <Spinner
+                android:id="@+id/spinner_regions"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:entries="@array/tunisia_regions"
+                android:background="@android:color/transparent"
+                android:layout_marginEnd="12dp" />
+        </LinearLayout>
+
+        <!-- Bouton de recherche -->
+        <Button
+            android:id="@+id/btn_search"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:text="Rechercher"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:textAllCaps="false"
+            android:backgroundTint="@android:color/holo_green_light"
+            android:elevation="6dp"
+            android:layout_marginTop="2dp"
+        android:importantForAccessibility="yes"
+        android:contentDescription="Bouton de recherche" />
+    </LinearLayout>
+
+    <!-- RecyclerView pour afficher les offres -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_offers"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:padding="8dp"
+        app:layout_constraintTop_toBottomOf="@id/search_section"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

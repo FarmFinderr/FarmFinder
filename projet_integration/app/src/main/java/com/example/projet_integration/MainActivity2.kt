@@ -1,7 +1,6 @@
     package com.example.projet_integration
 
 
-    import PostAdapter
     import android.content.Intent
     import android.os.Bundle
     import android.widget.ImageView
@@ -55,31 +54,31 @@
             val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
             recyclerView.layoutManager = LinearLayoutManager(this)
 
-            val posts = listOf(
-                Post(
-                    name = "Iheb Sessi",
-                    date = "27 Février à 19:31",
-                    content = "3 ha a vendre à 5 km de Bizerte...",
-                    likes = 10,
-                    localImageResId = null
-                ),
-                Post(
-                    name = "Iheb Sessi",
-                    date = "27 Février à 20:01",
-                    content = "3 ha a vendre à 14 km de tunis centre...",
-                    likes = 15,
-                    localImageResId = R.drawable.terrain2
-                ),
-                Post(
-                    name = "Iheb Sessi",
-                    date = "27 Février à 20:05",
-                    content = "à vendre belle ferme de 17 ha avec titre...",
-                    likes = 20,
-                    localImageResId = R.drawable.terrain
-                )
-            )
+    /*  val posts = listOf(
+          Post(
+              name = "Iheb Sessi",
+              date = "27 Février à 19:31",
+              content = "3 ha a vendre à 5 km de Bizerte...",
+              likes = 10,
+              localImageResId = null
+          ),
+          Post(
+              name = "Iheb Sessi",
+              date = "27 Février à 20:01",
+              content = "3 ha a vendre à 14 km de tunis centre...",
+              likes = 15,
+              localImageResId = R.drawable.terrain2
+          ),
+          Post(
+              name = "Iheb Sessi",
+              date = "27 Février à 20:05",
+              content = "à vendre belle ferme de 17 ha avec titre...",
+              likes = 20,
+              localImageResId = R.drawable.terrain
+          )
+      )
 
-            val adapter = PostAdapter(posts)
-            recyclerView.adapter = adapter
-        }
-    }
+      val adapter = PostAdapter(posts)
+      recyclerView.adapter = adapter */
+  }
+}

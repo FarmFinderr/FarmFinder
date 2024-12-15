@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_offer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="7dp"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <!-- Image de l'offre -->
+        <ImageView
+            android:id="@+id/img_offer"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/terrain2" />
+
+        <!-- Détails de l'offre -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingStart="12dp">
+
+            <TextView
+                android:id="@+id/tv_offer_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Titre de l'offre"
+                android:textStyle="bold"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/tv_offer_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Détails de l'offre"
+                android:textSize="14sp"
+                android:layout_marginBottom="4dp"/>
+
+            <TextView
+                android:id="@+id/tv_offer_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Prix"
+                android:textColor="@color/design_default_color_primary"
+                android:textStyle="bold"
+                android:textSize="12sp"/>
+        </LinearLayout>
+
+
+        <!-- Bouton Voir Plus -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_view_details"
+            app:iconGravity="textStart"
+            app:backgroundTint="#FFD700"
+            app:icon="@drawable/baseline_arrow_forward_24"
+            app:iconTint="@android:color/white"
+            app:iconSize="18dp"
+            android:padding="4dp"
+            android:layout_gravity="end"
+            android:layout_margin="4dp"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+           />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
