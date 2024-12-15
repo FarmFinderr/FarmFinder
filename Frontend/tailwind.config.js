@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        playfair: ['"Playfair Display"', 'serif'],
+        playfair: ['"Playfair Display"', 'serif','"DM Serif Text"'],
     },
   },
   plugins: [require('tailwind-scrollbar-hide')],

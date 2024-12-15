@@ -51,7 +51,7 @@ public class WebSecurityConfig {
             web.ignoring().requestMatchers(
                     HttpMethod.GET,
                     "/public/**",
-                    "/users"
+                    "/users/**"
 
 
             );

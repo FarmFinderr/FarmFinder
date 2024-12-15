@@ -115,7 +115,7 @@ public class UserController {
         return repository.findAll();}*/
     // Retrieve a user by ID
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable Long id) {
+    public ResponseEntity<User> getUserById(@PathVariable String id) {
         Optional<User> user = repository.findById(id);
         return user.map(ResponseEntity::ok)
                    
@@ -124,7 +124,7 @@ public class UserController {
 
     // Update an existing user
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User updatedUser) {
+    public ResponseEntity<User> updateUser(@PathVariable String id, @RequestBody User updatedUser) {
         if (updatedUser == null) {
             return ResponseEntity.badRequest().build();
         }
@@ -152,7 +152,7 @@ public class UserController {
 
     // Delete a user by ID
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteUser(@PathVariable String id) {
         if (repository.existsById(id)) {
             repository.deleteById(id);
             return ResponseEntity.noContent().build();
