@@ -26,27 +26,27 @@
           <p class="text-gray-500 text-xs">{{ formatDate(post.date) }}</p>
         </div>
       </div>
-      <div class="flex items-center space-x-1 text-gray-600 cursor-pointer text-sm">
+      <!--<div class="flex items-center space-x-1 text-gray-600 cursor-pointer text-sm">
         <p class="text-black">Enregistrer la publication</p>
         <i class="bi bi-bookmark-fill text-gray-400"></i>
-      </div>
+      </div>-->
     </div>
 
     <!-- Post content -->
     <div class="pb-5">
       <p class="pt-2">{{ post.description }}</p>
     <div *ngIf="showDetailsMap[post._id]">
-      <p><strong>Prix:</strong> {{ post.price }}</p>
-      <p><strong>Localisation:</strong> {{ post.localisation }}</p>
-      <p><strong>Numéro de Téléphone:</strong> {{ post.user.phoneNumber }}</p>
-      <p *ngIf="post.type === 'terrain'"><strong>Superficie:</strong> {{ post.air }}</p>
-      <p *ngIf="post.type === 'materiel'"><strong>État:</strong> {{ post.etat }}</p>
-      <p *ngIf="post.type === 'materiel'"><strong>Défauts:</strong> {{ post.defaut }}</p>
+      <p><strong>Price:</strong> {{ post.price }}</p>
+      <p *ngIf="post.type === 'terrain'"><strong>Location:</strong> {{ post.localisation }}</p>
+      <p><strong>Phone Number:</strong> {{ post.user.phoneNumber }}</p>
+      <p *ngIf="post.type === 'terrain'"><strong>Area:</strong> {{ post.air }}</p>
+      <p *ngIf="post.type === 'materiel'"><strong>Condition:</strong> {{ post.etat }}</p>
+      <p *ngIf="post.type === 'materiel'"><strong>Defects:</strong> {{ post.defaut }}</p>
       <app-mapleaflet [location]="post.localisation" [mapId]="'map-' + post._id" *ngIf="post.type === 'terrain'"></app-mapleaflet>
     </div>
 
     <p class="text-right font-bold underline cursor-pointer" (click)="toggleDetails(post._id)">
-      {{ showDetailsMap[post._id] ? 'Voir moins' : 'Voir plus' }}
+      {{ showDetailsMap[post._id] ? 'Show less' : 'Show more' }}
     </p>
   </div>
   
@@ -109,7 +109,7 @@
     
       <div class="flex justify-center items-center border rounded-full p-1 mt-2 bg-gray-100 flex-grow h-9">
         <img [src]="user.photo" class="rounded-full w-8 h-8">
-        <input type="text" placeholder="Écrire un commentaire..." class="bg-gray-100 pl-3 flex-grow focus:outline-none"
+        <input type="text" placeholder="Write a comment..." class="bg-gray-100 pl-3 flex-grow focus:outline-none"
         [(ngModel)]="commentMessage"
         >
         <i class="bi bi-send-fill mr-3 text-gray-400 cursor-pointer" (click)="addComment(post._id)"></i>
@@ -160,7 +160,7 @@
   <div class="bg-white rounded-lg shadow-lg w-96 h-[350px] flex flex-col">
 
     <div class="px-6 py-4 flex items-center justify-between border-b">
-      <h5 class="text-lg font-semibold">Liste des Commentaires</h5>
+      <h5 class="text-lg font-semibold">List of Comments</h5>
       <button (click)="closeModal()" class="text-gray-600 hover:text-gray-900">
         <span class="text-xl">&times;</span>
       </button>

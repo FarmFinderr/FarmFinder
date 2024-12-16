@@ -72,6 +72,9 @@ export class SidebarComponent  implements OnInit {
   closeReclamationModal() {
     this.showModal = false;
   }
+  Dashboard() {
+    this.router.navigate(['/dashboard']);
+  }
 
  
 
