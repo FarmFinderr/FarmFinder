@@ -2,7 +2,8 @@
         
  <div class="bg-white p-4 rounded-sm shadow">
   <div class="flex items-center">
-    <img src="../../assets/sirineKahweji_ISETBizerte.jpg" class="w-8 h-8 rounded-full mr-2">
+    <img   [src]="user.photo"
+    alt="Image utilisateur"class="w-8 h-8 rounded-full mr-2">
     <input type="text" placeholder="Quoi de neuf, Syrine Kahweji ?" class="w-full border rounded-full p-2 bg-gray-100 pl-7">
     <!--<button class="ml-2" data-bs-toggle="modal" data-bs-target="#ModalAdd">-->
       <button class="ml-2" (click)="openModal()">

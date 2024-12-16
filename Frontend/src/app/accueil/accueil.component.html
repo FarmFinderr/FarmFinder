@@ -20,7 +20,7 @@
     <!-- Post header: name, date, save option -->
     <div class="flex justify-between items-center">
       <div class="flex items-center space-x-2">
-        <img src="../../assets/sirineKahweji_ISETBizerte.jpg" class="w-8 h-8 rounded-full">
+        <img   [src]="post.user.photo" alt="Image utilisateur" class="w-8 h-8 rounded-full">
         <div>
           <button (click)="openMessage(2,1)"><h3 class="font-semibold" >{{ post.user?.name }}</h3></button>
           <p class="text-gray-500 text-xs">{{ formatDate(post.date) }}</p>
@@ -108,7 +108,7 @@
     
     
       <div class="flex justify-center items-center border rounded-full p-1 mt-2 bg-gray-100 flex-grow h-9">
-        <img src="../../assets/sirineKahweji_ISETBizerte.jpg" class="rounded-full w-8 h-8">
+        <img [src]="user.photo" class="rounded-full w-8 h-8">
         <input type="text" placeholder="Écrire un commentaire..." class="bg-gray-100 pl-3 flex-grow focus:outline-none"
         [(ngModel)]="commentMessage"
         >
@@ -171,7 +171,7 @@
       style="scrollbar-width: none; -ms-overflow-style: none;"
     >
       <div *ngFor="let comment of PostComments" class="flex items-center gap-4 mb-4">
-        <img [src]="comment.userImage" alt="User" class="w-10 h-10 rounded-full" />
+        <img [src]="comment.user.photo" alt="User" class="w-10 h-10 rounded-full" />
         <div class="flex-1">
           <h6 class="text-xs">{{ comment.user.name }}</h6>
           <p class="text-sm text-black font-bold">{{ comment.text }}</p>

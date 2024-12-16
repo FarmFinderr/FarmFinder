@@ -15,8 +15,8 @@ import { UserService } from '../../services/user/user.service';
 export class SidebarComponent  implements OnInit {
   //userId: number = 1; 
   userId: string =''; 
-  userName = 'Kahweji Syrina';
-  userEmail = 'Syrinekahweji5@gmail.com';
+  //userName = 'Kahweji Syrina';
+  //userEmail = 'Syrinekahweji5@gmail.com';
 
   user:any=null;
   isLoading: boolean = true;
