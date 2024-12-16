@@ -59,7 +59,8 @@ public class UserController {
             user.setLastName(lastName);
             user.setEmailAddress(emailAddress);
             user.setPhoneNumber(phoneNumber);
-            user.setPassword(hashedPassword);
+            user.setPassword(password);
+            user.setPassword(password);
             user.setDate(Date.valueOf(date));
             user.setAddress(address);
             if(sexe.equals("true")){
@@ -75,7 +76,7 @@ public class UserController {
             User newuserkeycloak = createUserInKeycloak(user);
 
             user.setId(newuserkeycloak.getId());
-
+            user.setPassword(hashedPassword);
             repository.save(user);
 
             return ResponseEntity.ok("User created successfully:" + user);
