@@ -1,3 +1,4 @@
+import { UserService } from './../services/user/user.service';
 import { Post } from './../models/post.model';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
@@ -44,6 +45,7 @@ export class AccueilComponent  implements OnInit {
 
 
   postslist :any[]= [];
+  user:any=null;
   Post = {
     price: 0,
     userId: '',
@@ -61,7 +63,7 @@ export class AccueilComponent  implements OnInit {
   isModalMessage = false;
   errorMessage: string | null = null;
   //userId='1';
-  userId: string = localStorage.getItem('userId') ?? ''; 
+  userId: string =''; 
   newItem: Post = {
     price: 0,
     userId: '',
@@ -94,7 +96,7 @@ export class AccueilComponent  implements OnInit {
 
 
   currentItem: Post | null = null;
-  constructor(private Postservice: PostService,private Chatbotservice: ChatbotService,private commentservice: CommentService,
+  constructor(private Postservice: PostService,private Chatbotservice: ChatbotService,private commentservice: CommentService,private userservice:UserService,
     private ReactionService:ReactionService,private router: Router,    private AddpostService: AddpostService, private ChatUsersService: ChatUsersService
 
   ) {
@@ -151,6 +153,10 @@ export class AccueilComponent  implements OnInit {
 
 
   ngOnInit(): void {
+    this.userId = localStorage.getItem('userId') ?? ''; 
+    console.log("userid",this.userId)
+    this.getuser(this.userId);
+    console.log("user actuelle",this.user);
     this.getChats();
     this.fetchPosts();
     this.AddpostService.postAdded$.subscribe(() => {
@@ -217,7 +223,24 @@ export class AccueilComponent  implements OnInit {
       this.userMessage = '';
     }
   }
+      getuser(userId:string):void{
+        this.user=this.userservice.getUser(userId);
 
+        this.userservice.getUser(userId).subscribe({
+          next: (data) => {
+            console.log('Fetched user:', data)
+            this.user = data;
+            console.log('user act',this.user);
+            this.isLoading = false; 
+          },
+          error: (err) => {
+            console.error('Error fetching user:', err);  
+            this.errorMessage = 'Failed to load user';  
+            this.isLoading = false;  
+          },
+        });
+
+      }
 
     fetchPosts(): void {
     this.Postservice.getPosts().subscribe({

@@ -48,13 +48,17 @@ export class EventsComponent implements OnInit {
   constructor(private eventService: EventService , private registrationService:RegistrationService , private userService:UserService) {
 
   }
+  userId: string =''; 
+  user:any=null;
 
   ngOnInit(): void {
+    this.userId = localStorage.getItem('userId') ?? ''; 
     this.load_events();
-    this.get_user(1);
+    this.get_user(this.user);
+
 
   }
-  get_user(id:number)
+  get_user(id:string)
   {
     this.userService.getUser(id).subscribe({
       next:(res) =>{

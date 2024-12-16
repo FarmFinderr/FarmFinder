@@ -2,12 +2,12 @@
     <!-- Section utilisateur -->
     <div class="flex flex-col items-center py-6 border-b border-gray-100">
       <img
-        src="../../../assets/sirineKahweji_ISETBizerte.jpg"
-        alt="Image utilisateur"
+      [src]="user.photo"
+    alt="Image utilisateur"
         class="w-32 h-32 rounded-full border-4 border-lime-100"
       />
-      <h3 class="mt-4 text-lg font-semibold">{{ userName }}</h3>
-      <p class="text-sm text-lime-100">{{ userEmail }}</p>
+      <h3 class="mt-4 text-lg font-semibold">{{ this.user.name }} {{this.user.lastName}}</h3>
+      <p class="text-sm text-lime-100">{{ this.user.emailAddress }}</p>
     </div>
 
     <!-- Menu -->
