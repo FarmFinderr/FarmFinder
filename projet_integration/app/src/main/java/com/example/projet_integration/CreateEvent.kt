@@ -25,12 +25,12 @@ class CreateEvent : AppCompatActivity() {
         }
         submit  =  findViewById(R.id.submitButton)
         title =  findViewById(R.id.titleInput)
-        description =  findViewById(R.id.descriptionTextView)
+        //description =  findViewById(R.id.descriptionTextView)
 
         val  titre  =  title.text
         val prix = price.text.toString().toDoubleOrNull();
         val  desc =  description.text
-        val newEvent =
+        //val newEvent =
 
 
     }
