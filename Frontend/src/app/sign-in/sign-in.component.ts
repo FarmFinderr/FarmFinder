@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavbarComponent } from '../navbar/navbar.component';
+import { Navbar2Component } from '../navbar2/navbar2.component';
 import { UserService } from '../services/user/user.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-sign-in',
   standalone: true,
-  imports: [NavbarComponent,CommonModule, FormsModule],
+  imports: [Navbar2Component,CommonModule, FormsModule],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.css'
 })
