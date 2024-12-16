@@ -11,20 +11,19 @@
   </div>
 
   <!-- Titre principal -->
-  <h1 class="text-2xl font-bold text-gray-800 mb-6 ">
-    Annonces des fermes à vendre en Tunisie
-  </h1>
+  <h1 class="text-2xl font-extrabold text-gray-800 mb-16 mt-16">
+    Exclusive Offers on Agricultural Land and Equipment for Sale 🌿 </h1>
 
   <!-- Contenu principal -->
   <div class="flex flex-col md:flex-row gap-8">
-    <!-- Liste des annonces -->
-    <div class="flex-1  ml-8">
+    <!-- Liste des annonces (scrollable) -->
+    <div class="flex-1 ml-8  overflow-y-scroll h-[460px] "  style="scrollbar-width: none; -ms-overflow-style: none;">
       <div class="space-y-6">
         <div *ngFor="let annonce of filteredAnnonces" class="bg-white shadow rounded-lg flex flex-col md:flex-row">
           <!-- Image de l'annonce -->
           <div class="relative w-full md:w-40 h-40">
             <img
-            [src]="'http://localhost:5000' + annonce.images.slice(0, 3)[0].path"
+              [src]="'http://localhost:5000' + annonce.images.slice(0, 3)[0].path"
               alt="{{ annonce }}"
               class="w-full h-full object-cover rounded-t-lg md:rounded-l-lg"
             />
@@ -36,12 +35,11 @@
 
           <!-- Détails de l'annonce -->
           <div class="p-4 flex-1">
-            <h2 class="text-lg font-semibold text-gray-800">Ferme à vendre</h2>
+            <p class="text-lime-500 font-bold text-lg">{{ annonce.price }} TND</p>
             <p class="text-sm text-gray-500 mb-2">{{ annonce.localisation }}</p>
-            <p class="text-green-600 font-bold text-lg">{{ annonce.price }} TND</p>
             <p class="text-sm text-gray-600 mt-2">{{ annonce.description }}</p>
             <button
-              class="mt-4 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+            class="inline-block text-white bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-orange-400 hover:to-yellow-400 focus:ring-4 focus:outline-none focus:ring-orange-300 font-semibold rounded-lg text-md px-4 py-2 transition-all shadow-md hover:shadow-lg"
             >
               Lire la suite
             </button>
@@ -70,10 +68,8 @@
           <div>
             <label  class="text-sm text-gray-600">Région</label>
             <select
-
-            [(ngModel)]="searchRegion"
-            name="region"  
-
+              [(ngModel)]="searchRegion"
+              name="region"  
               class="w-full px-4 py-2 border rounded-lg focus:ring-green-500 focus:border-green-500"
             >
               <option value="tunis" selected>Tunis</option>
@@ -118,8 +114,8 @@
           <!-- Bouton Rechercher -->
           <button
             type="submit"
-            class="w-full px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
-            
+            class="w-full text-white bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-orange-400 hover:to-yellow-400 focus:ring-4 focus:outline-none focus:ring-orange-300 font-semibold rounded-lg text-md px-4 py-2 transition-all shadow-md hover:shadow-lg"
+
           >
             Rechercher
           </button>

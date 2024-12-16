@@ -25,18 +25,16 @@
     </button>
 </div>-->
 
-<div class="flex-grow mt-5" *ngIf="user.role=='user'"
->
-  <button
+<div class="flex-grow mt-5 space-y-4 "  >
+  <button  *ngIf="user.role=='user'"
      (click)="Dashboard()"
     class="w-full flex items-center gap-2 px-4 py-3 text-left bg-lime-600 hover:bg-lime-500 transition"
+    
+    
   >
   <img width="28" height="28" src="../../../assets/accueil/icondashboard.png" alt="dashboard-layout"/>
      <span>Admin Dashboard</span>
   </button>
-  </div>
-
-<div class="flex-grow mt-6">
 <button
   (click)="openReclamationModal()"
   class="w-full flex items-center gap-2 px-4 py-3 text-left bg-lime-600 hover:bg-lime-500 transition"
@@ -44,7 +42,10 @@
   <i class="fas fa-plus-circle text-xl"></i>
   <span>Add a complaint</span>
 </button>
+  
 </div>
+
+
 
 
 
