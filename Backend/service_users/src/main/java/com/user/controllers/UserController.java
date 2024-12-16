@@ -13,6 +13,8 @@ import com.user.services.FileStorageService;
 import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 
 @RestController
 @RequestMapping("/users")
@@ -38,7 +40,6 @@ public class UserController {
 
     @PostMapping("/create")
     public ResponseEntity<String> createUser(
-
             @RequestParam("name") String name,
             @RequestParam("lastName") String lastName,
             @RequestParam("emailAddress") String emailAddress,
@@ -46,25 +47,38 @@ public class UserController {
             @RequestParam("password") String password,
             @RequestParam("date") String date,
             @RequestParam("address") String address,
-            @RequestParam("sexe") String sexe, // Add sexe here
+            @RequestParam("sexe") String sexe,
             @RequestParam("photo") String photo
     ) {
         try {
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            String hashedPassword = passwordEncoder.encode(password);
+
             User user = new User();
             user.setName(name);
             user.setLastName(lastName);
             user.setEmailAddress(emailAddress);
             user.setPhoneNumber(phoneNumber);
-            user.setPassword(password);
-            user.setDate(Date.valueOf(date)); // Convert the date string to Date type
+            user.setPassword(hashedPassword);
+            user.setDate(Date.valueOf(date));
             user.setAddress(address);
-            user.setSexe(sexe);
+            if(sexe.equals("true")){
+                user.setSexe("Male");
+            }
+            else{
+                user.setSexe("Female");
+
+            }
             user.setPhoto(photo);
-            User newuserkeycloak=new User();
-            newuserkeycloak=createUserInKeycloak(user);
+            user.setRole("user");
+
+            User newuserkeycloak = createUserInKeycloak(user);
+
             user.setId(newuserkeycloak.getId());
+
             repository.save(user);
-            return ResponseEntity.ok("User created successfully.");
+
+            return ResponseEntity.ok("User created successfully:" + user);
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(500).body("Error creating user: " + e.getMessage());

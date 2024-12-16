@@ -64,11 +64,12 @@ export class SignUpComponent {
     formData.append('date', this.user.date);
     formData.append('address', this.user.address);
     formData.append('sexe', this.user.sexe);
+    console.log("sexe",this.user.sexe)
 
     // Append the selected file (if any) to the FormData
 
     formData.append('photo', this.user.photo); 
-    console.log(this.user.photo);
+    //console.log(this.user.photo);
 
     this.userService.createUser(formData).subscribe({
       next: (response) => {

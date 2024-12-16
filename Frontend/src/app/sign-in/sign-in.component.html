@@ -2,11 +2,9 @@
 
 <body class="bg-gray-100 mt-36">
   <div class="flex">
-    <!-- Left side: Form container -->
     <div class="w-full sm:w-1/2 bg-white flex flex-col justify-center items-center py-8 px-6">
       <h2 class="text-2xl font-playfair font-bold text-black mb-8">Sign In</h2>
       <form (ngSubmit)="onSubmit()" class="w-full max-w-md space-y-4">
-        <!-- Champs Email et Password -->
         <div class="flex flex-col space-y-4 m-3">
           <input 
             name="email" 
@@ -26,12 +24,10 @@
           />
         </div>
 
-        <!-- Lien Mot de Passe Oublié -->
         <div class="text-sm text-end mt-5">
           <a href="#" class="text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
         </div>
 
-        <!-- Bouton Sign In -->
         <button 
           type="submit" 
           class="w-full py-2 mt-5 rounded-md bg-lime-600 text-white text-sm font-bold font-playfair hover:bg-lime-700 focus:outline-none"
@@ -41,7 +37,6 @@
       </form>
     </div>
 
-    <!-- Right side: Image container -->
     <div class="hidden sm:flex sm:w-1/2 justify-center items-center bg-white">
       <img src="./../../assets/home/ser3.jpg" class="max-h-[550px] max-w-[550px] mt-10 object-contain" alt="Sign In" />
     </div>

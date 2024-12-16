@@ -12,13 +12,13 @@ public class beans {
     @Bean
     public Keycloak keycloak(){
         return KeycloakBuilder.builder()
-                .serverUrl("http://localhost:8050")
+                .serverUrl("http://localhost:8080")
                 .realm("FarmFinder")
                 .grantType(OAuth2Constants.CLIENT_CREDENTIALS)
                 .clientId("admin-cli")
                 .username("admin")
-                .password("1234")
-                .clientSecret("6eSQJ1P8twATPpYefbVxa0Unfod1FCBt")
+                .password("123")
+                .clientSecret("EpFnfUvZr3uN9CUtw8wDxRWikJGJIGlM")
                 .build();
     }
 
