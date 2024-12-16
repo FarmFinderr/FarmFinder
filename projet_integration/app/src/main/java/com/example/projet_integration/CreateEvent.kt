@@ -40,7 +40,7 @@ class CreateEvent : AppCompatActivity() {
     private var base64Image: String? = null
     private var date_debut: Date? = null
     private var date_fin: Date? = null
-    private lateinit var owner: User
+    private  var owner: User?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,14 +57,21 @@ class CreateEvent : AppCompatActivity() {
         previewImage = findViewById(R.id.previewImage)
 
         // Fetch owner data
-        CoroutineScope(Dispatchers.Main).launch {
+
+        scope.launch {
             try {
                 val response = ApiUser.apiService.getUserById("1")
-                owner = response.body()!!
+                if (response.isSuccessful && response.body() != null) {
+                    owner = response.body()!!
+                    Log.i("success","${response.body()!!}")
+                } else {
+                    Log.e("CreateEvent", "Error fetching owner: ${response.code()} - ${response.errorBody()?.string()}")
+                }
             } catch (e: Exception) {
-                Toast.makeText(this@CreateEvent, "Error Occurred: ${e.message}", Toast.LENGTH_LONG).show()
+                Log.e("CreateEvent", "Error fetching owner: ${e.message}")
             }
         }
+
 
         // Set up date pickers
         setupDatePicker(date_d) { date ->
@@ -91,25 +98,31 @@ class CreateEvent : AppCompatActivity() {
                     date_debut = date_debut,
                     date_fin = date_fin,
                     price = price.text.toString().toDoubleOrNull(),
-                    photo = base64Image,
-                    owner = owner,
+                    photo =  "data:image/png;base64,${base64Image}",
                     owner_id = "1",
                     description = description.text.toString(),
                     status = false,
                     users =users
                 )
-                scope.launch{
-                    try{
-                        val response =  ApiEvents.apiService.createEvent(event);
-                        if(response.body()!! != null)
-                        {
-                            Log.i("CreateEvent", "Event created: $event")
-                        
+                Log.i("event","${event.toString()}")
+                scope.launch {
+                    try {
+
+
+                        val dateDebutStr = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(date_debut!!)
+                        val dateFinStr = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(date_fin!!)
+
+                        val response = ApiEvents.apiService.createEvent(photo = event.photo, price = event.price?.toLong(), description = event.description, title = event.title, dateFin = dateFinStr, dateDebut = dateDebutStr, ownerId = "1")
+                        if (response.isSuccessful && response.body() != null) {
+                            Log.i("CreateEvent", "Event created successfully: ${response.body()}")
+                            Toast.makeText(this@CreateEvent, "Event created successfully!", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Log.e("CreateEvent", "API error: ${response.code()} - ${response.errorBody()?.string()}")
+                            Toast.makeText(this@CreateEvent, "Failed to create event. Error: ${response.code()}", Toast.LENGTH_LONG).show()
                         }
-                    }
-                    catch (e : Exception)
-                    {
-                        Log.e("error", "error ${e.message}")
+                    } catch (e: Exception) {
+                        Log.e("CreateEvent", "Exception: ${Log.getStackTraceString(e)}")
+                        Toast.makeText(this@CreateEvent, "An error occurred: ${e.message}", Toast.LENGTH_LONG).show()
                     }
                 }
 

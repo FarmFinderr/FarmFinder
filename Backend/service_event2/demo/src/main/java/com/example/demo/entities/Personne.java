@@ -11,7 +11,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class Personne {
-    private Long id ;
+    private String id ;
     private String nom ;
     private String prenom ;
     private int age   ;

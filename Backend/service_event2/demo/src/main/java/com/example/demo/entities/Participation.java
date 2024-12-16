@@ -15,12 +15,12 @@ public class Participation {
     private Long id;
 
     private Long price;
-    private Long person_id;
+    private String person_id;
     @ManyToOne
     @JoinColumn(name = "event_id", nullable = false)
     private Event event;
 
-    public Participation(Long price,Long person_id, Event event)
+    public Participation(Long price,String person_id, Event event)
     {
         this.price= price;
         this.person_id = person_id;

@@ -13,6 +13,6 @@ data class Event(
     val description: String,
     val title:  String?,
     val photo: String?,
-    val owner: User,
+    val owner: User? = null,
     val users: ArrayList<User>
 )
