@@ -4,6 +4,7 @@ import { UserService } from '../services/user/user.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import Swal from 'sweetalert2'; // Import SweetAlert2
 
 @Component({
   selector: 'app-sign-up',
@@ -23,17 +24,15 @@ export class SignUpComponent {
     date: '',
     address: '',
     photo: '',
-    sexe: ""
+    sexe: ''
   };
 
   uploadedImageUrl: string = '';
   imageError = "";
   files: File[] = [];
-  passwordsMatch: boolean = true; 
+  passwordsMatch: boolean = true;
 
   constructor(private userService: UserService, private router: Router) { }
-
-
 
   onFileChanged(event: any) {
     const file = event.target.files[0];
@@ -44,14 +43,32 @@ export class SignUpComponent {
       this.user.photo = reader.result as string;
     };
     console.log(this.user.photo);
-
-
   }
 
   onSubmit(): void {
+
+    if (!this.user.name || !this.user.lastName || !this.user.emailAddress || !this.user.phoneNumber || 
+        !this.user.password || !this.user.confirmPassword || !this.user.date || !this.user.address) {
+      Swal.fire('Error', 'All fields are required!', 'error');
+      return;
+    }
+
     this.checkPasswordsMatch();
     if (!this.passwordsMatch) {
-      alert('Passwords do not match.');
+      Swal.fire('Error', 'Passwords do not match.', 'error');
+      return;
+    }
+
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+    if (!emailPattern.test(this.user.emailAddress)) {
+      Swal.fire('Error', 'Please enter a valid Gmail address.', 'error');
+      return;
+    }
+
+    const birthDate = new Date(this.user.date);
+    const currentDate = new Date();
+    if (birthDate >= currentDate) {
+      Swal.fire('Error', 'Birth date cannot be in the future.', 'error');
       return;
     }
 
@@ -64,12 +81,7 @@ export class SignUpComponent {
     formData.append('date', this.user.date);
     formData.append('address', this.user.address);
     formData.append('sexe', this.user.sexe);
-    console.log("sexe",this.user.sexe)
-
-    // Append the selected file (if any) to the FormData
-
-    formData.append('photo', this.user.photo); 
-    //console.log(this.user.photo);
+    formData.append('photo', this.user.photo);
 
     this.userService.createUser(formData).subscribe({
       next: (response) => {
@@ -78,71 +90,12 @@ export class SignUpComponent {
       },
       error: (error) => {
         console.error('Error creating user', error);
-        alert('Error creating account. Please try again.');
+        Swal.fire('Error', 'Error creating account. Please try again.', 'error');
       },
     });
   }
-  // onSubmit(): void {
-  //   this.checkPasswordsMatch();
-  //   if (!this.passwordsMatch) {
-  //     alert('Passwords do not match.');
-  //     return;
-  //   }
-
-  //   if (this.files.length > 0) {
-  //    this.imageError = "";
-  //    this.userService.AddPhoto(this.files).subscribe((res: any) => {
-  //       // After photo upload, create the user
-  //       const formData = new FormData();
-  //       formData.append('name', this.user.name);
-  //       formData.append('lastName', this.user.lastName);
-  //       formData.append('emailAddress', this.user.emailAddress);
-  //       formData.append('phoneNumber', this.user.phoneNumber);
-  //       formData.append('password', this.user.password);
-  //       formData.append('date', this.user.date);
-  //       formData.append('address', this.user.address);
-  //       formData.append('sexe', this.user.sexe);
-  //       //formData.append('photo', this.user.photo);
-
-  //       //Assuming the response contains the URL of the uploaded image
-  //       this.uploadedImageUrl = res['photoUrl']; // Store the image URL
-  //       formData.append('photo', this.uploadedImageUrl); // You can append the image URL here too if needed
-
-  //       this.userService.createUser(formData).subscribe({
-  //         next: (response) => {
-  //           console.log('User created successfully', response);
-  //           this.router.navigate(['/sign-in']);
-  //         },
-  //         error: (error) => {
-  //           console.error('Error creating user', error);
-  //           alert('Error creating account. Please try again.');
-  //         },
-  //       });
-  //    }, (err) => {
-  //      this.imageError = "Error uploading image. Please try again.";
-  //      console.error(err);
-  //    });
-  //   } else {
-  //    this.imageError = "You must upload an image";
-  //  }
-  // }
-
-
-
-
-
 
   checkPasswordsMatch(): void {
     this.passwordsMatch = this.user.password === this.user.confirmPassword;
   }
-
-  /*onFileSelected(event: Event): void {
-    const target = event.target as HTMLInputElement;
-    if (target.files) {
-      this.files = Array.from(target.files);
-      if (this.files.length != 0) {
-        console.log('Selected files:', this.files);
-      }
-    }
-  }*/
 }
