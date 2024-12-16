@@ -14,6 +14,7 @@ data class User(
     val  addresse : String,
     val  emailAdresse : String ,
     val  photo  : String ,
-    val  role  : Int
+    val  role  : Int,
+    val password:String
 
     )

@@ -77,7 +77,7 @@ public class EventService {
                                                 @RequestParam("price") Long price,
                                                 @RequestParam("date_debut")  @DateTimeFormat(pattern = "yyyy-MM-dd")Date dateDebut,
                                                 @RequestParam("date_fin")  @DateTimeFormat(pattern = "yyyy-MM-dd")Date dateFin,
-                                                @RequestParam("owner_id") Long ownerId) {
+                                                @RequestParam("owner_id") String ownerId) {
 
         Event newEvent = new Event(false,description,title,price,ownerId,dateDebut,photo,dateFin);
         eventRepository.save(newEvent);
@@ -92,7 +92,7 @@ public class EventService {
 
     @PostMapping("/EventResgistration/")
     public ResponseEntity<?> EventRegistration(@RequestParam("price") Long price,
-                                               @RequestParam("person_id") Long person_id,
+                                               @RequestParam("person_id") String person_id,
                                                @RequestParam("event_id") Long eventId) {
         User Registrated_User = personneService.findCustomerById(person_id);
         Event event = eventRepository.findById(eventId).orElse(null); // Fetch event by ID
