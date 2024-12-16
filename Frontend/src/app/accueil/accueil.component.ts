@@ -60,7 +60,8 @@ export class AccueilComponent  implements OnInit {
   isLoading: boolean = true;
   isModalMessage = false;
   errorMessage: string | null = null;
-  userId='1';
+  //userId='1';
+  userId: string = localStorage.getItem('userId') ?? ''; 
   newItem: Post = {
     price: 0,
     userId: '',

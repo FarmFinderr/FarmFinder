@@ -23,8 +23,8 @@ export class AddpostComponent {
   messageSuccess = false;
   selectedType: string = '';
   files: File[] = [];
-  userId='1';
-  constructor(private http: HttpClient,private imageService: ImageService,
+  userId: string = localStorage.getItem('userId') ?? ''; 
+    constructor(private http: HttpClient,private imageService: ImageService,
     private AddpostService: AddpostService,private router: Router, 
   ) {}
 
