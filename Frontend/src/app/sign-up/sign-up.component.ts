@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavbarComponent } from '../navbar/navbar.component';
+import { Navbar2Component } from '../navbar2/navbar2.component';
 import { UserService } from '../services/user/user.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-sign-up',
   standalone: true,
-  imports: [NavbarComponent, CommonModule, FormsModule],
+  imports: [Navbar2Component, CommonModule, FormsModule],
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.css'],
 })
@@ -29,7 +29,7 @@ export class SignUpComponent {
   uploadedImageUrl: string = '';
   imageError = "";
   files: File[] = [];
-  passwordsMatch: boolean = true; // This will track if the passwords match
+  passwordsMatch: boolean = true; 
 
   constructor(private userService: UserService, private router: Router) { }
 
@@ -49,14 +49,12 @@ export class SignUpComponent {
   }
 
   onSubmit(): void {
-    // Ensure the passwords match before submitting
     this.checkPasswordsMatch();
     if (!this.passwordsMatch) {
       alert('Passwords do not match.');
       return;
     }
 
-    // Create FormData object to send form data and image
     const formData = new FormData();
     formData.append('name', this.user.name);
     formData.append('lastName', this.user.lastName);
@@ -69,7 +67,7 @@ export class SignUpComponent {
 
     // Append the selected file (if any) to the FormData
 
-    formData.append('photo', this.user.photo); // Only take the first file
+    formData.append('photo', this.user.photo); 
     console.log(this.user.photo);
 
     this.userService.createUser(formData).subscribe({
@@ -133,7 +131,6 @@ export class SignUpComponent {
 
 
 
-  // This method checks if the passwords match
   checkPasswordsMatch(): void {
     this.passwordsMatch = this.user.password === this.user.confirmPassword;
   }

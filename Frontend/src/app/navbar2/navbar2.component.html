@@ -1,0 +1,62 @@
+<div class="max-w-screen-xl mb-20">
+    <nav
+      class="bg-white  fixed w-full z-20 top-0 start-0 "
+    >
+      <div class="flex items-center justify-between w-full p-4">
+        <img
+          src="../../assets/logo.png"
+          class="h-14 z-30"
+          alt="farmfinder Logo"
+        />
+  
+        <div
+          class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse"
+          v-else
+        >
+          <button
+          [routerLink]="['/sign-in']"
+            type="button"
+            class="font-playfair transition ease-in-out delay-150 text-black font-bold mr-3 hover:-translate-y-1 hover:scale-110 duration-300 ..."
+          >
+            sign in
+          </button>
+  
+          <button
+            type="button"
+            [routerLink]="['/sign-up']"
+            class="text-white font-playfair font-dmserif font-bold transition ease-in-out delay-150 bg-amber-300 hover:bg-amber-500 focus:ring-4 focus:outline-none focus:ring-amber-400 rounded-lg text-sm px-4 py-2 text-center light:bg-amber-500 light:focus:ring-amber-500 hover:-translate-y-1 hover:scale-110 light:hover:bg-amber-500 duration-300 ..."
+          >
+          sign up
+          </button>
+          <button
+            data-collapse-toggle="navbar-sticky"
+            type="button"
+            class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 light:text-gray-400 light:hover:bg-gray-700 light:focus:ring-gray-600"
+            aria-controls="navbar-sticky"
+            aria-expanded="false"
+          >
+            <span class="sr-only">Open main menu</span>
+            <svg
+              class="w-5 h-5"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 17 14"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M1 1h15M1 7h15M1 13h15"
+              />
+            </svg>
+          </button>
+        </div>
+        <h1 class="font-playfair font-bold text-4xl md:text-6xl lg:text-3xl text-black -mr-4">Farm  Finder</h1>
+  
+    
+      </div>
+    </nav>
+  </div>
+  
