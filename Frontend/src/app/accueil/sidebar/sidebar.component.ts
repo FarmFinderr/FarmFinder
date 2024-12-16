@@ -3,6 +3,10 @@ import { FormsModule } from '@angular/forms'; // Import FormsModule for form han
 import { CommonModule } from '@angular/common'; // Import CommonModule for directives like *ngIf
 import { ReclamationService } from '../../services/reclamation/reclamation.service';
 import { UserService } from '../../services/user/user.service';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+
+
 
 
 @Component({
@@ -21,7 +25,7 @@ export class SidebarComponent  implements OnInit {
   user:any=null;
   isLoading: boolean = true;
   errorMessage: string | null = null;
-  constructor(private reclamationService: ReclamationService,private userservice:UserService,) { }
+  constructor(private reclamationService: ReclamationService,private userservice:UserService,private router: Router) { }
 
 
 
@@ -91,7 +95,6 @@ export class SidebarComponent  implements OnInit {
       formData.append("reclamation", this.reclamationText);
       formData.append("userId", this.userId.toString());
 
-      // Assuming `this.selectedFile` contains the base64 string, e.g., 'data:image/png;base64,...'
       if (this.selectedFile) {
         formData.append("image", this.selectedFile);
       }
@@ -120,5 +123,23 @@ export class SidebarComponent  implements OnInit {
   }
 
 
-  logout() { }
+  logout():void { 
+      Swal.fire({
+        title: 'Are you sure?',
+        text: 'You will be logged out.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, log me out',
+        cancelButtonText: 'Cancel',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          localStorage.clear();
+          this.router.navigate(['/sign-in']);
+        }
+      });
+    
+
+  }
 }
