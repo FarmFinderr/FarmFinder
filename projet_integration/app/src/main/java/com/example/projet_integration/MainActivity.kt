@@ -34,13 +34,14 @@ class MainActivity : AppCompatActivity() {
         // Action pour se connecter
         signin.setOnClickListener {
 
-            val intent = Intent(this, EventActivity::class.java)
+            val intent = Intent(this, MainActivity2::class.java)
 
            startActivity(intent)
            finish()/// Fermer l'activité actuelle pour éviter de revenir en arrière
 
             val  client =  "admin-cli"
             val secret ="6eSQJ1P8twATPpYefbVxa0Unfod1FCBt"
+            val secretsyrine="Kcs0uaQIIRW9tUJnzbW5iQlozTRdsXlo"
             var Acces_token  =  ""
             scope.launch {
                 try {
@@ -53,8 +54,6 @@ class MainActivity : AppCompatActivity() {
                     Log.e("failed","error : ${e.message}")
                 }
             }
-
-
 
            /*val intent = Intent(this, CreateEvent::class.java)
 

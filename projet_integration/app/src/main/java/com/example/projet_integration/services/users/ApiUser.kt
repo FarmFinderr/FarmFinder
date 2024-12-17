@@ -10,6 +10,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 object ApiUser {
     private const val BASE_URL: String = "http://10.0.2.2:8880/users/"
     private const val BASE_URL2: String = "http://10.0.2.2:8050/"
+    private const val BASE_URL3: String = "http://192.168.56.1:8083/users"
+    private const val BASE_URL4: String = "http://192.168.56.1:8080/"
+
+
     private val gson: Gson by lazy {
         GsonBuilder().setLenient().create()
     }
@@ -19,14 +23,14 @@ object ApiUser {
     }
     private val retrofit: Retrofit by lazy {
         Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(BASE_URL3)
             .client(httpClient)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
     }
     private val retrofit2: Retrofit by lazy {
         Retrofit.Builder()
-            .baseUrl(BASE_URL2)
+            .baseUrl(BASE_URL4)
             .client(httpClient)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
