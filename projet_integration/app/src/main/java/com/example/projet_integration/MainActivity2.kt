@@ -1,83 +1,90 @@
-    package com.example.projet_integration
+package com.example.projet_integration
 
+import PostAdapter
+import android.content.Intent
+import android.os.Bundle
+import android.util.Log
+import android.widget.ImageView
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.projet_integration.services.post.ApiPost
+import com.google.android.material.navigation.NavigationView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-    import android.content.Intent
-    import android.os.Bundle
-    import android.widget.ImageView
-    import androidx.appcompat.app.ActionBarDrawerToggle
-    import androidx.appcompat.app.AppCompatActivity
-    import androidx.core.view.GravityCompat
-    import androidx.drawerlayout.widget.DrawerLayout
-    import androidx.recyclerview.widget.LinearLayoutManager
-    import androidx.recyclerview.widget.RecyclerView
-    import com.google.android.material.navigation.NavigationView
+class MainActivity2 : AppCompatActivity() {
 
+    lateinit var drawerLayout: DrawerLayout
+    private lateinit var toggle: ActionBarDrawerToggle
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var postAdapter: PostAdapter
+    private lateinit var postsList: ArrayList<Post> // List to hold posts
 
-    class MainActivity2 : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
+        // Initialize views
+        recyclerView = findViewById(R.id.recyclerView)
+        drawerLayout = findViewById(R.id.drawerLayout)
+        val navigation: NavigationView = findViewById(R.id.navigation)
 
-        lateinit var drawerLayout : DrawerLayout
-        private lateinit var toggle : ActionBarDrawerToggle
+        // Set up ActionBarDrawerToggle
+        toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open_drawer, R.string.close_drawer)
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
 
-        override fun onCreate(savedInstanceState: Bundle?) {
-            super.onCreate(savedInstanceState)
-            setContentView(R.layout.activity_main)
+        // Open drawer on menu icon click
+        val menuIcon: ImageView = findViewById(R.id.menu)
+        menuIcon.setOnClickListener {
+            drawerLayout.openDrawer(GravityCompat.START)
+        }
 
-            drawerLayout = findViewById(R.id.drawerLayout)
-            val navigation: NavigationView = findViewById(R.id.navigation)
-            toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open_drawer, R.string.close_drawer)
-            drawerLayout.addDrawerListener(toggle)
-            toggle.syncState()
-
-            // Open drawer on menu icon click
-            val menuIcon: ImageView = findViewById(R.id.menu)
-            menuIcon.setOnClickListener {
-                drawerLayout.openDrawer(GravityCompat.START)
-            }
-
-            // Handle navigation menu clicks
-            navigation.setNavigationItemSelectedListener { menuItem ->
-                when (menuItem.itemId) {
-                    R.id.Events -> {
-                        // Navigate to EventActivity
-                        val intent = Intent(this, EventActivity::class.java)
-                        startActivity(intent)
-                        drawerLayout.closeDrawer(GravityCompat.START)
-                        true
-                    }
-                    else -> false
+        // Handle navigation menu clicks
+        navigation.setNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.Events -> {
+                    // Navigate to EventActivity
+                    val intent = Intent(this, EventActivity::class.java)
+                    startActivity(intent)
+                    drawerLayout.closeDrawer(GravityCompat.START)
+                    true
                 }
+                else -> false
             }
+        }
 
+        // Initialize RecyclerView
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        postsList = ArrayList()  // Initialize posts list
 
-            val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
-            recyclerView.layoutManager = LinearLayoutManager(this)
+        // Initialize the PostAdapter with an empty list initially
+        postAdapter = PostAdapter(postsList, this)
+        recyclerView.adapter = postAdapter
 
-    /*  val posts = listOf(
-          Post(
-              name = "Iheb Sessi",
-              date = "27 Février à 19:31",
-              content = "3 ha a vendre à 5 km de Bizerte...",
-              likes = 10,
-              localImageResId = null
-          ),
-          Post(
-              name = "Iheb Sessi",
-              date = "27 Février à 20:01",
-              content = "3 ha a vendre à 14 km de tunis centre...",
-              likes = 15,
-              localImageResId = R.drawable.terrain2
-          ),
-          Post(
-              name = "Iheb Sessi",
-              date = "27 Février à 20:05",
-              content = "à vendre belle ferme de 17 ha avec titre...",
-              likes = 20,
-              localImageResId = R.drawable.terrain
-          )
-      )
+        // Fetch posts from the API
+        fetchPosts()
+    }
 
-      val adapter = PostAdapter(posts)
-      recyclerView.adapter = adapter */
-  }
+    private fun fetchPosts() {
+        val scope = CoroutineScope(Dispatchers.Main)
+        scope.launch {
+            try {
+                val response = ApiPost.apiService.getPosts() // Fetch posts via API
+                if (response.isSuccessful && response.body() != null) {
+                    postsList.clear()
+                    postsList.addAll(response.body()!!) // Add posts to list
+                    postAdapter.notifyDataSetChanged() // Notify adapter about data change
+                    Log.i("success", "Données récupérées : ${response.body()!!}")
+                }
+            } catch (e: Exception) {
+                Log.e("error", "Erreur lors de la récupération des données : ${e.message}")
+            }
+        }
+    }
 }

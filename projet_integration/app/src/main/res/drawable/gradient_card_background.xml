@@ -1,4 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-
-</selector>
+<!-- gradient_card_background.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <gradient
+        android:startColor="#FF5252"
+    android:endColor="#D32F2F"
+    android:angle="45" />
+    <corners android:radius="12dp" /> <!-- Coins arrondis -->
+</shape>
