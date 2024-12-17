@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');  // Add this line
 const ReclamationSchema = new mongoose.Schema({
   userId: {
-    type: Number,
+    type: String,
     required: true
   },
   reclamation: {

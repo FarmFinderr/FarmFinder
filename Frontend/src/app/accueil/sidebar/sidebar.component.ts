@@ -22,8 +22,8 @@ export class SidebarComponent  implements OnInit {
   //userName = 'Kahweji Syrina';
   //userEmail = 'Syrinekahweji5@gmail.com';
    // Fake first and last name
-   name = 'Lyna';
-   lastName = 'Moujahed';
+   //name = 'Lyna';
+   //lastName = 'Moujahed';
 
    showModal: boolean = false;
    reclamationText: string = '';
@@ -64,33 +64,44 @@ export class SidebarComponent  implements OnInit {
   }
 
 
-
-
-
-  // Function to handle reclamation submission
   addReclamation() {
     if (this.reclamationText.trim()) {
       const reclamationPayload = {
         reclamation: this.reclamationText,
-        userId: this.userId,  // Add userId here
-        name: this.name,  // Add first name
-        lastName: this.lastName   // Add last name
+        userId: this.userId,  
+        name: this.user.name,  
+        lastName: this.user.lastName   
       };
-
+  
       this.reclamationService.addReclamation(reclamationPayload).subscribe(
         (response) => {
           console.log('Reclamation submitted successfully:', response);
-          alert('Réclamation soumise avec succès!');
-          this.reclamationText = ''; // Clear the input
-          this.showModal = false;   // Close the modal
+          Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: 'Reclamation submitted successfully!',
+            confirmButtonColor: '#3085d6',
+          });
+          this.reclamationText = ''; 
+          this.showModal = false;   
         },
         (error) => {
           console.error('Error submitting reclamation:', error);
-          alert('Une erreur est survenue. Veuillez réessayer.');
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'An error occurred. Please try again.',
+            confirmButtonColor: '#d33',
+          });
         }
       );
     } else {
-      alert('Veuillez saisir une réclamation avant de soumettre.');
+      Swal.fire({
+        icon: 'warning',
+        title: 'Warning',
+        text: 'Please enter a reclamation before submitting.',
+        confirmButtonColor: '#f39c12',
+      });
     }
   }
 
