@@ -73,6 +73,7 @@ export class AccueilComponent  implements OnInit {
     air: 0,
     defaut: '',
     etat: '',
+    type:''
 
   };
   senderId: number = 1;

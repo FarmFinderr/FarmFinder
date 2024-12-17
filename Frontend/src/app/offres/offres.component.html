@@ -3,37 +3,37 @@
 <div class="container mx-auto px-4 mt-8">
   <!-- Breadcrumb -->
   <div class="flex items-center space-x-2 text-sm text-gray-500 mb-6 mt-6">
-    <a href="#" class="text-green-600 hover:underline font-semibold">Accueil</a>
+    <a href="#" class="text-green-600 hover:underline font-semibold">Home</a>
     <span>/</span>
-    <a href="#" class="text-gray-500 hover:underline font-semibold">Tout les fermes</a>
+    <a href="#" class="text-gray-500 hover:underline font-semibold">All Farms</a>
     <span>/</span>
-    <a href="#" class="text-gray-500 hover:underline font-semibold">Vente</a>
+    <a href="#" class="text-gray-500 hover:underline font-semibold">Sale</a>
   </div>
 
-  <!-- Titre principal -->
+  <!-- Main Title -->
   <h1 class="text-2xl font-extrabold text-gray-800 mb-16 mt-16">
     Exclusive Offers on Agricultural Land and Equipment for Sale 🌿 </h1>
 
-  <!-- Contenu principal -->
+  <!-- Main Content -->
   <div class="flex flex-col md:flex-row gap-8">
-    <!-- Liste des annonces (scrollable) -->
+    <!-- List of Ads (scrollable) -->
     <div class="flex-1 ml-8  overflow-y-scroll h-[460px] "  style="scrollbar-width: none; -ms-overflow-style: none;">
       <div class="space-y-6">
         <div *ngFor="let annonce of filteredAnnonces" class="bg-white shadow rounded-lg flex flex-col md:flex-row">
-          <!-- Image de l'annonce -->
+          <!-- Ad Image -->
           <div class="relative w-full md:w-40 h-40">
             <img
               [src]="'http://localhost:5000' + annonce.images.slice(0, 3)[0].path"
               alt="{{ annonce }}"
               class="w-full h-full object-cover rounded-t-lg md:rounded-l-lg"
             />
-            <!-- Surface sous l'image -->
-            <div class="absolute bottom-0 left-0 w-full bg-gray-800 bg-opacity-50 text-white text-center py-1">
+            <!-- Surface below the image -->
+            <div *ngIf="annonce.type=='terrain'" class="absolute bottom-0 left-0 w-full bg-gray-800 bg-opacity-50 text-white text-center py-1">
               <p class="text-lg font-bold">{{ annonce.air }} m²</p>
             </div>
           </div>
 
-          <!-- Détails de l'annonce -->
+          <!-- Ad Details -->
           <div class="p-4 flex-1">
             <p class="text-lime-500 font-bold text-lg">{{ annonce.price }} TND</p>
             <p class="text-sm text-gray-500 mb-2">{{ annonce.localisation }}</p>
@@ -41,32 +41,32 @@
             <button
             class="inline-block text-white bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-orange-400 hover:to-yellow-400 focus:ring-4 focus:outline-none focus:ring-orange-300 font-semibold rounded-lg text-md px-4 py-2 transition-all shadow-md hover:shadow-lg"
             >
-              Lire la suite
+              Read More
             </button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Section de recherche -->
+    <!-- Search Section -->
     <div class="w-full md:w-80">
       <div class="bg-gray-100 shadow rounded-lg p-6">
-        <h3 class="text-lg font-bold text-gray-800 mb-4">Rechercher</h3>
+        <h3 class="text-lg font-bold text-gray-800 mb-4">Search</h3>
         <form (ngSubmit)="onSearch()" class="space-y-4">
-          <!-- Type d'offre -->
+          <!-- Offer Type -->
           <div>
-            <label class="text-sm text-gray-600">Type d'offre</label>
-            <select
+            <label class="text-sm text-gray-600">Offer Type</label>
+            <select [(ngModel)]="searchType"  name="searchType"
               class="w-full px-4 py-2 border rounded-lg focus:ring-green-500 focus:border-green-500"
             >
-              <option value="location">Location</option>
-              <option value="vente">Vente</option>
+              <option value="terrain">Land</option>
+              <option value="materiel">Agricultural Equipment</option>
             </select>
           </div>
 
-          <!-- Région -->
+          <!-- Region -->
           <div>
-            <label  class="text-sm text-gray-600">Région</label>
+            <label  class="text-sm text-gray-600">Region</label>
             <select
               [(ngModel)]="searchRegion"
               name="region"  
@@ -99,25 +99,24 @@
             </select>
           </div>
 
-          <!-- Prix -->
+          <!-- Price -->
           <div>
-            <label class="text-sm text-gray-600">Prix</label>
+            <label class="text-sm text-gray-600">Price</label>
             <input
              [(ngModel)]="searchPrice"
             name="prix"
             type="number"
-            placeholder="Saisissez le prix"
+            placeholder="Enter Price"
             class="w-full px-4 py-2 border rounded-lg focus:ring-green-500 focus:border-green-500"
           />
           </div>
 
-          <!-- Bouton Rechercher -->
+          <!-- Search Button -->
           <button
             type="submit"
             class="w-full text-white bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-orange-400 hover:to-yellow-400 focus:ring-4 focus:outline-none focus:ring-orange-300 font-semibold rounded-lg text-md px-4 py-2 transition-all shadow-md hover:shadow-lg"
-
           >
-            Rechercher
+            Search
           </button>
         </form>
       </div>

@@ -1,22 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, CurrencyPipe, NgForOf, NgIf } from '@angular/common';
-import { Post } from '../models/post.model';  // Importation du modèle Post
-import { PostService } from '../services/post/post.service';  // Service pour récupérer les posts
-import { FormsModule } from '@angular/forms';  // Importation du module Forms
+import { Post } from '../models/post.model';  
+import { PostService } from '../services/post/post.service';  
+import { FormsModule } from '@angular/forms';  
 import { NavbarComponent } from '../accueil/navbar/navbar.component';
 
 @Component({
   selector: 'app-offres',
   standalone: true,
-  imports: [NavbarComponent, CommonModule, CurrencyPipe, NgForOf, NgIf, FormsModule],  // Importation des modules nécessaires
-  templateUrl: './offres.component.html',  // Le template HTML
-  styleUrls: ['./offres.component.css'],  // Le fichier CSS
+  imports: [NavbarComponent, CommonModule, CurrencyPipe, NgForOf, NgIf, FormsModule], 
+  templateUrl: './offres.component.html',  
+  styleUrls: ['./offres.component.css'],  
 })
 export class OffresComponent implements OnInit {
-  annonces: Post[] = []; // Tableau pour stocker les annonces récupérées
-  filteredAnnonces: any[] = []; // Annonces filtrées selon les critères
-  searchRegion: string = ''; // Région à rechercher
-  searchPrice: number | null = null; // Prix à rechercher
+  annonces: Post[] = []; 
+  filteredAnnonces: any[] = []; 
+  searchRegion: string = ''; 
+  searchType: string = ''; 
+  searchPrice: number | null = null; 
 
   constructor(private postService: PostService) {}
 
@@ -24,35 +25,34 @@ export class OffresComponent implements OnInit {
     this.loadAnnonces(); 
   }
 
-  // Méthode pour récupérer les annonces via le service
   loadAnnonces(): void {
     this.postService.getPosts().subscribe({
       next: (data) => {
-        this.annonces = data;  // Affecter les annonces récupérées à la variable 'annonces'
-        this.filteredAnnonces = data; // Par défaut, afficher toutes les annonces
+        this.annonces = data;  
+        this.filteredAnnonces = data; 
         console.log('Annonces chargées :', this.annonces);
       },
       error: (err) => {
-        console.error('Erreur lors du chargement des annonces :', err);  // Gérer les erreurs de récupération
+        console.error('Erreur lors du chargement des annonces :', err);  
       },
     });
   }
 
-  // Fonction de recherche par prix ou région
   onSearch(): void {
     console.log("Recherche en cours...");
+    console.log(this.searchPrice , this.searchRegion ,this.searchType);
+
   
     this.filteredAnnonces = this.annonces.filter(annonce => {
-      // Si un prix est spécifié, filtrer par prix
       const matchesPrice = this.searchPrice ? annonce.price === this.searchPrice : true;
   
-      // Si une région est spécifiée, filtrer par région
       const matchesRegion = this.searchRegion
         ? annonce.localisation && annonce.localisation.toLowerCase().includes(this.searchRegion.toLowerCase())
         : true;
   
-      // Si au moins un des critères (prix ou région) correspond, retourner l'annonce
-      return matchesPrice && matchesRegion;
+      const matchesType = this.searchType ? annonce.type === this.searchType : true;
+
+      return matchesPrice && matchesRegion && matchesType;    
     });
   }
   
