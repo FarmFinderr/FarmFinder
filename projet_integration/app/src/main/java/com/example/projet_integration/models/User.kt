@@ -1,11 +1,11 @@
-package com.example.projet_integration
+package com.example.projet_integration.models
 
 import java.util.Date
 
 data class User(
 
 
-    val  id : Int,
+    val  id : String,
     val name  : String,
     val lastName :  String,
     val  phoneNumber :  Int,
@@ -14,6 +14,7 @@ data class User(
     val  addresse : String,
     val  emailAdresse : String ,
     val  photo  : String ,
-    val  role  : Int
+    val  role  : Int,
+    val password:String
 
     )

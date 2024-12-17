@@ -6,7 +6,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+
 import com.example.projet_integration.OffreAdapter.OffreViewHolder
+
 import com.example.projet_integration.Post
 import com.example.projet_integration.R
 

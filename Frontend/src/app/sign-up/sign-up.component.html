@@ -1,66 +1,49 @@
-<app-navbar></app-navbar>
+<app-navbar2></app-navbar2>
 
-<body class="mt-0">
-  <div class="flex min-h-screen">
-    <!-- Left side: Form container -->
-    <div class="w-full sm:w-2/4 bg-green-100 flex flex-col justify-center items-center py-8 pt-10">
-      <h2 class="text-4xl font-bold mb-14 text-green-900 -mt-8">Sign Up</h2>
-      <div class="max-w-7xl mx-auto font-[sans-serif] pl-10 pr-10 pb-10">
-        <form (ngSubmit)="onSubmit()" enctype="multipart/form-data">
-          <div class="grid sm:grid-cols-2 gap-y-7 gap-x-12">
-            <div>
-              <input name="name" [(ngModel)]="user.name" type="text" class="bg-white w-full text-sm px-4 py-3.5 rounded-md" placeholder="Enter first name" required />
-            </div>
-            <div>
-              <input name="lastName" [(ngModel)]="user.lastName" type="text" class="bg-white w-full text-sm px-4 py-3.5 rounded-md" placeholder="Enter last name" required />
-            </div>
-            <div>
-              <input name="emailAddress" [(ngModel)]="user.emailAddress" type="email" class="bg-white w-full text-sm px-4 py-3.5 rounded-md" placeholder="Enter email" required />
-            </div>
-            <div>
-              <input name="phoneNumber" [(ngModel)]="user.phoneNumber" type="text" class="bg-white w-full text-sm px-4 py-3.5 rounded-md" placeholder="12 213 214" required />
-            </div>
-            <div>
-              <input name="password" [(ngModel)]="user.password" type="password" class="bg-white w-full text-sm px-4 py-3.5 rounded-md" placeholder="Enter password" required  />
-            </div>
-            <div>
-              <input name="confirmPassword" [(ngModel)]="user.confirmPassword" type="password"
-                    [ngClass]="{'border-red-500': !passwordsMatch}"
-                    class="bg-white w-full text-sm px-4 py-3.5 rounded-md" placeholder="Confirm password" required (input)="checkPasswordsMatch()" />
-              </div>
+<body class="bg-gray-100">
+  <div class="flex">
+    <div class="w-full sm:w-1/2 bg-white flex flex-col justify-center items-center py-8 px-6">
+      <h2 class="text-2xl font-playfair font-bold text-black mb-8">Sign Up</h2>
+      <form (ngSubmit)="onSubmit()" class="w-full max-w-md space-y-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <input name="name" [(ngModel)]="user.name" type="text" class="input-field" placeholder="First Name" required />
+          <input name="lastName" [(ngModel)]="user.lastName" type="text" class="input-field" placeholder="Last Name" required />
+          <input name="emailAddress" [(ngModel)]="user.emailAddress" type="email" class="input-field" placeholder="Email" required />
+          <input name="phoneNumber" [(ngModel)]="user.phoneNumber" type="text" class="input-field" placeholder="Phone Number" required />
+          <input name="password" [(ngModel)]="user.password" type="password" class="input-field" placeholder="Password" required />
+          <input name="confirmPassword" [(ngModel)]="user.confirmPassword" type="password" 
+                 [ngClass]="{'border-red-500': !passwordsMatch}" 
+                 class="input-field" placeholder="Confirm Password" required (input)="checkPasswordsMatch()" />
+          <input name="date" [(ngModel)]="user.date" type="date" class="input-field" required />
+          <input name="address" [(ngModel)]="user.address" type="text" class="input-field" placeholder="Address" required />
+        </div>
 
-            <div>
-              <input name="date" [(ngModel)]="user.date" type="date" class="bg-white w-full text-sm px-4 py-3.5 rounded-md" required />
-            </div>
-            <div>
-              <input name="address" [(ngModel)]="user.address" type="text" class="bg-white w-full text-sm px-4 py-3.5 rounded-md" placeholder="Enter your address" required />
-            </div>
-            <div>
+        <div>
+          <label for="imageUpload" class="block text-sm text-gray-600 font-medium mb-2">Your Photo</label>
+          <input name="photo" type="file" id="imageUpload" accept="image/*,video/*" 
+                 (change)="onFileChanged($event)" class="input-field" />
+        </div>
 
-              <input name="photo" type="file" id="imageUpload"  class="hidden" accept="image/*,video/*" (change)="onFileChanged($event)" class="bg-white w-full text-sm px-4 py-3.5 rounded-md" />
-            </div>
-            <div>
-              <input type="radio" name="sexe" [(ngModel)] ="user.sexe" value="true" /> Male
-            <input type="radio" name="sexe" [(ngModel)] ="user.sexe" value="false" /> Female
-            </div>
+        <div class="flex gap-3 items-center text-sm">
+          <label class="flex items-center gap-2">
+            <input type="radio" name="sexe" [(ngModel)]="user.sexe" value="true" />
+            <span>Male</span>
+          </label>
+          <label class="flex items-center gap-2">
+            <input type="radio" name="sexe" [(ngModel)]="user.sexe" value="false" />
+            <span>Female</span>
+          </label>
+        </div>
 
-
-
-
-
-          </div>
-          <div class="!mt-10 grid grid-cols-3 gap-4">
-            <div></div>
-            <button type="submit" class="place-self-auto min-w-[150px] py-3 px-4 text-sm font-semibold rounded text-white bg-green-800 hover:bg-green-600 focus:outline-none">Sign Up</button>
-            <div></div>
-          </div>
-        </form>
-      </div>
+        <button type="submit" class="w-full py-2 rounded-md bg-lime-600 text-white text-sm font-bold font-playfair hover:bg-lime-700 focus:outline-none">
+          Sign Up
+        </button>
+      </form>
     </div>
 
-    <!-- Right side: Image container -->
-    <div class="w-full sm:w-2/3 relative">
-      <img src="./../assets/3.jpeg" class="w-full h-full object-cover absolute" alt="" />
+    <div class="hidden sm:flex sm:w-1/2 justify-center items-center bg-white">
+      <img src="./../../assets/home/ser3.jpg" class="max-h-[550px] max-w-[550px] object-contain" alt="Sign Up" />
     </div>
-  </div>
+    </div>
 </body>
+

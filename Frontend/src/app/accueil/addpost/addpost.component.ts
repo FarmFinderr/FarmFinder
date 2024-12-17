@@ -1,4 +1,4 @@
-import { Component ,NgModule} from '@angular/core';
+import { Component ,NgModule, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { PostService } from '../../services/post/post.service';
@@ -9,6 +9,8 @@ import { FormsModule ,FormGroup,NgForm} from '@angular/forms';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { ModalAddPostComponent } from "../modal-add-post/modal-add-post.component";
 import Swal from 'sweetalert2';
+import { UserService } from '../../services/user/user.service';
+
 
 @Component({
   selector: 'app-addpost',
@@ -17,16 +19,56 @@ import Swal from 'sweetalert2';
   templateUrl: './addpost.component.html',
   styleUrls: ['./addpost.component.css']
 })
-export class AddpostComponent {
+export class AddpostComponent implements OnInit {
+
 
   isModalOpen = false;
   messageSuccess = false;
   selectedType: string = '';
+  userId: string =''; 
+
   files: File[] = [];
-  userId='1';
-  constructor(private http: HttpClient,private imageService: ImageService,
-    private AddpostService: AddpostService,private router: Router, 
+    constructor(private http: HttpClient,private imageService: ImageService,
+    private AddpostService: AddpostService,private router: Router, private userservice:UserService
   ) {}
+
+    //userName = 'Kahweji Syrina';
+    //userEmail = 'Syrinekahweji5@gmail.com';
+  
+    user:any=null;
+    isLoading: boolean = true;
+    errorMessage: string | null = null;
+  
+  
+  
+  
+    ngOnInit(): void {
+      this.userId = localStorage.getItem('userId') ?? ''; 
+      console.log("userid",this.userId)
+      console.log("user actuelle",this.user);
+      console.log("userid",this.userId)
+      this.getuser(this.userId);
+      console.log("user actuelle",this.user);
+    }
+    
+    getuser(userId:string):void{
+      this.user=this.userservice.getUser(userId);
+  
+      this.userservice.getUser(userId).subscribe({
+        next: (data: any) => {
+          console.log('Fetched user:', data)
+          this.user = data;
+          console.log('user act',this.user);
+          this.isLoading = false; 
+        },
+        error: (err: any) => {
+          console.error('Error fetching user:', err);  
+          this.errorMessage = 'Failed to load user';  
+          this.isLoading = false;  
+        },
+      });
+  
+    }
 
 
   openModal() {

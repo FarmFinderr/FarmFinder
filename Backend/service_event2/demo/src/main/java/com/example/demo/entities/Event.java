@@ -25,12 +25,12 @@ public class Event {
     private String description;
     private String title  ;
     private Long price;
-    private Long owner_id;
+    private String owner_id;
     private Date date_debut ;
     @Column(name="photo",length=99999999)
     private String photo;
 
-    public Event(boolean b, String description, String title, Long price, Long ownerId, Date dateDebut, String photo, Date dateFin) {
+    public Event(boolean b, String description, String title, Long price, String ownerId, Date dateDebut, String photo, Date dateFin) {
         this.status = b;
         this.description = description;
         this.title = title;
@@ -41,11 +41,11 @@ public class Event {
         this.date_fin=dateFin;
     }
 
-    public Long getOwner_id() {
+    public String getOwner_id() {
         return owner_id;
     }
 
-    public void setOwner_id(Long owner_id) {
+    public void setOwner_id(String owner_id) {
         this.owner_id = owner_id;
     }
 

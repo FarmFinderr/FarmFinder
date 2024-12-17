@@ -25,10 +25,10 @@ public class keycloakusersserviceImp implements  keycloakuserservices{
     @Autowired
     private Keycloak keycloak;
 
-    private static final String SERVER_URL = "http://localhost:8050";
+    private static final String SERVER_URL = "http://localhost:8080";
     private static final String REALM = "FarmFinder";
     private static final String CLIENT_ID = "admin-cli";
-    private static final String CLIENT_SECRET = "6eSQJ1P8twATPpYefbVxa0Unfod1FCBt";
+    private static final String CLIENT_SECRET = "EpFnfUvZr3uN9CUtw8wDxRWikJGJIGlM";
 
     @Override
     public User createUser(User user) {
@@ -57,6 +57,9 @@ public class keycloakusersserviceImp implements  keycloakuserservices{
                 String userId = locationHeader.substring(locationHeader.lastIndexOf('/') + 1);
                 user.setId(userId);
                 log.info("User created successfully with ID: {}", userId);
+                var roleRepresentation = realmResource.roles().get("user").toRepresentation();
+                usersResource.get(userId).roles().realmLevel().add(Collections.singletonList(roleRepresentation));
+                log.info("Role 'user' assigned to user: {}", userId);
             }
             return user;
         } else {
@@ -80,7 +83,7 @@ public class keycloakusersserviceImp implements  keycloakuserservices{
                     .build();
 
             AccessTokenResponse token = keycloakLogin.tokenManager().getAccessToken();
-            log.info("User logged in successfully: {}", username);
+            log.info("User logged in successfully:{}", username);
             return token;
         } catch (Exception e) {
             log.error("Failed to login user: {}", username, e);

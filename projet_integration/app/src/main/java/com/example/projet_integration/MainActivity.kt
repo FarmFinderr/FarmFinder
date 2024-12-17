@@ -2,12 +2,17 @@ package com.example.projet_integration
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.projet_integration.services.users.ApiUser
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,7 +24,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
+        val scope = CoroutineScope(Dispatchers.Main)
         email = findViewById(R.id.useremail)
         password = findViewById(R.id.password)
         signup = findViewById(R.id.signup)
@@ -28,11 +33,35 @@ class MainActivity : AppCompatActivity() {
 
         // Action pour se connecter
         signin.setOnClickListener {
-            // Vérifier ici les informations d'identification de l'utilisateur (email, mot de passe)
-            // Si les informations sont valides, naviguer vers l'activité des offres
-            val intent = Intent(this, OffersActivity::class.java)
+
+
+            val intent = Intent(this, EventActivity::class.java)
+
+           startActivity(intent)
+           finish()/// Fermer l'activité actuelle pour éviter de revenir en arrière
+
+            val  client =  "admin-cli"
+            val secret ="6eSQJ1P8twATPpYefbVxa0Unfod1FCBt"
+            var Acces_token  =  ""
+            scope.launch {
+                try {
+                    val login_response = ApiUser.apiService.login(username = "akram@gmail.com" ,  password = "123")
+                    //if(login_response.bod)
+                    Log.i("valid token ",login_response.accessToken)
+                    val  user =  ApiUser.apiService.getUserById("1")
+                    Log.i("valid user ","${user.body()!!}")
+                } catch (e: Exception) {
+                    Log.e("failed","error : ${e.message}")
+                }
+            }
+
+
+
+           /*val intent = Intent(this, CreateEvent::class.java)
+
+
             startActivity(intent)
-            finish() // Fermer l'activité actuelle pour éviter de revenir en arrière
+            finish() */// Fermer l'activité actuelle pour éviter de revenir en arrière
         }
 
         // Action pour s'inscrire
