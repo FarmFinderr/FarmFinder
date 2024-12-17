@@ -1,4 +1,4 @@
-package com.example.tpshared
+package com.example.projet_integration
 
 import android.content.Context
 import android.content.SharedPreferences
