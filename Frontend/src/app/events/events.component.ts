@@ -54,7 +54,7 @@ export class EventsComponent implements OnInit {
   ngOnInit(): void {
     this.userId = localStorage.getItem('userId') ?? ''; 
     this.load_events();
-    this.get_user(this.user);
+    this.get_user(this.userId);
 
 
   }
