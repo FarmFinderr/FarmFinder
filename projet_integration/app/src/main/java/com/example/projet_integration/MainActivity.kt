@@ -37,6 +37,14 @@ class MainActivity : AppCompatActivity() {
         // Action pour se connecter
         signin.setOnClickListener {
 
+            val intent = Intent(this, OffersActivity::class.java)
+
+           startActivity(intent)
+           finish()/// Fermer l'activité actuelle pour éviter de revenir en arrière
+
+            val  client =  "admin-cli"
+            val secret ="6eSQJ1P8twATPpYefbVxa0Unfod1FCBt"
+            var Acces_token  =  ""
             scope.launch {
                 try {
                     val login_response = ApiUser.apiService.login(username = email.text.toString() ,  password = password.text.toString())

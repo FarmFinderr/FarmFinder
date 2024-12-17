@@ -52,6 +52,7 @@ class OffersActivity : AppCompatActivity() {
                     offersList.clear()
                     offersList.addAll(response.body()!!)
                     updateFilteredList() // Afficher toutes les offres
+
                     Log.i("success", "Données récupérées : ${response.body()!!}")
                 }
             } catch (e: Exception) {
