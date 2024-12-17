@@ -1,0 +1,10 @@
+<!-- rounded_image_border.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#FF5252" />  <!-- Bordure rouge -->
+    <corners android:radius="30dp" />  <!-- Coins très arrondis -->
+    <padding
+        android:left="2dp"
+        android:right="2dp"
+        android:top="2dp"
+        android:bottom="2dp" /> <!-- Padding autour de l'image -->
+</shape>

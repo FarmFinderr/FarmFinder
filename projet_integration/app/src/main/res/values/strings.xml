@@ -16,4 +16,32 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+
+    <string-array name="tunisia_regions">
+        <item>Tunis</item>
+        <item>Ariana</item>
+        <item>Ben Arous</item>
+        <item>Manouba</item>
+        <item>Nabeul</item>
+        <item>Zaghouan</item>
+        <item>Bizerte</item>
+        <item>Beja</item>
+        <item>Jendouba</item>
+        <item>Kef</item>
+        <item>Sousse</item>
+        <item>Monastir</item>
+        <item>Mahdia</item>
+        <item>Monastir</item>
+        <item>Sfax</item>
+        <item>Gabès</item>
+        <item>Medenine</item>
+        <item>Gafsa</item>
+        <item>Kasserine</item>
+        <item>Sidi Bouzid</item>
+        <item>Kébili</item>
+        <item>Tozeur</item>
+        <item>Djerba</item>
+        <item>Siliana</item>
+    </string-array>
+
 </resources>
