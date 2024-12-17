@@ -13,7 +13,7 @@ export const createComment = async (req, res, next) => {
 
 export const getCommentsByPostId = async (req, res, next) => {
     try {
-        const comments = await Comment.find({ postId: req.params.postId }).populate('userId', 'name'); // Populate user details if needed
+        const comments = await Comment.find({ postId: req.params.postId }).populate('userId', 'name'); 
         res.json(comments);
     } catch (err) {
         next(err);

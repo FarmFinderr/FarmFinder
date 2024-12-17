@@ -57,6 +57,9 @@ public class keycloakusersserviceImp implements  keycloakuserservices{
                 String userId = locationHeader.substring(locationHeader.lastIndexOf('/') + 1);
                 user.setId(userId);
                 log.info("User created successfully with ID: {}", userId);
+                var roleRepresentation = realmResource.roles().get("user").toRepresentation();
+                usersResource.get(userId).roles().realmLevel().add(Collections.singletonList(roleRepresentation));
+                log.info("Role 'user' assigned to user: {}", userId);
             }
             return user;
         } else {

@@ -6,6 +6,7 @@ export interface Post {
     date: Date | null;
     localisation:string;
     air:number;
+    type:string;
     defaut:string;
     etat:string;
   }
