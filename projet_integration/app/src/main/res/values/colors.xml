@@ -4,4 +4,14 @@
     <color name="white">#FFFFFFFF</color>
     <color name="jaune">#FF9800</color>
     <color name="background_color">#F5F5F5</color>
+    <color name="gray">#757575</color>
+    <color name="green">#4CAF50</color>
+    <color name="primaryColor">#FF6200EE</color> <!-- Couleur primaire -->
+    <color name="accentColor">#FF03DAC5</color>
+    <color name="light_gray">#D3D3D3</color>
+    <color name="primary">#6200EE</color>
+    <color name="primary_dark">#3700B3</color>
+    <color name="teal_700">#018786</color>
+    <color name="secondary">#FF5733</color>
+
 </resources>
