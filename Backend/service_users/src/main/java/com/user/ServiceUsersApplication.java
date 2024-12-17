@@ -30,5 +30,6 @@ public class ServiceUsersApplication {
             repository.save(new User(null, "John", "Doe", "456123789", Date.valueOf("1995-07-10"), true, 
                 "789 Boulevard Central", "john.doe@example.com", "photo3.jpg", 1, "password789"));
         };
+
     }*/
 }
