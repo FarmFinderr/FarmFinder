@@ -1,0 +1,10 @@
+/* Les éléments sont invisibles par défaut */
+.invisible {
+    display: none;
+  }
+  
+  /* Lorsque l'élément devient visible */
+  .card {
+    display: block;
+  }
+  

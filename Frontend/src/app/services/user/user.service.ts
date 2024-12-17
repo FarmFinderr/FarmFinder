@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -26,6 +26,16 @@ export class UserService {
   });
   
   }
+
+
+  login(username: string, password: string): Observable<any> {
+    const params = new HttpParams()
+      .set('username', username)
+      .set('password', password);
+  
+    return this.http.post<any>(`${this.apiUrl}/login`, null, { params });
+  }
+  
 
   updateUser(userId: number, updatedUser: any): Observable<any[]> {
     return this.http.put<any[]>(`${this.apiUrl}/${userId}`, updatedUser);

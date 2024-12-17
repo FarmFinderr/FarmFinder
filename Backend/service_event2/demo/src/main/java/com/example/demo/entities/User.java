@@ -18,7 +18,7 @@ public class User {
     private String lastName;
     private String phoneNumber;
     private Date date;
-    private boolean sexe;
+    private int sexe;
     private String address;
     private String emailAddress;
     private String photo;

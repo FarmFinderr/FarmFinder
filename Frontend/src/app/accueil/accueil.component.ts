@@ -17,14 +17,17 @@ import { MapleafletComponent } from '../accueil/mapleaflet/mapleaflet.component'
 import { ChatbotService } from '../services/chat/chatbot.service';
 import { CommentService } from '../services/comment/comment.service';
 import { ReactionService } from '../services/reaction/reaction.service';
-import { tap, catchError } from 'rxjs/operators';
+import { tap, catchError, timestamp } from 'rxjs/operators';
 import { AddpostService } from '../services/post/addpost.service';
+import { ChatUsersService } from '../services/chat/chat-users.service';
 
 import { of } from 'rxjs';
 import Swal from 'sweetalert2';
 
 
 import { FormsModule } from '@angular/forms';
+import SockJS from 'sockjs-client';
+import Stomp from 'stompjs';
 
 
 
@@ -40,8 +43,8 @@ import { FormsModule } from '@angular/forms';
 export class AccueilComponent  implements OnInit {
 
 
-   postslist :any[]= [];
-  Post = { 
+  postslist :any[]= [];
+  Post = {
     price: 0,
     userId: '',
     description: '',
@@ -54,33 +57,73 @@ export class AccueilComponent  implements OnInit {
     commentMessage:string='';
     chatHistory: { sender: string; text: string }[] = [];
 
-  isLoading: boolean = true;  
+  isLoading: boolean = true;
+  isModalMessage = false;
   errorMessage: string | null = null;
   userId='1';
   newItem: Post = {
     price: 0,
     userId: '',
     description: '',
-    date: null,  
+    date: null,
     localisation: '',
     air: 0,
     defaut: '',
-    etat: '',    
+    etat: '',
+
   };
-
+  senderId: number = 1;
+  receiverId: number = 2;
+  messageContent: string = '';
   selectedReaction: string = '../../assets/accueil/alike.png';
- 
 
- 
-  
+  chatslist:any[]= [];
+  socketClient:any= null;
+  chats={
+      id: 0,
+      sender: '',
+      receiver: '',
+      content: '',
+      timestamp: ''
 
-  currentItem: Post | null = null;  
+  }
+
+
+
+
+
+  currentItem: Post | null = null;
   constructor(private Postservice: PostService,private Chatbotservice: ChatbotService,private commentservice: CommentService,
-    private ReactionService:ReactionService,private router: Router,    private AddpostService: AddpostService
+    private ReactionService:ReactionService,private router: Router,    private AddpostService: AddpostService, private ChatUsersService: ChatUsersService
 
   ) {
 
   }
+  openMessage(senderID: any, receiverID: any) {
+    this.isModalMessage = true;
+    this.senderId = senderID;
+    this.receiverId = receiverID;
+  }
+
+  getChats(): void {
+    this.ChatUsersService.getChats().subscribe({
+      next: (data) => {
+        console.log('Fetched chats:', data);
+        this.chatslist = data;
+        console.log('chatslist',this.chatslist);
+        this.isLoading = false;
+      },
+      error: (err) => {
+        console.error('Error fetching chats:', err);
+        this.errorMessage = 'Failed to load chats';
+        this.isLoading = false;
+      },
+    });
+  }
+  CloseMessage() {
+    this.isModalMessage = false;
+  }
+
 
   sendMessage() {
     console.log("dans send message");
@@ -99,18 +142,80 @@ export class AccueilComponent  implements OnInit {
     }
   }
 
+
   openImageInNewWindow(imagePath: string): void {
     const fullPath = 'http://localhost:5000' + imagePath;
     window.open(fullPath, '_blank');
   }
 
-  ngOnInit(): void {
 
+  ngOnInit(): void {
+    this.getChats();
     this.fetchPosts();
     this.AddpostService.postAdded$.subscribe(() => {
       this.fetchPosts();
     });
-   }
+    this.connectWebSocket();
+    // // Correctly formatted WebSocket URL
+    // let ws = new SockJS('http://localhost:8088/ws');
+    // this.socketClient = Stomp.over(ws);
+
+    // // Connect the WebSocket client
+    // this.socketClient.connect({}, () => {
+    //     console.log("Connected to WebSocket...");
+    // }, (error: any) => {
+    //     console.error("WebSocket connection error:", error);
+    // });
+  }
+  connectWebSocket(): void {
+    // Create a new SockJS instance connected to the WebSocket endpoint
+    let ws = new SockJS('http://localhost:8088/ws');  // Adjust the URL as needed
+    this.socketClient = Stomp.over(ws);
+
+    // Connect the WebSocket client and subscribe to the topic
+    this.socketClient.connect({}, (frame: any) => {
+      console.log('Connected to WebSocket:', frame);
+
+      // Subscribe to the public topic (or private topic based on your requirements)
+      this.socketClient.subscribe('/topic/public', (message: any) => {
+        this.onMessageReceived(message);
+      });
+
+    }, (error: any) => {
+      console.error('WebSocket connection error:', error);
+    });
+  }
+
+  // Handle received messages
+  onMessageReceived(message: any): void {
+    const receivedMessage = JSON.parse(message.body);
+    this.chatslist.push({
+      sender: receivedMessage.sender,
+      content: receivedMessage.content,
+      receiver: receivedMessage.receiver,
+      timestamp: receivedMessage.timestamp
+    });
+    console.log('Received message:', receivedMessage);
+  }
+
+  // Send a message to the WebSocket server
+  sentMessage(): void {
+    if (this.userMessage.trim()) {
+      // Prepare the message payload
+      const message = {
+        sender: this.senderId,
+        receiver: this.receiverId,
+        content: this.userMessage
+      };
+
+      // Send the message to the backend via WebSocket
+      this.socketClient.send('/app/chat.sendMessage', {}, JSON.stringify(message));
+      console.log('Message sent:', message);
+
+      // Clear the message input after sending
+      this.userMessage = '';
+    }
+  }
 
 
     fetchPosts(): void {
@@ -132,7 +237,7 @@ export class AccueilComponent  implements OnInit {
   getUserReaction(post: any): string | null {
     for (let i = 0; i < post.reactions.length; i++) {
       if (post.reactions[i].userId == this.userId) {
-        return post.reactions[i].reactionType; 
+        return post.reactions[i].reactionType;
       }
     }
       return 'noreaction';
@@ -157,10 +262,10 @@ export class AccueilComponent  implements OnInit {
       return reactionImages[reactionType];
 
     }
-   
+
   }
 
-  
+
 
   loadItems(): void {
     this.Postservice.getPosts().subscribe((data) => (this.postslist = data));
@@ -191,7 +296,7 @@ export class AccueilComponent  implements OnInit {
             title: 'Erreur',
             text: 'Une erreur est survenue lors de l\'ajout du commentaire.',
           });
-          return of(null); 
+          return of(null);
         })
       )
       .subscribe();
@@ -212,7 +317,7 @@ export class AccueilComponent  implements OnInit {
         //this.selectedReaction = reactionimg;
         this.fetchPosts();
 
-  
+
       },
       (error) => {
         console.error('Erreur:', error);
@@ -374,7 +479,7 @@ export class AccueilComponent  implements OnInit {
     }
   ];
 
-   showDetails = false; 
+   showDetails = false;
    isModalOpen = false;
    isModalOpenDetailsEvent = false;
    eventDetails: any = null;
@@ -418,7 +523,7 @@ formatDate(date: string): string {
       console.log("post id",postId)
        this.showDetailsMap[postId] = !this.showDetailsMap[postId];
      }
-  
+
 
    openModalDetailsEvent(eventId:number) {
     this.eventDetails = this.events[eventId];
@@ -437,7 +542,7 @@ formatDate(date: string): string {
 
   openImagesModal(images: any[], index: number) {
     if (images.length > 3) {
-      this.modalImages = images; 
+      this.modalImages = images;
       this.isModalImagesOpen = true;
     }
   }
@@ -445,14 +550,14 @@ formatDate(date: string): string {
 
 
   closeModalImages() {
-    this.isModalImagesOpen = false; 
+    this.isModalImagesOpen = false;
   }
 
   showNextImage() {
     if (this.currentImageIndex < this.modalImages.length - 1) {
       this.currentImageIndex++;
     } else {
-      this.currentImageIndex = 0; 
+      this.currentImageIndex = 0;
     }
   }
 
@@ -463,5 +568,6 @@ formatDate(date: string): string {
       this.currentImageIndex = this.modalImages.length - 1;
     }
   }
+
 
 }

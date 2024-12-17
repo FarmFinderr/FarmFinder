@@ -55,11 +55,13 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    implementation("com.github.bumptech.glide:glide:4.15.1")
+
+    implementation("com.github.bumptech.glide:glide:4.15.1") // Assurez-vous que cette version est à jour
     annotationProcessor("com.github.bumptech.glide:compiler:4.15.1") // Assurez-vous que cette version est à jour
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation ("com.squareup.retrofit2:retrofit:2.7.2")
+    implementation ("com.squareup.retrofit2:converter-gson:2.7.2")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core: 1.2.1")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.2.1")
+
 
 }
