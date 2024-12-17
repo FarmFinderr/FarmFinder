@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         // Action pour se connecter
         signin.setOnClickListener {
 
-            val intent = Intent(this, EventActivity::class.java)
+            val intent = Intent(this, OffersActivity::class.java)
 
            startActivity(intent)
            finish()/// Fermer l'activité actuelle pour éviter de revenir en arrière
