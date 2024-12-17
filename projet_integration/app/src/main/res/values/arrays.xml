@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="tunisia_regions">
+        <item>Tunis</item>
+        <item>Sfax</item>
+        <item>Sousse</item>
+        <item>Bizerte</item>
+        <item>Gabes</item>
+        <item>Nabeul</item>
+        <item>Gafsa</item>
+        <item>Beja</item>
+        <item>Jendouba</item>
+        <item>Tozeur</item>
+        <item>Monastir</item>
+        <item>Kairouan</item>
+        <item>Mednine</item>
+        <item>Manouba</item>
+        <item>Mahdia</item>
+        <item>Kasserine</item>
+        <item>Zaghouan</item>
+        <item>Kebili</item>
+        <item>Ariana</item>
+        <item>Sidi Bouzid</item>
+        <item>Siliana</item>
+        <item>Tataouine</item>
+        <item>Kef</item>
+    </string-array>
+</resources>

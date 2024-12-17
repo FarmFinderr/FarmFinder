@@ -1,3 +1,16 @@
 .border-red-500 {
     border-color: #f87171; /* Tailwind CSS red color */
   }
+  .input-field {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 13px;
+    background: #f9f9f9;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  .input-field:focus {
+    border-color: #41a144;
+  }

@@ -13,7 +13,7 @@ export class PostService {
 
   // Méthode pour récupérer des données
   getPosts(): Observable<any[]> {
-    console.log(this.http.get<any[]>(this.apiUrl))
+    //console.log(this.http.get<any[]>(this.apiUrl))
     return this.http.get<any[]>(this.apiUrl);
   }
 

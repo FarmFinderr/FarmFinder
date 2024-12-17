@@ -49,8 +49,8 @@
         app:boxBackgroundMode="filled"
         >
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/descriptionInput"
+        <EditText
+            android:id="@+id/description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Description"
@@ -75,8 +75,8 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Start Date Picker -->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/startDateButton"
+    <Button
+        android:id="@+id/date_debut"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -84,7 +84,7 @@
 
     <!-- Start Date Display -->
     <TextView
-        android:id="@+id/date_debut"
+        android:id="@+id/date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -93,8 +93,8 @@
         android:textColor="@color/black" />
 
     <!-- End Date Picker -->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/endDateButton"
+    <Button
+        android:id="@+id/date_fin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -111,15 +111,21 @@
         android:textColor="@color/black" />
 
     <!-- Image Selector -->
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:id="@+id/selectPhotoButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="Select Photo" />
 
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/previewImage"
+        ></ImageView>
     <!-- Submit Button -->
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:id="@+id/submitButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

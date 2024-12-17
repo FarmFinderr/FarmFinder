@@ -31,42 +31,11 @@
 
 
 <!-- Objectives Section -->
-<section class="text-gray-800 body-font py-10">
-  <h2 class="text-center font-playfair text-2xl font-bold sm:text-3xl md:text-4xl mb-10">
-    Our Objectives
-  </h2>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
-    <div class="card invisible" data-scroll>
-      <img
-        src="../../assets/1.jpeg"
-        alt="Limitation des distances"
-        class="w-full h-48 object-cover rounded-lg shadow-md"
-      />
-      <p class="mt-4 text-center text-lg font-semibold">Limitations des distances</p>
-    </div>
-    <div class="card invisible" data-scroll>
-      <img
-        src="../../assets/2.jpeg"
-        alt="Assistance durable"
-        class="w-full h-48 object-cover rounded-lg shadow-md"
-      />
-      <p class="mt-4 text-center text-lg font-semibold">Assistance durable</p>
-    </div>
-    <div class="card invisible" data-scroll>
-      <img
-        src="../../assets/3.jpeg"
-        alt="Satisfaction clients"
-        class="w-full h-48 object-cover rounded-lg shadow-md"
-      />
-      <p class="mt-4 text-center text-lg font-semibold">Satisfaction clients</p>
-    </div>
-  </div>
-</section>
 <section class="text-gray-600 body-font bg-white">
   <h2 class="text-center font-playfair text-2xl font-bold text-black sm:text-3xl md:text-5xl mt-20">
-    Our Services
+    Our Objectives
   </h2>
-  <div class="relative overflow-hidden my-20 py-10 flex justify-center h-[28rem] ">
+  <div class="relative overflow-hidden my-5 py-10 flex justify-center h-[28rem] ">
     <div
       x-data="{}"
       x-init="$nextTick(() => {
@@ -92,60 +61,152 @@
         <li>
           <div class="shadow-lg w-80 h-72 rounded-lg overflow-hidden transform transition hover:scale-105 bg-white">
             <img
-              src="../../assets/5.jpeg"
+              src="../../assets/home/event2.jpg"
               alt="Limitations des distances"
               class="w-full h-48 object-cover"
             />
             <p class="text-lg font-serif text-center text-gray-800 mt-4 px-4 py-2">
-              Limitations des distances
-            </p>
+              Distance limitations            </p>
           </div>
         </li>
         <li>
           <div class="shadow-lg w-80 h-72 rounded-lg overflow-hidden transform transition hover:scale-105 bg-white">
             <img
-              src="../../assets/7.jpeg"
-              alt="Publier des offres"
+              src="../../assets/home/obj1.jpg"
+              alt=""
               class="w-full h-48 object-cover"
             />
             <p class="text-lg font-serif text-center text-gray-800 mt-4 px-4 py-2">
-              Publier des offres
+              Customer satisfaction
             </p>
           </div>
         </li>
         <li>
           <div class="shadow-lg w-80 h-72 rounded-lg overflow-hidden transform transition hover:scale-105 bg-white">
             <img
-              src="../../assets/3.jpeg"
-              alt="Assistant IA"
+              src="../../assets/home/obj4.jpg"
+              alt=""
               class="w-full h-48 object-cover"
             />
             <p class="text-lg font-serif text-center text-gray-800 mt-4 px-4 py-2">
-              Assistant IA
+              Simplifying interactions
             </p>
           </div>
         </li>
         <li>
           <div class="shadow-lg w-80 h-72 rounded-lg overflow-hidden transform transition hover:scale-105 bg-white">
             <img
-              src="../../assets/8.jpeg"
-              alt="Trouver des offres"
+              src="../../assets/home/event4.jpg"
+              alt=""
               class="w-full h-48 object-cover"
             />
             <p class="text-lg font-serif text-center text-gray-800 mt-4 px-4 py-2">
-              Trouver des offres
+              Sustainable assistance
             </p>
           </div>
         </li>
         <li>
           <div class="shadow-lg w-80 h-72 rounded-lg overflow-hidden transform transition hover:scale-105 bg-white">
             <img
-              src="../../assets/5.jpeg"
+              src="../../assets/home/obj1.jpg"
               alt="Connectez vendeurs"
               class="w-full h-48 object-cover"
             />
             <p class="text-lg font-serif text-center text-gray-800 mt-4 px-4 py-2">
-              Connectez vendeurs
+              Customer satisfaction
+            </p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<section class="text-gray-600 body-font bg-white">
+  <h2 class="text-center font-playfair text-2xl font-bold text-black sm:text-3xl md:text-5xl mt-20">
+    Our Services
+  </h2>
+  <div class="relative overflow-hidden my-5 py-10 flex justify-center h-[28rem] ">
+    <div
+      x-data="{}"
+      x-init="$nextTick(() => {
+        let ul = $refs.logos;
+        ul.insertAdjacentHTML('afterend', ul.outerHTML);
+        ul.nextSibling.setAttribute('aria-hidden', 'true');
+        setInterval(() => {
+          ul.style.transition = 'transform 0.5s linear';
+          ul.style.transform = `translateX(-${ul.scrollWidth / ul.children.length}px)`;
+          setTimeout(() => {
+            ul.style.transition = 'none';
+            ul.style.transform = 'translateX(0)';
+            ul.appendChild(ul.children[0]);
+          }, 500);
+        }, 3000);
+      })"
+      class="w-full inline-flex flex-nowrap overflow-hidden"
+    >
+      <ul
+        x-ref="logos"
+        class="flex items-center justify-center space-x-6 animate-infinite-scroll"
+      >
+        <li>
+          <div class="shadow-lg w-80 h-72 rounded-lg overflow-hidden transform transition hover:scale-105 bg-white">
+            <img
+              src="../../assets/home/obj3.jpg"
+              alt="Limitations des distances"
+              class="w-full h-48 object-cover"
+            />
+            <p class="text-lg font-serif text-center text-gray-800 mt-4 px-4 py-2">
+              Connect sellers
+            </p>
+          </div>
+        </li>
+        <li>
+          <div class="shadow-lg w-80 h-72 rounded-lg overflow-hidden transform transition hover:scale-105 bg-white">
+            <img
+              src="../../assets/home/ser4.jpg"
+              alt="Publier des offres"
+              class="w-full h-48 object-cover"
+            />
+            <p class="text-lg font-serif text-center text-gray-800 mt-4 px-4 py-2">
+              Post offers
+            </p>
+          </div>
+        </li>
+        <li>
+          <div class="shadow-lg w-80 h-72 rounded-lg overflow-hidden transform transition hover:scale-105 bg-white">
+            <img
+              src="../../assets/home/serv2.jpg"
+              alt="Assistant IA"
+              class="w-full h-48 object-cover"
+            />
+            <p class="text-lg font-serif text-center text-gray-800 mt-4 px-4 py-2">
+              Find offers
+            </p>
+          </div>
+        </li>
+        <li>
+          <div class="shadow-lg w-80 h-72 rounded-lg overflow-hidden transform transition hover:scale-105 bg-white">
+            <img
+              src="../../assets/home/ser3.jpg"
+              alt="Trouver des offres"
+              class="w-full h-48 object-cover"
+            />
+            <p class="text-lg font-serif text-center text-gray-800 mt-4 px-4 py-2">
+              AI assistant
+            </p>
+          </div>
+        </li>
+        <li>
+          <div class="shadow-lg w-80 h-72 rounded-lg overflow-hidden transform transition hover:scale-105 bg-white">
+            <img
+              src="../../assets/home/event2.jpg"
+              alt="Connectez vendeurs"
+              class="w-full h-48 object-cover"
+            />
+            <p class="text-lg font-serif text-center text-gray-800 mt-4 px-4 py-2">
+              Post offers
             </p>
           </div>
         </li>
@@ -159,7 +220,7 @@
 
 
 <!-- Footer -->
-<footer class="bg-green-900 text-white py-6">
+<footer class="bg-lime-700 text-white py-6">
   <div class="flex flex-col md:flex-row justify-around items-center">
     <p>© 2024 Copyright</p>
     <div class="space-x-4">

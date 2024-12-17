@@ -1,79 +1,44 @@
-<app-navbar></app-navbar>
+<app-navbar2></app-navbar2>
 
-<body class="mt-0">
-  <div class="bg-green-900 text-white "></div>
-  <div class="flex min-h-screen">
-    <!-- Left side: Form container -->
-    <div
-      class="w-full sm:w-1/3 bg-green-100 flex flex-col justify-center items-center py-8"
-    >
-      <form class="w-4/5" (ngSubmit)="onSubmit()">
-        <div class="text-center mb-10">
-          <h2 class="text-4xl font-bold mb-6 text-green-900 -mt-20">Sign In</h2>
+<body class="bg-gray-100 mt-36">
+  <div class="flex">
+    <div class="w-full sm:w-1/2 bg-white flex flex-col justify-center items-center py-8 px-6">
+      <h2 class="text-2xl font-playfair font-bold text-black mb-8">Sign In</h2>
+      <form (ngSubmit)="onSubmit()" class="w-full max-w-md space-y-4">
+        <div class="flex flex-col space-y-4 m-3">
+          <input 
+            name="email" 
+            [(ngModel)]="username" 
+            type="email" 
+            class="p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-lime-500" 
+            placeholder="Enter your Email" 
+            required 
+          />
+          <input 
+            name="password" 
+            [(ngModel)]="password" 
+            type="password" 
+            class="p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-lime-500" 
+            placeholder="Enter your Password" 
+            required 
+          />
         </div>
-        <div class="flex flex-col gap-4">
-          <div>
-            <label class="text-sm mb-2 block" for="email">Email</label>
-            <input
-              [(ngModel)]="username"
-              name="email"
-              type="email"
-              id="email"
-              class="bg-white w-full text-sm px-4 py-3.5 rounded-md outline-green-500"
-              placeholder="Enter email"
-              required
-            />
-        
-          </div>
-          <div>
-            <label class="text-sm mb-2 block" for="password"
-              >Mot de passe</label
-            >
-            <input
-            [(ngModel)]="password"
-              name="password"
-              type="password"
-              id="password"
-              class="bg-white w-full text-sm px-4 py-3.5 rounded-md outline-green-500"
-              placeholder="Enter password"
-              required
-            />
-          </div>
-          <a
-            class="text-sm text-end font-medium text-primary-600 hover:underline dark:text-primary-500"
-            >Forgot password?</a
-          >
-          <div class="!mt-10 grid grid-cols-3 gap-4 mb-5">
-            <div></div>
-            <button
-              type="submit"
-              class="min-w-[150px] py-3 px-4 text-sm font-semibold rounded text-white bg-green-800 hover:bg-green-600 focus:outline-none"
-            >
-              Sign in
-            </button>
-            <div></div>
-          </div>
+
+        <div class="text-sm text-end mt-5">
+          <a href="#" class="text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
         </div>
+
+        <button 
+          type="submit" 
+          class="w-full py-2 mt-5 rounded-md bg-lime-600 text-white text-sm font-bold font-playfair hover:bg-lime-700 focus:outline-none"
+        >
+          Sign In
+        </button>
       </form>
     </div>
 
-    <!-- Right side: Image container -->
-    <div class="w-full sm:w-2/3 relative">
-      <header
-        class="w-full h-full object-cover absolute top-0 left-0"
-        style="background-image: url('../../assets/home_page.jpg')"
-      >
-        <div
-          class="flex flex-col items-center justify-center mt-36 text-white"
-        >
-          <h1 class="text-6xl font-bold">FarmFinder</h1>
-          <p class="mt-4 bg-yellow-400 px-8 py-2 rounded-3xl text-2xl">
-            Des offres agricoles en un clic
-          </p>
-          <img src="../../assets/logo.png" class="h-22" alt="farmfinder Logo" />
-        </div>
-      </header>
-      <!-- <img src="../../assets/home_page.jpg" alt="" class="w-full h-full object-cover absolute top-0 left-0" /> -->
+    <div class="hidden sm:flex sm:w-1/2 justify-center items-center bg-white">
+      <img src="./../../assets/home/ser3.jpg" class="max-h-[550px] max-w-[550px] mt-10 object-contain" alt="Sign In" />
     </div>
   </div>
 </body>
