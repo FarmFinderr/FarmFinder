@@ -1,0 +1,8 @@
+<!-- rounded_edittext.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#FFEBEE" />  <!-- Fond rouge clair -->
+    <corners android:radius="16dp" />  <!-- Coins arrondis -->
+    <stroke
+        android:color="#FF5252"
+    android:width="2dp" />
+</shape>
