@@ -4,11 +4,12 @@ import { Post } from '../models/post.model';
 import { PostService } from '../services/post/post.service';  
 import { FormsModule } from '@angular/forms';  
 import { NavbarComponent } from '../accueil/navbar/navbar.component';
+import { OfferDetailsComponent } from '../offer-details/offer-details.component'
 
 @Component({
   selector: 'app-offres',
   standalone: true,
-  imports: [NavbarComponent, CommonModule, CurrencyPipe, NgForOf, NgIf, FormsModule], 
+  imports: [NavbarComponent, CommonModule, CurrencyPipe, NgForOf, NgIf, FormsModule,OfferDetailsComponent], 
   templateUrl: './offres.component.html',  
   styleUrls: ['./offres.component.css'],  
 })
@@ -18,6 +19,15 @@ export class OffresComponent implements OnInit {
   searchRegion: string = ''; 
   searchType: string = ''; 
   searchPrice: number | null = null; 
+
+
+  selectedAnnonce: any = null;
+  openModal(annonce: any) {
+    this.selectedAnnonce = annonce;
+  }
+  closeModal() {
+    this.selectedAnnonce = null;
+  }
 
   constructor(private postService: PostService) {}
 
