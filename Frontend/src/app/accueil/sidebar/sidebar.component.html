@@ -1,96 +1,91 @@
-<div class="bg-lime-900 text-white flex w-64 h-[620px] p-4 flex-col fixed">
-    <!-- Section utilisateur -->
-    <div class="flex flex-col items-center py-6 border-b border-gray-100">
-      <img
-        src="../../../assets/sirineKahweji_ISETBizerte.jpg"
-        alt="Image utilisateur"
-        class="w-32 h-32 rounded-full border-4 border-lime-100"
-      />
-      <h3 class="mt-4 text-lg font-semibold">{{ userName }}</h3>
-      <p class="text-sm text-lime-100">{{ userEmail }}</p>
-    </div>
-
-    <!-- Menu -->
-
-    <!--Recherche-->
-    <div class="relative mt-6 flex">
-      <span class="absolute inset-y-0 left-0 flex items-center pl-3">
-          <svg class="w-5 h-5 text-gray-400" viewBox="0 0 24 24" fill="none">
-              <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-          </svg>
-      </span>
-
-      <input type="text" class="w-full py-2 pl-10 pr-4 text-gray-700 bg-white border border-gray-300 rounded-l-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring" placeholder="Search..."/>
-
-      <button (click)="recherche()" class="px-4 py-2 bg-yellow-600 text-white rounded-r-md hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-50">
-        Search
-      </button>
+<div class="bg-lime-900 text-white flex w-64 h-[510px] p-4 flex-col fixed">
+  <!-- Section utilisateur -->
+  <div class="flex flex-col items-center py-6 border-b border-gray-100">
+    <img
+      src="../../../assets/sirineKahweji_ISETBizerte.jpg"
+      alt="Image utilisateur"
+      class="w-32 h-32 rounded-full border-4 border-lime-100"
+    />
+    <h3 class="mt-4 text-lg font-semibold">{{ userName }}</h3>
+    <p class="text-sm text-lime-100">{{ userEmail }}</p>
   </div>
 
+  <!-- Menu -->
 
-  <!-- Sidebar Reclamation Button: Opens the Modal -->
+  <!--Recherche-->
+  <div class="relative mt-6 flex">
+    <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+        <svg class="w-5 h-5 text-gray-400" viewBox="0 0 24 24" fill="none">
+            <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+    </span>
+
+    <input type="text" class="w-full py-2 pl-10 pr-4 text-gray-700 bg-white border border-gray-300 rounded-l-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring" placeholder="Search..."/>
+
+    <button  class="px-4 py-2 bg-yellow-600 text-white rounded-r-md hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-50">
+      Search
+    </button>
+</div>
+
+
+<!-- Sidebar Reclamation Button: Opens the Modal -->
 <div class="flex-grow mt-6">
-  <button
-    (click)="openReclamationModal()"
-    class="w-full flex items-center gap-2 px-4 py-3 text-left bg-lime-700 hover:bg-lime-600 transition"
-  >
-    <i class="fas fa-plus-circle text-xl"></i>
-    <span>Ajouter une réclamation</span>
-  </button>
+<button
+  (click)="openReclamationModal()"
+  class="w-full flex items-center gap-2 px-4 py-3 text-left bg-lime-700 hover:bg-lime-600 transition"
+>
+  <i class="fas fa-plus-circle text-xl"></i>
+  <span>Ajouter une réclamation</span>
+</button>
 </div>
 
 <!-- Modal for Reclamation -->
 <div
-  *ngIf="showModal"
-  id="popup-modal"
-  tabindex="-1"
-  class="fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full bg-black bg-opacity-50 flex">
-  <div class="relative p-4 w-full max-w-md max-h-full">
-    <div class="relative bg-white rounded-lg shadow-lg dark:bg-gray-700">
+*ngIf="showModal"
+id="popup-modal"
+tabindex="-1"
+class="fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full bg-black bg-opacity-50 flex">
+<div class="relative p-4 w-full max-w-md max-h-full">
+  <div class="relative bg-white rounded-lg shadow-lg dark:bg-gray-700">
 
-      <!-- Close Button -->
-      <button
-        type="button"
-        class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-        (click)="closeReclamationModal()">
-        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-        </svg>
-        <span class="sr-only">Close modal</span>
-      </button>
-
-      <!-- Modal Content -->
-<div class="p-6">
-  <h2 class="text-xl font-bold mb-4 text-center text-black">Ajouter une Réclamation</h2>
-
-  <!-- Textarea for Reclamation -->
-  <textarea
-    [(ngModel)]="reclamationText"
-    class="w-full h-32 p-2 border rounded-lg mb-4 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-600"
-    placeholder="Saisissez votre réclamation ici...">
-  </textarea>
-
-  <!-- File Input for Image Upload -->
-  <input type="file" (change)="onFileSelected($event)" class="mb-4 w-full p-2 border rounded-lg" />
-
-  <!-- Action Buttons -->
-  <div class="flex justify-end space-x-4">
+    <!-- Close Button -->
     <button
-      (click)="closeReclamationModal()"
-      class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
-      Annuler
+      type="button"
+      class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+      (click)="closeReclamationModal()">
+      <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+      </svg>
+      <span class="sr-only">Close modal</span>
     </button>
 
-    <button
-      (click)="addReclamation()"
-      class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded">
-      Soumettre
-    </button>
-  </div>
-</div>
+    <!-- Modal Content -->
+    <div class="p-6">
+      <h2 class="text-xl font-bold mb-4 text-center text-black">Ajouter une Réclamation</h2>
+      <!-- Textarea for Reclamation -->
+      <textarea
+        [(ngModel)]="reclamationText"
+        class="w-full h-32 p-2 border rounded-lg mb-4 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-600"
+        placeholder="Saisissez votre réclamation ici...">
+      </textarea>
 
+      <!-- Action Buttons -->
+      <div class="flex justify-end space-x-4">
+        <button
+          (click)="closeReclamationModal()"
+          class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+          Annuler
+        </button>
+
+        <button
+         (click)="addReclamation()"
+         class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded">
+           Soumettre
+        </button>
+      </div>
     </div>
   </div>
+</div>
 </div>
 
 
@@ -98,19 +93,14 @@
 
 
 
-    <!-- Déconnexion -->
-    <div class="py-4 border-t border-lime-700">
-      <button
-        (click)="logout()"
-        class="w-full flex items-center justify-center gap-2 text-white hover:text-red-600 transition"
-      >
-        <i class="fas fa-sign-out-alt text-xl"></i>
-        <span>Déconnexion</span>
-      </button>
-    </div>
+  <!-- Déconnexion -->
+  <div class="py-4 border-t border-lime-700">
+    <button
+      (click)="logout()"
+      class="w-full flex items-center justify-center gap-2 text-white hover:text-red-600 transition"
+    >
+      <i class="fas fa-sign-out-alt text-xl"></i>
+      <span>Déconnexion</span>
+    </button>
   </div>
-
-
-
-
-
+</div>

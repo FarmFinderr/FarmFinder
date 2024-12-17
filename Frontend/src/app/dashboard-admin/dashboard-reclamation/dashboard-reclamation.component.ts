@@ -22,14 +22,16 @@ export class DashboardReclamationComponent implements OnInit {
   ngOnInit(): void {
     this.getReclamations();
   }
-  
 
   // Fetch all reclamations from the service
   getReclamations(): void {
     this.reclamationService.getReclamations().subscribe(
       (data) => {
         console.log('Received data:', data); // Logs the data you get from the API
-        this.reclamations = data;  // Assign the data to the component's array
+        this.reclamations = data.map((reclamation: any) => ({
+          ...reclamation,
+          userName: `${reclamation.name} ${reclamation.lastName}`  // Combining first and last name
+        }));
       },
       (error) => {
         console.error('Error fetching reclamations:', error);
@@ -37,15 +39,11 @@ export class DashboardReclamationComponent implements OnInit {
     );
   }
 
-  // Edit a specific reclamation
-  editReclamation(reclamation: Reclamation): void {
-    this.editingReclamation = { ...reclamation };  // For editing
-  }
-
-  // Delete a specific reclamation
   deleteReclamation(reclamation: Reclamation): void {
-    this.reclamationService.deleteReclamation(reclamation.id).subscribe(() => {
-      this.reclamations = this.reclamations.filter(r => r.id !== reclamation.id);
+    // Use _id (MongoDB identifier) instead of id
+    this.reclamationService.deleteReclamation(reclamation._id).subscribe(() => {
+      this.reclamations = this.reclamations.filter(r => r._id !== reclamation._id);
     });
   }
+
 }

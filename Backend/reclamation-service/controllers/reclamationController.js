@@ -1,35 +1,34 @@
-const Reclamation = require('../models/Reclamation');
+const Reclamation = require('../models/Reclamation'); 
 
 // Controller to create a new reclamation
-exports.createReclamation = async (req, res, next) => {
+// Assuming the first and last name are part of the user's profile (e.g., from Keycloak token)
+exports.createReclamation = async (req, res) => {
   try {
-    const { userId, reclamation, image } = req.body; 
-    console.log(req); // Check the incoming request
+    const { userId, reclamation, name, lastName } = req.body;
 
-    if (!userId || !reclamation) {
-      return res.status(400).json({ message: 'User ID and reclamation are required' });
+    if (!userId || !reclamation || !name || !lastName) {
+      return res.status(400).json({ message: 'User ID, reclamation, name, and last name are required' });
     }
 
-    // Save the base64 image and other data into the new reclamation
     const newReclamation = new Reclamation({
       userId,
       reclamation,
-      image // Storing the base64 string directly in the database
+      name,  // Add first name
+      lastName    // Add last name
     });
 
-    // Save to the database
     await newReclamation.save();
-
     res.status(201).json(newReclamation);
   } catch (error) {
-    next(error);
+    res.status(500).json({ message: 'Error creating reclamation', error });
   }
 };
+
 
 // Controller to get all reclamations
 exports.getAllReclamations = async (req, res) => {
   try {
-    const reclamations = await Reclamation.find();
+    const reclamations = await Reclamation.find().populate('userId', 'name lastName');
     res.status(200).json(reclamations);
   } catch (error) {
     res.status(500).json({ message: 'Error fetching reclamations', error });
