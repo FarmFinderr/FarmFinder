@@ -79,14 +79,14 @@ export class SidebarComponent  implements OnInit {
  
 
   onFileSelected(event: any) {
-    const file = event.target.files[0];
-    this.selectedFile = file;
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
+    //const file = event.target.files[0];
+    //this.selectedFile = file;
+    //const reader = new FileReader();
+    //reader.readAsDataURL(file);
+    /*reader.onload = () => {
       this.selectedFile = reader.result as string;
       console.log(this.selectedFile);
-    };
+    };*/
 
 
 
@@ -98,12 +98,12 @@ export class SidebarComponent  implements OnInit {
       formData.append("reclamation", this.reclamationText);
       formData.append("userId", this.userId.toString());
 
-      if (this.selectedFile) {
+      /*if (this.selectedFile) {
         formData.append("image", this.selectedFile);
       }
       formData.forEach((value, key) => {
         console.log(key + ": " + value);
-      });
+      });*/
 
       this.reclamationService.addReclamation(formData).subscribe(
         {
@@ -111,7 +111,6 @@ export class SidebarComponent  implements OnInit {
             console.log('Reclamation submitted successfully:', response);
             alert('Réclamation soumise avec succès!');
             this.reclamationText = ''; // Clear the input
-            this.selectedFile = ''; // Clear the base64 string
             this.showModal = false; // Close the modal
           },
           error: (err) => {

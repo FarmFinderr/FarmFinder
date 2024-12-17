@@ -6,7 +6,7 @@ const path = require('path');
 
 // Middleware
 app.use(express.json());
-app.use(cors());
+//app.use(cors());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); // Serve uploaded files
 
 // Routes
@@ -24,7 +24,7 @@ mongoose
   });
 
 // Start the server
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5501;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
