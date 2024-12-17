@@ -17,10 +17,16 @@ import Swal from 'sweetalert2';
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent  implements OnInit {
-  //userId: number = 1; 
-  userId: string =''; 
+  //userId: number = 1;
+  userId: string ='';
   //userName = 'Kahweji Syrina';
   //userEmail = 'Syrinekahweji5@gmail.com';
+   // Fake first and last name
+   name = 'Lyna';
+   lastName = 'Moujahed';
+
+   showModal: boolean = false;
+   reclamationText: string = '';
 
   user:any=null;
   isLoading: boolean = true;
@@ -31,7 +37,7 @@ export class SidebarComponent  implements OnInit {
 
 
   ngOnInit(): void {
-    this.userId = localStorage.getItem('userId') ?? ''; 
+    this.userId = localStorage.getItem('userId') ?? '';
     console.log("userid",this.userId)
     console.log("user actuelle",this.user);
     console.log("userid",this.userId)
@@ -46,25 +52,49 @@ export class SidebarComponent  implements OnInit {
         console.log('Fetched user:', data)
         this.user = data;
         console.log('user act',this.user);
-        this.isLoading = false; 
+        this.isLoading = false;
       },
       error: (err: any) => {
-        console.error('Error fetching user:', err);  
-        this.errorMessage = 'Failed to load user';  
-        this.isLoading = false;  
+        console.error('Error fetching user:', err);
+        this.errorMessage = 'Failed to load user';
+        this.isLoading = false;
       },
     });
 
   }
 
 
-  showModal: boolean = false;
-  reclamationText: string = '';
-  selectedFile: string = ''; // Store selected file
 
-  recherche() {
 
+
+  // Function to handle reclamation submission
+  addReclamation() {
+    if (this.reclamationText.trim()) {
+      const reclamationPayload = {
+        reclamation: this.reclamationText,
+        userId: this.userId,  // Add userId here
+        name: this.name,  // Add first name
+        lastName: this.lastName   // Add last name
+      };
+
+      this.reclamationService.addReclamation(reclamationPayload).subscribe(
+        (response) => {
+          console.log('Reclamation submitted successfully:', response);
+          alert('Réclamation soumise avec succès!');
+          this.reclamationText = ''; // Clear the input
+          this.showModal = false;   // Close the modal
+        },
+        (error) => {
+          console.error('Error submitting reclamation:', error);
+          alert('Une erreur est survenue. Veuillez réessayer.');
+        }
+      );
+    } else {
+      alert('Veuillez saisir une réclamation avant de soumettre.');
+    }
   }
+
+  // Other functions like open/close modal
   openReclamationModal() {
     this.showModal = true;
   }
@@ -76,56 +106,11 @@ export class SidebarComponent  implements OnInit {
     this.router.navigate(['/dashboard']);
   }
 
- 
-
-  onFileSelected(event: any) {
-    //const file = event.target.files[0];
-    //this.selectedFile = file;
-    //const reader = new FileReader();
-    //reader.readAsDataURL(file);
-    /*reader.onload = () => {
-      this.selectedFile = reader.result as string;
-      console.log(this.selectedFile);
-    };*/
 
 
 
-  }
 
-  addReclamation() {
-    if (this.reclamationText.trim()) {
-      const formData = new FormData();
-      formData.append("reclamation", this.reclamationText);
-      formData.append("userId", this.userId.toString());
-
-      /*if (this.selectedFile) {
-        formData.append("image", this.selectedFile);
-      }
-      formData.forEach((value, key) => {
-        console.log(key + ": " + value);
-      });*/
-
-      this.reclamationService.addReclamation(formData).subscribe(
-        {
-          next: (response) => {
-            console.log('Reclamation submitted successfully:', response);
-            alert('Réclamation soumise avec succès!');
-            this.reclamationText = ''; // Clear the input
-            this.showModal = false; // Close the modal
-          },
-          error: (err) => {
-            console.error('Error submitting reclamation:', err);
-            alert('Une erreur est survenue. Veuillez réessayer.');
-          }
-        }
-      );
-    } else {
-      alert('Veuillez saisir une réclamation avant de soumettre.');
-    }
-  }
-
-
-  logout():void { 
+  logout():void {
       Swal.fire({
         title: 'Are you sure?',
         text: 'You will be logged out.',
@@ -141,7 +126,8 @@ export class SidebarComponent  implements OnInit {
           this.router.navigate(['/sign-in']);
         }
       });
-    
+
 
   }
+
 }

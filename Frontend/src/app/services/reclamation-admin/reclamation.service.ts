@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Reclamation } from '../../models/reclamation.model';
+// import { Reclamation } from '../../models/reclamation.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,12 +17,11 @@ export class ReclamationService {
     return this.http.get(`${this.baseUrl}`);
   }
 
-  updateReclamation(id: string, reclamation: { reclamation: string }): Observable<any> {
-    return this.http.put(`${this.baseUrl}/${id}`, reclamation);
+
+
+  deleteReclamation(id: string): Observable<any> {  // id should be string as MongoDB uses ObjectId
+    return this.http.delete(`${this.baseUrl}/${id}`);
   }
 
-  deleteReclamation(id: number) {
-    return this.http.delete(`http://localhost:5000/api/reclamations/${id}`);
-  }
 
 }

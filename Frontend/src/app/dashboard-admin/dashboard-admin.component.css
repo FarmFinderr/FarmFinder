@@ -6,7 +6,7 @@
     flex-direction: column;
     gap: 2rem;
     align-items: center;
-   
+
 }
 
 .header {
@@ -47,12 +47,12 @@
 }
 
 section {
-    
+
     display: flex;
 }
 
 .body {
-    background-image: url('/assets/sidebar.png');
+    background-image: url('../../assets/sidebar.png');
     background-size: cover; /* Makes sure the image covers the whole page */
     background-position: center; /* Centers the image */
     background-repeat: no-repeat; /* Prevents repeating */
@@ -63,7 +63,7 @@ section {
     align-items: center;
     justify-content: center;
     gap: 2rem;
-    
+
 
 }
 
@@ -102,7 +102,7 @@ section {
     width: 50%;
     height: 100%;
     background-color: white;
-    
+
 }
 
 .card {
@@ -141,7 +141,7 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
-    height :   65%  ;  
+    height :   65%  ;
     width: 60%;
 }
 .photos img {

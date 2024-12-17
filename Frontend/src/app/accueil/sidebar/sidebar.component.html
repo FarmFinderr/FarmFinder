@@ -1,3 +1,4 @@
+
 <div class="bg-lime-900 text-white flex w-64 h-[620px] p-4 flex-col fixed">
   <!-- User Section -->
   <div class="flex flex-col items-center py-6 border-b border-gray-100">
@@ -8,10 +9,15 @@
     />
     <h3 class="mt-4 text-lg font-semibold">{{ this.user.name }} {{this.user.lastName}}</h3>
     <p class="text-sm text-lime-100">{{ this.user.emailAddress }}</p>
+
   </div>
+
+  <!-- Menu -->
 
 
   <!--<div class="relative mt-6 flex">
+
+
     <span class="absolute inset-y-0 left-0 flex items-center pl-3">
         <svg class="w-5 h-5 text-gray-400" viewBox="0 0 24 24" fill="none">
             <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -29,8 +35,8 @@
   <button  *ngIf="user.role=='user'"
      (click)="Dashboard()"
     class="w-full flex items-center gap-2 px-4 py-3 text-left bg-lime-600 hover:bg-lime-500 transition"
-    
-    
+
+
   >
   <img width="28" height="28" src="../../../assets/accueil/icondashboard.png" alt="dashboard-layout"/>
      <span>Admin Dashboard</span>
@@ -42,13 +48,12 @@
   <i class="fas fa-plus-circle text-xl"></i>
   <span>Add a complaint</span>
 </button>
-  
+
 </div>
 
 
 
-
-
+<!-- Modal for Reclamation -->
 <div
 *ngIf="showModal"
 id="popup-modal"
@@ -57,6 +62,7 @@ class="fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:ins
 <div class="relative p-4 w-full max-w-md max-h-full">
   <div class="relative bg-white rounded-lg shadow-lg dark:bg-gray-700">
 
+    <!-- Close Button -->
     <button
       type="button"
       class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -67,32 +73,31 @@ class="fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:ins
       <span class="sr-only">Close modal</span>
     </button>
 
-<div class="p-6">
-<h2 class="text-xl font-bold mb-4 text-center text-black">Add a Complaint</h2>
+    <!-- Modal Content -->
+    <div class="p-6">
+      <h2 class="text-xl font-bold mb-4 text-center text-black">Ajouter une Réclamation</h2>
+      <!-- Textarea for Reclamation -->
+      <textarea
+        [(ngModel)]="reclamationText"
+        class="w-full h-32 p-2 border rounded-lg mb-4 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-600"
+        placeholder="Saisissez votre réclamation ici...">
+      </textarea>
 
-<textarea
-  [(ngModel)]="reclamationText"
-  class="w-full h-32 p-2 border rounded-lg mb-4 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-600"
-  placeholder="Enter your complaint here...">
-</textarea>
+      <!-- Action Buttons -->
+      <div class="flex justify-end space-x-4">
+        <button
+          (click)="closeReclamationModal()"
+          class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+          Annuler
+        </button>
 
-<input type="file" (change)="onFileSelected($event)" class="mb-4 w-full p-2 border rounded-lg" />
-
-<div class="flex justify-end space-x-4">
-  <button
-    (click)="closeReclamationModal()"
-    class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
-    Cancel
-  </button>
-
-  <button
-    (click)="addReclamation()"
-    class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded">
-    Submit
-  </button>
-</div>
-</div>
-
+        <button
+         (click)="addReclamation()"
+         class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded">
+           Soumettre
+        </button>
+      </div>
+    </div>
   </div>
 </div>
 </div>
@@ -110,6 +115,7 @@ class="fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:ins
     >
       <i class="fas fa-sign-out-alt text-xl"></i>
       <span> Logout  </span>
+
     </button>
   </div>
 </div>

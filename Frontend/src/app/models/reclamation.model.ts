@@ -1,6 +1,9 @@
 export interface Reclamation {
-  id: number;
+  _id: string;
+  userId: {
+    name: string;
+    lastName: string;
+  };
   reclamation: string;
-  createdAt: string;     
-  updatedAt: string;
+  userName?: string; 
 }

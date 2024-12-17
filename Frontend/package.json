@@ -29,15 +29,19 @@
     "frontend": "file:",
     "jspdf": "^2.5.2",
     "jspdf-autotable": "^3.8.4",
+<<<<<<< HEAD
     "jwt-decode": "^4.0.0",
     "keycloak-js": "^21.0.0",
+=======
+    "keycloak-js": "^21.1.2",
+>>>>>>> lyna
     "leaflet": "^1.9.4",
     "net": "^1.0.2",
     "quill": "^2.0.2",
     "rxjs": "~7.8.0",
     "sockjs-client": "^1.6.1",
     "stompjs": "^2.3.3",
-    "sweetalert2": "^11.14.5",
+    "sweetalert2": "^11.6.13",
     "tailwind-scrollbar-hide": "^1.1.7",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.10"
@@ -47,7 +51,6 @@
     "@angular/cli": "^18.2.10",
     "@angular/compiler-cli": "^18.2.0",
     "@types/jasmine": "~5.1.0",
-    "@types/keycloak-js": "^3.4.1",
     "@types/leaflet": "^1.9.15",
     "@types/sockjs-client": "^1.5.4",
     "@types/stompjs": "^2.3.9",
