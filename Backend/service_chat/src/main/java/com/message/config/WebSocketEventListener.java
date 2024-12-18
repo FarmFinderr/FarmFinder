@@ -22,13 +22,13 @@ public class WebSocketEventListener {
     public void handleWebSocketDisconnectListener(SessionDisconnectEvent event) {
         StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(event.getMessage());
 
-        Long username = (Long) headerAccessor.getSessionAttributes().get("username");
+        String username = (String) headerAccessor.getSessionAttributes().get("username");
         if (username != null) {
             System.out.println("User disconnected: " + username);
 
             ChatMessage chatMessage = new ChatMessage.Builder()
                     .sender(username)
-                    .receiver(1L)
+                    .receiver(username)
                     .content("User has left the chat") 
                     .timestamp(String.valueOf(System.currentTimeMillis())) 
                     .build();
