@@ -8,13 +8,13 @@ data class User(
     val  id : String,
     val name  : String,
     val lastName :  String,
-    val  phoneNumber :  Int,
+    val  phoneNumber :  String,
     val date : Date,
-    val sexe :  Int  ,
+    val sexe :  String  ,
     val  addresse : String,
     val  emailAdresse : String ,
     val  photo  : String ,
-    val  role  : Int,
+    val  role  : String,
     val password:String
 
     )
