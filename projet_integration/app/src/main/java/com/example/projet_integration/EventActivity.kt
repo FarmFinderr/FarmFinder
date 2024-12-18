@@ -1,7 +1,9 @@
 package com.example.projet_integration
 
+import EventAdapter
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -9,7 +11,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.projet_integration.adapters.EventAdapter
 import com.example.projet_integration.models.Event
 import com.example.projet_integration.services.events.ApiEvents
 import kotlinx.coroutines.CoroutineScope
@@ -43,7 +44,7 @@ class EventActivity : AppCompatActivity() {
 
                 try{
                     val response  = ApiEvents.apiService.getEvents();
-                    adapter =EventAdapter(listevents);
+                    adapter =EventAdapter(this@EventActivity, listevents)
                     recyclerView.adapter =  adapter;
                     listevents.clear();
                     listevents.addAll(response.body()!!);
@@ -57,6 +58,13 @@ class EventActivity : AppCompatActivity() {
                     Log.e("API Error", "Response code:  ${e.message} ")
                 }
 
+        }
+        val backButton: ImageButton = findViewById(R.id.button_back)
+
+        // Set click listener
+        backButton.setOnClickListener {
+            // Finish the current activity to return to the previous one
+            finish()
         }
 
     }

@@ -24,6 +24,7 @@ class MainActivity2 : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var postAdapter: PostAdapter
     private lateinit var postsList: ArrayList<Post> // List to hold posts
+    private lateinit var Shared : SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +34,7 @@ class MainActivity2 : AppCompatActivity() {
         recyclerView = findViewById(R.id.recyclerView)
         drawerLayout = findViewById(R.id.drawerLayout)
         val navigation: NavigationView = findViewById(R.id.navigation)
-
+        Shared=  SharedPreferences(this)
         // Set up ActionBarDrawerToggle
         toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open_drawer, R.string.close_drawer)
         drawerLayout.addDrawerListener(toggle)
@@ -54,6 +55,13 @@ class MainActivity2 : AppCompatActivity() {
                     startActivity(intent)
                     drawerLayout.closeDrawer(GravityCompat.START)
                     true
+                }
+                R.id.logout ->{
+                Shared.removeValue("id")
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                drawerLayout.closeDrawer(GravityCompat.START)
+                true
                 }
                 else -> false
             }

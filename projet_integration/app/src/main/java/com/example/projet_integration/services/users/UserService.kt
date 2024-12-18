@@ -17,12 +17,13 @@ interface UserService {
 
     @GET("{id}")
     suspend fun getUserById(
-        @Path("id") userId: String
+        @Path("id") userId: String,
+
     ):Response<User>
     @POST("login")
     suspend fun login(
         @Query("username") username: String,
-        @Query("password") password: String
+        @Query("password") password: String,
     ): AccessToken
 
     @FormUrlEncoded

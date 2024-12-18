@@ -1,6 +1,7 @@
 package com.example.projet_integration
 import  java.util.Date
 data class Post(
+    val id:String?=null ,
     val userId: Int,
     val price: Double,
     val description: String,

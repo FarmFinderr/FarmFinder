@@ -10,6 +10,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.auth0.jwt.JWT
+import com.auth0.jwt.interfaces.DecodedJWT
 import com.example.projet_integration.services.users.ApiUser
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -21,6 +23,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var password: EditText
     private lateinit var signup: TextView
     private lateinit var signin: Button
+    private lateinit var Shared : SharedPreferences
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +34,17 @@ class MainActivity : AppCompatActivity() {
         password = findViewById(R.id.password)
         signup = findViewById(R.id.signup)
         signin = findViewById(R.id.btn_login)
+        Shared = SharedPreferences(this)
+
+        val id =  Shared.getValueString("id")
+        if(id!=null)
+        {
+            val intent =  Intent(this,MainActivity2::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+
 
         val  client =  "admin-cli"
         val secret ="6eSQJ1P8twATPpYefbVxa0Unfod1FCBt"
@@ -37,21 +52,28 @@ class MainActivity : AppCompatActivity() {
         // Action pour se connecter
         signin.setOnClickListener {
 
-            val intent = Intent(this, OffersActivity::class.java)
-
-           startActivity(intent)
-           finish()/// Fermer l'activité actuelle pour éviter de revenir en arrière
 
             val  client =  "admin-cli"
             val secret ="6eSQJ1P8twATPpYefbVxa0Unfod1FCBt"
             var Acces_token  =  ""
+            var userId=""
             scope.launch {
                 try {
                     val login_response = ApiUser.apiService.login(username = email.text.toString() ,  password = password.text.toString())
-                    //if(login_response.bod)
                     Log.i("valid token ",login_response.accessToken)
-                    val  user =  ApiUser.apiService.getUserById(login_response.)
-                    Log.i("valid user ","${user.body()!!}")
+
+                   val decodedJWT: DecodedJWT = JWT.decode(login_response.accessToken)
+                   userId = decodedJWT.getClaim("sub").asString()
+                    val  user =  ApiUser.apiService.getUserById(userId.toString())
+                    if(user !=null)
+                    {
+                        Shared.save("id",user.body()!!.id)
+                        Shared.save("email",user.body()!!.emailAdresse)
+                        Shared.save("password",user.body()!!.password)
+                        Shared.save("photo",user.body()!!.photo)
+                    }
+
+
                 } catch (e: Exception) {
                     Toast.makeText(this@MainActivity, "Error while trying to Login", Toast.LENGTH_SHORT).show()
                     Log.e("failed","error : ${e.message}")
@@ -60,11 +82,12 @@ class MainActivity : AppCompatActivity() {
 
 
 
-            val intent = Intent(this, MainActivity2::class.java)
+
+           /* val intent = Intent(this, MainActivity2::class.java)
 
            startActivity(intent)
            finish()/// Fermer l'activité actuelle pour éviter de revenir en arrière
-
+            */
 
 
         }
