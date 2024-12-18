@@ -24,11 +24,12 @@ public class Gateway1ServiceApplication {
 				.route("r3", r -> r.path("/posts/**").uri("http://localhost:5000/"))
 				.route("r4", r -> r.path("/reactions/**").uri("http://localhost:5000/"))
 				.route("r5", r -> r.path("/commentaires/**").uri("http://localhost:5000/"))
+				
 				.route("r6", r -> r.path("/chats/**").uri("http://localhost:8088/"))
 				.route("websocket", r -> r
 		                .path("/ws") 
 		                .uri("http://localhost:8088/")) 
-				
+				.route("r7", r -> r.path("/api/reclamations/**").uri("http://localhost:5050/"))
 
 		            .build();
 		}

@@ -25,10 +25,12 @@
         </div>
         <div class="hidden sm:ml-6 sm:block">
           <div class="flex space-x-4">
-            <a href="#" class="rounded-md bg-green-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Dashboard</a>
-            <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-600 hover:bg-green-300 hover:text-white">Users</a>
-            <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-600 hover:bg-green-300 hover:text-white">Evenements</a>
-            <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-600 hover:bg-green-300 hover:text-white">Posts</a>
+            
+            <button [routerLink]="['/table-dashboard']" class="rounded-md bg-green-900 px-3 py-2 text-sm font-medium text-white">Dashboard</button>
+            <button [routerLink]="['/tableusers']" class="rounded-md px-3 py-2 text-sm font-medium text-gray-600 hover:bg-green-300 hover:text-white">Users</button>
+            <button [routerLink]="['/tableusers']" class="rounded-md px-3 py-2 text-sm font-medium text-gray-600 hover:bg-green-300 hover:text-white">Evenements</button>
+            <button [routerLink]="['/tableusers']" class="rounded-md px-3 py-2 text-sm font-medium text-gray-600 hover:bg-green-300 hover:text-white">Posts</button>
+
           </div>
         </div>
       </div>
