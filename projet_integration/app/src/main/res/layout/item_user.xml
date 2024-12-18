@@ -47,4 +47,18 @@
             android:textSize="14sp"
             android:textColor="#888888" />
     </LinearLayout>
+
+    <!-- Price TextView added on the right -->
+    <TextView
+        android:id="@+id/userPriceTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Price"
+        android:textSize="16sp"
+        android:textColor="@android:color/holo_orange_light"
+        android:gravity="end"
+        android:layout_marginStart="8dp"
+        android:layout_gravity="end"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"/>
 </LinearLayout>

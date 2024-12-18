@@ -27,9 +27,14 @@ interface EventService {
         @Field("owner_id") ownerId: String
     ): Response<Event>
 
-    @GET("/UsersRegistrated/{id}")
-    suspend fun GetRegistratedUser(@Path ("id") id: String ) : Response<List<Participation>>
+    @GET("UsersRegistrated/{id}")
+    suspend fun GetRegistratedUser(@Path ("id") id: Int ) : Response<List<Participation>>
 
     @GET("Event/{id}")
     suspend fun GetEvent(@Path ("id") id: Int ) : Response<Event>
+
+    @FormUrlEncoded
+    @POST("EventResgistration/")
+    suspend fun EventRegistration(@Field("price") price : Long , @Field("person_id") person_id : String  , @Field("event_id") event_id: Int):Response<Participation>
+
 }

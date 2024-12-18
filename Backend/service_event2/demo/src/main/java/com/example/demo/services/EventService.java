@@ -92,16 +92,29 @@ public class EventService {
 
     @PostMapping("/EventResgistration/")
     public ResponseEntity<?> EventRegistration(@RequestParam("price") Long price,
-                                               @RequestParam("person_id") String person_id,
+                                               @RequestParam("person_id") String person_id,  // Change Long to String
                                                @RequestParam("event_id") Long eventId) {
-        User Registrated_User = personneService.findCustomerById(person_id);
-        Event event = eventRepository.findById(eventId).orElse(null); // Fetch event by ID
-        Participation p = new Participation(price, person_id, event);
-        p.setEvent(event);
-        p.setUser(Registrated_User);
-        participationRepository.save(p);
+        try {
+            User Registrated_User = personneService.findCustomerById(person_id);  // Use String here
+            if (Registrated_User == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+            }
 
-        return ResponseEntity.ok(p);
+            Event event = eventRepository.findById(eventId).orElse(null);
+            if (event == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Event not found");
+            }
+
+            Participation p = new Participation(price, person_id, event);
+            p.setEvent(event);
+            p.setUser(Registrated_User);
+            participationRepository.save(p);
+
+            return ResponseEntity.ok(p);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal server error");
+        }
     }
 
 
