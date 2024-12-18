@@ -28,7 +28,7 @@ public class keycloakusersserviceImp implements  keycloakuserservices{
     private static final String SERVER_URL = "http://localhost:8080";
     private static final String REALM = "FarmFinder";
     private static final String CLIENT_ID = "admin-cli";
-    private static final String CLIENT_SECRET = "Bhk7ajXOrw58xTfndhZPAm42DcHmkqSP";
+    private static final String CLIENT_SECRET = "PnWnJquMiDb6omvtdcHHsLDc29CTmZmc";
 
     @Override
     public User createUser(User user) {
