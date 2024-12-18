@@ -1,6 +1,5 @@
 package com.example.projet_integration
 
-
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +19,7 @@ class ParticipationAdapter(private val participationList: List<Participation>) :
         val userNameTextView: TextView = itemView.findViewById(R.id.userNameTextView)
         val userEmailTextView: TextView = itemView.findViewById(R.id.userEmailTextView)
         val userPhoneTextView: TextView = itemView.findViewById(R.id.userPhoneTextView)
+        val userPriceTextView: TextView = itemView.findViewById(R.id.userPriceTextView) // Added price TextView
     }
 
     // Inflate the layout for each item
@@ -40,6 +40,10 @@ class ParticipationAdapter(private val participationList: List<Participation>) :
             holder.userEmailTextView.text = it.emailAdresse
             holder.userPhoneTextView.text = it.phoneNumber
 
+            // Set price data (from participation.price)
+            val price = participation.price ?: 0L // Default to 0 if price is null
+            holder.userPriceTextView.text = "Price: $${price}" // Assuming price is in cents
+
             // Load user photo using Glide
             Glide.with(holder.itemView.context)
                 .load(it.photo)
@@ -53,4 +57,3 @@ class ParticipationAdapter(private val participationList: List<Participation>) :
         return participationList.size
     }
 }
-

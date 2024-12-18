@@ -16,6 +16,12 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="200dp">
+        <ImageButton
+            android:id="@+id/button_back2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/arrow_back" />
 
         <ImageView
             android:id="@+id/eventImageView"
@@ -82,34 +88,44 @@
             android:textColor="#4CAF50"
             android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/participerButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Participer"
-            android:backgroundTint="#FFA500"
-            android:textColor="#FFFFFF" />
 
-        <TextView
-            android:id="@+id/moreLinkTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="Voir Plus"
-            android:textSize="14sp"
-            android:textColor="#FFA500"
-            android:fontFamily="sans-serif-medium"
-            android:clickable="true"
-            android:focusable="true" />
     </LinearLayout>
 
     <!-- RecyclerView for Registered Users -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/registeredUsersRecyclerView"
+        android:id="@+id/recycleuser"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
         android:layout_weight="1"
         android:padding="8dp"
          />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="16dp">
+
+        <!-- Input field for entering the participation value -->
+        <EditText
+            android:id="@+id/value_send"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter value to participate"
+            android:inputType="numberDecimal"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:padding="12dp" />
+
+        <!-- Send Button -->
+        <Button
+            android:id="@+id/btn_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Participate"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="12dp"/>
+    </LinearLayout>
+
 </LinearLayout>
