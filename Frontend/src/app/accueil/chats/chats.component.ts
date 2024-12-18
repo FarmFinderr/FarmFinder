@@ -16,7 +16,7 @@ import { EmojiEvent } from '@ctrl/ngx-emoji-mart/ngx-emoji';
   imports: [FormsModule,CommonModule,EmojiModule],
   templateUrl: './chats.component.html',
   styleUrl: './chats.component.css'
-})
+})  
 export class ChatsComponent {
   isLoading: boolean = true;
   userMessage: string = '';
