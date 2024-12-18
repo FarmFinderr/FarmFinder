@@ -30,8 +30,6 @@ public class Gateway1ServiceApplication {
 		                .uri("http://localhost:8088/"))
 				.route("r7", r -> r.path("/api/reclamations/**").uri("http://localhost:5501/"))
 
-
-
 				.build();
 		}
 
