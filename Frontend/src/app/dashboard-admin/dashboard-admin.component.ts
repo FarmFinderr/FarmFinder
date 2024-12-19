@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { UserService } from './../services/user/user.service';
 import { EventService } from '../services/event/event.service';
 import { ReclamationService } from '../services/reclamation/reclamation.service';
+import { PostService } from '../services/post/post.service';
 
 
 Chart.register(...registerables);
@@ -24,10 +25,14 @@ export class DashboardAdmin implements OnInit {
   totalUsers: number | null = null;
   totalEvents: number | null = null;
   totalReclamations: number = 0;
+  totalPosts: number = 0;
 
 
 
-   constructor(private userservice:UserService,private eventservice:EventService , private ReclamationService:ReclamationService) {}
+
+   constructor(private userservice:UserService,private eventservice:EventService , private ReclamationService:ReclamationService,
+    private PostService:PostService
+   ) {}
 
   getuser(userId:string):void{
     this.user=this.userservice.getUser(userId);
@@ -83,6 +88,18 @@ export class DashboardAdmin implements OnInit {
     );
   }
   
+
+  getTotalPosts():void{
+    this.PostService.getTotalPosts().subscribe(
+      (response) => {
+        this.totalPosts = response.total;
+        console.log('Total posts:', this.totalPosts);
+      },
+      (error) => {
+        console.error('Error fetching total posts:', error);
+      }
+    );
+  }
 
 
 
@@ -174,6 +191,7 @@ export class DashboardAdmin implements OnInit {
     this.getTotalUsers();
     this.getTotalEvents();
     this.getTotalReclamation()
+    this.getTotalPosts();
     this.chart = new Chart('MyChart', this.config);
     this.chart2 = new Chart('MyChart2', this.config2);
   }

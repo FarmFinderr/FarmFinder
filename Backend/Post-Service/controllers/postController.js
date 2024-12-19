@@ -129,3 +129,14 @@ export const deletePost = async (req, res, next) => {
         next(err);
     }
 };
+
+
+export const getTotalPosts = async (req, res, next) => {
+    try {
+        const totalPosts = await Post.countDocuments();
+        res.status(200).json({ total: totalPosts });
+    } catch (error) {
+        console.error('Error fetching total posts:', error.message);
+        next(error);
+    }
+};
