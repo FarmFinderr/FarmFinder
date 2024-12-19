@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ReclamationService } from '../../services/reclamation-admin/reclamation.service'; // Correct import path
-import { NavbarAdminComponent } from '../dashboard-admin.component'; // If using this navbar component
+import { NavbarAdminComponent } from '../../navbar-admin/navbar-admin.component'; // If using this navbar component
 import { Reclamation } from '../../models/reclamation.model';
 
 @Component({

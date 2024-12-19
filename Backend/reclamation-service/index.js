@@ -24,4 +24,5 @@ mongoose.connect('mongodb://localhost/reclamationDB', {
 // Start the server
 const PORT = process.env.PORT || 5501;
 app.listen(PORT, () => {
+  
 });

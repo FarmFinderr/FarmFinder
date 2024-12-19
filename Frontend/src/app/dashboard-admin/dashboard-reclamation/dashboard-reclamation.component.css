@@ -57,6 +57,8 @@ button {
 /* Adjustments for the layout and spacing */
 section {
   display: flex;
+  position: relative;
+  top: 300px; /* Décale la section de 100px depuis le haut */
 }
 
 .body {

@@ -6,8 +6,6 @@ import lombok.*;
 
 @Entity
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @ToString
 public class Participation {
     @Id

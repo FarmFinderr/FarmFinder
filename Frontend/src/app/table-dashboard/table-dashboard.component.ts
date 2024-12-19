@@ -3,17 +3,22 @@ import { UserService } from '../services/user/user.service';
 import { NavbarAdminComponent } from '../navbar-admin/navbar-admin.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
+import { NavbarComponent } from '../accueil/navbar/navbar.component';
+
+
 
 @Component({
   selector: 'app-table-dashboard',
   standalone: true,
-  imports: [CommonModule, NavbarAdminComponent, FormsModule],
+  imports: [CommonModule, NavbarAdminComponent, RouterModule,FormsModule,NavbarComponent],
   templateUrl: './table-dashboard.component.html',
   styleUrl: './table-dashboard.component.css'
 })
-export class TableDashboard implements OnInit { // Corrected class name
+export class TableDashboard implements OnInit {
   users: any[] = [];
   isLoading = true;
   isModalOpen = false;
@@ -24,15 +29,41 @@ export class TableDashboard implements OnInit { // Corrected class name
  
   searchQuery: string = '';
   originalUser: any = {};
+  user: any = null;
+  userId: string = '';
+  errorMessage: string | null = null;
   
 
 
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
+    this.userId = localStorage.getItem('userId') ?? '';
+    console.log('UserId:', this.userId);
+    this.getuser(this.userId);
     this.loadUsers();
     
   }
+
+  getuser(userId:string):void{
+    this.user=this.userService.getUser(userId);
+
+    this.userService.getUser(userId).subscribe({
+      next: (data) => {
+        console.log('Fetched user:', data)
+        this.user = data;
+        console.log('user act',this.user);
+        this.isLoading = false; 
+      },
+      error: (err) => {
+        console.error('Error fetching user:', err);  
+        this.errorMessage = 'Failed to load user';  
+        this.isLoading = false;  
+      },
+    });
+
+  }
+
   // if(this.image.length>0){
   //   this.imageError="";
   //   this.PythonServiceService.AddPhoto(this.imageCin).subscribe((res:any)=>{

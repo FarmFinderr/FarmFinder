@@ -12,7 +12,7 @@ public class beans {
     @Bean
     public Keycloak keycloak(){
         return KeycloakBuilder.builder()
-                .serverUrl("http://localhost:8050")
+                .serverUrl("http://localhost:8080")
                 .realm("FarmFinder")
                 .grantType(OAuth2Constants.CLIENT_CREDENTIALS)
                 .clientId("admin-cli")

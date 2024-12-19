@@ -20,7 +20,7 @@ public class Gateway1ServiceApplication {
 
 		return builder.routes()
 				.route("r1", r -> r.path("/users/**").uri("http://localhost:8083/"))
-				.route("r2", r -> r.path("/events/**").uri("http://localhost:8081/"))
+				.route("r2", r -> r.path("/events/**").uri("http://localhost:8082/"))
 				.route("r3", r -> r.path("/posts/**").uri("http://localhost:5000/"))
 				.route("r4", r -> r.path("/reactions/**").uri("http://localhost:5000/"))
 				.route("r5", r -> r.path("/commentaires/**").uri("http://localhost:5000/"))
