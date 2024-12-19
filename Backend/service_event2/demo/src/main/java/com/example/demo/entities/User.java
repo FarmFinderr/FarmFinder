@@ -10,8 +10,6 @@ import java.sql.Date;
 
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @ToString
 public class User {
     private String id;

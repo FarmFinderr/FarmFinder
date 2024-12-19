@@ -61,8 +61,6 @@ tabindex="-1"
 class="fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full bg-black bg-opacity-50 flex">
 <div class="relative p-4 w-full max-w-md max-h-full">
   <div class="relative bg-white rounded-lg shadow-lg dark:bg-gray-700">
-
-    <!-- Close Button -->
     <button
       type="button"
       class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -72,29 +70,23 @@ class="fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:ins
       </svg>
       <span class="sr-only">Close modal</span>
     </button>
-
-    <!-- Modal Content -->
     <div class="p-6">
-      <h2 class="text-xl font-bold mb-4 text-center text-black">Ajouter une Réclamation</h2>
-      <!-- Textarea for Reclamation -->
+      <h2 class="text-xl font-bold mb-4 text-center text-black">Add a Reclamation</h2>
       <textarea
         [(ngModel)]="reclamationText"
         class="w-full h-32 p-2 border rounded-lg mb-4 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-600"
-        placeholder="Saisissez votre réclamation ici...">
+        placeholder="Enter your reclamation here...">
       </textarea>
-
-      <!-- Action Buttons -->
       <div class="flex justify-end space-x-4">
         <button
           (click)="closeReclamationModal()"
           class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
-          Annuler
+          Cancel
         </button>
-
         <button
-         (click)="addReclamation()"
-         class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded">
-           Soumettre
+          (click)="addReclamation()"
+          class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded">
+          Submit
         </button>
       </div>
     </div>
