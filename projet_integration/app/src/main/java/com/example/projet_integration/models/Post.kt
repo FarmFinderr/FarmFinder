@@ -1,15 +1,21 @@
 package com.example.projet_integration
-import  java.util.Date
+
+import com.example.projet_integration.models.Comment
+import com.example.projet_integration.models.User
+import java.util.Date
+
+// Post data class
 data class Post(
-    val id:String?=null ,
-    val userId: Int,
+    val _id: String,
+    val userId: String,
     val price: Double,
     val description: String,
     val type: String,
     val air: Int,
     val localisation: String,
-    val date :Date,
-    val images:Array<Image>,
-    val vedios : Array<Video>,
-    val reactions : Array<Reaction>
+    val date: String,
+    val images: List<Image>,
+
 )
+
+

@@ -36,10 +36,14 @@ class MainActivity : AppCompatActivity() {
         signin = findViewById(R.id.btn_login)
         Shared = SharedPreferences(this)
 
+
+
+
+
         val id =  Shared.getValueString("id")
         if(id!=null)
         {
-            val intent =  Intent(this,MainActivity2::class.java)
+            val intent =  Intent(this,OffersActivity::class.java)
             startActivity(intent)
             finish()
         }
@@ -71,11 +75,12 @@ class MainActivity : AppCompatActivity() {
                         Shared.save("email",user.body()!!.emailAdresse)
                         Shared.save("password",user.body()!!.password)
                         Shared.save("photo",user.body()!!.photo)
+
                     }
 
 
                 } catch (e: Exception) {
-                    Toast.makeText(this@MainActivity, "Error while trying to Login", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(this@MainActivity, "Error while trying to Login", Toast.LENGTH_SHORT).show()
                     Log.e("failed","error : ${e.message}")
                 }
             }
@@ -83,11 +88,6 @@ class MainActivity : AppCompatActivity() {
 
 
 
-           /* val intent = Intent(this, MainActivity2::class.java)
-
-           startActivity(intent)
-           finish()/// Fermer l'activité actuelle pour éviter de revenir en arrière
-            */
 
 
         }
