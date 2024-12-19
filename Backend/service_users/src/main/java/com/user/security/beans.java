@@ -18,7 +18,7 @@ public class beans {
                 .clientId("admin-cli")
                 .username("admin")
                 .password("1234")
-                .clientSecret("5nnbmqITsz1CO1Ey3xIeqxDyBPEvXqOy")
+                .clientSecret("mwJSVcHdDVxaXcOcnUdqXEP9g0j4jUBJ")
                 .build();
     }
 
