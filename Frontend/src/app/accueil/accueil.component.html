@@ -22,9 +22,22 @@
       <div class="flex items-center space-x-2">
         <img   [src]="post.user.photo" alt="Image utilisateur" class="w-8 h-8 rounded-full">
         <div>
-          <button (click)="openMessage(2,1)"><h3 class="font-semibold" >{{ post.user?.name }}</h3></button>
+          
+          <h3 class="font-semibold" >{{ post.user?.name }}</h3>
+          
+           
           <p class="text-gray-500 text-xs">{{ formatDate(post.date) }}</p>
         </div>
+        <button (click)="openOverlay(post.user?.id)"
+    class="flex items-center justify-center bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold py-2 px-4 rounded-full shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105">
+    <span class="text-sm">Massege</span>
+    <span class="ml-3">
+        <svg class="w-4 h-4 transform rotate-45 -mt-px" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+        </svg>
+    </span>
+</button>
+
       </div>
       <!--<div class="flex items-center space-x-1 text-gray-600 cursor-pointer text-sm">
         <p class="text-black">Enregistrer la publication</p>

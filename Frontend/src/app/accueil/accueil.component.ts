@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '../services/post/post.service';
+import { ChatsComponent } from './chats/chats.component';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AddpostComponent } from './addpost/addpost.component';
@@ -29,6 +30,7 @@ import Swal from 'sweetalert2';
 import { FormsModule } from '@angular/forms';
 import SockJS from 'sockjs-client';
 import Stomp from 'stompjs';
+import { MatDialog } from '@angular/material/dialog';
 
 
 
@@ -37,7 +39,7 @@ import Stomp from 'stompjs';
 @Component({
   selector: 'app-accueil',
   standalone: true,
-  imports: [OpenmapComponent,MapleafletComponent,FormsModule,CommonModule,MapComponent,GoogleMapsModule,AddpostComponent ,ModalAddPostComponent,EventslistComponent,SidebarComponent,RouterOutlet, RouterLink, RouterLinkActive,NavbarComponent],
+  imports: [ChatsComponent,OpenmapComponent,MapleafletComponent,FormsModule,CommonModule,MapComponent,GoogleMapsModule,AddpostComponent ,ModalAddPostComponent,EventslistComponent,SidebarComponent,RouterOutlet, RouterLink, RouterLinkActive,NavbarComponent],
   templateUrl: './accueil.component.html',
   styleUrl: './accueil.component.css'
 })
@@ -91,13 +93,32 @@ export class AccueilComponent  implements OnInit {
       timestamp: ''
 
   }
+  // openOverlay(userId: number | undefined) {
+  //   const dialogRef = this.dialog.open(ChatsComponent, {
+      
+  //     data: { message: 'Hello from Parent Component!', userId: 123 },
+  //   });
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     console.log('Dialog closed', result);
+  //   });
+  // }
+  openOverlay(userId: number | undefined) {
+    console.log('receiverId:', userId);
+
+    if (userId) {
+      this.dialog.open(ChatsComponent, {
+        data: { receiverId: userId }
+      });
+    }
+  }
+
 
 
 
 
 
   currentItem: Post | null = null;
-  constructor(private Postservice: PostService,private Chatbotservice: ChatbotService,private commentservice: CommentService,private userservice:UserService,
+  constructor(private dialog: MatDialog,private Postservice: PostService,private Chatbotservice: ChatbotService,private commentservice: CommentService,private userservice:UserService,
     private ReactionService:ReactionService,private router: Router,    private AddpostService: AddpostService, private ChatUsersService: ChatUsersService
 
   ) {
@@ -157,13 +178,12 @@ export class AccueilComponent  implements OnInit {
     this.userId = localStorage.getItem('userId') ?? ''; 
     console.log("userid",this.userId)
     this.getuser(this.userId);
-    console.log("user actuelle",this.user);
     this.getChats();
     this.fetchPosts();
     this.AddpostService.postAdded$.subscribe(() => {
       this.fetchPosts();
     });
-    this.connectWebSocket();
+    // this.connectWebSocket();
     // // Correctly formatted WebSocket URL
     // let ws = new SockJS('http://localhost:8088/ws');
     // this.socketClient = Stomp.over(ws);

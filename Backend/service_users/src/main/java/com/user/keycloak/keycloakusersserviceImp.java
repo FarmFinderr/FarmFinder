@@ -28,11 +28,11 @@ public class keycloakusersserviceImp implements  keycloakuserservices{
     private static final String SERVER_URL = "http://localhost:8050";
     private static final String REALM = "FarmFinder";
     private static final String CLIENT_ID = "admin-cli";
-    private static final String CLIENT_SECRET = "6eSQJ1P8twATPpYefbVxa0Unfod1FCBt";
+    private static final String CLIENT_SECRET = "5nnbmqITsz1CO1Ey3xIeqxDyBPEvXqOy";
 
     @Override
     public User createUser(User user) {
-        log.info("Starting user creation for: {}", user.getEmailAddress());
+        /*log.info("Starting user creation for: {}", user.getEmailAddress());*/
         UserRepresentation newUser = new UserRepresentation();
         newUser.setEnabled(true);
         newUser.setLastName(user.getLastName());
@@ -56,14 +56,14 @@ public class keycloakusersserviceImp implements  keycloakuserservices{
             if (locationHeader != null) {
                 String userId = locationHeader.substring(locationHeader.lastIndexOf('/') + 1);
                 user.setId(userId);
-                log.info("User created successfully with ID: {}", userId);
+                /*log.info("User created successfully with ID: {}", userId);*/
                 var roleRepresentation = realmResource.roles().get("user").toRepresentation();
                 usersResource.get(userId).roles().realmLevel().add(Collections.singletonList(roleRepresentation));
-                log.info("Role 'user' assigned to user: {}", userId);
+                /*log.info("Role 'user' assigned to user: {}", userId);*/
             }
             return user;
         } else {
-            log.error("Failed to create user. Status: {}, Reason: {}", response.getStatus(), response.getStatusInfo());
+            /*log.error("Failed to create user. Status: {}, Reason: {}", response.getStatus(), response.getStatusInfo());*/
             throw new RuntimeException("Failed to create user: " + response.getStatusInfo());
         }
     }
@@ -71,7 +71,7 @@ public class keycloakusersserviceImp implements  keycloakuserservices{
     @Override
     public AccessTokenResponse login(String username, String password) {
         try {
-            log.info("Attempting to login user: {}", username);
+            /*log.info("Attempting to login user: {}", username);*/
             Keycloak keycloakLogin = KeycloakBuilder.builder()
                     .serverUrl(SERVER_URL)
                     .realm(REALM)
@@ -83,10 +83,10 @@ public class keycloakusersserviceImp implements  keycloakuserservices{
                     .build();
 
             AccessTokenResponse token = keycloakLogin.tokenManager().getAccessToken();
-            log.info("User logged in successfully:{}", username);
+            /*log.info("User logged in successfully:{}", username);*/
             return token;
         } catch (Exception e) {
-            log.error("Failed to login user: {}", username, e);
+            /*log.error("Failed to login user: {}", username, e);*/
             throw new RuntimeException("Failed to login: " + e.getMessage(), e);
         }
     }
