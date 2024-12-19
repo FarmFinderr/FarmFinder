@@ -159,6 +159,7 @@ isNotificationModalOpen = false;
   closeNotificationModal() {
     this.isNotificationModalOpen = false;
   }
+  
   getNotif(): void {
   this.ChatUsersService.getNotif().subscribe({
     next: (data) => {
@@ -166,7 +167,7 @@ isNotificationModalOpen = false;
 
       // Filter notifications for the logged-in user
       this.notificationData = data.filter((notif: any) => notif.receiver === this.receiverId);
-      this.notificationData.reverse();
+      // this.notificationData.reverse();
       // Update the notification count based on the filtered notifications
       this.notificationCount = this.notificationData.length;
       

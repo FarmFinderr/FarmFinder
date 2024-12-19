@@ -145,7 +145,7 @@
     <div *ngFor="let event of events" class="space-y-4">
       <div class="flex items-center m-1">
         <img
-          [src]="event.image"
+          [src]="event.photo"
           alt="Event"
           class="w-20 rounded object-contain"
         />
@@ -153,8 +153,8 @@
           <p class="text-sm font-semibold">{{ event.title }}</p>
           <p class="text-xs text-gray-500">{{ event.price }}</p>
           <div class="flex items-center">
-            <button class="text-xs text-green-600 font-bold">Participer</button>
-            <p class="font-bold underline text-xs ml-auto cursor-pointer" (click)="openModalDetailsEvent(event.id)">voir plus</p>
+            <button class="text-xs text-green-600 font-bold">Participate</button>
+            <p class="font-bold underline text-xs ml-auto cursor-pointer" (click)="openModelDetailsEvent(event)">voir plus</p>
           </div>
         </div>
       </div>
@@ -203,9 +203,9 @@
     <div class="w-1/3 bg-gray-100 p-4 border-r">
       <h5 class="text-lg font-semibold mb-4">Participants</h5>
       <ul class="space-y-2">
-        <li *ngFor="let participant of comments" class="text-sm text-gray-700 flex items-center space-x-2">
-          <img [src]="participant.userImage" alt="Avatar" class="w-8 h-8 rounded-full">
-          <span>{{ participant.userName }}</span>
+        <li *ngFor="let participant of curr_users" class="text-sm text-gray-700 flex items-center space-x-2">
+          <img [src]="participant.user.photo" alt="Avatar" class="w-8 h-8 rounded-full">
+          <span>{{ participant.user.name + " " + participant.user.lastName + " " + participant.price  }}</span>
         </li>
       </ul>
     </div>
@@ -237,12 +237,16 @@
         <!-- Image -->
         <div>
           <h6 class="font-medium text-gray-800 mb-2">Image :</h6>
-          <img [src]="eventDetails.image" alt="Event Image" class="w-full h-32 object-cover rounded-lg">
+          <img [src]="eventDetails.photo" alt="Event Image" class="w-full h-32 object-cover rounded-lg">
         </div>
       </div>
 
       <div class="modal-footer mt-4 flex justify-end mr-11 mb-5">
-        <button type="submit" class="bg-yellow-500 text-white py-2 px-4 rounded-lg">Participer</button>
+        <input type="number" name="value" id="value" [(ngModel)]="value"
+        class="bg-yellow-50 border border-yellow-300 text-green-900 text-xs rounded-md focus:ring-green-500 focus:border-green-500 block w-60 p-2.5 mr-5"
+        placeholder="Enter your bid" required>
+
+        <button type="submit" class="bg-yellow-500 text-white py-2 px-4 rounded-lg" (click)="RegisterForEvent()">I participate</button>
       </div>
 
     </div>

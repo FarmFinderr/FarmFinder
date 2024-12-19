@@ -34,5 +34,8 @@ export class EventService {
   updateEvent(id: string,item:any): Observable<any> {
     return this.http.put<any>(`${this.apiUrl}/${id}`, item);
   }
+  search(searchQuery: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl+"/search"}?search=${searchQuery}`);
+  }
 
 }

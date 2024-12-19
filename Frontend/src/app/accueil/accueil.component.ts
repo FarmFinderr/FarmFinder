@@ -1,6 +1,7 @@
 import { UserService } from './../services/user/user.service';
 import { Post } from './../models/post.model';
 import { CommonModule } from '@angular/common';
+import { User } from '../models/user.model';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '../services/post/post.service';
@@ -22,10 +23,12 @@ import { ReactionService } from '../services/reaction/reaction.service';
 import { tap, catchError, timestamp } from 'rxjs/operators';
 import { AddpostService } from '../services/post/addpost.service';
 import { ChatUsersService } from '../services/chat/chat-users.service';
-
+import { EventService } from '../services/event/event.service';
+import { Participation } from '../models/Participation.model';
+import { event } from '../models/event.model';
 import { of } from 'rxjs';
 import Swal from 'sweetalert2';
-
+import { RegistrationService } from '../services/paticipation/registration.service';
 
 import { FormsModule } from '@angular/forms';
 import SockJS from 'sockjs-client';
@@ -111,14 +114,27 @@ export class AccueilComponent  implements OnInit {
       });
     }
   }
+  getEvents(): void {
+    this.EventService.getEvents().subscribe({
+      next: (data) => {
+        console.log("service",data);
+        
+        this.events = data;
+
+      },
+      error: (err) => {
+        console.log("error : ", err);
+      }
+    })
+  }
 
 
 
 
 
-
+  curr_users!: Participation[];
   currentItem: Post | null = null;
-  constructor(private dialog: MatDialog,private Postservice: PostService,private Chatbotservice: ChatbotService,private commentservice: CommentService,private userservice:UserService,
+  constructor(private dialog: MatDialog,private EventService: EventService, private registrationService:RegistrationService,private Postservice: PostService,private Chatbotservice: ChatbotService,private commentservice: CommentService,private userservice:UserService,
     private ReactionService:ReactionService,private router: Router,    private AddpostService: AddpostService, private ChatUsersService: ChatUsersService
 
   ) {
@@ -176,6 +192,7 @@ export class AccueilComponent  implements OnInit {
 
   ngOnInit(): void {
     this.userId = localStorage.getItem('userId') ?? ''; 
+    this.getEvents();
     console.log("userid",this.userId)
     this.getuser(this.userId);
     this.getChats();
@@ -370,159 +387,9 @@ export class AccueilComponent  implements OnInit {
     );
   }
 
-  comments = [
-    {
-      userImage: '../../assets/accueil/lyna.jpg',
-      userName: ' Lyna moujehed',
-      content: 'Super article, dispo !',
-      date: '7 Février 2024'
-    },
-    {
-      userImage: '../../assets/accueil/lyna.jpg',
-      userName: ' Lyna moujehed',
-      content: 'Super article, dispo !',
-      date: '7 Février 2024'
-    },
-    {
-      userImage: '../../assets/accueil/wassim.jpg',
-      userName: 'Wassim saidani',
-      content: 'prix negociable ??.',
-      date: '8 Février 2024'
-    },
-    {
-      userImage: '../../assets/sirineKahweji_ISETBizerte.jpg',
-      userName: 'syrine syrina',
-      content: 'Très bien expliqué !',
-      date: '10 Février 2024'
-    },
-    {
-      userImage: '../../assets/accueil/lyna.jpg',
-      userName: ' Lyna moujehed',
-      content: 'Super article, dispo !',
-      date: '7 Février 2024'
-    },
-    {
-      userImage: '../../assets/accueil/wassim.jpg',
-      userName: 'Wassim saidani',
-      content: 'prix negociable ??.',
-      date: '8 Février 2024'
-    },
-    {
-      userImage: '../../assets/sirineKahweji_ISETBizerte.jpg',
-      userName: 'syrine syrina',
-      content: 'Très bien expliqué !',
-      date: '10 Février 2024'
-    },
-    {
-      userImage: '../../assets/accueil/lyna.jpg',
-      userName: ' Lyna moujehed',
-      content: 'Super article, dispo !',
-      date: '7 Février 2024'
-    },
-    {
-      userImage: '../../assets/accueil/wassim.jpg',
-      userName: 'Wassim saidani',
-      content: 'prix negociable ??.',
-      date: '8 Février 2024'
-    },
-    {
-      userImage: '../../assets/sirineKahweji_ISETBizerte.jpg',
-      userName: 'syrine syrina',
-      content: 'Très bien expliqué !',
-      date: '10 Février 2024'
-    }
-  ];
+  
 
-  events = [
-    {
-      id:1,
-      image: '../../assets/accueil/event1.jpg',
-      title: 'Ferme de 13 ha à Ain Draham',
-      price: '5,400,000 TND',
-      description: "Belle opportunité d'acquisition d'une ferme agricole située dans la région verdoyante de Bizerte.",
-
-    },
-    {
-      id:2,
-      image: '../../assets/accueil/event1.jpg',
-      title: 'Terrain avec vue sur la mer Bizerte CapZbib',
-      price: '1,200,000 TND',
-      description: "Belle opportunité d'acquisition d'une ferme agricole située dans la région verdoyante de Bizerte.",
-
-    },
-    {
-      id:3,
-      image: '../../assets/accueil/event2.jpg',
-      title: 'Petit Terrain a Tunis',
-      price: '850,000 TND',
-      description: "Belle opportunité d'acquisition d'une ferme agricole située dans la région verdoyante de Bizerte.",
-
-    },
-    {
-      id:4,
-      image: '../../assets/accueil/event1.jpg',
-      title: 'Ferme de 13 ha à Ain Draham',
-      price: '5,400,000 TND',
-      description: "Belle opportunité d'acquisition d'une ferme agricole située dans la région verdoyante de Bizerte.",
-
-    },
-    {
-      id:5,
-      image: '../../assets/accueil/event2.jpg',
-      title: 'Ferme avec vue sur la mer',
-      price: '1,200,000 TND',
-      description: "Belle opportunité d'acquisition d'une ferme agricole située dans la région verdoyante de Bizerte.",
-
-    },
-    {
-      id:6,
-      image: '../../assets/accueil/event3.jpg',
-      title: 'Appartement au centre-ville',
-      price: '850,000 TND',
-      description: "Belle opportunité d'acquisition d'une ferme agricole située dans la région verdoyante de Bizerte.",
-
-    },
-    {
-      id:7,
-      image: '../../assets/accueil/event1.jpg',
-      title: 'Ferme de 13 ha à Ain Draham',
-      price: '5,400,000 TND',
-      description: "Belle opportunité d'acquisition d'une ferme agricole située dans la région verdoyante de Bizerte.",
-
-    },
-    {
-      id:8,
-      image: '../../assets/accueil/event2.jpg',
-      title: 'Villa avec vue sur la mer',
-      price: '1,200,000 TND',
-      description: "Belle opportunité d'acquisition d'une ferme agricole située dans la région verdoyante de Bizerte.",
-
-    },
-    {
-      id:9,
-      image: '../../assets/accueil/event3.jpg',
-      title: 'Appartement au centre-ville',
-      price: '850,000 TND',
-      description: "Belle opportunité d'acquisition d'une ferme agricole située dans la région verdoyante de Bizerte.",
-
-    },
-    {
-      id:10,
-      image: '../../assets/accueil/event1.jpg',
-      title: 'Ferme de 13 ha à Ain Draham',
-      price: '5,400,000 TND',
-      description: "Belle opportunité d'acquisition d'une ferme agricole située dans la région verdoyante de Bizerte.",
-
-    },
-    {
-      id:11,
-      image: '../../assets/accueil/event2.jpg',
-      title: 'Villa avec vue sur la mer',
-      price: '1,200,000 TND',
-      description: "Belle opportunité d'acquisition d'une ferme agricole située dans la région verdoyante de Bizerte.",
-
-    }
-  ];
+  events:any[]= [];
 
    showDetails = false;
    isModalOpen = false;
@@ -533,6 +400,7 @@ export class AccueilComponent  implements OnInit {
 openModalIA() {
   this.isModalOpenIA = true;
 }
+
 
 closeModalIA() {
   this.isModalOpenIA = false;
@@ -570,11 +438,92 @@ formatDate(date: string): string {
      }
 
 
-   openModalDetailsEvent(eventId:number) {
-    this.eventDetails = this.events[eventId];
-    this.isModalOpenDetailsEvent = true;
-    console.log("ModalDetailsEvent opened ");
-  }
+  //  openModalDetailsEvent(event:any) {
+  //   this.eventDetails = event;
+  //   this.isModalOpenDetailsEvent = true;
+  //   console.log("ModalDetailsEvent opened ");
+  // }
+  value  = 0 ;
+  RegisterForEvent() {
+    const formData = new FormData();
+
+    formData.append("price", this.value.toString());
+    formData.append("person_id", this.user.id.toString());
+    formData.append("event_id", this.SelectedEvent.id.toString());
+
+    this.registrationService.register(formData).subscribe({
+        next: (response) => {
+          this.isModalOpenDetailsEvent=false;
+          this.value=0;
+          Swal.fire({
+                    icon: 'success',
+                    title: 'You registry seccfully for this event!',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    width: '300px', 
+                    padding: '10px', 
+                    customClass: {
+                    title: 'swal-title', 
+                     popup: 'swal-popup' 
+                    }
+                  });
+        },
+        error: (err) => {
+            console.error("Error during registration", err);
+        }
+    });
+}
+// get_user(id:string)
+//   {
+//     this.UserService.getUser(id).subscribe({
+//       next:(res) =>{
+//         this.Owner = res;
+//         console.log(res);
+
+//       },
+//       error:(err)=>{
+//         console.log("error getting user",err);
+
+//       }
+//     })
+//   }
+  
+  Owner!: User;
+  SelectedEvent: event = {
+      id: -1,
+      status: false,
+      description: '',
+      title: '',
+      price: 0,
+      owner_id: 0,
+      photo: '',
+      date_debut: '',
+      date_fin: '',
+      owner: this.Owner,
+      users: [],
+    }
+  openModelDetailsEvent(Ev:event):void
+    {
+      this.eventDetails = Ev;
+      this.SelectedEvent= Ev;
+      const formData =  new FormData();
+      formData.append("event_id",Ev.id?.toString());
+      this.registrationService.getRegistratedUsers(Ev.id).subscribe({
+        next:(res)=>{
+          this.curr_users = res;
+          
+                      
+        },
+        error:(err)=>{
+          console.log("error getting registrated users ",err);
+  
+        }
+      })
+  
+      this.isModalOpenDetailsEvent= true;
+  
+    }
+    
 
   closeModalDetailsEvent() {
     this.isModalOpenDetailsEvent = false;
