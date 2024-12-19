@@ -4,7 +4,8 @@ const {
   createReclamation,
   getAllReclamations,
   updateReclamation,
-  deleteReclamation
+  deleteReclamation,
+  getTotalReclamations
 } = require('../controllers/reclamationController');
 
 // POST: Create a new reclamation
@@ -18,5 +19,8 @@ router.put('/:id', updateReclamation);
 
 // DELETE: Delete a reclamation
 router.delete('/:id', deleteReclamation);
+
+router.get('/total', getTotalReclamations);
+
 
 module.exports = router;

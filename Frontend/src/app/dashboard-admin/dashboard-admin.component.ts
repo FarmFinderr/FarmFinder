@@ -3,6 +3,8 @@ import { Chart, ChartConfiguration, registerables } from 'chart.js';
 import { NavbarAdminComponent } from '../navbar-admin/navbar-admin.component'
 import { RouterModule } from '@angular/router';
 import { UserService } from './../services/user/user.service';
+import { EventService } from '../services/event/event.service';
+import { ReclamationService } from '../services/reclamation/reclamation.service';
 
 
 Chart.register(...registerables);
@@ -20,9 +22,12 @@ export class DashboardAdmin implements OnInit {
   isLoading: boolean = true;
   errorMessage: string | null = null;
   totalUsers: number | null = null;
+  totalEvents: number | null = null;
+  totalReclamations: number = 0;
 
 
-   constructor(private userservice:UserService,) {}
+
+   constructor(private userservice:UserService,private eventservice:EventService , private ReclamationService:ReclamationService) {}
 
   getuser(userId:string):void{
     this.user=this.userservice.getUser(userId);
@@ -42,14 +47,42 @@ export class DashboardAdmin implements OnInit {
     });
   }
 
+  getTotalEvents():void{
+    this.eventservice.getTotalEvents().subscribe(
+      (total) => {
+        this.totalEvents = total;
+        console.log('Total des événements:', this.totalEvents);
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération du total des événements:', error);
+      }
+    );
+  }
+
 
   getTotalUsers(): void {
     this.userservice.getTotalUsers().subscribe(
       (total: number) => {
         this.totalUsers = total; 
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération du total des users:', error);
       }
     );
   }
+
+  getTotalReclamation():void{
+    this.ReclamationService.getTotalReclamations().subscribe(
+      (response) => {
+        this.totalReclamations = response.total;
+        console.log('Total des réclamations :', this.totalReclamations);
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération du total des réclamations :', error);
+      }
+    );
+  }
+  
 
 
 
@@ -139,6 +172,8 @@ export class DashboardAdmin implements OnInit {
     console.log("userid",this.userId)
     this.getuser(this.userId); 
     this.getTotalUsers();
+    this.getTotalEvents();
+    this.getTotalReclamation()
     this.chart = new Chart('MyChart', this.config);
     this.chart2 = new Chart('MyChart2', this.config2);
   }

@@ -10,9 +10,12 @@ export class ReclamationService {
 
   constructor(private http: HttpClient) {}
 
-  // Add a new reclamation with image support
   addReclamation(formData: any): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}`, formData);
+  }
+
+  getTotalReclamations(): Observable<{ total: number }> {
+    return this.http.get<{ total: number }>(`${this.baseUrl}/total`);
   }
 
 

@@ -175,6 +175,12 @@ public class EventService {
         return ResponseEntity.ok(ex);
     }
 
+    @GetMapping("/totalEvents")
+    public Long getTotalEvents() {
+        return eventRepository.count();
+    }
+
+
 
 
 }

@@ -69,3 +69,14 @@ exports.deleteReclamation = async (req, res) => {
     res.status(500).json({ message: 'Error deleting reclamation', error });
   }
 };
+
+
+
+exports.getTotalReclamations = async (req, res) => {
+  try {
+    const totalReclamations = await Reclamation.countDocuments();
+    res.status(200).json({ total: totalReclamations });
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching total reclamations', error });
+  }
+};
