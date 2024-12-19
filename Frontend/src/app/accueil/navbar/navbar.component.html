@@ -1,36 +1,62 @@
 <div class="fixed max-w-screen-xl">
-
   <nav class="bg-white fixed w-full z-20 top-0 start-0 h-16">
-
     <div class="flex items-center justify-between w-full px-1">
-
       <img src="../../../assets/logo.png" class="h-14" alt="farmfinder Logo" />
 
       <!-- Navigation Menu -->
       <div class="flex items-center space-x-6 text-gray-800">
-        <a routerLink="/accueil" routerLinkActive="text-yellow-500" class="flex items-center space-x-1 font-bold relative group hover:cursor-pointer">
+        <a
+          routerLink="/accueil"
+          routerLinkActive="text-yellow-500"
+          class="flex items-center space-x-1 font-bold relative group hover:cursor-pointer"
+        >
           <span>Home</span>
-          <span class="absolute bottom-[-6px] w-0 h-0.5 bg-yellow-500 transition-all duration-800 group-hover:w-[120%] group-hover:h-1 cursor-pointer left-[-10%]"></span>
+          <span
+            class="absolute bottom-[-6px] w-0 h-0.5 bg-yellow-500 transition-all duration-800 group-hover:w-[120%] group-hover:h-1 cursor-pointer left-[-10%]"
+          ></span>
         </a>
 
-        <a (click)="openModalIA()" class="flex items-center space-x-1 font-bold relative group hover:cursor-pointer">
+        <a
+          (click)="openModalIA()"
+          class="flex items-center space-x-1 font-bold relative group hover:cursor-pointer"
+        >
           <span>AI Assistant</span>
-          <span class="absolute bottom-[-6px] w-0 h-0.5 bg-yellow-500 transition-all duration-800 group-hover:w-[120%] group-hover:h-1 cursor-pointer left-[-10%]"></span>
+          <span
+            class="absolute bottom-[-6px] w-0 h-0.5 bg-yellow-500 transition-all duration-800 group-hover:w-[120%] group-hover:h-1 cursor-pointer left-[-10%]"
+          ></span>
         </a>
 
-        <a routerLink="/events" routerLinkActive="text-yellow-600" class="flex items-center space-x-1 font-bold relative group hover:cursor-pointer">
+        <a
+          routerLink="/events"
+          routerLinkActive="text-yellow-600"
+          class="flex items-center space-x-1 font-bold relative group hover:cursor-pointer"
+        >
           <span>Events</span>
-          <span class="absolute bottom-[-6px] w-0 h-0.5 bg-yellow-500 transition-all duration-800 group-hover:w-[120%] group-hover:h-1 cursor-pointer left-[-10%]"></span>
+          <span
+            class="absolute bottom-[-6px] w-0 h-0.5 bg-yellow-500 transition-all duration-800 group-hover:w-[120%] group-hover:h-1 cursor-pointer left-[-10%]"
+          ></span>
         </a>
 
-        <a routerLink="/offres" routerLinkActive="text-yellow-600" class="flex items-center space-x-1 font-bold relative group hover:cursor-pointer">
+        <a
+          routerLink="/offres"
+          routerLinkActive="text-yellow-600"
+          class="flex items-center space-x-1 font-bold relative group hover:cursor-pointer"
+        >
           <span>Offers</span>
-          <span class="absolute bottom-[-6px] w-0 h-0.5 bg-yellow-500 transition-all duration-800 group-hover:w-[120%] group-hover:h-1 cursor-pointer left-[-10%]"></span>
+          <span
+            class="absolute bottom-[-6px] w-0 h-0.5 bg-yellow-500 transition-all duration-800 group-hover:w-[120%] group-hover:h-1 cursor-pointer left-[-10%]"
+          ></span>
         </a>
 
-        <a routerLink="/discussions" routerLinkActive="text-yellow-600" class="flex items-center space-x-1 font-bold relative group hover:cursor-pointer">
+        <a
+          routerLink="/discussions"
+          routerLinkActive="text-yellow-600"
+          class="flex items-center space-x-1 font-bold relative group hover:cursor-pointer"
+        >
           <span>Discussions</span>
-          <span class="absolute bottom-[-6px] w-0 h-0.5 bg-yellow-500 transition-all duration-800 group-hover:w-[120%] group-hover:h-1 cursor-pointer left-[-10%]"></span>
+          <span
+            class="absolute bottom-[-6px] w-0 h-0.5 bg-yellow-500 transition-all duration-800 group-hover:w-[120%] group-hover:h-1 cursor-pointer left-[-10%]"
+          ></span>
         </a>
       </div>
 
@@ -38,9 +64,17 @@
       <div class="flex items-center space-x-4 pr-4">
         <!-- Notifications Icon -->
         <div class="flex items-center relative">
-          <img src="../../../assets/notif.png" class="h-8 z-30" alt="Notifications" (click)="openNotificationModal()" id="notification-icon" />
-          <p class="w-4 h-4 bg-red-600 text-white rounded-full flex items-center justify-center text-xs mb-5 absolute -top-1 -right-1">
-            0
+          <img
+            src="../../../assets/notif.png"
+            class="h-8 z-30"
+            alt="Notifications"
+            (click)="openNotificationModal()"
+            id="notification-icon"
+          />
+          <p
+            class="w-4 h-4 bg-red-600 text-white rounded-full flex items-center justify-center text-xs mb-5 absolute -top-1 -right-1"
+          >
+            {{ notificationCount }}
           </p>
         </div>
 
@@ -49,28 +83,97 @@
       </div>
 
       <!-- Notification Modal -->
-      <div *ngIf="isNotificationModalOpen" class="fixed inset-0 z-53 flex items-center justify-center bg-black bg-opacity-50">
-        <div class="bg-white rounded-lg shadow-lg w-96 h-[460px] flex flex-col">
+      <div
+        *ngIf="isNotificationModalOpen"
+        class="fixed top-12  right-12 flex "
+      >
+        <div class="bg-gray-50 rounded-lg shadow-lg w-96 h-[460px] flex flex-col">
           <div class="px-6 py-4 flex items-center justify-between border-b">
             <h5 class="text-lg font-semibold">Notifications</h5>
-            <button (click)="closeNotificationModal()" class="text-gray-600 hover:text-gray-900">
-              <span class="text-xl">&times;</span>
-            </button>
+            
+          </div>
+          <!-- Notification Section -->
+<div class="flex-1 overflow-y-scroll px-6 py-4" style="scrollbar-width: none; -ms-overflow-style: none">
+  <div *ngFor="let notif of notificationData " class="flex items-center gap-4 mb-4 transition-transform duration-200 hover:scale-105">
+    <!-- Notification Card -->
+    <div *ngIf="notif.receiver == receiverId">
+      <div *ngFor="let user of users">
+        <div *ngIf="user.id == notif.sender"  (click)="openOverlay(user.id)" class="flex w-80 items-center p-4 rounded-lg bg-white hover:bg-gray-100 transition-colors duration-200 shadow-md cursor-pointer">
+          
+          <!-- User Profile Picture -->
+          <img [src]="user.photo" class="w-12 h-12 rounded-full border-2 border-gray-200" alt="User Profile" />
+
+          <!-- Notification Content -->
+          <div class="flex-3 ml-3 ">
+            <h6 class="text-sm font-semibold text-black">{{ user.name }}</h6>
+            <p class="text-xs text-gray-600"> {{ notif.content }}</p>
+            <span class="text-xs text-gray-400">{{ formatDate(notif.timestamp) }}</span>
           </div>
 
-          <!-- Iterate over users' notifications -->
-          <div class="flex-1 overflow-y-scroll px-6 py-4" style="scrollbar-width: none; -ms-overflow-style: none;">
-            <div *ngFor="let user of notificationData" class="flex items-center gap-4 mb-4">
-              <img [src]="user.image" class="w-10 h-10 rounded-full" alt="User Profile" />
-              <div class="flex-1">
-                <h6 class="text-sm text-black font-bold">{{ user.name }}</h6>
-                <p class="text-xs">{{ user.name }} {{ user.interaction }} {{ user.content }}</p>
-              </div>
+          <!-- New Notification Marker (optional) -->
+
+        </div>
+        <button *ngIf="!notif.read" (click)="deleteNotification(notif.id)" class="w-3 h-3 bg-red-500 rounded-full absolute top-0 right-5 mt-2 mr-2"></button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+          <!-- Toast Notifications Section (Using New Template) -->
+          <!-- <div class="p-2" *ngFor="let notif of notificationData">
+            <div *ngIf="notif.receiver == receiverId" >
+            <div *ngFor="let user of users">
+                <div
+                    id="toast-notification"
+                    class="w-full max-w-xs p-4 text-gray-900 bg-white rounded-lg shadow dark:bg-gray-800 dark:text-gray-300"
+                    role="alert"
+                    *ngIf="user.id == notif.envoi_id"
+                >
+                    <div class="flex items-center mb-3">
+                        <span class="mb-1 text-sm font-semibold text-gray-900 dark:text-white">New notification</span>
+                        <button
+                            type="button"
+                            
+                            class="ms-auto -mx-1.5 -my-1.5 bg-white justify-center items-center flex-shrink-0 text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+                            aria-label="Close"
+                        >
+                            <span class="sr-only">Close</span>
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                            </svg>
+                        </button>
+                    </div>
+        
+                    <div class="flex items-center">
+                        <div class="relative inline-block shrink-0">
+                            <img *ngIf="user && user.photo" class="h-12 w-12 flex-none rounded-full bg-gray-50" [src]="'http://localhost:8000' + user.photo" alt="" />
+                            <div *ngIf="!user?.photo" class="relative inline-flex items-center justify-center h-12 w-12 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                                <span class="font-medium text-gray-600 dark:text-gray-300">{{ user.lastName.charAt(0) + ' ' + user.name.charAt(0) }}</span>
+                            </div>
+                            <span class="absolute bottom-0 right-0 inline-flex items-center justify-center w-6 h-6 bg-blue-600 rounded-full">
+                                <svg class="w-3 h-3 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 18" fill="currentColor">
+                                    <path d="M18 4H16V9C16 10.0609 15.5786 11.0783 14.8284 11.8284C14.0783 12.5786 13.0609 13 12 13H9L6.846 14.615C7.17993 14.8628 7.58418 14.9977 8 15H11.667L15.4 17.8C15.5731 17.9298 15.7836 18 16 18C16.2652 18 16.5196 17.8946 16.7071 17.7071C16.8946 17.5196 17 17.2652 17 17V15H18C18.5304 15 19.0391 14.7893 19.4142 14.4142C19.7893 14.0391 20 13.5304 20 13V6C20 5.46957 19.7893 4.96086 19.4142 4.58579C19.0391 4.21071 18.5304 4 18 4Z" fill="currentColor" />
+                                    <path d="M12 0H2C1.46957 0 0.960859 0.210714 0.585786 0.585786C0.210714 0.960859 0 1.46957 0 2V9C0 9.53043 0.210714 10.0391 0.585786 10.4142C0.960859 10.7893 1.46957 11 2 11H3V13C3 13.1857 3.05171 13.3678 3.14935 13.5257C3.24698 13.6837 3.38668 13.8114 3.55279 13.8944C3.71889 13.9775 3.90484 14.0126 4.08981 13.996C4.27477 13.9793 4.45143 13.9114 4.6 13.8L8.333 11H12C12.5304 11 13.0391 10.7893 13.4142 10.4142C13.7893 10.0391 14 9.53043 14 9V2C14 1.46957 13.7893 0.960859 13.4142 0.585786C13.0391 0.210714 12.5304 0 12 0Z" fill="currentColor" />
+                                </svg>
+                                <span class="sr-only">Message icon</span>
+                            </span>
+                        </div>
+        
+                        <div class="ms-3 text-sm font-normal">
+                            <div class="text-sm font-semibold text-gray-900 dark:text-white">{{ user.name + ' ' + user.lastName }}</div>
+                            <div class="text-sm font-normal">{{ notif.message }}</div>
+                            <span class="text-xs font-medium text-blue-600 dark:text-blue-500">{{ formatDate(notif.timestamp) }}</span>
+                        </div>
+                    </div>
+                </div>
             </div>
           </div>
         </div>
+         -->
+        
+        </div>
       </div>
-
     </div>
   </nav>
 </div>
