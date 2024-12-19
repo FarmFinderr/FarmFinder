@@ -1,10 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
-
+const cors = require('cors');
 const app = express();
 
-// Middlewares
-app.use(express.json()); // For parsing application/json
+
+app.use(express.json());
 
 
 // Routes
@@ -22,7 +22,6 @@ mongoose.connect('mongodb://localhost/reclamationDB', {
 });
 
 // Start the server
-const PORT = process.env.PORT || 5050;
+const PORT = process.env.PORT || 5501;
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
 });

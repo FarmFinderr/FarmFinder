@@ -1,6 +1,1 @@
-com\example\demo\entities\Event.class
-com\example\demo\services\EventRestController.class
-com\example\demo\services\UserService.class
-com\example\demo\repositories\EventRepository.class
-com\example\demo\entities\Personne.class
-com\example\demo\ServiceEventApplication.class
+com\example\demo\DemoApplication.class

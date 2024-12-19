@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class ReclamationService {
 
-  private baseUrl = 'http://localhost:5050/api/reclamations';
+  private baseUrl = 'http://localhost:8880/api/reclamations';
 
   constructor(private http: HttpClient) {}
 

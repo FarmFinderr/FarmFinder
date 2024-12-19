@@ -29,7 +29,7 @@ public class Gateway1ServiceApplication {
 				.route("websocket", r -> r
 		                .path("/ws") 
 		                .uri("http://localhost:8088/")) 
-				.route("r7", r -> r.path("/api/reclamations/**").uri("http://localhost:5050/"))
+				.route("r7", r -> r.path("/api/reclamations/**").uri("http://localhost:5501/"))
 
 		            .build();
 		}

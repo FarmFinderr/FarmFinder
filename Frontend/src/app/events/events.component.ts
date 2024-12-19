@@ -143,7 +143,7 @@ export class EventsComponent implements OnInit {
     formData.append("price", this.event_created.price.toString());
     formData.append("date_debut", this.event_created.date_debut);
     formData.append("date_fin", this.event_created.date_fin);
-    formData.append("owner_id", "1");
+    formData.append("owner_id", this.userId);
     formData.forEach((value, key) => {
       console.log(key + ": " + value);
     });
