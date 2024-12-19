@@ -2,8 +2,8 @@
 <section>
 
   <div class="nav">
-    <img class="profile_photo" src="/assets/photo_profile.jpg" alt="">
-    <div class="profile" id="user_name"><span>Akram Zaabi</span> </div>
+    <img class="profile_photo" [src]="this.user.photo" alt="">
+    <div class="profile" id="user_name"><span>{{this.user.name}} {{this.user.lastName}}</span> </div>
     <div class="profile"><img width="25" height="25"
         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAACbElEQVR4nO2Yv4vUQBTHRz1UVARB4RBFkANLERERRPAqwc7GwlL0T3Ab7a7wX1CwEUEbrbRQUDkVRYsTCzsRRddlZd1932+S9bcjw73cxbu9S7Imu1luPvBgITPvfb+ZN5NkjfGk0263dwF4COC++21GkSAIjgJokrQaLRE5ZkYFa+0qkucB/FIDtzUsgN8kL7gxpsq0Wq3NAG6q6D8ALlprV6u5WsLcHRHZYqpIGIZ7Sb5RoV96tdGCdnsvIgdMlRCRUyRDXYkZEdm91Nhut7uT5HMd+5Xk6fga5/fTP1G6AWvtmGufRNGr9Xp9Q4Z56wBcjucBuGStXTsUI1EU7SD5TIV8I3kmbw43R+faOBcTwks3QvIIgIaa+ADgYL+5Op3OPpJve60AyzKip885AD+1yF2SW/83r8uhuaxGTWsVb6TH0TplrV1TVH6XC8CUy601bhVuBMAeAK81MUieKCz54lrHSbYL3+xBEJwkGehdeiUiE6ZkRGTC1YqNOA1FHq3XGo3GxkIVL19/PckrC4/oXElIbnNvrJrAbexaaYrTtZwF8F21PI6iaHvWiYcBfNKJHwEcMkNGRPaTfKeaPgdBMJnF/Q+dMB2G4bipCJw9ou8lu2TRW3Sz2dwE4HrypHB7xFQMa+1YUiOAG0773ACSLxJH62Be1PqE80ZirU/nLgJ4AuCle16MihHMPttmADxYdqCpKMyqzxsZEPQrstJWhEt8pqaFN5JG6XdqUHXojdCvSB7oWysjfrPnhL61MuJbKyf0rZUR31o5oW+tjPjWyglXbGux4mHScH/dD1skUwLAo7wr6fGY/vgLlfEyOn6DEe0AAAAASUVORK5CYII="
         alt="home--v1"><span>Dashboard</span></div>
@@ -39,7 +39,7 @@
     <div class="cards">
       <div class="card  rounded-lg shadow-lg p-4">
         <div class="card_value">
-          <div class="card_text"><span class="header">140</span><span class="value">Utilisateurs</span></div>
+          <div class="card_text"><span class="header">{{totalUsers}}</span><span class="value">Utilisateurs</span></div>
           <div class="photos"><img
               src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFH0lEQVR4nO1Za4xdUxQ+inZKRNB4iwaJBImESDwjSJTSH9pEKNoUP0bih0TiFdomXtFERCiNHzOVqAQT0QjxSCuG0lDa0ikJgjCmzLh3fd++dyhtt6w769RxnbPPY0Y7kruSPZnJ+c631tp77bXWWRNFHelIRzpSVQYHBw8QkfkknwWwkeSvAHaQfCL6P4j3vovkPSTrJH37AvBnrVY7PprMMjo6ehzJTxKGf0lyMYDZAE4m+bw58zuAd0ne4r3fL5pMQnIGya/N0EEAc9oxInIigH4APydO6G3v/bRosgiAl8ywAQCHFcDPUYftnSejPSne+ykkLwCwXEMIwJDdhW4Au0g26vX6zKJ89Xr9DAszTQLLSL4O4AeSoP4Azp5wJ0TkJIvrtAu8y35/vCwvgGfSODm2PnTOXeS9339CnGg0GqfbLil5DcBTJOeKyJkAtiUcKr2Daqi9+4tz7mrV5Zw7TU8kwfsZyVPG5UStVjvYjlsJX9FLneJkKxNp6JXlF5FDzeB6e9iRvA/AFnv+1fDw8EGVHbGaoEQfeO+ntj/33u9joVWrqkPf1xWoSxvMhjujcSjZpCTOuYuzMCQdgJ3e++ll+c1QPdHRgA2XG2ZzWf5Yyb4AtgP4LVS4AKyxHbuwrA7NgmbkpwE7pmlHoKtSzbGw2an5PseYJVWzFsnnzJGlIRzGUr1vNBpHldURE2yzizw1gFlrjtxdgX+5vftmTv1yihORQ8rq+EfFFpFZWZhYSZWsIiIn2In8WCD8NpblT5J8bDt2UxYmbjXKVPVYdIPMyPcD/Lfl3aNc0TuiJENDQwcGMCvM2dXOuSOKcmsTSXK9vXtvFs57Pz0ujnpvq57Id7Yb5wYwM6z6Ku7pEtyr7Z0todgneZ458m0VH2KSZXHlbjabx2bhrK1Q3BdFUzvJET1x7R6ycM1m82jVbdyPVPUjzuEv247cHMBNiVOkiJyVxysilxW5wAAWmO5XQ5mzkAC4wsjW5eAeNuPeCfVdWlwTd+OOHM411llcMx4fYsVdiS63OwuncR7jADyU5zDJ70NJRESuixvKUPiVksQRf1QEB6AvgOmzEJyfw9VnXLePx/Z20nOMtD+EsxGQOrwqCxMPIUTk2hAXyVVFcKXEOXeJGfhGCAdgkeF6Awb22qYsCnGR7MlLMlUyV6tVIbmyYLpekVdA89IpgKWG29RoNI4c7yW/UWuDOeGcc6dmYKeIyK02SFDlswMGXmmYHfpOVobj2IipVZBtUnm/1pXCDjjnDgfwIIDhxHfz5/qNnuHsgsRXnK5H83SQfCyB36AcyhW1ibbtJF9L2LFd744W4ExynVYAeEDHOgkl6zUNthcjbRA1NNqc/QnA9UU3TI2Pi6i9P6ycac0nyfMBvADgD8NqD7jyXx23ncJ78XhHq3lahbZGr1e/1pLOAliYtqN5Yie6MFEgvXH3qq52fLPZPEZPM9G2DOx23PqedfF3gXqfolAxSxI7okfckxZuVUW5SPYYtzddi9PukM3Z4kZ1c2v2BeAG240RHUSnOZEYierEpOe/nKjX6/WZ5lBr8AfgRbWhHafVXjvi3Sma5Fv2x11pxJot7LnKvGgPCcl58aBOk08Gptuer9U/RuL0qvOp9hXPnUTk0mgPi4jMSoxkQ6umO741D6gZI9pLgr+Lcci+/lba1c41bZH8xsBX7S1HSM41Y7dWIrDU2KrUk2FhbEDXVcWRqZqnJ5EjAxP2L4aOdKQjHelINEHyF8uN+Mte9DcqAAAAAElFTkSuQmCC"
               alt="conference-call--v1"></div>

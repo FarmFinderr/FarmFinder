@@ -166,7 +166,19 @@ public class UserController {
             return ResponseEntity.notFound().build();
         
     }
-    
-}
-   
+    }
+
+    @GetMapping("/total")
+    public ResponseEntity<Long> getTotalUsers() {
+        try {
+            long totalUsers = repository.count(); // Utilise la méthode count() de JpaRepository
+            return ResponseEntity.ok(totalUsers);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(0L); // Retourne 0 en cas d'erreur
+        }
+    }
+
+
 }

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Chart, ChartConfiguration, registerables } from 'chart.js';
 import { NavbarAdminComponent } from '../navbar-admin/navbar-admin.component'
 import { RouterModule } from '@angular/router';
+import { UserService } from './../services/user/user.service';
+
 
 Chart.register(...registerables);
 
@@ -13,6 +15,43 @@ Chart.register(...registerables);
   styleUrls: ['./dashboard-admin.component.css']
 })
 export class DashboardAdmin implements OnInit {
+  user:any=null;
+  userId: string =''; 
+  isLoading: boolean = true;
+  errorMessage: string | null = null;
+  totalUsers: number | null = null;
+
+
+   constructor(private userservice:UserService,) {}
+
+  getuser(userId:string):void{
+    this.user=this.userservice.getUser(userId);
+
+    this.userservice.getUser(userId).subscribe({
+      next: (data) => {
+        console.log('Fetched user:', data)
+        this.user = data;
+        console.log('user act',this.user);
+        this.isLoading = false; 
+      },
+      error: (err) => {
+        console.error('Error fetching user:', err);  
+        this.errorMessage = 'Failed to load user';  
+        this.isLoading = false;  
+      },
+    });
+  }
+
+
+  getTotalUsers(): void {
+    this.userservice.getTotalUsers().subscribe(
+      (total: number) => {
+        this.totalUsers = total; 
+      }
+    );
+  }
+
+
 
   public config: ChartConfiguration<'bar'> = {
     type: 'bar',
@@ -36,7 +75,7 @@ export class DashboardAdmin implements OnInit {
           'rgb(204, 137, 63)',
           'rgb(239, 121, 56)',
           'rgb(255, 108, 48)',
-          'rgb(255, 215, 0)' // December
+          'rgb(255, 215, 0)' 
         ],
         borderColor: [
           'rgb(173, 255, 47)',
@@ -96,10 +135,14 @@ export class DashboardAdmin implements OnInit {
   chart: any;
 
   ngOnInit(): void {
-
+    this.userId = localStorage.getItem('userId') ?? ''; 
+    console.log("userid",this.userId)
+    this.getuser(this.userId); 
+    this.getTotalUsers();
     this.chart = new Chart('MyChart', this.config);
     this.chart2 = new Chart('MyChart2', this.config2);
   }
+
 }
 
 export { NavbarAdminComponent };
