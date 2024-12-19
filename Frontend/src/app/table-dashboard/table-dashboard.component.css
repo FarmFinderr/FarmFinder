@@ -66,8 +66,10 @@ section {
 }
 
 .body {
+    background-image: url('/assets/sidebar.png');
     background-size: cover; /* Makes sure the image covers the whole page */
     background-position: center; /* Centers the image */
+    background-attachment: fixed;
     background-repeat: no-repeat; /* Prevents repeating */
     width: 80%;
 
@@ -85,7 +87,11 @@ section {
 .sec {
     background-image: url('/assets/sidebar.png');
     background-size: cover;  
-    
+    background-position: center; 
+  background-attachment: fixed; 
+  background-repeat: no-repeat; 
+  height: 100vh; 
+  
     
     
 }
