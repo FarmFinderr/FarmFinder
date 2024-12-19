@@ -6,12 +6,13 @@ import { RouterModule } from '@angular/router';
 import { UserService } from './../services/user/user.service';
 import { EventService } from '../services/event/event.service';
 import { ReclamationService } from '../services/reclamation/reclamation.service';
+import { NavbarComponent } from '../accueil/navbar/navbar.component';
 Chart.register(...registerables);
 
 @Component({
   selector: 'app-dashboard-admin',
   standalone: true,
-  imports: [NavbarAdminComponent, RouterModule],
+  imports: [NavbarAdminComponent, RouterModule,NavbarComponent],
   templateUrl: './dashboard-admin.component.html',
   styleUrls: ['./dashboard-admin.component.css']
 })
@@ -65,6 +66,7 @@ export class DashboardAdmin implements OnInit {
     new Chart(ctx, {
       type: 'bar', 
       data: {
+
         labels: this.usersByDay.map(item => item.date),
         datasets: [{
           label: 'Utilisateurs créés par jour',
@@ -79,7 +81,7 @@ export class DashboardAdmin implements OnInit {
         plugins: {
           title: {
             display: true,
-            text: 'Création d’utilisateurs par jour',
+            text: 'User creation per day',
             font: { size: 18 },
             color: '#333'
           },
@@ -98,7 +100,7 @@ export class DashboardAdmin implements OnInit {
           y: {
             title: {
               display: true,
-              text: 'Nombre d\'utilisateurs',
+              text: 'Number of users',
               color: '#333'
             },
             beginAtZero: true
@@ -136,7 +138,7 @@ export class DashboardAdmin implements OnInit {
       data: {
         labels: this.postsByRegion.map(item => item.location),
         datasets: [{
-          label: 'Répartition des publications par localisation',
+          label: 'Distribution of posts by location',
           data: this.postsByRegion.map(item => item.percentage),
           backgroundColor: ['#d1ff33', '#59bf0e', '#71bb73', '#fdb510', '#fef492','#257827'], 
           borderWidth: 1
@@ -147,7 +149,7 @@ export class DashboardAdmin implements OnInit {
         plugins: {
           title: {
             display: true,
-            text: 'Répartition des publications par région',
+            text: 'Distribution of posts by location',
             font: { size: 18 },
             color: '#333'
           },
