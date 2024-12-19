@@ -5,13 +5,15 @@ import {
     getPostById,
     updatePost,
     deletePost,
-    getTotalPosts
+    getTotalPosts,
+    getPostsByLocation
 } from '../controllers/postController.js';
 
 const router = express.Router();
 
 router.post('/', createPost);
 router.get('/', getAllPosts);
+router.get('/statsposts', getPostsByLocation);
 router.get('/total', getTotalPosts);
 router.get('/get', getAllPosts);
 router.get('/:id', getPostById);

@@ -74,14 +74,20 @@
       </div>
 
     </div>
-    <div class="dashboards">
-      <div class="circle_diagramme rounded-lg shadow-lg p-4">
-        <canvas id="MyChart">{{chart}}</canvas>
+
+    <!-- Graphiques -->
+     <div class="flex content-between justify-between ">
+
+      <div class="chart-container mr-10">
+        <canvas id="userCreationChart"></canvas> <!-- Graphique pour les utilisateurs créés -->
       </div>
-      <div class="batton_diagramme rounded-lg shadow-lg p-4"><canvas id="MyChart2">{{chart2}}</canvas></div>
-    </div>
+  
+      <div class="chart-container">
+        <canvas id="locationDistributionChart"></canvas> <!-- Graphique pour la répartition des publications -->
+      </div>
 
-
+     </div>
+   
 
   </div>
 

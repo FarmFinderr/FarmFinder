@@ -33,6 +33,10 @@ export class PostService {
     return this.http.get<{ total: number }>(`${this.apiUrl}/total`);
   }
 
+  getPostsByLocation(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/statsposts`);
+  }
+
 
 
 }

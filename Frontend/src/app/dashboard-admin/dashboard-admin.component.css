@@ -147,3 +147,18 @@ section {
 .photos img {
    width: 70%;
 }
+
+.chart-container {
+    display: flex;
+    justify-content: space-between;  /* Adjusts the spacing between the charts */
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.chart-container canvas {
+    background-color: #ffffff;
+    border-radius: 8px;
+    flex: 1; /* Makes each chart take equal width */
+}
+
+  

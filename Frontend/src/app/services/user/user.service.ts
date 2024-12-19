@@ -59,4 +59,8 @@ getTotalUsers(): Observable<number> {
   return this.http.get<number>(`${this.apiUrl}/total`);
 }
 
+getUsersCreatedByDay(): Observable<any[]> {
+  return this.http.get<any[]>(`${this.apiUrl}/users-created-by-day`);
+}
+
 }

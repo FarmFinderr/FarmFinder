@@ -1,5 +1,6 @@
 package com.user.controllers;
 
+import com.user.entities.userStats;
 import com.user.keycloak.keycloakusersserviceImp;
 import org.keycloak.representations.AccessTokenResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -179,6 +180,20 @@ public class UserController {
                     .body(0L); // Retourne 0 en cas d'erreur
         }
     }
+
+    @GetMapping("/users-created-by-day")
+    public ResponseEntity<List<userStats>> getUsersCreatedByDay() {
+        try {
+            List<userStats> usersCreatedByDay = repository.countUsersCreatedByDay();
+
+            return ResponseEntity.ok(usersCreatedByDay);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(null);
+        }
+    }
+
 
 
 }
