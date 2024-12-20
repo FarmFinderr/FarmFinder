@@ -28,6 +28,15 @@ public class EventService {
     private EventRepository eventRepository;
     @Autowired
     private ParticipationRepository participationRepository;
+    @GetMapping("/search")
+    public ResponseEntity<List<Event>> searchEvents(@RequestParam("search") String keyword) {
+        // Fetch events where title or description contains the given keyword
+        List<Event> events = eventRepository.findByTitleOrDescriptionContaining(keyword);
+        if (events.isEmpty()) {
+            return ResponseEntity.noContent().build();  // Return 204 if no events found
+        }
+        return ResponseEntity.ok(events);  // Return 200 with the list of events
+    }
 
     @GetMapping("/GetAll")
     public List<Event> GetAllevents()
@@ -174,12 +183,6 @@ public class EventService {
 
         return ResponseEntity.ok(ex);
     }
-
-    @GetMapping("/totalEvents")
-    public Long getTotalEvents() {
-        return eventRepository.count();
-    }
-
 
 
 

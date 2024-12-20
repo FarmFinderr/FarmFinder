@@ -25,7 +25,7 @@ public class keycloakusersserviceImp implements  keycloakuserservices{
     @Autowired
     private Keycloak keycloak;
 
-    private static final String SERVER_URL = "http://localhost:8080";
+    private static final String SERVER_URL = "http://localhost:8050";
     private static final String REALM = "FarmFinder";
     private static final String CLIENT_ID = "admin-cli";
     private static final String CLIENT_SECRET = "mwJSVcHdDVxaXcOcnUdqXEP9g0j4jUBJ";
