@@ -8,6 +8,7 @@ import { User } from '../models/user.model';
 import { UserService } from '../services/user/user.service';
 import { Participation } from '../models/Participation.model';
 import { RegistrationService } from '../services/paticipation/registration.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-events',
   standalone: true,
@@ -58,6 +59,30 @@ export class EventsComponent implements OnInit {
 
 
   }
+  searchQuery: string = '';
+  searchUsers() {
+    const searchValue = this.searchQuery.trim(); 
+    if (searchValue === '') {
+      this.eventService.getEvents().subscribe(
+        (data: any) => {
+          this.annonces = data; 
+        },
+        (error: any) => {
+          console.error('Error fetching all users:', error);
+        }
+      );
+    } else {
+      this.eventService.search(searchValue).subscribe(
+        (data: any) => {
+          this.annonces = data; 
+        },
+        (error: any) => {
+          console.error('Error searching users:', error);
+        }
+      );
+    }
+  }
+
   get_user(id:string)
   {
     this.userService.getUser(id).subscribe({
@@ -125,7 +150,21 @@ export class EventsComponent implements OnInit {
 
     this.registrationService.register(formData).subscribe({
         next: (response) => {
-            console.log("Registration successful", response);
+          this.isModalOpenDetailsEvent=false;
+          this.value=0;
+          Swal.fire({
+                    icon: 'success',
+                    title: 'You registry seccfully for this event!',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    width: '300px', 
+                    padding: '10px', 
+                    customClass: {
+                    title: 'swal-title', 
+                     popup: 'swal-popup' 
+                    }
+                  });
+            
         },
         error: (err) => {
             console.error("Error during registration", err);

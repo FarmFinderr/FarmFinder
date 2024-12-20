@@ -38,6 +38,9 @@ export class EventService {
   getTotalEvents(): Observable<number> {
     return this.http.get<number>(`${this.apiUrl}totalEvents`);
   }
+  search(searchQuery: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl+"/search"}?search=${searchQuery}`);
+  }
   
 
 }
