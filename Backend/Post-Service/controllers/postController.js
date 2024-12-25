@@ -129,3 +129,36 @@ export const deletePost = async (req, res, next) => {
         next(err);
     }
 };
+
+
+export const getTotalPosts = async (req, res, next) => {
+    try {
+        const totalPosts = await Post.countDocuments();
+        res.status(200).json({ total: totalPosts });
+    } catch (error) {
+        console.error('Error fetching total posts:', error.message);
+        next(error);
+    }
+};
+
+
+export const getPostsByLocation = async (req, res) => {
+    try {
+        const posts = await Post.aggregate([
+            { $match: { type: 'terrain' } }, 
+            { $group: { _id: '$localisation', count: { $sum: 1 } } },
+            { $project: { location: '$_id', count: 1, _id: 0 } }
+        ]);
+
+        const totalPosts = posts.reduce((acc, post) => acc + post.count, 0);
+
+        const stats = posts.map(post => ({
+            location: post.location,
+            percentage: ((post.count / totalPosts) * 100).toFixed(2)
+        }));
+        res.status(200).json(stats);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch stats posts' });
+    }
+};
+

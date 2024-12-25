@@ -18,14 +18,14 @@ public class ChatMessage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long sender;
-    private Long receiver; 
+    private String sender;
+    private String receiver; 
     private String content;
     private String timestamp;
 
     public ChatMessage() {}
 
-    public ChatMessage(Long sender, Long receiver, String content, String timestamp) {
+    public ChatMessage(String sender, String receiver, String content, String timestamp) {
         this.sender = sender;
         this.receiver = receiver;
         this.content = content;
@@ -40,19 +40,19 @@ public class ChatMessage {
         this.id = id;
     }
 
-    public Long getSender() {
+    public String getSender() {
         return sender;
     }
 
-    public void setSender(Long sender) {
+    public void setSender(String sender) {
         this.sender = sender;
     }
 
-    public Long getReceiver() {
+    public String getReceiver() {
         return receiver;
     }
 
-    public void setReceiver(Long receiver) {
+    public void setReceiver(String receiver) {
         this.receiver = receiver;
     }
 
@@ -78,17 +78,17 @@ public class ChatMessage {
 
     // Builder Pattern
     public static class Builder {
-        private Long sender;
-        private Long receiver;
+        private String sender;
+        private String receiver;
         private String content;
         private String timestamp;
 
-        public Builder sender(Long sender) {
+        public Builder sender(String sender) {
             this.sender = sender;
             return this;
         }
 
-        public Builder receiver(Long receiver) {
+        public Builder receiver(String receiver) {
             this.receiver = receiver;
             return this;
         }

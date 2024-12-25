@@ -16,7 +16,7 @@ public class WebSecurityConfig {
 
     public static final String ADMIN = "admin";
     public static final String GENERAL = "general";
-    private final com.user.security.JwtAuthConverter jwtAuthConverter;
+    private final JwtAuthConverter jwtAuthConverter = new JwtAuthConverter();
 
 
     @Bean
@@ -57,11 +57,13 @@ public class WebSecurityConfig {
             );
             web.ignoring().requestMatchers(
                     HttpMethod.DELETE,
-                    "/public/**"
+                    "/public/**",
+                    "/users/**"
             );
             web.ignoring().requestMatchers(
                     HttpMethod.PUT,
-                    "/public/**"
+                    "/public/**",
+                    "/users/**"
             );
             web.ignoring().requestMatchers(
                             HttpMethod.OPTIONS,
@@ -74,4 +76,3 @@ public class WebSecurityConfig {
     }
 
 }
-

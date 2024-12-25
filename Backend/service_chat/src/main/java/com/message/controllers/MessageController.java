@@ -10,7 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import com.message.entities.ChatMessage;
+import com.message.entities.Notification;
 import com.message.services.ChatMessageService;
+import com.message.services.NotificationService;
 
 import java.util.List;
 
@@ -22,14 +24,41 @@ public class MessageController {
     private ChatMessageService chatMessageService;
     @Autowired
     private SimpMessagingTemplate simpMessagingTemplate;
+    @Autowired
+    private NotificationService notificationService;
 
     @MessageMapping("/chat.sendMessage")
     @SendTo("/topic/public")
     public ChatMessage sendMessage(
             @Payload ChatMessage chatMessage
     ) {
-        return chatMessageService.saveMessage(chatMessage);
+    	 // Save the chat message
+        ChatMessage savedMessage = chatMessageService.saveMessage(chatMessage);
+
+        // Create and send a notification
+        Notification notification = new Notification();
+        notification.setSender(chatMessage.getSender());
+        notification.setReceiver(chatMessage.getReceiver()); 
+        notification.setContent(chatMessage.getContent());
+        notification.setTimestamp(String.valueOf(System.currentTimeMillis()));
+
+        // Save notification to database
+        notificationService.saveNotification(notification);
+
+        // Send notification in real time
+        simpMessagingTemplate.convertAndSend("/topic/notifications", notification);
+
+        return savedMessage;
+        
     }
+    // Add Delete Notification Endpoint
+    @DeleteMapping("/notifications/delete/{id}")
+    @ResponseBody
+    public String deleteNotification(@PathVariable Long id) {
+        notificationService.deleteNotification(id);
+        return "Notification deleted successfully!";
+    }
+
 
     @MessageMapping("/chat.addUser")
     @SendTo("/topic/public")
@@ -56,6 +85,11 @@ public class MessageController {
     public List<ChatMessage> getAllMessages() {
         return chatMessageService.getAllMessages();
         
+    }
+    @GetMapping("/notifications")
+    @ResponseBody
+    public List<Notification> getAllNotifications() {
+        return notificationService.getAllNotifications();
     }
 
     @PutMapping("/update/{id}")

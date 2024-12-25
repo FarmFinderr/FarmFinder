@@ -57,6 +57,8 @@ button {
 /* Adjustments for the layout and spacing */
 section {
   display: flex;
+  position: relative;
+  top: 300px; /* Décale la section de 100px depuis le haut */
 }
 
 .body {
@@ -68,8 +70,8 @@ section {
   height: auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  /* align-items: center;
+  justify-content: center; */
   gap: 2rem;
 }
 

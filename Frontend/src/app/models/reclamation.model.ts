@@ -1,7 +1,9 @@
 export interface Reclamation {
-  id: number;
+  _id: string;
+  userId: {
+    name: string;
+    lastName: string;
+  };
   reclamation: string;
-  image: string | null;  // Allow for null if there's no photo attached
-  createdAt: string;     // Use proper types for dates or timestamps
-  updatedAt: string;
+  userName?: string;  // Add userName as an optional property
 }

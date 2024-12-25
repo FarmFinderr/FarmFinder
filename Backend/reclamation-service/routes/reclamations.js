@@ -1,16 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const multer = require('multer');
-const path = require('path');
-
 const {
   createReclamation,
   getAllReclamations,
   updateReclamation,
-  deleteReclamation
+  deleteReclamation,
+  getTotalReclamations
 } = require('../controllers/reclamationController');
-
-
 
 // POST: Create a new reclamation
 router.post('/', createReclamation);
@@ -23,5 +19,8 @@ router.put('/:id', updateReclamation);
 
 // DELETE: Delete a reclamation
 router.delete('/:id', deleteReclamation);
+
+router.get('/total', getTotalReclamations);
+
 
 module.exports = router;

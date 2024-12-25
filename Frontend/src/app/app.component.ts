@@ -15,7 +15,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ RouterOutlet, FormsModule,HomeComponent, NavbarComponent,DashboardAdmin,NavbarAdminComponent,TableDashboard,SignInComponent,EventsComponent, SignUpComponent,RouterModule],
+  imports: [ RouterOutlet, FormsModule,HomeComponent, NavbarComponent,DashboardAdmin,NavbarAdminComponent,TableDashboard,SignInComponent,EventsComponent, SignUpComponent,DashboardReclamationComponent,RouterModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })

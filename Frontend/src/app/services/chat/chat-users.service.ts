@@ -12,9 +12,17 @@ export class ChatUsersService {
 
   // Get all chats
   getChats(): Observable<any[]> {
-    console.log("wessim");
+    
     
     return this.http.get<any[]>(`${this.apiUrl}/chats/read`);
+  }
+  getNotif(): Observable<any[]> {
+    
+    
+    return this.http.get<any[]>(`${this.apiUrl}/chats/notifications`);
+  }
+  deleteNotification(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/chats/notifications/delete/${id}`);
   }
 
   sendMessage(message: {
