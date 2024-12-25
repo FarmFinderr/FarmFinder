@@ -23,12 +23,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var password: EditText
     private lateinit var signup: TextView
     private lateinit var signin: Button
-    private lateinit var Shared : SharedPreferences
-
+    private lateinit var Shared: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        // Initialize UI elements
         val scope = CoroutineScope(Dispatchers.Main)
         email = findViewById(R.id.useremail)
         password = findViewById(R.id.password)
@@ -36,69 +37,72 @@ class MainActivity : AppCompatActivity() {
         signin = findViewById(R.id.btn_login)
         Shared = SharedPreferences(this)
 
-        val id =  Shared.getValueString("id")
-        if(id!=null)
-        {
-            val intent =  Intent(this,MainActivity2::class.java)
+        // Check if the user is already logged in
+        val id = Shared.getValueString("id")
+        if (id != null) {
+            // If the user is already logged in, navigate to MainActivity2
+            val intent = Intent(this, MainActivity2::class.java)
             startActivity(intent)
             finish()
         }
 
-
-
-        val  client =  "admin-cli"
-        val secret ="6eSQJ1P8twATPpYefbVxa0Unfod1FCBt"
-        var Acces_token  =  ""
-        // Action pour se connecter
+        // Handle sign-in action
         signin.setOnClickListener {
+            val client = "admin-cli"
+            val secret = "6eSQJ1P8twATPpYefbVxa0Unfod1FCBt"
+            var accessToken = ""
+            var userId = ""
 
-
-            val  client =  "admin-cli"
-            val secret ="6eSQJ1P8twATPpYefbVxa0Unfod1FCBt"
-            var Acces_token  =  ""
-            var userId=""
             scope.launch {
                 try {
-                    val login_response = ApiUser.apiService.login(username = email.text.toString() ,  password = password.text.toString())
-                    Log.i("valid token ",login_response.accessToken)
+                    // Perform login request
+                    val loginResponse = ApiUser.apiService.login(
+                        username = email.text.toString(),
+                        password = password.text.toString()
+                    )
 
-                   val decodedJWT: DecodedJWT = JWT.decode(login_response.accessToken)
-                   userId = decodedJWT.getClaim("sub").asString()
-                    val  user =  ApiUser.apiService.getUserById(userId.toString())
-                    if(user !=null)
-                    {
-                        Shared.save("id",user.body()!!.id)
-                        Shared.save("email",user.body()!!.emailAdresse)
-                        Shared.save("password",user.body()!!.password)
-                        Shared.save("photo",user.body()!!.photo)
+                    // Extract the access token from the response
+                    Log.i("valid token", loginResponse.accessToken)
+
+                    // Decode the JWT to get user info
+                    val decodedJWT: DecodedJWT = JWT.decode(loginResponse.accessToken)
+                    userId = decodedJWT.getClaim("sub").asString()
+
+                    // Fetch user details using the userId
+                    val user = ApiUser.apiService.getUserById(userId)
+                    if (user != null) {
+                        // Save user data in SharedPreferences
+                        Shared.save("id", user.body()!!.id ?:"")
+                        Shared.save("email", user.body()!!.emailAdresse ?:"")
+                        Shared.save("password", user.body()!!.password ?:"")
+                        Shared.save("photo", user.body()!!.photo ?:"")
+                        Shared.save("nom", user.body()!!.name ?:"")
+                        Shared.save("lakab", user.body()!!.lastName ?:"")
+
+                        // Navigate to MainActivity2 after successful login
+                        val intent = Intent(this@MainActivity, MainActivity2::class.java)
+                        startActivity(intent)
+                        finish() // Close the login activity so the user cannot go back to it
+                    } else {
+                        // Handle the case where user data could not be fetched
+                        Toast.makeText(this@MainActivity, "User not found", Toast.LENGTH_SHORT).show()
                     }
 
-
                 } catch (e: Exception) {
-                    Toast.makeText(this@MainActivity, "Error while trying to Login", Toast.LENGTH_SHORT).show()
-                    Log.e("failed","error : ${e.message}")
+                    // Handle errors (e.g., invalid login credentials)
+                    Log.e("Login failed", "Error: ${e.message}")
+                    Toast.makeText(this@MainActivity, "Login failed: ${e.message}", Toast.LENGTH_SHORT).show()
                 }
             }
-
-
-
-
-           /* val intent = Intent(this, MainActivity2::class.java)
-
-           startActivity(intent)
-           finish()/// Fermer l'activité actuelle pour éviter de revenir en arrière
-            */
-
-
         }
 
-        // Action pour s'inscrire
+        // Action to navigate to signup activity
         signup.setOnClickListener {
             val intent = Intent(this, SignupActivity::class.java)
             startActivity(intent)
         }
 
-        // Gestion des fenêtres
+        // Handle window insets (system bars)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)

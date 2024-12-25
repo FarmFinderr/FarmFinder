@@ -47,7 +47,7 @@ export class SignUpComponent {
 
   onSubmit(): void {
 
-    if (!this.user.name || !this.user.lastName || !this.user.emailAddress || !this.user.phoneNumber || 
+    if (!this.user.name || !this.user.lastName || !this.user.emailAddress || !this.user.phoneNumber ||
         !this.user.password || !this.user.confirmPassword || !this.user.date || !this.user.address) {
       Swal.fire('Error', 'All fields are required!', 'error');
       return;

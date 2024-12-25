@@ -13,5 +13,17 @@
     <color name="primary_dark">#3700B3</color>
     <color name="teal_700">#018786</color>
     <color name="secondary">#FF5733</color>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="background_farm">#F9FBE7</color>
+    <color name="primary_light">#DCEDC8</color>
+    <color name="accent">#FFC107</color>
+    <color name="buttonGreen">#4CAF50</color>
+    <color name="buttonRed">#F44336</color>
+    <color name="buttonPressed">#388E3C</color>
+    <color name="buttonFocused">#388E3C</color>
+    <color name="buttonDefault">#4CAF50</color>
+    <color name="dialogBackgroundColor">#FFFFFF</color>
 
 </resources>

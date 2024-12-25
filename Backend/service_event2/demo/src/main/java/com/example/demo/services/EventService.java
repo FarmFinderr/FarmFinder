@@ -183,6 +183,15 @@ public class EventService {
 
         return ResponseEntity.ok(ex);
     }
+    @GetMapping("/get/{search}")
+    public ResponseEntity<List<Event>> searchEvents(@PathVariable("search") String keyword) {
+        // Fetch events where title or description contains the given keyword
+        List<Event> events = eventRepository.findByTitleOrDescriptionContaining(keyword);
+        if (events.isEmpty()) {
+            return ResponseEntity.noContent().build();  // Return 204 if no events found
+        }
+        return ResponseEntity.ok(events);  // Return 200 with the list of events
+    }
 
 
 

@@ -2,49 +2,94 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/event">
+    android:id="@+id/event"
+    android:padding="16dp"> <!-- Adding general padding for consistency -->
 
+    <!-- Header with back button and title -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:paddingVertical="12dp"
+        android:paddingHorizontal="16dp"
+        android:gravity="center_vertical"
+        android:background="?android:attr/windowBackground"
+        android:elevation="4dp"
+        android:layout_marginBottom="12dp">
+
+        <!-- Back Button -->
         <ImageButton
             android:id="@+id/button_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/arrow_back" />
+            android:src="@drawable/arrow_back"
+            android:layout_marginEnd="16dp" />
 
+        <!-- Title -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="10dp"
             android:text="Page Event"
             android:textColor="@android:color/black"
-            android:textSize="18sp"
-            android:fontFamily="sans-serif-medium" />
+            android:textSize="20sp"
+        android:layout_gravity="center_vertical"
+        android:fontFamily="sans-serif-medium" />
     </LinearLayout>
 
-    <!-- Search bar -->
-    <EditText
+    <!-- Search Bar -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Rechercher un event"
-        android:layout_margin="10dp"
-        android:padding="10dp" />
+        android:orientation="horizontal"
+        android:background="@drawable/search_bar_background"
+        android:padding="12dp"
+        android:gravity="center_vertical"
+        android:elevation="4dp"
+        android:layout_marginBottom="16dp">
 
-    <EditText
+        <!-- Search Icon -->
+        <ImageView
+            android:id="@+id/ic_search"
+            android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_search"
+        android:tint="@color/jaune"
+        android:layout_marginEnd="12dp" />
+
+        <!-- Search EditText -->
+        <EditText
+            android:id="@+id/search_bar"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+        android:layout_weight="1"
+        android:hint="Search for an Event"
+        android:textColor="@color/black"
+        android:textColorHint="@color/gray"
+        android:textSize="16sp"
+        android:background="@android:color/transparent"
+        android:layout_marginEnd="12dp"
+        android:paddingVertical="8dp" />
+    </LinearLayout>
+
+    <!-- Search Button -->
+    <Button
+        android:id="@+id/btn_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Filtrer par position"
-        android:layout_margin="10dp"
-        android:padding="10dp" />
+        android:text="Rechercher"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+    android:textAllCaps="false"
+    android:backgroundTint="@color/jaune"
+    android:elevation="4dp"
+    android:layout_marginTop="16dp"
+    android:importantForAccessibility="yes"
+    android:contentDescription="Search Button" />
 
-    <!-- RecyclerView for Events -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/eventsRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp" />
 </LinearLayout>

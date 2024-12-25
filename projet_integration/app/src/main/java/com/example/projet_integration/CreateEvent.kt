@@ -41,7 +41,8 @@ class CreateEvent : AppCompatActivity() {
     private var date_debut: Date? = null
     private var date_fin: Date? = null
     private  var owner: User?=null
-
+    private lateinit var back_btn :ImageButton
+    private lateinit var Shared: SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_event)
@@ -55,12 +56,17 @@ class CreateEvent : AppCompatActivity() {
         date_f = findViewById(R.id.date_fin)
         uploadButton = findViewById(R.id.selectPhotoButton)
         previewImage = findViewById(R.id.previewImage)
-
+        back_btn = findViewById(R.id.button_back)
         // Fetch owner data
-
+        Shared = SharedPreferences(this)
+        back_btn.setOnClickListener{
+            val intent = Intent(this, EventActivity::class.java)  // Redirect to MainActivity after logout
+            startActivity(intent)
+            finish()
+        }
         scope.launch {
             try {
-                val response = ApiUser.apiService.getUserById("1")
+                val response = ApiUser.apiService.getUserById(Shared.getValueString("id").toString())
                 if (response.isSuccessful && response.body() != null) {
                     owner = response.body()!!
                     Log.i("success","${response.body()!!}")

@@ -3,41 +3,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <item
-        android:id="@+id/home"
-        android:title="Home"
-        android:icon="@drawable/home_nav">
-    </item>
-    <item
+    <!-- Section 1: Accueil -->
+    <group android:id="@+id/group_main" android:checkableBehavior="single">
+        <item
+            android:id="@+id/home"
+            android:title="Home"
+            android:icon="@drawable/home_nav" />
 
-        android:id="@+id/Events"
-        android:title="Events"
-        android:icon="@drawable/calendar">
-    </item>
+        <item
+            android:id="@+id/Events"
+            android:title="Events"
+            android:icon="@drawable/calendar" />
 
+        <!-- Nouvel Item : Réclamation -->
+        <item
+            android:id="@+id/reclamation"
+            android:title="Réclamation"
+            android:icon="@drawable/baseline_add_alert_24" />
+    </group>
 
-
-    <item android:title="profile">
+    <!-- Section 2: Utilisateur -->
+    <item android:title="User">
         <menu>
+            <item
+                android:id="@+id/profile"
+                android:title="Profile"
+                android:icon="@drawable/profile" />
 
+            <item
+                android:id="@+id/messages"
+                android:title="Messages"
+                android:icon="@drawable/message" />
+
+            <item
+
+                android:id="@+id/createEvent"
+                android:title="create event"
+                android:icon="@drawable/add_event">
+            </item>
+            <item
+
+                android:id="@+id/Posts"
+                android:title="Posts"
+                android:icon="@drawable/posts">
+            </item>
         </menu>
-
     </item>
 
-    <item
-        android:id="@+id/profile"
-        android:title="Profile"
-        android:icon="@drawable/profile">
-    </item>
-    <item
-        android:id="@+id/messages"
-        android:title="Message"
-        android:icon="@drawable/message">
-    </item>
-    <item
 
-        android:id="@+id/logout"
-        android:title="Logout"
-        android:icon="@drawable/logout">
-    </item>
+    <!-- Section 3: Autres options -->
+    <group android:id="@+id/group_others">
+        <item
+            android:id="@+id/logout"
+            android:title="Logout"
+            android:icon="@drawable/logout" />
+    </group>
+
 </menu>
