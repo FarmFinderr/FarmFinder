@@ -3,6 +3,8 @@ package com.example.projet_integration
 import EventAdapter
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -24,6 +26,9 @@ class EventActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: EventAdapter
     private val listevents = ArrayList<Event>()
+    private lateinit var search:EditText
+    private lateinit var submit:Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -36,7 +41,8 @@ class EventActivity : AppCompatActivity() {
 
         val recyclerView: RecyclerView = findViewById(R.id.eventsRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
-
+        search = findViewById(R.id.search_bar)
+        submit =  findViewById(R.id.btn_search)
 
 
         val scope = CoroutineScope(Dispatchers.Main)
@@ -65,6 +71,24 @@ class EventActivity : AppCompatActivity() {
         backButton.setOnClickListener {
             // Finish the current activity to return to the previous one
             finish()
+        }
+        submit.setOnClickListener {
+            scope.launch {
+                try {
+                    val response = ApiEvents.apiService.searchEvents(search = search.text.toString())
+                    if (response.isSuccessful && response.body() != null) {
+                        listevents.clear()
+                        listevents.addAll(response.body()!!)
+                        adapter.notifyDataSetChanged()
+                        Log.i("success", response.body().toString())
+                    } else {
+                        Toast.makeText(this@EventActivity, "No events found", Toast.LENGTH_LONG).show()
+                    }
+                } catch (e: Exception) {
+                    Toast.makeText(this@EventActivity, "Error Occurred: ${e.message}", Toast.LENGTH_LONG).show()
+                    Log.e("search Error", "Response code: ${e.message}")
+                }
+            }
         }
 
     }

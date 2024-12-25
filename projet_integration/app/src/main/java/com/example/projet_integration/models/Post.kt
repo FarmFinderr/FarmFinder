@@ -15,6 +15,7 @@ data class Post(
     val localisation: String,
     val date: String,
     val images: List<Image>,
+    val user:User
 
 )
 

@@ -37,4 +37,6 @@ interface EventService {
     @POST("EventResgistration/")
     suspend fun EventRegistration(@Field("price") price : Long , @Field("person_id") person_id : String  , @Field("event_id") event_id: Int):Response<Participation>
 
+    @GET("get/{search}")
+    suspend fun searchEvents(@Path("search") search: String ):Response<List<Event>>
 }

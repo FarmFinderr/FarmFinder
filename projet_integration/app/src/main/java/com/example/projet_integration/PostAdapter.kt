@@ -26,6 +26,7 @@ class PostAdapter(private val posts: List<Post>, private val context: Context) :
         val airTextView: TextView = view.findViewById(R.id.airTextView) // Surface
         val typeTextView: TextView = view.findViewById(R.id.typeTextView) // Type
         val priceTextView: TextView = view.findViewById(R.id.priceTextView)
+        val imageprofile :ImageView = view.findViewById(R.id.profile_image)
 
         fun bind(post: Post) {
             // Binding user name, date, and content
@@ -34,15 +35,19 @@ class PostAdapter(private val posts: List<Post>, private val context: Context) :
             contentTextView.text = post.description
 
             locationTextView.text=post.localisation
-
+            nameTextView.text = " ${post.user.name} ${post.user.lastName}"
             airTextView.text = "Surface \uD83D\uDDFA\uFE0F: ${post.air} ha"
             typeTextView.text = "Type \uD83C\uDFE1 : ${post.type}" // Exemple : "Résidentiel"
             priceTextView.text = "Prix \uD83D\uDCB0 : ${post.price} TND"
 
             // Load the profile image
-           /* Glide.with(context)
-                .load(post.profileImageUrl) // Assuming 'profileImageUrl' is in your Post model
-                .into(profileImageView)*/
+            Glide.with(context)
+                .load(post.user.photo) // Assuming 'profileImageUrl' is in your Post model
+                .into(profileImageView)
+            if(post.user.photo.isEmpty())
+            {
+                profileImageView.setImageResource(R.drawable.terrain2)
+            }
 
             // Load post image using Glide
             if (post.images.isNotEmpty()) {

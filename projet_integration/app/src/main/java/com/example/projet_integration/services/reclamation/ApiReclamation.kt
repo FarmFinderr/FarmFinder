@@ -1,15 +1,14 @@
-package com.example.projet_integration.services.participation
+package com.example.projet_integration.services.reclamation
 
-import com.example.projet_integration.services.users.UserService
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object ApiParticipation {
+object ApiReclamation {
 
-    private const val BASE_URL: String = "http://10.0.2.2:8880/events/"
+    private const val BASE_URL: String = "http://10.0.2.2:5001/api/reclamations/"
     private val gson: Gson by lazy {
         GsonBuilder().setLenient().create()
     }
@@ -26,7 +25,7 @@ object ApiParticipation {
     }
 
 
-    val apiService: ParticipationService by lazy {
-        retrofit.create(ParticipationService::class.java)
+    val apiService: ReclamationService by lazy {
+        retrofit.create(ReclamationService::class.java)
     }
 }

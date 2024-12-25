@@ -1,10 +1,13 @@
 package com.example.projet_integration
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -25,10 +28,23 @@ class OffersActivity : AppCompatActivity() {
     private lateinit var searchPriceEditText: EditText
     private lateinit var regionSpinner: Spinner
     private lateinit var searchButton: Button
+    private lateinit var back_btn : ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.offres_page)
+
+
+        back_btn = findViewById(R.id.button_back2)
+        // Fetch owner data
+        back_btn.setOnClickListener{
+            val intent = Intent(this, MainActivity2::class.java)  // Redirect to MainActivity after logout
+            startActivity(intent)
+            finish()
+        }
+
+
+
 
         // Initialisation des vues
         recyclerView = findViewById(R.id.recycler_view_offers)
@@ -55,8 +71,14 @@ class OffersActivity : AppCompatActivity() {
 
                     Log.i("success", "Données récupérées : ${response.body()!!}")
                 }
+                else{
+                    Toast.makeText(this@OffersActivity, "error: ${response.body().toString()!!}", Toast.LENGTH_LONG).show()
+
+                }
             } catch (e: Exception) {
                 Log.e("error", "Erreur lors de la récupération des données : ${e.message}")
+                Toast.makeText(this@OffersActivity, "error: ${e.message}", Toast.LENGTH_LONG).show()
+
             }
         }
 
