@@ -1,16 +1,12 @@
 .nav {
   width: 20%;
   background-color: #265726;
-  position: fixed;  /* Fix the sidebar */
-  top: 0;           /* Align the sidebar at the top */
-  left: 0;          /* Align the sidebar to the left */
-  height: 100vh;    /* Full height */
+  height: calc(100vh - 60px);
   display: flex;
   flex-direction: column;
   gap: 2rem;
   align-items: center;
-  padding-top: 30px; /* Padding to give space from the top */
-  z-index: -1;    /* Ensure the sidebar is on top */
+
 }
 
 .header {
@@ -31,11 +27,15 @@
   font-weight: bold;
   display: flex;
   justify-content: center;
+
 }
 
 .profile span {
   text-align: left;
+
 }
+
+
 
 .profile_photo {
   margin-top: 30px;
@@ -43,30 +43,28 @@
   width: 8rem;
   height: 8rem;
   background-color: grey;
-  border: 3px solid grey;
+  border: 3px solid rgb(198, 226, 166);
 }
 
 section {
+
   display: flex;
-  margin-left: 20%;  /* Offset main content to make room for the sidebar */
-  width: 80%;        /* Ensure the main content fills the remaining space */
-  height: 100vh;     /* Full height */
-  padding-top: 30px; /* Add padding-top to ensure it doesn't overlap with the fixed sidebar */
 }
 
 .body {
-  background-image: url('/assets/sidebar.png');
-  background-size: cover; /* Ensure the background image covers the entire body */
-  background-position: center;
-  background-repeat: no-repeat;
-  width: 100%;          /* Use full width */
+  background-image: url('../../assets/sidebar.png');
+  background-size: cover; /* Makes sure the image covers the whole page */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents repeating */
+  width: 80%;
   height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  margin-top: -10%;
+
+
 }
 
 .card_value {
@@ -91,6 +89,7 @@ section {
 }
 
 .dashboards {
+
   width: 80%;
   display: flex;
   align-items: center;
@@ -103,15 +102,18 @@ section {
   width: 50%;
   height: 100%;
   background-color: white;
+
 }
 
 .card {
   background-color: white;
   height: 70%;
   width: 20%;
+
+
 }
 
-.profile:hover {
+.profile :hover {
   border-bottom: 3px solid white;
 }
 
@@ -122,11 +124,14 @@ section {
 }
 
 .batton_diagramme img {
+
   width: 80%;
   height: 100%;
 }
-
-#MyChart {
+#MyChart{
+  height: 100%;
+}
+section {
   height: 100%;
 }
 
@@ -136,10 +141,25 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 65%;
+  height :   65%  ;
   width: 60%;
 }
-
 .photos img {
-  width: 70%;
+ width: 70%;
 }
+
+.chart-container {
+  display: flex;
+  justify-content: space-between;  /* Adjusts the spacing between the charts */
+  gap: 20px;
+  margin-top: 10px;
+  padding:2px;
+}
+
+.chart-container canvas {
+  background-color: #ffffff;
+  border-radius: 8px;
+  flex: 1; /* Makes each chart take equal width */
+}
+
+

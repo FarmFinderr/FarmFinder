@@ -91,11 +91,25 @@ isNotificationModalOpen = false;
         });
         this.notificationCount++;
         this.playNotificationSound();
+        this.showTemporaryAlert(receivedMessage.content);
         console.log('Received message:', receivedMessage);
         
       }
+      
         
       }
+      alertMessage="";
+      alertVisible=false;
+      showTemporaryAlert(content: string): void {
+        // Display the alert message
+        this.alertMessage = content;
+        this.alertVisible = true;
+    
+        // Hide the alert after 3 seconds
+        setTimeout(() => {
+            this.alertVisible = false;
+        }, 3000);
+    }
       playNotificationSound(): void {
         const sound = new Audio('../../../assets/sound.mp3');
         sound.play();
@@ -122,27 +136,23 @@ isNotificationModalOpen = false;
     this.notificationCount = 0;
   }
   deleteNotification(id: number): void {
-  this.ChatUsersService.deleteNotification(id).subscribe({
-    next: () => {
-      console.log('Notification deleted successfully');
-      
-      // Update the notification data array
-      this.notificationData = this.notificationData.filter(notif => String(notif.id) !== String(id));
-
-      
-      // Update the notification count
-      this.notificationCount = this.notificationData.length;
-
-      // Trigger Angular's change detection manually
-      this.cdr.detectChanges();
-
-      console.log('Updated notifications:', this.notificationData);
-    },
-    error: (err) => {
-      console.error('Error deleting notification:', err);
-    }
-  });
-}
+    // Remove notification from the UI immediately
+    this.notificationData = this.notificationData.filter(notif => notif.id !== id);
+    this.notificationCount = this.notificationData.length;
+  
+    // Call the API to delete the notification
+    this.ChatUsersService.deleteNotification(id).subscribe({
+      next: () => {
+        console.log('Notification deleted successfully');
+      },
+      error: (err) => {
+        console.error('Error deleting notification:', err);
+        // Optionally, add back the notification if deletion fails
+        this.getNotif(); // Fetch notifications again to sync the UI
+      }
+    });
+  }
+  
 
   
   

@@ -6,23 +6,11 @@
   flex-direction: column;
   gap: 2rem;
   align-items: center;
-}
-/* img {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
-  border-radius: 8px;
-} */
-textarea {
-  resize: none;
-}
-button {
-  transition: background-color 0.2s;
+
 }
 
 .header {
   font-size: 30px;
-  color: white; /* Ensures readability */
 }
 
 .profile {
@@ -39,11 +27,15 @@ button {
   font-weight: bold;
   display: flex;
   justify-content: center;
+
 }
 
 .profile span {
   text-align: left;
+
 }
+
+
 
 .profile_photo {
   margin-top: 30px;
@@ -51,18 +43,16 @@ button {
   width: 8rem;
   height: 8rem;
   background-color: grey;
-  border: 3px solid grey;
+  border: 3px solid rgb(198, 226, 166);
 }
 
-/* Adjustments for the layout and spacing */
 section {
+
   display: flex;
-  position: relative;
-  top: 300px; /* Décale la section de 100px depuis le haut */
 }
 
 .body {
-  background-image: url('/assets/sidebar.png');
+  background-image: url('../../../assets/sidebar.png');
   background-size: cover; /* Makes sure the image covers the whole page */
   background-position: center; /* Centers the image */
   background-repeat: no-repeat; /* Prevents repeating */
@@ -70,25 +60,11 @@ section {
   height: auto;
   display: flex;
   flex-direction: column;
-  /* align-items: center;
-  justify-content: center; */
+  align-items: center;
+  justify-content: center;
   gap: 2rem;
-}
 
-/* New styles for the list and its alignment */
-ul {
-  margin-left: 20px; /* Adds spacing between the sidebar and the list */
-  width: 75%; /* Ensures proper alignment */
-  padding: 0;
-  list-style-type: none;
-}
 
-ul li {
-  border: 1px solid gray; /* Gray border for list items */
-  padding: 10px; /* Adds inner spacing */
-  margin-bottom: 10px; /* Space between list items */
-  background-color: white; /* Better contrast */
-  border-radius: 5px; /* Rounded edges for a modern look */
 }
 
 .card_value {
@@ -113,6 +89,7 @@ ul li {
 }
 
 .dashboards {
+
   width: 80%;
   display: flex;
   align-items: center;
@@ -125,17 +102,18 @@ ul li {
   width: 50%;
   height: 100%;
   background-color: white;
+
 }
 
 .card {
   background-color: white;
   height: 70%;
   width: 20%;
-  border-radius: 10px; /* Smooth corners for a polished look */
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+
+
 }
 
-.profile:hover {
+.profile :hover {
   border-bottom: 3px solid white;
 }
 
@@ -146,11 +124,14 @@ ul li {
 }
 
 .batton_diagramme img {
+
   width: 80%;
   height: 100%;
 }
-
-#MyChart {
+#MyChart{
+  height: 100%;
+}
+section {
   height: 100%;
 }
 
@@ -160,10 +141,25 @@ ul li {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 65%;
+  height :   65%  ;
   width: 60%;
 }
-
 .photos img {
-  width: 70%;
+ width: 70%;
 }
+
+.chart-container {
+  display: flex;
+  justify-content: space-between;  /* Adjusts the spacing between the charts */
+  gap: 20px;
+  margin-top: 10px;
+  padding:2px;
+}
+
+.chart-container canvas {
+  background-color: #ffffff;
+  border-radius: 8px;
+  flex: 1; /* Makes each chart take equal width */
+}
+
+

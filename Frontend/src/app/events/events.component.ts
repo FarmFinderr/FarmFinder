@@ -68,7 +68,7 @@ export class EventsComponent implements OnInit {
           this.annonces = data; 
         },
         (error: any) => {
-          console.error('Error fetching all users:', error);
+          console.error('Error fetching all events:', error);
         }
       );
     } else {
@@ -77,7 +77,7 @@ export class EventsComponent implements OnInit {
           this.annonces = data; 
         },
         (error: any) => {
-          console.error('Error searching users:', error);
+          console.error('Error searching events:', error);
         }
       );
     }
@@ -188,7 +188,18 @@ export class EventsComponent implements OnInit {
     });
     this.eventService.addEvent(formData).subscribe({
       next: (response) => {
+
         console.log("Event created successfully:", response);
+        this.event_created.photo ="";
+        this.event_created.title ="";
+        this.event_created.description ="";
+        this.event_created.price =0;
+        this.event_created.date_debut ="";
+        this.event_created.date_fin ="";
+
+
+          
+       
         this.load_events();
       },
       error: (error) => {

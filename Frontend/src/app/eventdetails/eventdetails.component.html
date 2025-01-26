@@ -28,6 +28,8 @@
         <path
           d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z" />
       </svg><span>Complaints</span></div>
+      
+      
 
       <div class="py-4 border-t border-lime-700">
         <button
@@ -40,7 +42,8 @@
       </div>
 
   </div>
-  <div class="body flex justify-center bg-gray-100 min-h-screen p-6 mt-10">
+  <div class="body">
+  <div class="body  justify-center bg-gray-100 p-6 mt-10">
     <!-- Main Content -->
     <div *ngIf="Event" class="flex flex-wrap w-full max-w-screen-lg bg-white rounded-lg shadow-lg">
 
@@ -77,9 +80,9 @@
     </div>
 
     <!-- Loading State -->
-    <div *ngIf="!Event" class="text-center text-gray-500 text-lg mt-10">
+    <div *ngIf="!Event" class="text-center text-gray-500 text-lg ">
       <p>Loading event details...</p>
     </div>
   </div>
-
+</div>
 </section>
